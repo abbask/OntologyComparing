@@ -1,0 +1,65 @@
+body{
+	font-family: Arial; font-size: 14px
+}
+table{
+	vertical-align: top;
+}
+table td, table td * {
+    vertical-align: top;
+	font-family: Tahoma;
+	font-size: 13px;
+}
+.classType{
+	color:#2195ff;
+}
+.objectType{
+	color:#0ecc33
+}
+.dataType{
+	color:#ff2c00
+}
+
+.clear{
+	clear: both;
+}
+
+.floatLeft{
+	float: left;
+}
+
+.floatRight{
+	float: right;
+	width: 50%;
+}
+
+.form label{
+    display: inline-block;
+    vertical-align: baseline;
+    width: 100px;
+}
+
+.form input[type=text] {
+    display: inline-block;
+    vertical-align: baseline;
+    width: 300px;
+}
+
+
+
+/* */
+.content{
+	width: 1024px;
+	margin: 0 auto;
+}
+
+.largerForm label{
+	display: inline-block;
+	text-align: right;
+    width: 300px;
+}
+
+.largerForm input[type=text] {
+	display: inline-block;
+	
+    width: 300px;
+}
