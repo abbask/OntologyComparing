@@ -1,11 +1,13 @@
 package edu.uga.cs.ontologycomparision.presentation;
 
 import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
 
-@ApplicationPath("/")
+@Path("hello")
 public class EndPointService {
 	
-	@GET @Path("/EndPoint/greetings")@Produces("text/plain")
+	@GET 
+	@Produces(MediaType.TEXT_PLAIN)
 	public String getWins() {return "Hello, world!";}
 
 }
