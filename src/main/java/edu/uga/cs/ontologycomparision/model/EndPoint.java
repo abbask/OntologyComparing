@@ -4,7 +4,7 @@ import java.util.List;
 
 public class EndPoint {
 	
-	private int id;
+	private int ID;
 	private String name;
 	private String url;
 	private List<DataSet> datasets;
@@ -18,24 +18,24 @@ public class EndPoint {
 	}
 
 	public EndPoint(int id, String name, String url) {
-		this.id = id;
+		this.ID = id;
 		this.name = name;
 		this.url = url;
 	}	
 	
 	public EndPoint(int id, String name, String url, List<DataSet> datasets) {		
-		this.id = id;
+		this.ID = id;
 		this.name = name;
 		this.url = url;
 		this.datasets = datasets;
 	}
 
-	public int getId() {
-		return id;
+	public int getID() {
+		return ID;
 	}
 	
-	public void setId(int id) {
-		this.id = id;		
+	public void setID(int id) {
+		this.ID = id;		
 	}	
 
 	public String getName() {
@@ -64,7 +64,7 @@ public class EndPoint {
 
 	@Override
 	public String toString() {
-		return "EndPoint [id=" + id + ", name=" + name + ", url=" + url + ", datasets=" + datasets + "]";
+		return "EndPoint [id=" + ID + ", name=" + name + ", url=" + url + ", datasets=" + datasets + "]";
 	}
 
 	@Override
@@ -72,7 +72,7 @@ public class EndPoint {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((datasets == null) ? 0 : datasets.hashCode());
-		result = prime * result + id;
+		result = prime * result + ID;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		return result;
@@ -92,7 +92,7 @@ public class EndPoint {
 				return false;
 		} else if (!datasets.equals(other.datasets))
 			return false;
-		if (id != other.id)
+		if (ID != other.ID)
 			return false;
 		if (name == null) {
 			if (other.name != null)

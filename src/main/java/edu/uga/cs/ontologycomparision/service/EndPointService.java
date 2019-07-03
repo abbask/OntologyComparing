@@ -26,7 +26,7 @@ public class EndPointService {
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		while(rs.next()) {
-			list.add(new EndPoint(rs.getString("name"), rs.getString("url")));
+			list.add(new EndPoint(rs.getInt("ID"), rs.getString("name"), rs.getString("url")));
 		}
 		
 		return list;						

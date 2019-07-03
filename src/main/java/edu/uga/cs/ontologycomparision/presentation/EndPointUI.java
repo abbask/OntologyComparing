@@ -1,46 +1,77 @@
 package edu.uga.cs.ontologycomparision.presentation;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+
+import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.model.EndPoint;
 import edu.uga.cs.ontologycomparision.service.EndPointService;
+import edu.uga.cs.ontologycomparision.util.FreeMarkerTemplate;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+import freemarker.template.TemplateException;
 
-@Path("EndPoint")
-public class EndPointUI {
+@WebServlet("/EndPointList")
+public class EndPointUI extends HttpServlet{
 	
-	@GET 
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getEndPoint() {
+	private static final long serialVersionUID = 1L;
+	final static Logger logger = Logger.getLogger(EndPointUI.class);
+
+	static String templateName = "EndPointList.ftl";
+
+	
+	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		loadPage(req, res);
+	}
+
+	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {		
+		loadPage(req, res);	
+	}
+	
+	public void loadPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+		BufferedWriter toClient = null;
+		Map<String, Object> root = new HashMap<>();	
+
+		FreeMarkerTemplate freeMarkerTemplate = new FreeMarkerTemplate();
+		Template template = freeMarkerTemplate.loadTemplate(getServletContext(), templateName);									
 		
 		EndPointService service = new EndPointService();
 		List<EndPoint> list;
-		try {
-			list =  service.getListAll();
-		}
-		catch(Exception ex) {
-			String error = ex.getMessage();
-			return Response.status(Response.Status.NO_CONTENT).entity(error).build();
-		}
-		return Response.status(200).entity(list.toString()).build();
+		
+		try {		
+			list =  service.getListAll();			
+			root.put("endpoints", list);
+			
+			toClient = new BufferedWriter(
+					new OutputStreamWriter(res.getOutputStream(), template.getEncoding()));
+			res.setContentType("text/html; charset=" + template.getEncoding());
+			
+			template.process(root, toClient);
+			toClient.flush();
 
+		} catch (TemplateException e) {
+			throw new ServletException(
+					"Error while processing FreeMarker template", e);
+		} catch(SQLException sqlEx) {
+			throw new ServletException("Error while query Database", sqlEx);
+		}		
+		toClient.close();
 	}
+	
+	
+	
 
 }
-//Gson gson = new Gson();
-//String[] items = {"test1", "test2", "test3"};		
-//String result = gson.toJson(items);					
-//return Response.status(200).entity(result).build();
-//				
-//JSONObject jsonObject = new JSONObject();
-//Double fahrenheit = 98.24;
-//Double celsius;
-//celsius = (fahrenheit - 32) * 5 / 9;
-//jsonObject.put("F Value", fahrenheit);
-//jsonObject.put("C Value", celsius);
-//String result = "@Produces(\"application/json\") Output: \n\nF to C Converter Output: \n\n" + gson.toJson("test");
