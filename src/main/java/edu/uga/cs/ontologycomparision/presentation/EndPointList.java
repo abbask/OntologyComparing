@@ -25,10 +25,10 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 @WebServlet("/EndPointList")
-public class EndPointUI extends HttpServlet{
+public class EndPointList extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
-	final static Logger logger = Logger.getLogger(EndPointUI.class);
+	final static Logger logger = Logger.getLogger(EndPointList.class);
 
 	static String templateName = "EndPointList.ftl";
 

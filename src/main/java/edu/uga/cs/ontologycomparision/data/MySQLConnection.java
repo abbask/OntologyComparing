@@ -15,7 +15,7 @@ public class MySQLConnection {
 	static final String JDBC_DB_URL = "jdbc:mysql://localhost:3306/ontology_comparison"; 
 	
 	static final String JDBC_USER = "root";
-	static final String JDBC_PASS = "coolerthanever";
+	static final String JDBC_PASS = "coolerthanever";//coolerthanever
 	
 	Connection connObj;
 	Statement statement;

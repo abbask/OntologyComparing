@@ -13,30 +13,29 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/OntologyTesting/OntologyTest">Ontology Test</a>
+      <a class="navbar-brand" href="/OntologyComparing/EndPointList">Ontology Comparison</a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="/OntologyTesting/SystemTestList">System Testing</a></li>      
-      <li class="active"><a href="/OntologyTesting/UnitTestList">Unit Testing</a></li>
-      <li><a href="/OntologyTesting/TestHistory">History</a></li>
+      <li class="active"><a href="/OntologyComparing/EndPointList">End Points</a></li>      
+      
     </ul>
   </div>
 </nav>
   
 <div class="container">
 	<h3>List of Endpoints</h3>
-	<p>You can see list of unit test and load them.</p>
+	<p>You can see list of endpoints and load them.</p>
 	<div  style="float: left;">
-		<a href="UnitTestNew" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Add Unit Test</a>
+		<a href="EndpointNew" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Add Endpoint</a>
 	</div>
 	<div>
 		<table class="table">
 		  <thead>
 		    <tr>
-		      <th scope="col">name</th>
-		      <th scope="col">query</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">URL</th>
 		      <th scope="col">message</th>
-		      <th scope="col">system test</th>
+		      <th scope="col">Action</th>
 		      <th scope="col"></th>
 		    </tr>
 		  </thead>
