@@ -14,23 +14,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import org.apache.log4j.Logger;
 
-import edu.uga.cs.ontologycomparision.model.EndPoint;
-import edu.uga.cs.ontologycomparision.service.EndPointService;
+import edu.uga.cs.ontologycomparision.model.Version;
+import edu.uga.cs.ontologycomparision.service.VersionService;
 import edu.uga.cs.ontologycomparision.util.FreeMarkerTemplate;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
-@WebServlet("/EndPointList")
-public class EndPointList extends HttpServlet{
+@WebServlet("/VersionList")
+public class VersionList extends HttpServlet{
 	
 	private static final long serialVersionUID = 1L;
 	final static Logger logger = Logger.getLogger(EndPointList.class);
 
-	static String templateName = "EndPointList.ftl";
-
+	static String templateName = "VersionList.ftl";
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		loadPage(req, res);
@@ -47,8 +45,8 @@ public class EndPointList extends HttpServlet{
 		FreeMarkerTemplate freeMarkerTemplate = new FreeMarkerTemplate();
 		Template template = freeMarkerTemplate.loadTemplate(getServletContext(), templateName);									
 		
-		EndPointService service = new EndPointService();
-		List<EndPoint> list;
+		VersionService service = new VersionService();
+		List<Version> list;
 		
 		try {		
 			list =  service.getListAll();			
@@ -69,8 +67,5 @@ public class EndPointList extends HttpServlet{
 		}		
 		toClient.close();
 	}
-	
-	
-	
 
 }
