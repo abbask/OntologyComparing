@@ -13,7 +13,7 @@
 <nav class="navbar navbar-default">
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="/OntologyComparing/VersionList">Versions</a>
+      <a class="navbar-brand" href="/OntologyComparing/VersionList">Ontology Comparing</a>
     </div>
     <ul class="nav navbar-nav">
       <li class="active"><a href="/OntologyComparing/VersionList">Versions</a></li>      
@@ -34,6 +34,7 @@
 		    <tr>
 		      <th scope="col">Name</th>
 		      <th scope="col">Number</th>
+		      <th scope="col">Date</th>
 		      <th scope="col"></th>
 		    </tr>
 		  </thead>
@@ -44,13 +45,13 @@
 						${version.name}
 					</td>
 					<td style="text-overflow: ellipsis;">
-
-						
-						${version.number}
-						
+						${version.number}					
+					</td>
+					<td >
+						${version.date}					
 					</td>
 					<td>
-						<a href="UnitTestRemove?id=${endpoint.ID}" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Remove</a>
+						<a href="VersionRemove?id=${version.ID}" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Remove</a>
 					</td>
 					
 				</tr>
