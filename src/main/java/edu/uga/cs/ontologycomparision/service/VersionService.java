@@ -30,7 +30,7 @@ public class VersionService {
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		while(rs.next()) {
-			list.add(new Version(rs.getInt("ID"), rs.getString("name"), rs.getString("number")));
+			list.add(new Version(rs.getInt("ID"), rs.getString("name"), rs.getString("number"), rs.getDate("date")));
 		}
 //		logger.info("VersionService.listAll : list version commited.");
 		return list;						
@@ -44,10 +44,11 @@ public class VersionService {
 		
 		try {
 			
-			String queryString = "INSERT INTO verion (name,number) VALUES (?,?)";
+			String queryString = "INSERT INTO verion (name,number,date) VALUES (?,?,?)";
 			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,version.getName());
 			statement.setString(2,version.getNumber());
+			statement.setDate(3,version.getDate());
 			
 			statement.executeUpdate();
 			c.commit();
