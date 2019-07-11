@@ -50,7 +50,7 @@ public class VersionList extends HttpServlet{
 		
 		try {		
 			list =  service.getListAll();			
-			root.put("endpoints", list);
+			root.put("versions", list);
 			
 			toClient = new BufferedWriter(
 					new OutputStreamWriter(res.getOutputStream(), template.getEncoding()));
