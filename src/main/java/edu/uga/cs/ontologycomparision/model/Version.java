@@ -1,6 +1,6 @@
 package edu.uga.cs.ontologycomparision.model;
 
-import java.sql.Date;;
+import java.util.Date;
 
 public class Version {
 
