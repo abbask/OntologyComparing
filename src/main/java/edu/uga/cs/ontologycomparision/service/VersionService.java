@@ -48,7 +48,7 @@ public class VersionService {
 			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,version.getName());
 			statement.setString(2,version.getNumber());
-			statement.setDate(3,version.getDate());
+			statement.setDate(3,new java.sql.Date(version.getDate().getTime()));
 			
 			statement.executeUpdate();
 			c.commit();
