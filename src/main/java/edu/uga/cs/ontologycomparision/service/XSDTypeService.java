@@ -56,7 +56,7 @@ public class XSDTypeService {
 		Connection c = mySQLConnection.openConnection();			
 		
 		Statement stmtSys = c.createStatement();			
-		String query = "SELECT * FROM version where type='" + type + "'";
+		String query = "SELECT * FROM xsd_type where type='" + type + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		while(rs.next()) {
