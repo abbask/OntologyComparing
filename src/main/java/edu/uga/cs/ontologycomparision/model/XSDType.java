@@ -6,6 +6,9 @@ public class XSDType {
 	private String url;
 	private String type;
 	
+	public XSDType() {
+	}
+	
 	public XSDType(String url, String type) {
 		this.url = url;
 		this.type = type;
