@@ -68,5 +68,31 @@ public class VersionService {
 		}
 		
 	}
+	
+	/**
+	 * Get version using ID
+	 * @param ID
+	 * @return Version
+	 * @throws SQLException
+	 */
+	
+	public Version get(int ID) throws SQLException {
+		
+		List<Version> list = new LinkedList<Version>();
+				
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		Connection c = mySQLConnection.openConnection();			
+		
+		c.setAutoCommit(false);
+		Statement stmtSys = c.createStatement();			
+		String query = "SELECT * FROM version WHERE ID=" + ID;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		while(rs.next()) {
+			list.add(new Version(rs.getInt("ID"), rs.getString("name"), rs.getString("number"), rs.getDate("date")));
+		}
+		return list.get(0);						
+				
+	}
 
 }
