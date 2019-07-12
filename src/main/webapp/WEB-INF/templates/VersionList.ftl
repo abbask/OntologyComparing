@@ -29,19 +29,21 @@
 		<a href="VersionNew" class="btn btn-primary btn-md active" role="button" aria-pressed="true">Add new Version</a>
 	</div>
 	<div>
-		<table class="table">
+		<table class="table table-striped table-responsive">
 		  <thead>
 		    <tr>
-		      <th scope="col">Name</th>
-		      <th scope="col">Number</th>
-		      <th scope="col">Date</th>
-		      <th scope="col"></th>
+		      <th class="col-sm-2" scope="col">Name</th>
+		      <th class="col-sm-2" scope="col">Number</th>
+		      <th class="col-sm-2" scope="col">Date</th>
+		      <th class="col-sm-3" scope="col"></th>
+		      <th class="col-sm-1" scope="col"></th>
+		      <th class="col-sm-2" scope="col"></th>
 		    </tr>
 		  </thead>
 		  <tbody>
 		  	<#list versions as version>
-				<tr>
-					<td>
+				<tr >
+					<td >
 						${version.name}
 					</td>
 					<td style="text-overflow: ellipsis;">
@@ -49,6 +51,12 @@
 					</td>
 					<td >
 						${version.date}					
+					</td>
+					<td>
+						<a href="" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Retrieve Schema</a>
+					</td>
+					<td>
+						<a href="" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Edit</a>
 					</td>
 					<td>
 						<a href="VersionRemove?id=${version.ID}" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Remove</a>
