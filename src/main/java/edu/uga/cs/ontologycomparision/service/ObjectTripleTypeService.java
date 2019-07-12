@@ -17,7 +17,7 @@ import edu.uga.cs.ontologycomparision.model.Class;
 
 public class ObjectTripleTypeService {
 	
-final static Logger logger = Logger.getLogger(ObjectTripleTypeService.class);
+	final static Logger logger = Logger.getLogger(ObjectTripleTypeService.class);
 	
 	public void add(ObjectTripleType objectTriple) {
 		
