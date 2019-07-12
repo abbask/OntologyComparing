@@ -65,5 +65,23 @@ public class XSDTypeService {
 		return list.get(0);						
 				
 	}
+	
+	public XSDType get(int ID) throws SQLException {
+		
+		List<XSDType> list = new LinkedList<XSDType>();
+				
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		Connection c = mySQLConnection.openConnection();			
+		
+		Statement stmtSys = c.createStatement();			
+		String query = "SELECT * FROM xsd_type where ID=" + ID;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		while(rs.next()) {
+			list.add(new XSDType(rs.getInt("ID"), rs.getString("url"), rs.getString("type")));
+		}
+		return list.get(0);						
+				
+	}
 
 }
