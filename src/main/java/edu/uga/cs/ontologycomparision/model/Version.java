@@ -15,12 +15,14 @@ public class Version {
 	public Version(String name, String number, Date date) {
 		this.name = name;
 		this.number = number;
+		this.date = date;
 	}
 	
 	public Version(int iD, String name, String number, Date date) {
 		ID = iD;
 		this.name = name;
 		this.number = number;
+		this.date = date;
 	}
 
 	public int getID() {

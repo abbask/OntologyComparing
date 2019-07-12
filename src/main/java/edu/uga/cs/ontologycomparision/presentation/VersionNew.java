@@ -83,12 +83,11 @@ public class VersionNew extends HttpServlet{
 		} catch (ParseException e) {
 			throw new ServletException(
 					"Invalid date. Please use correct date", e);
-		}
-//		date = (Date)(!req.getParameter("date").equals(""))? req.getParameter("date") : date ;
+		}		
 		
-		
+		Version version = new Version(name, number, date);
 		VersionService versionService = new VersionService();
-		versionService.add(new Version(name, number, date));
+		versionService.add(version);
 
 		
 		res.sendRedirect(req.getContextPath() + "/VersionList");

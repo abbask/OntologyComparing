@@ -43,8 +43,9 @@ public class VersionService {
 		Connection c = mySQLConnection.openConnection();			
 		
 		try {
+			c.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO verion (name,number,date) VALUES (?,?,?)";
+			String queryString = "INSERT INTO version (name,number,date) VALUES (?,?,?)";
 			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,version.getName());
 			statement.setString(2,version.getNumber());
