@@ -32,7 +32,7 @@ public class FreeMarkerTemplate {
 		} 
 		catch (IOException e) {
 			throw new ServletException( 
-					"Can't load template " + templateDir + "/" + templateName + ": " + e.toString());
+					"Can't load template " + templatePath + ": " + e.toString());
 		}
 		return template;
 		
