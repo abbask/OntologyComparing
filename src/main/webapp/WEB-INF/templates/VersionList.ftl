@@ -53,7 +53,7 @@
 						${version.date}					
 					</td>
 					<td>
-						<a href="" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Retrieve Schema</a>
+						<a href="RetrieveSchema?id=${version.ID}" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Retrieve Schema</a>
 					</td>
 					<td>
 						<a href="" class="btn btn-danger btn-md active" role="button" aria-pressed="true">Edit</a>
