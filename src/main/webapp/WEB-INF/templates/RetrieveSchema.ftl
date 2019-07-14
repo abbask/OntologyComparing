@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <script src="js/unitTestmodal.js" type='text/javascript'></script>
+  <script src="js/RetrieveSchemaProgress.js" type='text/javascript'></script>
 </head>
 <body>
 
@@ -39,9 +39,11 @@
 		    <label for="graphName" class="sr-only">Graph Name</label>
 		    <input type="text" class="form-control" id="graphName" placeholder="Graph name">
 		  </div>
-		  <button type="submit" class="btn btn-primary mb-2">Retrieve</button>
+		  <button id="Retrieve" type="submit" class="btn btn-primary mb-2">Retrieve</button>
 		  <a  class="btn btn-default " href="/OntologyTesting/VersionList" role="button">Cancel</a>
 		</form>
+	</div>
+	<div class="progressDiv">
 	</div>
 </div>
 
