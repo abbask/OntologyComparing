@@ -45,6 +45,22 @@ public class DataStoreConnection {
 		
 	}
 
+	public boolean executeASK(String queryString) {
+		boolean result = false;
+		QueryExecution qexec = QueryExecutionFactory.sparqlService(serviceURI, queryString);
+		try {
+			result = qexec.execAsk() ;
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		qexec.close() ;
+		System.out.println(result);
+		return result;
+		
+	}
+	
+	
 	private ArrayList<String> executeQuery(String queryString) {
 		
 
