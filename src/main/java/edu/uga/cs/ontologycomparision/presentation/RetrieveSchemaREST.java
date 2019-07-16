@@ -3,6 +3,7 @@ package edu.uga.cs.ontologycomparision.presentation;
 import java.util.List;
 
 import javax.ws.rs.GET;
+
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -16,6 +17,7 @@ import edu.uga.cs.ontologycomparision.service.RetrieveSchemaService;
 @Path("/RetrieveSchema")
 public class RetrieveSchemaREST {
 	
+	/* NOT USED */
 	@GET
 	@Path("/check/endpoint/{endpoint}/graph/{graphName}/")
 	@Produces(MediaType.APPLICATION_JSON)

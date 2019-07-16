@@ -3,10 +3,11 @@
  */
 $(document).ready(function(){
 	
-	function getRemote(remote_url) {
+	function getRemote(endpoint, graphname) {
 	    return $.ajax({
 	        type: "GET",
-	        url: remote_url,
+	        data: {'endpoint': endpoint, 'graphName': graphname},
+	        url: "EndPointStatus",
 	        async: false
 	    }).responseText;
 	}
@@ -21,16 +22,9 @@ $(document).ready(function(){
 		graphName = $('#graphName').val();
 		
 		if (endpoint != "" && graphName != ""){
-			// ASK query to check endpoint
-			
-			var encodedEndpoint = encodeURIComponent(endpoint);
-			var encodedGraphName = encodeURIComponent(graphName);
-			
-			url = "http://localhost:8080/OntologyComparing/rest/RetrieveSchema/check/endpoint/" + encodedEndpoint + "/graph/" + encodedGraphName + "/";
 
-			console.log("url: " + url);
 			
-			if (getRemote(url) == true){
+			if (getRemote(endpoint, graphName) == 'True'){
 				$('.progressDiv').html('<p>Endpoint check: <span class="glyphicon glyphicon-ok"></span></p>');
 			}
 			else{
