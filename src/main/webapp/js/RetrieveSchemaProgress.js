@@ -12,6 +12,18 @@ $(document).ready(function(){
 	    }).responseText;
 	}
 	
+	function getClasses(endpoint, graphname){
+		return $.ajax({
+		    url: 'rest/RetrieveSchema/classes',
+		    type: 'GET',
+		    data: {'endpoint': endpoint, 'graphName': graphname},
+		}).done(function (e) {
+			console.log("Done");
+		}).fail(function (e) {
+			console.log("failed");
+		});
+	}
+	
 	// Temp
 	$('#endpoint').val('http://gumbo.cs.uga.edu:8890/sparql');
 	$('#graphName').val('<http://prokino.uga.edu>');
@@ -33,12 +45,16 @@ $(document).ready(function(){
 				
 			
 			// retieve classes
-			
+			getClasses(endpoint, graphName);
 			
 			//retrieve prop
 		}// if 
 		
-	});//form submit
+	});//Retrieve click
+	
+	
+	
+	
 });
 	
 
