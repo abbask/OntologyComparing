@@ -18,10 +18,27 @@ public class ClassService {
 	
 	final static Logger logger = Logger.getLogger(ClassService.class);
 	
-	public void add(Class myClass) {
+	public Class addIfNotExist(Class myClass) throws SQLException {
+		
+		String label = myClass.getLabel();
+		Class retrieveClass = getByLabel(label);
+		
+		if (retrieveClass == null) {
+			int id = add(myClass);
+			myClass.setID(id);
+			return myClass;
+
+		}
+		else
+			return retrieveClass;
+		
+	}
+	
+	public int add(Class myClass) {
 		
 		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+		Connection c = mySQLConnection.openConnection();	
+		int candidateId = 0;
 		
 		try {
 			c.setAutoCommit(false);
@@ -39,25 +56,46 @@ public class ClassService {
 				statement.setNull(6, java.sql.Types.INTEGER);
 			
 			
-			statement.executeUpdate();
+			int rowAffected = statement.executeUpdate();
+			if(rowAffected == 1)
+            {
+				ResultSet rs = null;
+                rs = statement.getGeneratedKeys();
+                if(rs.next())
+                    candidateId = rs.getInt(1);
+ 
+            }
+			
 			c.commit();
+			System.out.println("Commited id: " + candidateId);
 			
 			c.close();
+			mySQLConnection.closeConnection();
+			
+			c = null;
+			mySQLConnection = null;
+			
 			logger.info("ClassService.add : new Class commited.");
+			
+			return candidateId;
+			
 		} catch (Exception sqlException) {
 			try {
+				sqlException.printStackTrace();
 				c.rollback();
 				logger.info("ClassService.add : new Class is rolled back.");
 				c.close();
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
+				return 0;
 			}
 			logger.error(sqlException.getMessage(), sqlException);
+			return 0;
 		}
 		
 	}
 	
-	public Class getByType(String label) throws SQLException {
+	public Class getByLabel(String label) throws SQLException {
 		
 		List<Class> list = new LinkedList<Class>();
 				
@@ -77,7 +115,16 @@ public class ClassService {
 			
 			list.add(new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,myClass));
 		}
-		return list.get(0);						
+		Class result ;
+		if (list.size() > 0) 
+			result = list.get(0);
+		else
+			result = null;
+		
+		mySQLConnection.closeConnection();
+		c.close();
+		
+		return result;					
 				
 	}
 	

@@ -25,15 +25,17 @@ public class MySQLConnection {
 		connObj = null;
 		statement = null;
 		preparedStatement =null;
-		openConnection();
+		connObj = openConnection();
 	}
 
 	public Connection openConnection() {
 		
 		try {
-			Class.forName(JDBC_DRIVER);  
-
-			connObj = DriverManager.getConnection(JDBC_DB_URL + "?user=" + JDBC_USER + "&password=" + JDBC_PASS + "&serverTimezone=UTC&useSSL=false");
+			if (connObj == null) {
+				Class.forName(JDBC_DRIVER);  
+	
+				connObj = DriverManager.getConnection(JDBC_DB_URL + "?user=" + JDBC_USER + "&password=" + JDBC_PASS + "&serverTimezone=UTC&useSSL=false");
+			}
 		} catch (Exception sqlException) {
 			sqlException.printStackTrace();
 			logger.error("MySQLConnection: sqlException error - Connection openning error");			

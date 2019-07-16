@@ -91,7 +91,14 @@ public class VersionService {
 		while(rs.next()) {
 			list.add(new Version(rs.getInt("ID"), rs.getString("name"), rs.getString("number"), rs.getDate("date")));
 		}
-		return list.get(0);						
+		
+		mySQLConnection.closeConnection();
+		c.close();
+		
+		return list.get(0);		
+		
+		
+		
 				
 	}
 

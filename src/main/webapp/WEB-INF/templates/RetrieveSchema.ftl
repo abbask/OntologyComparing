@@ -27,7 +27,7 @@
 <div class="container">
 	<h3>Retrieve Schema for ${version.name} version ${version.ID}</h3>
 	<p>You can retrieve schema by using an endpoint and giving the graph name.</p>
-
+	<input id="version_id" type="hidden" value="${version.ID}">
 	<div>
 		<form class="form-inline">
 		  <div class="form-group  mx-sm-3 mb-2">

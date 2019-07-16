@@ -1,6 +1,5 @@
 package edu.uga.cs.ontologycomparision.presentation;
 
-import java.util.List;
 
 import javax.ws.rs.GET;
 
@@ -54,19 +53,28 @@ public class RetrieveSchemaREST {
 	@GET
 	@Path("/classes")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response retrieveClasses(@QueryParam("endpoint") String endpointURL, @QueryParam("graphName") String graphName) {
-
-		System.out.println("[classes]graphName: " + graphName);
-		System.out.println("[classes]endpointURL: " + endpointURL);
-		for (int i = 0 ; i < 1000000000; i++) {
+	public Response retrieveClasses(@QueryParam("endpoint") String endpointURL, @QueryParam("graphName") String graphName, @QueryParam("version_id") int versionId) {
+		
+		RetrieveSchemaService service = new RetrieveSchemaService();
+		
+		try {
+			System.out.printf("endpoint: %s, graphName: %s, versionId: %s ", endpointURL, graphName, versionId);
+			if (service.retrieveAllClasses(endpointURL, graphName, versionId)) {
+				return Response.ok("done", MediaType.TEXT_HTML).header(HttpHeaders.CONTENT_LENGTH, 4).build();
+			}
+			return Response.status(500).entity("failed").build();
+		} catch (Exception e) {
 			
+			e.printStackTrace();
+			return Response.status(500).entity("failed").build();
 		}
+		
 		
 		//res.setContentType("text/html; charset=" + template.getEncoding());
 		//return Response.status(200).entity("true").build();
 		//Response.ok(str , MediaType.APPLICATION_JSON).header(HttpHeaders.CONTENT_LENGTH), str.getBytes("UTF-8").length)).build();
 
-		return Response.ok("true", MediaType.TEXT_HTML).header(HttpHeaders.CONTENT_LENGTH, 4).build();
+		
 	}
 	
 

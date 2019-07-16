@@ -12,16 +12,17 @@ $(document).ready(function(){
 	    }).responseText;
 	}
 	
-	function getClasses(endpoint, graphname){
+	function getClasses(endpoint, graphname, versionId){
 		return $.ajax({
 		    url: 'rest/RetrieveSchema/classes',
 		    type: 'GET',
-		    data: {'endpoint': endpoint, 'graphName': graphname},
+		    data: {'endpoint': endpoint, 'graphName': graphname, 'version_id': version_id},
+		    async: false
 		}).done(function (e) {
 			console.log("Done");
 		}).fail(function (e) {
 			console.log("failed");
-		});
+		}).responseText;
 	}
 	
 	// Temp
@@ -32,6 +33,9 @@ $(document).ready(function(){
 		event.preventDefault();
 		endpoint = $('#endpoint').val();
 		graphName = $('#graphName').val();
+		version_id = $('#version_id').val();
+		
+		console.log(version_id);
 		
 		if (endpoint != "" && graphName != ""){
 
@@ -45,7 +49,12 @@ $(document).ready(function(){
 				
 			
 			// retieve classes
-			getClasses(endpoint, graphName);
+			if (getClasses(endpoint, graphName, version_id) == 'done' ) {
+				$('.progressDiv').append('<p>Class: <span class="glyphicon glyphicon-ok"></span></p>');
+			}
+			else{
+				$('.progressDiv').append('<p>Class: <span class="glyphicon glyphicon-remove"></span></p>');
+			}
 			
 			//retrieve prop
 		}// if 

@@ -8,7 +8,9 @@ import java.util.Map;
 
 import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
+import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSet;
+import org.apache.jena.rdf.model.RDFNode;
 
 import edu.uga.cs.ontologycomparision.model.*;
 
@@ -55,11 +57,37 @@ public class DataStoreConnection {
 			ex.printStackTrace();
 		}
 		qexec.close() ;
-		System.out.println(result);
+		
 		return result;
 		
 	}
 	
+	public LinkedList<QuerySolution> executeSelect(String queryString) {
+		ResultSet rs = null;
+		LinkedList<QuerySolution> result = new LinkedList<QuerySolution>(); 
+		QueryExecution qexec = QueryExecutionFactory.sparqlService(serviceURI, queryString);
+		try {
+			rs = qexec.execSelect();
+		}
+		catch(Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		LinkedList<String> vars = new LinkedList<String>();
+		for (String v: rs.getResultVars()) {
+	        vars.add(v);
+	    }
+		
+		for ( ; rs.hasNext() ; ) {
+			QuerySolution soln = rs.nextSolution() ;
+			result.add(soln);
+		}
+		
+		qexec.close() ;
+		
+		return result;
+		
+	}
 	
 	private ArrayList<String> executeQuery(String queryString) {
 		
