@@ -105,7 +105,7 @@ public class RetrieveSchemaService {
 				int count = individuals.get(0).get("Count").asLiteral().getInt();
 				
 				//retrieve parent class
-				queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + predicate + "> rdfs:subClassOf ?parent .}";
+				queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + predicate + "> rdfs:subPropertyOf ?parent .}";
 				List<QuerySolution> parents =  dataStoreConn.executeSelect(queryString);
 				Property parentProperty = null;
 				PropertyService propertyService = new PropertyService();
@@ -114,7 +114,7 @@ public class RetrieveSchemaService {
 					Resource parentResource = parents.get(0).getResource("parent");					
 					
 					
-					queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT (count(?ind) as ?Count) FROM " + graphName + " WHERE{ ?s <" + predicate + "> ?o .}";
+					queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT (count(?ind) as ?Count) FROM " + graphName + " WHERE{ ?s <" + parentResource.getURI() + "> ?o .}";
 					List<QuerySolution> parent =  dataStoreConn.executeSelect(queryString);
 					int parentCount = parent.get(0).get("Count").asLiteral().getInt();
 					

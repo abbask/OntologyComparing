@@ -38,9 +38,9 @@ $(document).ready(function(){
 		    data: {'endpoint': endpoint, 'graphName': graphname, 'version_id': version_id},
 		    async: true
 		}).done(function (data) {
-			$('.progressDiv').append('<p>Class: <span class="glyphicon glyphicon-ok"></span></p>');
+			$('.progressDiv').append('<p>Object Properties: <span class="glyphicon glyphicon-ok"></span></p>');
 		}).fail(function (data) {
-			$('.progressDiv').append('<p>Class: <span class="glyphicon glyphicon-remove"></span></p>');
+			$('.progressDiv').append('<p>Object Properties: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
 	}
 	
