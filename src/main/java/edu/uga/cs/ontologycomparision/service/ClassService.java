@@ -85,6 +85,7 @@ public class ClassService {
 				logger.info("ClassService.add : new Class is rolled back.");
 				c.close();
 				mySQLConnection.closeConnection();
+				
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
 				return 0;
