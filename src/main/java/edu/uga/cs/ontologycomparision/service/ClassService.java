@@ -19,9 +19,8 @@ public class ClassService {
 	final static Logger logger = Logger.getLogger(ClassService.class);
 	
 	public Class addIfNotExist(Class myClass) throws SQLException {
-		
-		String label = myClass.getLabel();
-		Class retrieveClass = getByLabel(label);
+				
+		Class retrieveClass = getByLabel(myClass.getLabel(), myClass.getVersion().getID());
 		
 		if (retrieveClass == null) {
 			int id = add(myClass);
@@ -95,7 +94,7 @@ public class ClassService {
 		
 	}
 	
-	public Class getByLabel(String label) throws SQLException {
+	public Class getByLabel(String label, int versionId) throws SQLException {
 		
 		List<Class> list = new LinkedList<Class>();
 				
@@ -103,7 +102,7 @@ public class ClassService {
 		Connection c = mySQLConnection.openConnection();			
 		
 		Statement stmtSys = c.createStatement();			
-		String query = "SELECT * FROM class where label='" + label + "'";
+		String query = "SELECT * FROM class where version_id =" + versionId  + " and label='" + label + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		while(rs.next()) {
