@@ -69,12 +69,6 @@ public class RetrieveSchemaREST {
 			return Response.status(500).entity("failed").build();
 		}
 		
-		
-		//res.setContentType("text/html; charset=" + template.getEncoding());
-		//return Response.status(200).entity("true").build();
-		//Response.ok(str , MediaType.APPLICATION_JSON).header(HttpHeaders.CONTENT_LENGTH), str.getBytes("UTF-8").length)).build();
-
-		
 	}
 	
 
