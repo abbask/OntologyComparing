@@ -84,6 +84,7 @@ public class ClassService {
 				c.rollback();
 				logger.info("ClassService.add : new Class is rolled back.");
 				c.close();
+				mySQLConnection.closeConnection();
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
 				return 0;
@@ -147,7 +148,12 @@ public class ClassService {
 			
 			list.add(new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,myClass));
 		}
-		return list.get(0);						
+		
+		mySQLConnection.closeConnection();
+		c.close();
+		return list.get(0);	
+		
+		
 				
 	}
 
