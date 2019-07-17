@@ -57,7 +57,13 @@ public class RetrieveSchemaService {
 				Class parentClass = null;
 				if (parents.size() > 0) {
 					Resource parentResource = parents.get(0).getResource("parent");					
-					parentClass = new Class(parentResource.getURI(), parentResource.getLocalName(), "", 0, version, null);					
+					
+					
+					queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT (count(?ind) as ?Count) FROM " + graphName + " WHERE{ ?ind a <" + parentResource.getURI() + "> .}";
+					List<QuerySolution> parent =  dataStoreConn.executeSelect(queryString);
+					int parentCount = parent.get(0).get("Count").asLiteral().getInt();
+					
+					parentClass = new Class(parentResource.getURI(), parentResource.getLocalName(), "", parentCount, version, null);					
 					parentClass = classService.addIfNotExist(parentClass);
 				}
 				
