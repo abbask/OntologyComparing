@@ -8,7 +8,12 @@ $(document).ready(function(){
 	        type: "GET",
 	        data: {'endpoint': endpoint, 'graphName': graphname},
 	        url: "EndPointStatus",
-	        async: false
+	        async: true
+	    }).done(function (data){
+	    	$('.progressDiv').html('<p>Endpoint check: <span class="glyphicon glyphicon-ok"></span></p>');
+	    	getClasses(endpoint, graphName, version_id)
+	    }).fail(function (data){
+	    	$('.progressDiv').html('<p>Endpoint check: <span class="glyphicon glyphicon-remove"></span></p>');
 	    }).responseText;
 	}
 	
@@ -17,11 +22,11 @@ $(document).ready(function(){
 		    url: 'rest/RetrieveSchema/classes',
 		    type: 'GET',
 		    data: {'endpoint': endpoint, 'graphName': graphname, 'version_id': version_id},
-		    async: false
-		}).done(function (e) {
-			console.log("Done");
-		}).fail(function (e) {
-			console.log("failed");
+		    async: true
+		}).done(function (data) {
+			$('.progressDiv').append('<p>Class: <span class="glyphicon glyphicon-ok"></span></p>');
+		}).fail(function (data) {
+			$('.progressDiv').append('<p>Class: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
 	}
 	
@@ -33,30 +38,11 @@ $(document).ready(function(){
 		event.preventDefault();
 		endpoint = $('#endpoint').val();
 		graphName = $('#graphName').val();
-		version_id = $('#version_id').val();
-		
-		console.log(version_id);
+		version_id = $('#version_id').val();		
 		
 		if (endpoint != "" && graphName != ""){
-
 			
-			if (getRemote(endpoint, graphName) == 'True'){
-				$('.progressDiv').html('<p>Endpoint check: <span class="glyphicon glyphicon-ok"></span></p>');
-			}
-			else{
-				$('.progressDiv').html('<p>Endpoint check: <span class="glyphicon glyphicon-remove"></span></p>');
-			}
-				
-			
-			// retieve classes
-			if (getClasses(endpoint, graphName, version_id) == 'done' ) {
-				$('.progressDiv').append('<p>Class: <span class="glyphicon glyphicon-ok"></span></p>');
-			}
-			else{
-				$('.progressDiv').append('<p>Class: <span class="glyphicon glyphicon-remove"></span></p>');
-			}
-			
-			//retrieve prop
+			getRemote(endpoint, graphName);
 		}// if 
 		
 	});//Retrieve click
