@@ -10,9 +10,12 @@ $(document).ready(function(){
 	        url: "EndPointStatus",
 	        async: true
 	    }).done(function (data){
+	    	
 	    	$('.progressDiv').html('<p>Endpoint check: <span class="glyphicon glyphicon-ok"></span></p>');
 	    	getClasses(endpoint, graphName, version_id);
 	    	getObjectProperties(endpoint, graphName, version_id);
+	    	getDataTypeProperties(endpoint, graphName, version_id);
+	    	
 	    }).fail(function (data){
 	    	$('.progressDiv').html('<p>Endpoint check: <span class="glyphicon glyphicon-remove"></span></p>');
 	    }).responseText;
@@ -41,6 +44,19 @@ $(document).ready(function(){
 			$('.progressDiv').append('<p>Object Properties: <span class="glyphicon glyphicon-ok"></span></p>');
 		}).fail(function (data) {
 			$('.progressDiv').append('<p>Object Properties: <span class="glyphicon glyphicon-remove"></span></p>');
+		}).responseText;
+	}
+	
+	function getDataTypeProperties(endpoint, graphname, versionId){
+		return $.ajax({
+		    url: 'rest/RetrieveSchema/DataTypeProperties',
+		    type: 'GET',
+		    data: {'endpoint': endpoint, 'graphName': graphname, 'version_id': version_id},
+		    async: true
+		}).done(function (data) {
+			$('.progressDiv').append('<p>Data Type Properties: <span class="glyphicon glyphicon-ok"></span></p>');
+		}).fail(function (data) {
+			$('.progressDiv').append('<p>Data Type Properties: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
 	}
 	
