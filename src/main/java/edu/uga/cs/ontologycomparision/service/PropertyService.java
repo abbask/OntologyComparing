@@ -22,15 +22,16 @@ public class PropertyService {
 	public Property addIfNotExist(Property myProperty) throws SQLException {
 		
 		Property retrieveProperty = getByLabel(myProperty.getLabel(), myProperty.getVersion().getID());
-		
+		System.out.println(myProperty.getLabel());
 		if (retrieveProperty == null) {
 			int id = add(myProperty);
 			myProperty.setID(id);
 			return myProperty;
 
 		}
-		else
+		else {
 			return retrieveProperty;
+		}
 		
 	}
 	
@@ -65,7 +66,7 @@ public class PropertyService {
  
             }
 			
-			statement.executeUpdate();
+			
 			c.commit();
 			
 			c.close();
