@@ -92,5 +92,24 @@ public class RetrieveSchemaREST {
 		
 	}
 	
-
+	@GET
+	@Path("/DataTypeProperties")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response retrieveDataTypeProperties(@QueryParam("endpoint") String endpointURL, @QueryParam("graphName") String graphName, @QueryParam("version_id") int versionId) {
+		
+		RetrieveSchemaService service = new RetrieveSchemaService();
+		
+		try {
+			System.out.printf("endpoint: %s, graphName: %s, versionId: %s ", endpointURL, graphName, versionId);
+			if (service.retrieveAllDataTypeProperties(endpointURL, graphName, versionId)) {
+				return Response.ok("done", MediaType.TEXT_HTML).header(HttpHeaders.CONTENT_LENGTH, 4).build();
+			}
+			return Response.status(500).entity("failed").build();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return Response.status(500).entity("failed").build();
+		}
+		
+	}
 }
