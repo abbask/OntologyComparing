@@ -134,4 +134,53 @@ public class RetrieveSchemaService {
 		return true;
 	}
 	
+	public boolean retrieveAllDataProperties(String endpointURL, String graphName, int versionId) throws SQLException {
+		VersionService versionService = new VersionService();
+		Version version = versionService.get(versionId);
+		
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		List<QuerySolution> list = conn.executeSelect("PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT ?s FROM " + graphName + " WHERE{ ?s a owl:DatatypeProperty.  }");
+
+		for(QuerySolution soln : list) {
+			DataStoreConnection dataStoreConn = new DataStoreConnection(endpointURL, graphName);
+			
+			RDFNode predicate = soln.get("s");
+			Resource res = soln.getResource("s");
+
+			if (res.getLocalName() != null) {
+				//count instance of object property
+				String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT (count(?s) as ?Count) FROM " + graphName + " WHERE{ ?s <" + predicate + "> ?o .}";
+				List<QuerySolution> individuals =  dataStoreConn.executeSelect(queryString);
+				int count = individuals.get(0).get("Count").asLiteral().getInt();
+				
+				//retrieve parent class
+				queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + predicate + "> rdfs:subPropertyOf ?parent .}";
+				List<QuerySolution> parents =  dataStoreConn.executeSelect(queryString);
+				Property parentProperty = null;
+				PropertyService propertyService = new PropertyService();
+				
+				if (parents.size() > 0) {
+					Resource parentResource = parents.get(0).getResource("parent");					
+					
+					
+					queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT (count(?ind) as ?Count) FROM " + graphName + " WHERE{ ?s <" + parentResource.getURI() + "> ?o .}";
+					List<QuerySolution> parent =  dataStoreConn.executeSelect(queryString);
+					int parentCount = parent.get(0).get("Count").asLiteral().getInt();
+					
+					
+					parentProperty = new Property(parentResource.getURI(), parentResource.getLocalName(),"", parentCount, version, null);
+									
+					parentProperty = propertyService.addIfNotExist(parentProperty);
+				}
+				
+				Property myProperty = new Property(res.getURI(), res.getLocalName(), "", count, version, parentProperty);
+				myProperty = propertyService.addIfNotExist(myProperty);				
+				
+			}
+			
+		}
+		
+		return true;
+	}
+	
 }
