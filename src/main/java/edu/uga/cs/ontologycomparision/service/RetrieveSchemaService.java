@@ -134,7 +134,7 @@ public class RetrieveSchemaService {
 		return true;
 	}
 	
-	public boolean retrieveAllDataProperties(String endpointURL, String graphName, int versionId) throws SQLException {
+	public boolean retrieveAllDataTypeProperties(String endpointURL, String graphName, int versionId) throws SQLException {
 		VersionService versionService = new VersionService();
 		Version version = versionService.get(versionId);
 		
