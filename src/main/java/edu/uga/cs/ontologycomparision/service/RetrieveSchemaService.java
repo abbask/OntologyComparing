@@ -3,6 +3,7 @@ package edu.uga.cs.ontologycomparision.service;
 
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.jena.query.QuerySolution;
@@ -87,13 +88,77 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public boolean retrieveAllObjectProperties(String endpointURL, String graphName, int versionId) throws SQLException {
+	public void checkDifferenceBetween2Approaches(String endpointURL, String graphName, int versionId) throws SQLException {
+		ArrayList<Property> propertyList = new ArrayList<Property>(); 		
+		ArrayList<Property> propertyList2 = new ArrayList<Property>();  
+		
+		ArrayList<ObjectTripleType> tripleList = new ArrayList<ObjectTripleType>();
+		
 		VersionService versionService = new VersionService();
 		Version version = versionService.get(versionId);
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		String q = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT ?s FROM " + graphName + " WHERE{ ?s a owl:ObjectProperty.  }";
+		List<QuerySolution> propertySolns = conn.executeSelect(q);
+		System.out.println(q);
+		for(QuerySolution soln : propertySolns) {
+			DataStoreConnection dataStoreConn = new DataStoreConnection(endpointURL, graphName);			
+			RDFNode predicate = soln.get("s");
+			Resource res = soln.getResource("s");
+			if (res.getLocalName() != null) {
+				String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT (count(?s) as ?Count) FROM " + graphName + " WHERE{ ?s <" + predicate + "> ?o .}";
+				List<QuerySolution> individuals =  dataStoreConn.executeSelect(queryString);
+				Literal count = individuals.get(0).get("Count").asLiteral();							
+				Property myProperty = new Property(res.getURI(), res.getLocalName(), "", count.getLong(), version, null);
+				propertyList.add(myProperty);
+				
+			}
+			
+		}
+		
+		String queryStringTriple = "PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
+				+ "PREFIX owl:    <http://www.w3.org/2002/07/owl#> "
+				+ "PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>";
+		
+		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range (COUNT(?object) as ?count) "
+				+ "FROM " + graphName + "  "
+						+ "WHERE { ?name rdf:type owl:ObjectProperty "
+						+ "optional { ?name rdfs:domain ?o. ?o owl:unionOf ?l.  "
+						+ "{?l rdf:first ?domain. } UNION {?l rdf:rest ?rest. ?rest rdf:first ?domain}} "
+						+ "optional {?name rdfs:domain ?domain} "
+						+ "optional {?name rdfs:range ?range. ?range rdf:type owl:Class} "
+						+ "?subject ?name ?object} "
+						+ "GROUP By ?name ?domain ?range ORDER BY ?name";
+
+		List<QuerySolution> tripleSolns = conn.executeSelect(queryStringTriple);
+		for(QuerySolution soln : tripleSolns) {
+			DataStoreConnection dataStoreConn = new DataStoreConnection(endpointURL, graphName);
+			
+			Resource predicate = soln.getResource("name");
+//			Resource domain = soln.getResource("domain");
+//			Resource range = soln.getResource("range");
+			Literal count = soln.getLiteral("count");
+			
+			if (predicate.getLocalName() != null) {
+								
+							
+				Property myProperty = new Property(predicate.getURI(), predicate.getLocalName(), "", count.getLong(), version, null);
+				propertyList2.add(myProperty);
+			}
+			
+		}
+		
+		System.out.println("Property List 1 :" + propertyList);
+		System.out.println("Property List 2 :" + propertyList2);
 		
 		
+	}
+	
+	public boolean retrieveAllObjectProperties(String endpointURL, String graphName, int versionId) throws SQLException {
+		VersionService versionService = new VersionService();
+		Version version = versionService.get(versionId);
+		
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);			
 		
 		String queryStringTriple = "PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
 				+ "PREFIX owl:    <http://www.w3.org/2002/07/owl#> "
