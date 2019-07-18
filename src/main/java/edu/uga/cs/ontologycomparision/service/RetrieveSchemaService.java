@@ -107,14 +107,9 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public void checkDifferenceBetween2Approaches(String endpointURL, String graphName, int versionId) throws SQLException {
+	public void checkDifferenceBetween2Approaches() throws SQLException {
 		ArrayList<Property> propertyList = new ArrayList<Property>(); 		
 		ArrayList<Property> propertyList2 = new ArrayList<Property>();  
-		
-		ArrayList<ObjectTripleType> tripleList = new ArrayList<ObjectTripleType>();
-		
-		VersionService versionService = new VersionService();
-		Version version = versionService.get(versionId);
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		String q = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT ?s FROM " + graphName + " WHERE{ ?s a owl:ObjectProperty.  }";
@@ -151,11 +146,9 @@ public class RetrieveSchemaService {
 
 		List<QuerySolution> tripleSolns = conn.executeSelect(queryStringTriple);
 		for(QuerySolution soln : tripleSolns) {
-			DataStoreConnection dataStoreConn = new DataStoreConnection(endpointURL, graphName);
+			
 			
 			Resource predicate = soln.getResource("name");
-//			Resource domain = soln.getResource("domain");
-//			Resource range = soln.getResource("range");
 			Literal count = soln.getLiteral("count");
 			
 			if (predicate.getLocalName() != null) {
