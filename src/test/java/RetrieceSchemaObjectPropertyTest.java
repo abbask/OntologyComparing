@@ -14,9 +14,8 @@ class RetrieceSchemaObjectPropertyTest {
 		String 	graphName 		= "<http://prokino.uga.edu>";
 		int 	versionId 		= 1;
 		
-		
-		RetrieveSchemaService service = new RetrieveSchemaService();
-		service.checkDifferenceBetween2Approaches(endpointURL, graphName, versionId);
+		RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
+		service.checkDifferenceBetween2Approaches();
 		
 	}
 
