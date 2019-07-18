@@ -66,7 +66,6 @@ public class ClassService {
             }
 			
 			c.commit();
-			System.out.println("Commited id: " + candidateId);
 			
 			c.close();
 			mySQLConnection.closeConnection();
