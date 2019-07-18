@@ -20,7 +20,20 @@ import edu.uga.cs.ontologycomparision.data.DataStoreConnection;
 
 public class RetrieveSchemaService {
 	
+	private String endpointURL;
+	private String graphName;
+	private Version version;
+	
 	final static Logger logger = Logger.getLogger(RetrieveSchemaService.class);
+	
+	public RetrieveSchemaService(String endpointURL, String graphName, int versionId) throws SQLException {
+		this.endpointURL = endpointURL;
+		this.graphName = graphName;
+		
+		VersionService versionService = new VersionService();
+		version = versionService.get(versionId);
+		
+	}
 	
 	public boolean checkEndPoint(String endpointURL, String graphName) {
 		
@@ -154,99 +167,46 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public boolean retrieveAllObjectProperties(String endpointURL, String graphName, int versionId) throws SQLException {
-		VersionService versionService = new VersionService();
-		Version version = versionService.get(versionId);
-		
-		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);			
-		
-		String queryStringTriple = "PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-				+ "PREFIX owl:    <http://www.w3.org/2002/07/owl#> "
-				+ "PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>";
-		
-		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range (COUNT(?object) as ?count) "
-				+ "FROM " + graphName + "  "
-						+ "WHERE { ?name rdf:type owl:ObjectProperty "
-						+ "optional { ?name rdfs:domain ?o. ?o owl:unionOf ?l.  "
-						+ "{?l rdf:first ?domain. } UNION {?l rdf:rest ?rest. ?rest rdf:first ?domain}} "
-						+ "optional {?name rdfs:domain ?domain} "
-						+ "optional {?name rdfs:range ?range. ?range rdf:type owl:Class} "
-						+ "?subject ?name ?object} "
-						+ "GROUP By ?name ?domain ?range ORDER BY ?name";
+	public boolean retrieveAllObjectProperties() throws SQLException {
+						
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
+		queryStringTriple += "SELECT ?predicate FROM " + graphName + " WHERE {?predicate a owl:ObjectProperty.}";
 
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
 		for(QuerySolution soln : list) {
-			DataStoreConnection dataStoreConn = new DataStoreConnection(endpointURL, graphName);
-			
 			RDFNode predicate = soln.get("predicate");
 			Resource res = soln.getResource("predicate");
 
-			if (res.getLocalName() != null) {
-				//count instance of object property
-				Resource domainResource = soln.getResource("domain");
-				Resource rangeResource = soln.getResource("range");
-				Literal count = soln.getLiteral("count");
-				
-				//retrieve parent class
-				String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + predicate + "> rdfs:subPropertyOf ?parent .}";
-				List<QuerySolution> parents =  dataStoreConn.executeSelect(queryString);
-				Property parentProperty = null;
-				ClassService classService = new ClassService();
-				PropertyService propertyService = new PropertyService();
-				ObjectTripleTypeService objectTripleTypeService = new ObjectTripleTypeService();
-				
-				if (parents.size() > 0) {
-					Resource parentResource = parents.get(0).getResource("parent");					
-					String parentURI = parentResource.getURI();
-					
-					String queryStringTripleParent = "PREFIX prokino: <http://om.cs.uga.edu/prokino/2.0/#>"
-							+ "PREFIX rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> "
-							+ "PREFIX owl:    <http://www.w3.org/2002/07/owl#> "
-							+ "PREFIX rdfs:   <http://www.w3.org/2000/01/rdf-schema#>";
-					
-					queryStringTripleParent += "SELECT DISTINCT ?domain ?range (COUNT(?object) as ?count) "
-							+ "FROM " + graphName + "  "
-									+ "WHERE { ?subject " + parentURI + " ?object "
-									+ "optional { " + parentURI + " rdfs:domain ?o. ?o owl:unionOf ?l.  "
-									+ "{?l rdf:first ?domain. } UNION {?l rdf:rest ?rest. ?rest rdf:first ?domain}} "
-									+ "optional {" + parentURI + " rdfs:domain ?domain} "
-									+ "optional {" + parentURI + " rdfs:range ?range. ?range rdf:type owl:Class} ";
-					
-//					
-					List<QuerySolution> parent =  dataStoreConn.executeSelect(queryStringTripleParent);
-					QuerySolution parentSoln = parent.get(0);
-					
-					Long parentCount = parentSoln.getLiteral("count").getLong();
-					Resource parentDomainResource = parentSoln.getResource("domain");
-					Resource parentRangeResource = parentSoln.getResource("range");									
-					
-					
-					Class parentDomain = classService.getByLabel(parentDomainResource.getLocalName(), versionId);
-					Class parentRange = classService.getByLabel(parentRangeResource.getLocalName(), versionId);
-					
-					parentProperty = new Property(parentResource.getURI(), parentResource.getLocalName(),"", parentCount, version, null);								
-					parentProperty = propertyService.addIfNotExist(parentProperty);
-					
-					ObjectTripleType parentObjectTripleType = new ObjectTripleType(parentDomain, parentProperty, parentRange, parentCount);
-					parentObjectTripleType = objectTripleTypeService.addIfNotExist(parentObjectTripleType);
-					
-					
-				}
-				
-				Property myProperty = new Property(res.getURI(), res.getLocalName(), "", count.getLong(), version, parentProperty);
-				myProperty = propertyService.addIfNotExist(myProperty);	
-				
-				Class domain = classService.getByLabel(domainResource.getLocalName(), versionId);
-				Class range = classService.getByLabel(rangeResource.getLocalName(), versionId);
-				ObjectTripleType objectTripleType = new ObjectTripleType(domain, myProperty, range, count.getLong());
-				objectTripleType = objectTripleTypeService.addIfNotExist(objectTripleType);
-				
-			}
-			
+			if (res.getLocalName() != null) {				
+				collectObjectProperty(predicate);						
+			}			
 		}
 		
 		return true;
+	}
+	
+	public Property collectObjectProperty(RDFNode propertyRDFNode) throws SQLException {
+		
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + propertyRDFNode + "> rdfs:subPropertyOf ?parent .}";
+		List<QuerySolution> parents =  conn.executeSelect(queryString);
+		
+		Property parentProperty = null;	
+		if (parents.size() > 0) {
+			
+			parentProperty = collectObjectProperty(parents.get(0).get("parent"));
+		}
+		
+		Resource propertyResource = propertyRDFNode.asResource();
+		PropertyService propertyService = new PropertyService();												
+		Property myProperty = new Property(propertyResource.getURI(), propertyResource.getLocalName(), "", 0L, version, parentProperty);
+		myProperty = propertyService.addIfNotExist(myProperty);	
+		
+		return myProperty;
+		
 	}
 	
 	public boolean retrieveAllDataTypeProperties(String endpointURL, String graphName, int versionId) throws SQLException {
