@@ -12,6 +12,7 @@ import org.apache.jena.rdf.model.Resource;
 import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.model.Class;
+import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.data.DataStoreConnection;
@@ -126,7 +127,9 @@ public class RetrieveSchemaService {
 				String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + predicate + "> rdfs:subPropertyOf ?parent .}";
 				List<QuerySolution> parents =  dataStoreConn.executeSelect(queryString);
 				Property parentProperty = null;
+				ClassService classService = new ClassService();
 				PropertyService propertyService = new PropertyService();
+				ObjectTripleTypeService objectTripleTypeService = new ObjectTripleTypeService();
 				
 				if (parents.size() > 0) {
 					Resource parentResource = parents.get(0).getResource("parent");					
@@ -147,16 +150,32 @@ public class RetrieveSchemaService {
 					
 //					
 					List<QuerySolution> parent =  dataStoreConn.executeSelect(queryStringTripleParent);
-					int parentCount = parent.get(0).get("Count").asLiteral().getInt();
+					QuerySolution parentSoln = parent.get(0);
+					
+					Long parentCount = parentSoln.getLiteral("count").getLong();
+					Resource parentDomainResource = parentSoln.getResource("domain");
+					Resource parentRangeResource = parentSoln.getResource("range");									
 					
 					
-					parentProperty = new Property(parentResource.getURI(), parentResource.getLocalName(),"", parentCount, version, null);
-									
+					Class parentDomain = classService.getByLabel(parentDomainResource.getLocalName(), versionId);
+					Class parentRange = classService.getByLabel(parentRangeResource.getLocalName(), versionId);
+					
+					parentProperty = new Property(parentResource.getURI(), parentResource.getLocalName(),"", parentCount, version, null);								
 					parentProperty = propertyService.addIfNotExist(parentProperty);
+					
+					ObjectTripleType parentObjectTripleType = new ObjectTripleType(parentDomain, parentProperty, parentRange, parentCount);
+					parentObjectTripleType = objectTripleTypeService.addIfNotExist(parentObjectTripleType);
+					
+					
 				}
 				
 				Property myProperty = new Property(res.getURI(), res.getLocalName(), "", count.getLong(), version, parentProperty);
-				myProperty = propertyService.addIfNotExist(myProperty);				
+				myProperty = propertyService.addIfNotExist(myProperty);	
+				
+				Class domain = classService.getByLabel(domainResource.getLocalName(), versionId);
+				Class range = classService.getByLabel(rangeResource.getLocalName(), versionId);
+				ObjectTripleType objectTripleType = new ObjectTripleType(domain, myProperty, range, count.getLong());
+				objectTripleType = objectTripleTypeService.addIfNotExist(objectTripleType);
 				
 			}
 			
