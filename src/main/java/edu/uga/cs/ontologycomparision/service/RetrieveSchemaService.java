@@ -26,6 +26,12 @@ public class RetrieveSchemaService {
 	
 	final static Logger logger = Logger.getLogger(RetrieveSchemaService.class);
 	
+	public RetrieveSchemaService(String endpointURL, String graphName) throws SQLException {
+		this.endpointURL = endpointURL;
+		this.graphName = graphName;
+		
+	}
+	
 	public RetrieveSchemaService(String endpointURL, String graphName, int versionId) throws SQLException {
 		this.endpointURL = endpointURL;
 		this.graphName = graphName;
