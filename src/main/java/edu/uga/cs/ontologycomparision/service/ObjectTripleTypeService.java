@@ -19,10 +19,26 @@ public class ObjectTripleTypeService {
 	
 	final static Logger logger = Logger.getLogger(ObjectTripleTypeService.class);
 	
-	public void add(ObjectTripleType objectTriple) {
+	public ObjectTripleType addIfNotExist(ObjectTripleType objectTripleType) throws SQLException {
+		
+		ObjectTripleType retrieveObjectTripleType = getByTriple(objectTripleType);
+		
+		if (retrieveObjectTripleType == null) {
+			int id = add(objectTripleType);
+			objectTripleType.setID(id);
+			return objectTripleType;
+		}
+		else {
+			return objectTripleType;
+		}
+		
+	}
+	
+	public int add(ObjectTripleType objectTriple) {
 		
 		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+		Connection c = mySQLConnection.openConnection();
+		int candidateId = 0;
 		
 		try {
 			c.setAutoCommit(false);
@@ -34,20 +50,39 @@ public class ObjectTripleTypeService {
 			statement.setInt(3,objectTriple.getPredicate().getID());
 			statement.setInt(2,objectTriple.getRange().getID());
 			
-			statement.executeUpdate();
+			statement.executeUpdate();			
+			
+			int rowAffected = statement.executeUpdate();
+			if(rowAffected == 1)
+            {
+				ResultSet rs = null;
+                rs = statement.getGeneratedKeys();
+                if(rs.next())
+                    candidateId = rs.getInt(1);
+ 
+            }
+			
 			c.commit();
 			
 			c.close();
+			mySQLConnection.closeConnection();
+			
 			logger.info("ObjectTripleTypeService.add : new ObjectTripleType commited.");
+			
+			return candidateId;
 		} catch (Exception sqlException) {
 			try {
 				c.rollback();
 				logger.info("ObjectTripleTypeService.add : new ObjectTripleType is rolled back.");
 				c.close();
+				mySQLConnection.closeConnection();
+				return 0;
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
+				
 			}
 			logger.error(sqlException.getMessage(), sqlException);
+			return 0;
 		}
 		
 	}
@@ -78,6 +113,39 @@ public class ObjectTripleTypeService {
 			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count")));
 		}
 		return list.get(0);						
+				
+	}
+	
+	public ObjectTripleType getByTriple(ObjectTripleType objectTripleType) throws SQLException {
+		
+		List<ObjectTripleType> list = new LinkedList<ObjectTripleType>();
+				
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		Connection c = mySQLConnection.openConnection();			
+		
+		Statement stmtSys = c.createStatement();			
+		String query = "SELECT * FROM triple_type where domain_id=" + objectTripleType.getDomain().getID() + " and predicate_id=" + objectTripleType.getPredicate().getID() + " and object_range_id=" + objectTripleType.getRange().getID();
+		
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		while(rs.next()) {
+			ClassService classService = new ClassService();
+			Class domain = classService.getByID(rs.getInt("domain_id")); 
+			
+			PropertyService propertyService = new PropertyService();
+			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));
+			
+			Class range = classService.getByID(rs.getInt("object_range_id"));
+			
+			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count")));
+		}
+		
+		ObjectTripleType result = null;
+		if (list.size()>0) {
+			result = list.get(0);
+		}
+		
+		return result;						
 				
 	}
 
