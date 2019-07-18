@@ -15,30 +15,7 @@ import edu.uga.cs.ontologycomparision.service.RetrieveSchemaService;
 
 @Path("/RetrieveSchema")
 public class RetrieveSchemaREST {
-	
-	/* NOT USED */
-	@GET
-	@Path("/check/endpoint/{endpoint}/graph/{graphName}/")
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response checkEndPoint(
-			@PathParam("endpoint") String endpointURL,
-			@PathParam("graphName") String graphName ) {
-		boolean result = false;
-		RetrieveSchemaService service = new RetrieveSchemaService();
 
-		System.out.println("endpoint: " + endpointURL);
-		System.out.println("graphName: " + graphName);
-		
-		try {
-			result =  service.checkEndPoint(endpointURL, graphName);
-		}
-		catch(Exception ex) {
-			String error = ex.getMessage();
-			return Response.status(Response.Status.NO_CONTENT).entity(error).build();
-		}
-		return Response.status(200).entity(result).build();
-
-	}
 	
 	@GET
 	@Path("{id}")
