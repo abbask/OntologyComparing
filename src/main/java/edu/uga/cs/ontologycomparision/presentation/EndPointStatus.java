@@ -41,9 +41,10 @@ public class EndPointStatus extends HttpServlet{
 		endpointURL = (!req.getParameter("endpoint").equals(""))? req.getParameter("endpoint") : endpointURL;
 		graphName = (!req.getParameter("graphName").equals(""))? req.getParameter("graphName") : graphName ;
 		
-		RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName);
+		
 		
 		try {
+			RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName);
 			result =  service.checkEndPoint(endpointURL, graphName);
 		}
 		catch(Exception ex) {
