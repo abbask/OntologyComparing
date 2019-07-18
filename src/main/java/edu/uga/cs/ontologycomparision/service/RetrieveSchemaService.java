@@ -188,7 +188,7 @@ public class RetrieveSchemaService {
 	public boolean retrieveAllDataTypeProperties() throws SQLException {
 		
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
-		queryStringTriple += "SELECT ?predicate FROM " + graphName + " WHERE {?predicate a owl:DataTypeProperty.}";
+		queryStringTriple += "SELECT ?predicate FROM " + graphName + " WHERE {?predicate a owl:DatatypeProperty.}";
 
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
