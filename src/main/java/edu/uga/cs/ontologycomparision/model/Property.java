@@ -6,7 +6,7 @@ public class Property {
 	private String url;
 	private String label;
 	private String comment;
-	private long count;
+	private long count; //we don't use it probably.
 	private Version version;
 	private Property parent;
 	
