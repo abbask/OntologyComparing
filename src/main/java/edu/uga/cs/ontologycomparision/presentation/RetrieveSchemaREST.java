@@ -106,4 +106,24 @@ public class RetrieveSchemaREST {
 		}
 		
 	}
+	
+	@GET
+	@Path("/DataTypeTripleTypes")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response retrieveDataTypeTripleTypes(@QueryParam("endpoint") String endpointURL, @QueryParam("graphName") String graphName, @QueryParam("version_id") int versionId) {
+			
+		try {
+			RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
+			
+			if (service.retrieveAllDataTypeTripleTypes()) {
+				return Response.ok("done", MediaType.TEXT_HTML).header(HttpHeaders.CONTENT_LENGTH, 4).build();
+			}
+			return Response.status(500).entity("failed").build();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return Response.status(500).entity("failed").build();
+		}
+		
+	}
 }
