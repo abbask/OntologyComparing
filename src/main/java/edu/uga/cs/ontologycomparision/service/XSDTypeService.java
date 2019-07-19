@@ -66,7 +66,7 @@ public class XSDTypeService {
 				
 	}
 	
-	public XSDType get(int ID) throws SQLException {
+	public XSDType getByID(int ID) throws SQLException {
 		
 		List<XSDType> list = new LinkedList<XSDType>();
 				
