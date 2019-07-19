@@ -17,10 +17,26 @@ public class XSDTypeService {
 	
 	final static Logger logger = Logger.getLogger(XSDTypeService.class);
 	
-	public void add(XSDType type) {
+	public XSDType addIfNotExist(XSDType type) throws SQLException {
+		
+		XSDType retrieveXSDType = getByURI(type.getUrl());
+		
+		if (retrieveXSDType == null) {
+			int id = add(type);
+			type.setID(id);
+			return type;
+
+		}
+		else
+			return retrieveXSDType;
+		
+	}
+	
+	public int add(XSDType type) {
 		
 		MySQLConnection mySQLConnection = new MySQLConnection();
 		Connection c = mySQLConnection.openConnection();			
+		int candidateId = 0;
 		
 		try {
 			c.setAutoCommit(false);
@@ -30,20 +46,33 @@ public class XSDTypeService {
 			statement.setString(1,type.getUrl());
 			statement.setString(2,type.getType());
 			
-			statement.executeUpdate();
+			int rowAffected = statement.executeUpdate();
+			if(rowAffected == 1)
+            {
+				ResultSet rs = null;
+                rs = statement.getGeneratedKeys();
+                if(rs.next())
+                    candidateId = rs.getInt(1);
+ 
+            }
+			
 			c.commit();
 			
 			c.close();
 			logger.info("XSDTypeService.add : new XSDType commited.");
+			return candidateId;
 		} catch (Exception sqlException) {
 			try {
 				c.rollback();
 				logger.info("XSDTypeService.add : new XSDType is rolled back.");
 				c.close();
+				
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
+				return 0;
 			}
 			logger.error(sqlException.getMessage(), sqlException);
+			return 0;
 		}
 		
 	}
@@ -77,10 +106,15 @@ public class XSDTypeService {
 		String query = "SELECT * FROM xsd_type where url='" + uri + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
+		XSDType type = null;
+		
 		while(rs.next()) {
 			list.add(new XSDType(rs.getInt("ID"), rs.getString("url"), rs.getString("type")));
 		}
-		return list.get(0);						
+		
+		if (list.size() > 0 )
+			type = list.get(0);
+		return type;						
 				
 	}
 	
