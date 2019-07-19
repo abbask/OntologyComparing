@@ -246,7 +246,7 @@ public class RetrieveSchemaService {
 				"optional {?name rdfs:domain ?domain}" + 
 				"optional {?name rdfs:range ?range}" + 
 				"optional {?subject ?name ?object}" + 
-				"}\n" + 
+				"}" + 
 				"GROUP By ?name ?domain ?range" + 
 				"ORDER BY ?name ?domain ?range";
 		
