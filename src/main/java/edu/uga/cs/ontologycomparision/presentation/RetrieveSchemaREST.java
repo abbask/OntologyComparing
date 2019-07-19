@@ -75,7 +75,7 @@ public class RetrieveSchemaREST {
 		try {
 			RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
 			
-			if (service.retrieveAllDataTypeProperties()) {
+			if (service.retrieveAllDaTypetaTypeProperties()) {
 				return Response.ok("done", MediaType.TEXT_HTML).header(HttpHeaders.CONTENT_LENGTH, 4).build();
 			}
 			return Response.status(500).entity("failed").build();
@@ -95,7 +95,7 @@ public class RetrieveSchemaREST {
 		try {
 			RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
 			
-			if (service.retrieveAllObjectTypeTriples()) {
+			if (service.retrieveAllObjectTripleTypes()) {
 				return Response.ok("done", MediaType.TEXT_HTML).header(HttpHeaders.CONTENT_LENGTH, 4).build();
 			}
 			return Response.status(500).entity("failed").build();
