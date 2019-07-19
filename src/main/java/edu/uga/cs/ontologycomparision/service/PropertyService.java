@@ -50,7 +50,7 @@ public class PropertyService {
 			statement.setString(2,property.getLabel());
 			statement.setString(3,property.getComment());
 			statement.setLong(4,property.getCount());
-			statement.setInt(5, property.getVersion().getID());
+			statement.setInt(5, property.getVersion().getID());		
 			if (property.getParent() != null)
 				statement.setInt(6, property.getParent().getID());
 			else
