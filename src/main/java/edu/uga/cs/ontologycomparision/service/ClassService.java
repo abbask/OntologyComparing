@@ -123,7 +123,7 @@ public class ClassService {
 		
 		mySQLConnection.closeConnection();
 		c.close();
-		
+		logger.info("ClassService.getByLabel : retrieved class.");
 		return result;					
 				
 	}
@@ -151,6 +151,7 @@ public class ClassService {
 		
 		mySQLConnection.closeConnection();
 		c.close();
+		logger.info("ClassService.getByID : retrieved class.");
 		return list.get(0);	
 		
 		
