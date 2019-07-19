@@ -29,6 +29,7 @@ public class ObjectTripleTypeService {
 			return objectTripleType;
 		}
 		else {
+			
 			return objectTripleType;
 		}
 		
@@ -167,6 +168,7 @@ public class ObjectTripleTypeService {
 			result = list.get(0);
 		}
 		
+		logger.info("ObjectTripleTypeService.getByTriple : retrieved ObjectTripleType.");
 		return result;						
 				
 	}
