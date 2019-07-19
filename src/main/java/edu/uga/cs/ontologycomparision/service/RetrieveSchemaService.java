@@ -17,6 +17,7 @@ import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
+import edu.uga.cs.ontologycomparision.model.XSDType;
 import edu.uga.cs.ontologycomparision.data.DataStoreConnection;
 
 public class RetrieveSchemaService {
@@ -254,7 +255,9 @@ public class RetrieveSchemaService {
 		
 		ClassService classService = new ClassService();
 		PropertyService propertyService = new PropertyService();
+		XSDTypeService xsdTypeService = new XSDTypeService();
 		DataTypeTripleTypeService service = new DataTypeTripleTypeService(); 
+		
 				
 		
 		for(QuerySolution soln : list) {
@@ -263,8 +266,9 @@ public class RetrieveSchemaService {
 			RDFNode rangeNode = soln.get("range");
 			Literal count = soln.getLiteral("count");					
 			
-			Class domain, range;
+			Class domain;
 			Property predicate;
+			XSDType range;
 			
 			try {
 				domain = classService.getByLabel(domainNode.asResource().getLocalName(), version.getID());				
@@ -281,7 +285,7 @@ public class RetrieveSchemaService {
 			}
 			
 			try {
-				range = classService.getByLabel(rangeNode.asResource().getLocalName(), version.getID());				
+				range = xsdTypeService.getByURI(rangeNode.asResource().getURI());				
 			} catch (NullPointerException e) {
 				range = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : range is missing for domain: " + domainNode + " and predicate: " + predicateNode);
