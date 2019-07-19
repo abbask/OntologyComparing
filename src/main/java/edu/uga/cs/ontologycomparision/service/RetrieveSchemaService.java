@@ -166,8 +166,8 @@ public class RetrieveSchemaService {
 				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
 		
-		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range (COUNT(?object) as ?count)" + 
-				"FROM <http://prokino.uga.edu>" + 
+		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range (COUNT(?object) as ?count) " + 
+				"FROM <http://prokino.uga.edu> " + 
 				"WHERE {" + 
 				"	?name rdf:type owl:ObjectProperty" + 
 				"	optional {" + 
@@ -175,16 +175,16 @@ public class RetrieveSchemaService {
 				"		?o owl:unionOf ?l." + 
 				"		{?l rdf:first ?domain. } UNION {?l rdf:rest ?rest. ?rest rdf:first ?domain}" + 
 				"	}" + 
-				"	optional" + 
+				"	optional {" + 
 				"		?name rdfs:domain ?domain" + 
 				"	}" + 
 				"	optional {" + 
 				"		?name rdfs:range ?range. ?range rdf:type owl:Class" + 
 				"	}" + 
 				"	?subject ?name ?object" + 
-				"}" + 
+				"} " + 
 				"GROUP By ?name ?domain ?range ORDER BY ?name";
-
+		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
