@@ -118,6 +118,7 @@ public class PropertyService {
 		mySQLConnection.closeConnection();
 		c.close();
 		
+		logger.info("PropertyService.getByLabel : retrieved property.");
 		return result;					
 				
 	}
@@ -142,6 +143,7 @@ public class PropertyService {
 			
 			list.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,prop));
 		}
+		logger.info("PropertyService.getByID : retrieved property.");
 		return list.get(0);						
 				
 	}
