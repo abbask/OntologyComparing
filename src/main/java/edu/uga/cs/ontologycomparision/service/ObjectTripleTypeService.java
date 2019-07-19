@@ -13,6 +13,7 @@ import org.apache.log4j.Logger;
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
+import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.model.Class;
 
 public class ObjectTripleTypeService {
@@ -44,12 +45,13 @@ public class ObjectTripleTypeService {
 		try {
 			c.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO triple_type (count,domain_id,predicate_id,object_range_id) VALUES (?,?,?,?)";
+			String queryString = "INSERT INTO triple_type (count,domain_id,predicate_id,object_range_id,version_id) VALUES (?,?,?,?,?)";
 			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setLong(1,objectTriple.getCount());
 			statement.setInt(2,objectTriple.getDomain().getID());
 			statement.setInt(3,objectTriple.getPredicate().getID());
 			statement.setInt(4,objectTriple.getRange().getID());
+			statement.setInt(5,objectTriple.getVersion().getID());
 			
 			statement.executeUpdate();			
 			
@@ -109,11 +111,11 @@ public class ObjectTripleTypeService {
 			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));
 			
 			Class range = classService.getByID(rs.getInt("object_range_id"));
-//			if (rs.getInt("object_range_id") != 0 ){
-//				
-//			}
 			
-			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count")));
+			VersionService versionService = new VersionService();
+			Version version = versionService.get(rs.getInt("version_id")); 
+			
+			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count"),version));
 		}
 		return list.get(0);						
 				
@@ -146,6 +148,12 @@ public class ObjectTripleTypeService {
 			whereClause += " object_range_id= " + objectTripleType.getRange().getID();
 		}
 		
+		if (objectTripleType.getVersion() != null) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " version_id= " + objectTripleType.getVersion().getID();
+		}
+		
 		if (whereClause != "")
 			whereClause = "WHERE " + whereClause;
 		
@@ -160,7 +168,10 @@ public class ObjectTripleTypeService {
 			
 			Class range = classService.getByID(rs.getInt("object_range_id"));
 			
-			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count")));
+			VersionService versionService = new VersionService();
+			Version version = versionService.get(rs.getInt("version_id")); 
+			
+			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count"),version));
 		}
 		
 		ObjectTripleType result = null;
