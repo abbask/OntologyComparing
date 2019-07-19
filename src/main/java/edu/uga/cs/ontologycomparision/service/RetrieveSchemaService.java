@@ -224,7 +224,7 @@ public class RetrieveSchemaService {
 			}
 													
 			ObjectTripleType objectTriple = new ObjectTripleType(domain, predicate, range, count.getLong());			
-			service.add(objectTriple);			
+			service.addIfNotExist(objectTriple);			
 					
 		}
 		

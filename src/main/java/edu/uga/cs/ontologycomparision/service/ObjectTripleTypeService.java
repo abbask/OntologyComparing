@@ -48,7 +48,7 @@ public class ObjectTripleTypeService {
 			statement.setLong(1,objectTriple.getCount());
 			statement.setInt(2,objectTriple.getDomain().getID());
 			statement.setInt(3,objectTriple.getPredicate().getID());
-			statement.setInt(2,objectTriple.getRange().getID());
+			statement.setInt(4,objectTriple.getRange().getID());
 			
 			statement.executeUpdate();			
 			
@@ -72,6 +72,8 @@ public class ObjectTripleTypeService {
 			return candidateId;
 		} catch (Exception sqlException) {
 			try {
+				
+				sqlException.printStackTrace();
 				c.rollback();
 				logger.info("ObjectTripleTypeService.add : new ObjectTripleType is rolled back.");
 				c.close();
@@ -123,10 +125,30 @@ public class ObjectTripleTypeService {
 		MySQLConnection mySQLConnection = new MySQLConnection();
 		Connection c = mySQLConnection.openConnection();			
 		
-		Statement stmtSys = c.createStatement();			
-		String query = "SELECT * FROM triple_type where domain_id=" + objectTripleType.getDomain().getID() + " and predicate_id=" + objectTripleType.getPredicate().getID() + " and object_range_id=" + objectTripleType.getRange().getID();
+		Statement stmtSys = c.createStatement();
 		
-		ResultSet rs = stmtSys.executeQuery(query); 
+		String query = "SELECT * FROM triple_type ";
+		String whereClause = "";
+		if (objectTripleType.getDomain() != null) {
+			whereClause += " domain_id=" + objectTripleType.getDomain().getID() ;
+		}
+		
+		if (objectTripleType.getPredicate() != null) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " predicate_id= " + objectTripleType.getPredicate().getID();
+		}
+		
+		if (objectTripleType.getRange() != null) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " object_range_id= " + objectTripleType.getRange().getID();
+		}
+		
+		if (whereClause != "")
+			whereClause = "WHERE " + whereClause;
+		
+		ResultSet rs = stmtSys.executeQuery(query + whereClause); 
 		
 		while(rs.next()) {
 			ClassService classService = new ClassService();
