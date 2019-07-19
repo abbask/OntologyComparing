@@ -45,12 +45,27 @@ public class ObjectTripleTypeService {
 		try {
 			c.setAutoCommit(false);
 			
+			int domainID = 0 ;
+			if (objectTriple.getDomain() != null) {
+				domainID = objectTriple.getDomain().getID();
+			}
+			
+			int predicateID = 0 ;
+			if (objectTriple.getPredicate() != null) {
+				predicateID = objectTriple.getPredicate().getID();
+			}
+			
+			int rangeID = 0 ;
+			if (objectTriple.getRange() != null) {
+				rangeID = objectTriple.getRange().getID();
+			}
+			
 			String queryString = "INSERT INTO triple_type (count,domain_id,predicate_id,object_range_id,version_id) VALUES (?,?,?,?,?)";
 			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setLong(1,objectTriple.getCount());
-			statement.setInt(2,objectTriple.getDomain().getID());
-			statement.setInt(3,objectTriple.getPredicate().getID());
-			statement.setInt(4,objectTriple.getRange().getID());
+			statement.setInt(2,domainID);
+			statement.setInt(3,predicateID);
+			statement.setInt(4,rangeID);
 			statement.setInt(5,objectTriple.getVersion().getID());
 			
 			statement.executeUpdate();			
