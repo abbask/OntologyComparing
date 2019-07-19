@@ -243,14 +243,15 @@ public class RetrieveSchemaService {
 				"FROM " + graphName + " " +
 				"WHERE { ?name rdf:type owl:DatatypeProperty " + 
 				"optional {?name rdfs:domain ?o. ?o owl:unionOf ?l. {?l rdf:first ?domain.} UNION {?l rdf:rest ?rest. ?rest rdf:first ?domain}}" + 
-				"optional {?name rdfs:domain ?domain}" + 
-				"optional {?name rdfs:range ?range}" + 
-				"optional {?subject ?name ?object}" + 
+				"optional {?name rdfs:domain ?domain} " + 
+				"optional {?name rdfs:range ?range} " + 
+				"optional {?subject ?name ?object} " + 
 				"}" + 
-				"GROUP By ?name ?domain ?range" + 
+				"GROUP By ?name ?domain ?range " + 
 				"ORDER BY ?name ?domain ?range";
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
 		ClassService classService = new ClassService();
@@ -285,7 +286,8 @@ public class RetrieveSchemaService {
 			}
 			
 			try {
-				range = xsdTypeService.getByURI(rangeNode.asResource().getURI());				
+				range = new XSDType(rangeNode.asResource().getURI(), rangeNode.asResource().getLocalName());
+				range = xsdTypeService.addIfNotExist(range);	
 			} catch (NullPointerException e) {
 				range = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : range is missing for domain: " + domainNode + " and predicate: " + predicateNode);
