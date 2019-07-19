@@ -35,7 +35,7 @@ public class RetrieveSchemaREST {
 		try {
 			RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
 			
-			if (service.retrieveAllClasses(endpointURL, graphName, versionId)) {
+			if (service.retrieveAllClasses()) {
 				return Response.ok("done", MediaType.TEXT_HTML).header(HttpHeaders.CONTENT_LENGTH, 4).build();
 			}
 			return Response.status(500).entity("failed").build();
