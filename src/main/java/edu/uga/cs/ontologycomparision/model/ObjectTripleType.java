@@ -7,22 +7,25 @@ public class ObjectTripleType {
 	private Property predicate;
 	private Class range;
 	private long count;
+	private Version version;
 	
-	public ObjectTripleType(Class domain, Property predicate, Class range, long count) {
+	public ObjectTripleType(Class domain, Property predicate, Class range, long count, Version version) {
 		
 		this.domain = domain;
 		this.predicate = predicate;
 		this.range = range;
 		this.count = count;
+		this.version = version;
 	}
 	
-	public ObjectTripleType(int iD, Class domain, Property predicate, Class range, long count) {
+	public ObjectTripleType(int iD, Class domain, Property predicate, Class range, long count, Version version) {
 		
 		ID = iD;
 		this.domain = domain;
 		this.predicate = predicate;
 		this.range = range;
 		this.count = count;
+		this.version = version;
 	}
 
 	public int getID() {
@@ -63,6 +66,14 @@ public class ObjectTripleType {
 
 	public void setCount(long count) {
 		this.count = count;
+	}	
+
+	public Version getVersion() {
+		return version;
+	}
+
+	public void setVersion(Version version) {
+		this.version = version;
 	}
 
 	@Override
@@ -74,6 +85,7 @@ public class ObjectTripleType {
 		result = prime * result + ((domain == null) ? 0 : domain.hashCode());
 		result = prime * result + ((predicate == null) ? 0 : predicate.hashCode());
 		result = prime * result + ((range == null) ? 0 : range.hashCode());
+		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
 	}
 
@@ -105,15 +117,20 @@ public class ObjectTripleType {
 				return false;
 		} else if (!range.equals(other.range))
 			return false;
+		if (version == null) {
+			if (other.version != null)
+				return false;
+		} else if (!version.equals(other.version))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "ObjectTripleType [ID=" + ID + ", domain=" + domain + ", predicate=" + predicate + ", range=" + range
-				+ ", count=" + count + "]";
+				+ ", count=" + count + ", version=" + version + "]";
 	}
-	
+
 	
 
 }
