@@ -138,8 +138,6 @@ public class ObjectTripleTypeService {
 	
 	public ObjectTripleType getByTriple(ObjectTripleType objectTripleType) throws SQLException {
 		
-		List<ObjectTripleType> list = new LinkedList<ObjectTripleType>();
-				
 		MySQLConnection mySQLConnection = new MySQLConnection();
 		Connection c = mySQLConnection.openConnection();			
 		
@@ -173,29 +171,32 @@ public class ObjectTripleTypeService {
 			whereClause = "WHERE " + whereClause;
 		
 		ResultSet rs = stmtSys.executeQuery(query + whereClause); 
-		
+			
 		while(rs.next()) {
-			ClassService classService = new ClassService();
-			Class domain = classService.getByID(rs.getInt("domain_id")); 
+			objectTripleType.setID(rs.getInt("ID"));
 			
-			PropertyService propertyService = new PropertyService();
-			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));
 			
-			Class range = classService.getByID(rs.getInt("object_range_id"));
-			
-			VersionService versionService = new VersionService();
-			Version version = versionService.get(rs.getInt("version_id")); 
-			
-			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count"),version));
+//			ClassService classService = new ClassService();
+//			Class domain = classService.getByID(rs.getInt("domain_id")); 
+//			
+//			PropertyService propertyService = new PropertyService();
+//			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));
+//			
+//			Class range = classService.getByID(rs.getInt("object_range_id"));
+//			
+//			VersionService versionService = new VersionService();
+//			Version version = versionService.get(rs.getInt("version_id")); 
+//			
+//			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count"),version));
 		}
 		
-		ObjectTripleType result = null;
-		if (list.size()>0) {
-			result = list.get(0);
+		
+		if (objectTripleType.getID() == 0) {
+			return null;
 		}
 		
 		logger.info("ObjectTripleTypeService.getByTriple : retrieved ObjectTripleType.");
-		return result;						
+		return objectTripleType;						
 				
 	}
 
