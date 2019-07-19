@@ -7,22 +7,25 @@ public class DataTypeTripleType {
 	private Property predicate;
 	private XSDType range;
 	private long count;
+	private Version version;
 	
-	public DataTypeTripleType(Class domain, Property predicate, XSDType range, long count) {
+	public DataTypeTripleType(Class domain, Property predicate, XSDType range, long count, Version version) {
 		super();
 		this.domain = domain;
 		this.predicate = predicate;
 		this.range = range;
 		this.count = count;
+		this.version = version;
 	}
 	
-	public DataTypeTripleType(int iD, Class domain, Property predicate, XSDType range, long count) {
+	public DataTypeTripleType(int iD, Class domain, Property predicate, XSDType range, long count, Version version) {
 		super();
 		ID = iD;
 		this.domain = domain;
 		this.predicate = predicate;
 		this.range = range;
 		this.count = count;
+		this.version = version;
 	}
 
 	public int getID() {
@@ -63,6 +66,14 @@ public class DataTypeTripleType {
 
 	public void setCount(long count) {
 		this.count = count;
+	}	
+
+	public Version getVersion() {
+		return version;
+	}
+
+	public void setVersion(Version version) {
+		this.version = version;
 	}
 
 	@Override
@@ -74,6 +85,7 @@ public class DataTypeTripleType {
 		result = prime * result + ((domain == null) ? 0 : domain.hashCode());
 		result = prime * result + ((predicate == null) ? 0 : predicate.hashCode());
 		result = prime * result + ((range == null) ? 0 : range.hashCode());
+		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
 	}
 
@@ -105,15 +117,19 @@ public class DataTypeTripleType {
 				return false;
 		} else if (!range.equals(other.range))
 			return false;
+		if (version == null) {
+			if (other.version != null)
+				return false;
+		} else if (!version.equals(other.version))
+			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "DataTypeTripleType [ID=" + ID + ", domain=" + domain + ", predicate=" + predicate + ", range=" + range
-				+ ", count=" + count + "]";
+				+ ", count=" + count + ", version=" + version + "]";
 	}
-	
-	
-	
+
+		
 }
