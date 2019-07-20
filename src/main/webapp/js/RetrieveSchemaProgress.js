@@ -92,7 +92,8 @@ $(document).ready(function(){
 	}
 	
 	// Temp
-	$('#endpoint').val('http://gumbo.cs.uga.edu:8890/sparql');
+//	$('#endpoint').val('http://gumbo.cs.uga.edu:8890/sparql');
+	$('#endpoint').val('http://128.192.62.253:8890/sparql');
 	$('#graphName').val('<http://prokino.uga.edu>');
 	
 	$( "#Retrieve" ).click(function() {
