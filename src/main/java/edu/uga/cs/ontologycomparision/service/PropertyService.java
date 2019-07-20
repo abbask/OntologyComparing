@@ -19,8 +19,15 @@ public class PropertyService {
 	
 	private Connection connection;	
 	
+	private String type;
+	
 	public PropertyService(Connection connection) {
 		this.connection = connection;
+	}
+	
+	public PropertyService(Connection connection, String type) {
+		this.connection = connection;
+		this.type = type;
 	}
 	
 	public Property addIfNotExist(Property myProperty) throws SQLException {
@@ -149,7 +156,7 @@ public class PropertyService {
 		long count = 0 ;			
 		
 		Statement stmtSys = connection.createStatement();			
-		String query = "SELECT count(*) as count FROM property where type='ObjectProperty' and version_id=" + versionId;
+		String query = "SELECT count(*) as count FROM property where type='" + type + "' and version_id=" + versionId;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		if (rs.next())
 			count = rs.getLong("count");
