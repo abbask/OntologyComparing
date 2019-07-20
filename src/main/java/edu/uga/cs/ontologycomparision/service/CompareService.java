@@ -10,6 +10,7 @@ import org.apache.log4j.Logger;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Result;
+import edu.uga.cs.ontologycomparision.model.Class;
 
 public class CompareService {
 	
@@ -78,6 +79,16 @@ public class CompareService {
 		List<Result<String, Long>> results = new ArrayList<>();
 		results.add(new Result<String, Long>("Number of Object Property of version " + ver1.getID(), propertyCount1));
 		results.add(new Result<String, Long>("Number of Object Property of version " + ver2.getID(), propertyCount2));
+		
+		return results;
+	}
+	
+	public List<Result<String, Long>> compareNumberOfIndividuals() throws SQLException{
+		List<Result<String, Long>> results = new ArrayList<>();
+		
+		ClassService classService = new ClassService(connection);
+		ArrayList<Class> classes1 = new ArrayList<Class>( classService.listAll(ver1.getID())); 
+		ArrayList<Class> classes2 = new ArrayList<Class>( classService.listAll(ver2.getID()));
 		
 		return results;
 	}
