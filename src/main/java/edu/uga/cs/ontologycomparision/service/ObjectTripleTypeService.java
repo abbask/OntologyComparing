@@ -10,13 +10,18 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.model.Class;
 
 public class ObjectTripleTypeService {
+	
+	private Connection connection;	
+	
+	public ObjectTripleTypeService(Connection connection) {
+		this.connection = connection;
+	}
 	
 	final static Logger logger = Logger.getLogger(ObjectTripleTypeService.class);
 	
@@ -38,12 +43,11 @@ public class ObjectTripleTypeService {
 	
 	public int add(ObjectTripleType objectTriple) {
 		
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();
+		
 		int candidateId = 0;
 		
 		try {
-			c.setAutoCommit(false);
+			connection.setAutoCommit(false);
 			
 			int domainID = 0 ;
 			if (objectTriple.getDomain() != null) {
@@ -61,7 +65,7 @@ public class ObjectTripleTypeService {
 			}
 			
 			String queryString = "INSERT INTO triple_type (count,domain_id,predicate_id,object_range_id,version_id) VALUES (?,?,?,?,?)";
-			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setLong(1,objectTriple.getCount());
 			statement.setInt(2,domainID);
 			statement.setInt(3,predicateID);
@@ -80,10 +84,8 @@ public class ObjectTripleTypeService {
  
             }
 			
-			c.commit();
+			connection.commit();
 			
-			c.close();
-			mySQLConnection.closeConnection();
 			
 			logger.info("ObjectTripleTypeService.add : new ObjectTripleType commited.");
 			
@@ -92,10 +94,9 @@ public class ObjectTripleTypeService {
 			try {
 				
 				sqlException.printStackTrace();
-				c.rollback();
+				connection.rollback();
 				logger.info("ObjectTripleTypeService.add : new ObjectTripleType is rolled back.");
-				c.close();
-				mySQLConnection.closeConnection();
+				
 				return 0;
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
@@ -110,24 +111,20 @@ public class ObjectTripleTypeService {
 	public ObjectTripleType getByID(int id) throws SQLException {
 		
 		List<ObjectTripleType> list = new LinkedList<ObjectTripleType>();
-				
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
 		
-		Statement stmtSys = c.createStatement();			
+		ClassService classService = new ClassService(connection);
+		VersionService versionService = new VersionService(connection);
+		PropertyService propertyService = new PropertyService(connection);
+		
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM triple_type where id='" + id + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		while(rs.next()) {
-			ClassService classService = new ClassService();
-			Class domain = classService.getByID(rs.getInt("domain_id")); 
 			
-			PropertyService propertyService = new PropertyService();
-			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));
-			
+			Class domain = classService.getByID(rs.getInt("domain_id")); 			
+			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));			
 			Class range = classService.getByID(rs.getInt("object_range_id"));
-			
-			VersionService versionService = new VersionService();
 			Version version = versionService.get(rs.getInt("version_id")); 
 			
 			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count"),version));
@@ -136,12 +133,9 @@ public class ObjectTripleTypeService {
 				
 	}
 	
-	public ObjectTripleType getByTriple(ObjectTripleType objectTripleType) throws SQLException {
+	public ObjectTripleType getByTriple(ObjectTripleType objectTripleType) throws SQLException {		
 		
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
-		
-		Statement stmtSys = c.createStatement();
+		Statement stmtSys = connection.createStatement();
 		
 		String query = "SELECT * FROM triple_type ";
 		String whereClause = "";
@@ -174,20 +168,6 @@ public class ObjectTripleTypeService {
 			
 		while(rs.next()) {
 			objectTripleType.setID(rs.getInt("ID"));
-			
-			
-//			ClassService classService = new ClassService();
-//			Class domain = classService.getByID(rs.getInt("domain_id")); 
-//			
-//			PropertyService propertyService = new PropertyService();
-//			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));
-//			
-//			Class range = classService.getByID(rs.getInt("object_range_id"));
-//			
-//			VersionService versionService = new VersionService();
-//			Version version = versionService.get(rs.getInt("version_id")); 
-//			
-//			list.add(new ObjectTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count"),version));
 		}
 		
 		

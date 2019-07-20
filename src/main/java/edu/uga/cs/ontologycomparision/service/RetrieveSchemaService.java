@@ -2,6 +2,7 @@ package edu.uga.cs.ontologycomparision.service;
 
 
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,17 +20,20 @@ import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.model.XSDType;
 import edu.uga.cs.ontologycomparision.data.DataStoreConnection;
+import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 
 public class RetrieveSchemaService {
-	
-	private String endpointURL;
-	private String graphName;
-	private Version version;
 	
 	final static String ObjectPropertyType = "ObjectProperty";
 	final static String DatatypePropertyType = "DatatypeProperty";
 	
 	final static Logger logger = Logger.getLogger(RetrieveSchemaService.class);
+	
+	private String endpointURL;
+	private String graphName;
+	private Version version;
+	
+	private Connection connection;	
 	
 	public RetrieveSchemaService(String endpointURL, String graphName) throws SQLException {
 		this.endpointURL = endpointURL;
@@ -41,7 +45,10 @@ public class RetrieveSchemaService {
 		this.endpointURL = endpointURL;
 		this.graphName = graphName;
 		
-		VersionService versionService = new VersionService();
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		connection = mySQLConnection.openConnection();
+	
+		VersionService versionService = new VersionService(connection);
 		version = versionService.get(versionId);
 		
 	}
@@ -55,45 +62,69 @@ public class RetrieveSchemaService {
 		
 	}
 
-	public boolean retrieveAllClasses() throws SQLException {
-		
+	public boolean retrieveAllClasses() throws SQLException {		
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
-		List<QuerySolution> list = conn.executeSelect("PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT ?s FROM " + graphName + " WHERE{ ?s a owl:Class.  }");
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>";
+		queryString += "SELECT DISTINCT ?s ?parent (count(?ind) as ?Count) "
+				+ " FROM " + graphName + " "
+						+ "WHERE{ ?s a owl:Class. optional {?ind a ?s.} optional {?s rdfs:subClassOf ?p} "
+						+ "bind(IF(?p = '', '' , ?p) AS ?parent) } "
+						+ "GROUP BY ?s ?parent "
+						+ "ORDER BY ?s ?parent";
+		
+		List<QuerySolution> list = conn.executeSelect(queryString);
+		
+		
+		ClassService classService = new ClassService(connection);		
 
 		for(QuerySolution soln : list) {
-			RDFNode subject = soln.get("s");
-			Resource res = soln.getResource("s");
-
-			if (res.getLocalName() != null) {				
-				collectClass(subject);						
-			}			
+			RDFNode subjectRDFNode = soln.get("s");
+			RDFNode parentRDFNode = soln.get("parent");
+			long count =  soln.get("Count").asLiteral().getLong();
+			Class parentClass = null;
+			
+			if (parentRDFNode != null) {				
+				 parentClass = collectClass(parentRDFNode.asResource());						
+			}	
+			
+			
+			Class myClass = new Class(subjectRDFNode.asResource().getURI(), subjectRDFNode.asResource().getLocalName(), "", count, version, parentClass);
+			
+			myClass = classService.addIfNotExist(myClass);				
+			
 		}
 		
 		return true;
 		
 	}
 	
-	private Class collectClass(RDFNode classRDFNode) throws SQLException {
+	private Class collectClass(Resource subjectResource) throws SQLException {
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>";
+		queryString += "SELECT DISTINCT ?s ?parent (count(?ind) as ?Count) "
+				+ " FROM " + graphName + " "
+						+ "WHERE{ optional {?ind a <" + subjectResource.getURI()  + ">.} "
+								+ "optional {<" + subjectResource.getURI()  + "> rdfs:subClassOf ?p} "
+						+ "bind(IF(?p = '', '' , ?p) AS ?parent) } "
+						+ "GROUP BY ?s ?parent "
+						+ "ORDER BY ?s ?parent";
 		
-		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + classRDFNode + "> rdfs:subClassOf ?parent .}";
-		List<QuerySolution> classes =  conn.executeSelect(queryString);
-		
-		queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT (count(?ind) as ?Count) FROM " + graphName + " WHERE{ ?ind a <" + classRDFNode + "> .}";
-		List<QuerySolution> individuals =  conn.executeSelect(queryString);
-		long count = individuals.get(0).get("Count").asLiteral().getLong();
-		
+		List<QuerySolution> records =  conn.executeSelect(queryString);
+		RDFNode parentRDFNode = records.get(0).get("parent");
+		long count = records.get(0).get("Count").asLiteral().getLong();
+				
 		Class parentClass = null;	
-		if (classes.size() > 0) {
+		if (parentRDFNode != null) {
 			
-			parentClass = collectClass(classes.get(0).get("parent"));
+			parentClass = collectClass(parentRDFNode.asResource());
 		}
+				
 		
-		Resource classResource = classRDFNode.asResource();
-		ClassService classService = new ClassService();		
-		Class myClass = new Class(classResource.getURI(), classResource.getLocalName(), "", count, version, parentClass);
+		ClassService classService = new ClassService(connection);		
+		
+		Class myClass = new Class(subjectResource.getURI(), subjectResource.getLocalName(), "", count, version, parentClass);
 		
 		myClass = classService.addIfNotExist(myClass);	
 		
@@ -157,7 +188,9 @@ public class RetrieveSchemaService {
 		}
 		
 		Resource propertyResource = propertyRDFNode.asResource();
-		PropertyService propertyService = new PropertyService();												
+		
+		
+		PropertyService propertyService = new PropertyService(connection);												
 		Property myProperty = new Property(propertyResource.getURI(), propertyResource.getLocalName(),type, "", version, parentProperty);
 		myProperty = propertyService.addIfNotExist(myProperty);	
 		
@@ -193,9 +226,10 @@ public class RetrieveSchemaService {
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
-		ClassService classService = new ClassService();
-		PropertyService propertyService = new PropertyService();
-		ObjectTripleTypeService service = new ObjectTripleTypeService(); 
+		ClassService classService = new ClassService(connection);		
+		
+		PropertyService propertyService = new PropertyService(connection);
+		ObjectTripleTypeService service = new ObjectTripleTypeService(connection); 
 				
 		
 		for(QuerySolution soln : list) {
@@ -233,6 +267,7 @@ public class RetrieveSchemaService {
 					
 		}
 		
+		
 		return true;
 	}
 	
@@ -257,10 +292,11 @@ public class RetrieveSchemaService {
 		
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
-		ClassService classService = new ClassService();
-		PropertyService propertyService = new PropertyService();
-		XSDTypeService xsdTypeService = new XSDTypeService();
-		DataTypeTripleTypeService service = new DataTypeTripleTypeService(); 
+		ClassService classService = new ClassService(connection);		
+		
+		PropertyService propertyService = new PropertyService(connection);
+		XSDTypeService xsdTypeService = new XSDTypeService(connection);
+		DataTypeTripleTypeService service = new DataTypeTripleTypeService(connection); 
 		
 				
 		

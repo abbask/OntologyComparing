@@ -10,14 +10,18 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import edu.uga.cs.ontologycomparision.data.MySQLConnection;
-import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
 
 public class PropertyService {
 	
 	final static Logger logger = Logger.getLogger(ClassService.class);
+	
+	private Connection connection;	
+	
+	public PropertyService(Connection connection) {
+		this.connection = connection;
+	}
 	
 	public Property addIfNotExist(Property myProperty) throws SQLException {
 		
@@ -37,15 +41,14 @@ public class PropertyService {
 	
 	public int add(Property property) {
 		
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();		
+			
 		int candidateId = 0;
 		
 		try {
-			c.setAutoCommit(false);
+			connection.setAutoCommit(false);
 			
 			String queryString = "INSERT INTO property (url,label,type,comment,version_id,parent_id) VALUES (?,?,?,?,?,?)";
-			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,property.getUrl());
 			statement.setString(2,property.getLabel());
 			statement.setString(3,property.getType());
@@ -67,18 +70,17 @@ public class PropertyService {
             }
 			
 			
-			c.commit();
+			connection.commit();
 			
-			c.close();
 			logger.info("PropertyService.add : new Property commited.");
 			
 			return candidateId;
 			
 		} catch (Exception sqlException) {
 			try {
-				c.rollback();
+				connection.rollback();
 				logger.info("PropertyService.add : new Property is rolled back.");
-				c.close();
+				
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
 				return 0;
@@ -91,17 +93,16 @@ public class PropertyService {
 	
 	public Property getByLabel(String label, int versionId) throws SQLException {
 		
-		List<Property> list = new LinkedList<Property>();
-				
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+		List<Property> list = new LinkedList<Property>();		
 		
-		Statement stmtSys = c.createStatement();			
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM property where version_id =" + versionId  + " and label='" + label + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
+		VersionService versionService = new VersionService(connection);
+		
 		while(rs.next()) {
-			VersionService versionService = new VersionService();
+			
 			Version version = versionService.get(rs.getInt("version_id"));
 			Property prop = null;
 			if (rs.getInt("parent_id") != 0)
@@ -115,8 +116,6 @@ public class PropertyService {
 		else
 			result = null;
 		
-		mySQLConnection.closeConnection();
-		c.close();
 		
 		logger.info("PropertyService.getByLabel : retrieved property.");
 		return result;					
@@ -125,17 +124,15 @@ public class PropertyService {
 	
 	public Property getByID(int ID) throws SQLException {
 		
-		List<Property> list = new LinkedList<Property>();
-				
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+		List<Property> list = new LinkedList<Property>();		
 		
-		Statement stmtSys = c.createStatement();			
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM property where ID=" + ID;
 		ResultSet rs = stmtSys.executeQuery(query); 
+		VersionService versionService = new VersionService(connection);
 		
 		while(rs.next()) {
-			VersionService versionService = new VersionService();
+			
 			Version version = versionService.get(rs.getInt("version_id"));
 			Property prop = null;
 			if (rs.getInt("parent_id") != 0)
@@ -149,11 +146,9 @@ public class PropertyService {
 	}
 
 	public long count(int versionId) throws SQLException  {
-		long count = 0 ;
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+		long count = 0 ;			
 		
-		Statement stmtSys = c.createStatement();			
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT count(*) as count FROM property where type='ObjectProperty' and version_id=" + versionId;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		if (rs.next())

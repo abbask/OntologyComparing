@@ -1,20 +1,25 @@
 package edu.uga.cs.ontologycomparision.service;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 import edu.uga.cs.ontologycomparision.model.Version;
+import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Result;
 
 public class CompareService {
 	
 	private Version ver1;
 	private Version ver2;
+	private Connection connection;
 	
 	public CompareService(Version ver1, Version ver2) {
 		this.ver1 = ver1;
-		this.ver2 = ver2;		
+		this.ver2 = ver2;	
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		connection = mySQLConnection.openConnection();
 	}
 
 	public Version getVer1() {
@@ -34,7 +39,8 @@ public class CompareService {
 	}
 	
 	public List<Result<String, Long>> compareClassCount() throws SQLException  {
-		ClassService classService = new ClassService();
+			
+		ClassService classService = new ClassService(connection);
 		long classCount1 = classService.count(ver1.getID());
 		long classCount2 = classService.count(ver2.getID());
 		
@@ -46,7 +52,7 @@ public class CompareService {
 	}
 	
 	public List<Result<String, Long>> compareObjectPropertyCount() throws SQLException  {
-		PropertyService propertyService = new PropertyService();
+		PropertyService propertyService = new PropertyService(connection);
 		long propertyCount1 = propertyService.count(ver1.getID());
 		long propertyCount2 = propertyService.count(ver2.getID());
 		

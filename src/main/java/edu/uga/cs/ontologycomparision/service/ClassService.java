@@ -10,11 +10,16 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.Version;
 
 public class ClassService {
+	
+	private Connection connection;	
+	
+	public ClassService(Connection connection) {
+		this.connection = connection;
+	}
 	
 	final static Logger logger = Logger.getLogger(ClassService.class);
 	
@@ -35,15 +40,13 @@ public class ClassService {
 	
 	public int add(Class myClass) {
 		
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();	
 		int candidateId = 0;
 		
 		try {
-			c.setAutoCommit(false);
+			connection.setAutoCommit(false);
 			
 			String queryString = "INSERT INTO class (url,label,comment,count, version_id,parent_id) VALUES (?,?,?,?,?,?)";
-			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,myClass.getUrl());
 			statement.setString(2,myClass.getLabel());
 			statement.setString(3,myClass.getComment());
@@ -65,13 +68,7 @@ public class ClassService {
  
             }
 			
-			c.commit();
-			
-			c.close();
-			mySQLConnection.closeConnection();
-			
-			c = null;
-			mySQLConnection = null;
+			connection.commit();
 			
 			logger.info("ClassService.add : new Class commited.");
 			
@@ -80,10 +77,8 @@ public class ClassService {
 		} catch (Exception sqlException) {
 			try {
 				sqlException.printStackTrace();
-				c.rollback();
+				connection.rollback();
 				logger.info("ClassService.add : new Class is rolled back.");
-				c.close();
-				mySQLConnection.closeConnection();
 				
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
@@ -99,15 +94,15 @@ public class ClassService {
 		
 		List<Class> list = new LinkedList<Class>();
 				
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
 		
-		Statement stmtSys = c.createStatement();			
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM class where version_id =" + versionId  + " and label='" + label + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
+		VersionService versionService = new VersionService(connection);
+		
 		
 		while(rs.next()) {
-			VersionService versionService = new VersionService();
+			
 			Version version = versionService.get(rs.getInt("version_id"));
 			Class myClass = null;
 			if (rs.getInt("parent_id") != 0)
@@ -121,8 +116,7 @@ public class ClassService {
 		else
 			result = null;
 		
-		mySQLConnection.closeConnection();
-		c.close();
+		
 		logger.info("ClassService.getByLabel : retrieved class.");
 		return result;					
 				
@@ -132,15 +126,13 @@ public class ClassService {
 		
 		List<Class> list = new LinkedList<Class>();
 				
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
 		
-		Statement stmtSys = c.createStatement();			
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM class where ID=" + ID;
 		ResultSet rs = stmtSys.executeQuery(query); 
-		
+		VersionService versionService = new VersionService(connection);
 		while(rs.next()) {
-			VersionService versionService = new VersionService();
+			
 			Version version = versionService.get(rs.getInt("version_id"));
 			Class myClass = null;
 			if (rs.getInt("parent_id") != 0)
@@ -149,8 +141,6 @@ public class ClassService {
 			list.add(new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,myClass));
 		}
 		
-		mySQLConnection.closeConnection();
-		c.close();
 		logger.info("ClassService.getByID : retrieved class.");
 		return list.get(0);	
 						
@@ -158,17 +148,14 @@ public class ClassService {
 	
 	public long count(int versionId) throws SQLException  {
 		long count = 0 ;
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+				
 		
-		Statement stmtSys = c.createStatement();			
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT count(*) as count FROM class where version_id=" + versionId;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		if (rs.next())
 			count = rs.getLong("count");
 		
-		mySQLConnection.closeConnection();
-		c.close();
 		return count;
 		
 	}

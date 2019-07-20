@@ -10,22 +10,25 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
-import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Version;
 
 public class VersionService {
 	
 	final static Logger logger = Logger.getLogger(VersionService.class);
 	
+	private Connection connection;	
+	
+	public VersionService(Connection connection) {
+		this.connection = connection;
+	}
+	
 	public List<Version> getListAll() throws SQLException {
 		
 		List<Version> list = new LinkedList<Version>();
 				
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
 		
-		c.setAutoCommit(false);
-		Statement stmtSys = c.createStatement();			
+		connection.setAutoCommit(false);
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM version ORDER BY ID";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
@@ -37,30 +40,27 @@ public class VersionService {
 				
 	}
 	
-	public void add(Version version) {
-		
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+	public void add(Version version) {		
 		
 		try {
-			c.setAutoCommit(false);
+			connection.setAutoCommit(false);
 			
 			String queryString = "INSERT INTO version (name,number,date) VALUES (?,?,?)";
-			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,version.getName());
 			statement.setString(2,version.getNumber());
 			statement.setDate(3,new java.sql.Date(version.getDate().getTime()));
 			
 			statement.executeUpdate();
-			c.commit();
+			connection.commit();
 			
-			c.close();
+			
 			logger.info("VersionService.add : new version commited.");
 		} catch (Exception sqlException) {
 			try {
-				c.rollback();
+				connection.rollback();
 				logger.info("VersionService.add : new version is rolled back.");
-				c.close();
+				
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
 			}
@@ -78,13 +78,10 @@ public class VersionService {
 	
 	public Version get(int ID) throws SQLException {
 		
-		List<Version> list = new LinkedList<Version>();
-				
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+		List<Version> list = new LinkedList<Version>();	
 		
-		c.setAutoCommit(false);
-		Statement stmtSys = c.createStatement();			
+		connection.setAutoCommit(false);
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM version WHERE ID=" + ID;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
@@ -92,17 +89,7 @@ public class VersionService {
 			list.add(new Version(rs.getInt("ID"), rs.getString("name"), rs.getString("number"), rs.getDate("date")));
 		}
 		
-		mySQLConnection.closeConnection();
-		c.close();
-		
-		c = null;
-		mySQLConnection = null;
-		
-		return list.get(0);		
-		
-		
-		
-				
+		return list.get(0);				
 	}
 
 }

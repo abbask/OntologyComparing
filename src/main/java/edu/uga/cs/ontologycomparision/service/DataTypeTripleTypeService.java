@@ -20,6 +20,12 @@ import edu.uga.cs.ontologycomparision.model.XSDType;
 
 public class DataTypeTripleTypeService {
 	
+	private Connection connection;	
+	
+	public DataTypeTripleTypeService(Connection connection) {
+		this.connection = connection;
+	}
+	
 	final static Logger logger = Logger.getLogger(DataTypeTripleTypeService.class);
 	
 	public DataTypeTripleType addIfNotExist(DataTypeTripleType dataTypeTripleType) throws SQLException {
@@ -39,13 +45,11 @@ public class DataTypeTripleTypeService {
 	}
 	
 	public int add(DataTypeTripleType dataTypeTriple) {
-		
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+				
 		int candidateId = 0;
 		
 		try {
-			c.setAutoCommit(false);
+			connection.setAutoCommit(false);
 			
 			int domainID = 0 ;
 			if (dataTypeTriple.getDomain() != null) {
@@ -63,7 +67,7 @@ public class DataTypeTripleTypeService {
 			}
 			
 			String queryString = "INSERT INTO triple_type (count,domain_id,predicate_id, xsd_type_id, version_id) VALUES (?,?,?,?,?)";
-			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setLong(1,dataTypeTriple.getCount());
 			statement.setInt(2,domainID);
 			statement.setInt(3,predicateID);
@@ -82,16 +86,14 @@ public class DataTypeTripleTypeService {
  
             }
 			
-			c.commit();
+			connection.commit();
 			
-			c.close();
 			logger.info("DataTypeTripleTypeService.add : new DataTypeTripleType commited.");
 			return candidateId;
 		} catch (Exception sqlException) {
 			try {
-				c.rollback();
+				connection.rollback();
 				logger.info("DataTypeTripleTypeService.add : new DataTypeTripleType is rolled back.");
-				c.close();
 				return 0;
 			} catch (SQLException e) {
 				logger.error(e.getMessage(), e);
@@ -106,24 +108,21 @@ public class DataTypeTripleTypeService {
 		
 		List<DataTypeTripleType> list = new LinkedList<DataTypeTripleType>();
 				
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
+		ClassService classService = new ClassService(connection);					
 		
-		Statement stmtSys = c.createStatement();			
+		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM triple_type where id='" + id + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
+		PropertyService propertyService = new PropertyService(connection);
+		XSDTypeService typeService = new XSDTypeService(connection);
+		VersionService versionService = new VersionService(connection);
+		
 		while(rs.next()) {
-			ClassService classService = new ClassService();
-			Class domain = classService.getByID(rs.getInt("domain_id")); 
 			
-			PropertyService propertyService = new PropertyService();
-			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));
-			
-			XSDTypeService typeService = new XSDTypeService();
+			Class domain = classService.getByID(rs.getInt("domain_id")); 					
+			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));			
 			XSDType range = typeService.getByID(rs.getInt("datatype_range_id"));
-			
-			VersionService versionService = new VersionService();
 			Version version = versionService.get(rs.getInt("version_id")); 
 			
 			list.add(new DataTypeTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count"),version));
@@ -170,19 +169,7 @@ public class DataTypeTripleTypeService {
 		
 		while(rs.next()) {
 			dataTypeTripleType.setID(rs.getInt("ID"));
-//			ClassService classService = new ClassService();
-//			Class domain = classService.getByID(rs.getInt("domain_id")); 
-//			
-//			PropertyService propertyService = new PropertyService();
-//			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));
-//			
-//			XSDTypeService xsdTypeService = new XSDTypeService();
-//			XSDType range = xsdTypeService.getByID(rs.getInt("xsd_type_id"));
-//			
-//			VersionService versionService = new VersionService();
-//			Version version = versionService.get(rs.getInt("version_id")); 
-//			
-//			list.add(new DataTypeTripleType(rs.getInt("ID"), domain, predicate, range, rs.getLong("count"),version));
+
 		}
 		
 		if (dataTypeTripleType.getID() == 0) {
