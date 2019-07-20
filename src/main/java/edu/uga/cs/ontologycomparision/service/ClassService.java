@@ -166,6 +166,9 @@ public class ClassService {
 		ResultSet rs = stmtSys.executeQuery(query); 
 		if (rs.next())
 			count = rs.getLong("count");
+		
+		mySQLConnection.closeConnection();
+		c.close();
 		return count;
 		
 	}

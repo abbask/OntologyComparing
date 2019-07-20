@@ -72,6 +72,7 @@ public class MySQLConnection {
 	public void closeConnection() {
 		try {
 			connObj.close();
+			connObj = null;
 		} catch (SQLException e) {
 			logger.error("MySQLConnection: sqlException error - Connection closing error");	
 			e.printStackTrace();
