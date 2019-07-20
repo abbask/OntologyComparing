@@ -5,28 +5,29 @@ public class Property {
 	private int ID;
 	private String url;
 	private String label;
+	private String type;
 	private String comment;
-	private long count; //we don't use it probably.
 	private Version version;
 	private Property parent;
 	
-	public Property(String url, String label, String comment, long count, Version version, Property parent) {
+	public Property(String url, String label, String type, String comment, Version version, Property parent) {
 		
 		this.url = url;
 		this.label = label;
+		this.type = type;
 		this.comment = comment;
-		this.count = count;
 		this.version = version;
 		this.parent = parent;
+		
 	}
 	
-	public Property(int iD, String url, String label, String comment, long count, Version version, Property parent) {
+	public Property(int iD, String url, String label, String type, String comment, Version version, Property parent) {
 		super();
 		ID = iD;
 		this.url = url;
 		this.label = label;
+		this.type = type;
 		this.comment = comment;
-		this.count = count;
 		this.version = version;
 		this.parent = parent;
 	}
@@ -53,6 +54,14 @@ public class Property {
 
 	public void setLabel(String label) {
 		this.label = label;
+	}	
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
 	}
 
 	public String getComment() {
@@ -61,14 +70,6 @@ public class Property {
 
 	public void setComment(String comment) {
 		this.comment = comment;
-	}
-
-	public long getCount() {
-		return count;
-	}
-
-	public void setCount(long count) {
-		this.count = count;
 	}
 
 	public Version getVersion() {
@@ -93,9 +94,9 @@ public class Property {
 		int result = 1;
 		result = prime * result + ID;
 		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
-		result = prime * result + (int) (count ^ (count >>> 32));
 		result = prime * result + ((label == null) ? 0 : label.hashCode());
 		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
+		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((url == null) ? 0 : url.hashCode());
 		result = prime * result + ((version == null) ? 0 : version.hashCode());
 		return result;
@@ -117,8 +118,6 @@ public class Property {
 				return false;
 		} else if (!comment.equals(other.comment))
 			return false;
-		if (count != other.count)
-			return false;
 		if (label == null) {
 			if (other.label != null)
 				return false;
@@ -128,6 +127,11 @@ public class Property {
 			if (other.parent != null)
 				return false;
 		} else if (!parent.equals(other.parent))
+			return false;
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
 			return false;
 		if (url == null) {
 			if (other.url != null)
@@ -144,10 +148,8 @@ public class Property {
 
 	@Override
 	public String toString() {
-		return "Property [ID=" + ID + ", url=" + url + ", label=" + label + ", comment=" + comment + ", count=" + count
+		return "Property [ID=" + ID + ", url=" + url + ", label=" + label + ", type=" + type + ", comment=" + comment
 				+ ", version=" + version + ", parent=" + parent + "]";
 	}
 
-	
-	
 }
