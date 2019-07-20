@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.service.VersionService;
 import edu.uga.cs.ontologycomparision.util.FreeMarkerTemplate;
@@ -45,7 +46,8 @@ public class VersionList extends HttpServlet{
 		FreeMarkerTemplate freeMarkerTemplate = new FreeMarkerTemplate();
 		Template template = freeMarkerTemplate.loadTemplate(getServletContext(), templateName);									
 		
-		VersionService service = new VersionService();
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		VersionService service = new VersionService(mySQLConnection.openConnection());
 		List<Version> list;
 		
 		try {		

@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.service.VersionService;
 import edu.uga.cs.ontologycomparision.util.FreeMarkerTemplate;
@@ -86,7 +87,8 @@ public class VersionNew extends HttpServlet{
 		}		
 		
 		Version version = new Version(name, number, date);
-		VersionService versionService = new VersionService();
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		VersionService versionService = new VersionService(mySQLConnection.openConnection());
 		versionService.add(version);
 
 		

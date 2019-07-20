@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.service.VersionService;
 import edu.uga.cs.ontologycomparision.util.FreeMarkerTemplate;
@@ -55,7 +56,9 @@ public class RetrieveSchema extends HttpServlet{
 				new OutputStreamWriter(res.getOutputStream(), template.getEncoding()));
 		res.setContentType("text/html; charset=" + template.getEncoding());
 		
-		VersionService versionService = new VersionService();
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		
+		VersionService versionService = new VersionService(mySQLConnection.openConnection());
 		Version version = null;
 		try {
 			version = versionService.get(version_id);
