@@ -26,6 +26,9 @@ public class RetrieveSchemaService {
 	private String graphName;
 	private Version version;
 	
+	final static String ObjectPropertyType = "ObjectProperty";
+	final static String DatatypePropertyType = "DatatypeProperty";
+	
 	final static Logger logger = Logger.getLogger(RetrieveSchemaService.class);
 	
 	public RetrieveSchemaService(String endpointURL, String graphName) throws SQLException {
@@ -112,7 +115,7 @@ public class RetrieveSchemaService {
 			Resource res = soln.getResource("predicate");
 
 			if (res.getLocalName() != null) {				
-				collectProperty(predicate);						
+				collectProperty(predicate, ObjectPropertyType);						
 			}			
 		}
 		
@@ -132,7 +135,7 @@ public class RetrieveSchemaService {
 			Resource res = soln.getResource("predicate");
 
 			if (res.getLocalName() != null) {				
-				collectProperty(predicate);						
+				collectProperty(predicate, DatatypePropertyType);						
 			}			
 		}
 		
@@ -140,7 +143,7 @@ public class RetrieveSchemaService {
 	}
 	
 	
-	private Property collectProperty(RDFNode propertyRDFNode) throws SQLException {
+	private Property collectProperty(RDFNode propertyRDFNode, String type) throws SQLException {
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		
@@ -150,12 +153,12 @@ public class RetrieveSchemaService {
 		Property parentProperty = null;	
 		if (parents.size() > 0) {
 			
-			parentProperty = collectProperty(parents.get(0).get("parent"));
+			parentProperty = collectProperty(parents.get(0).get("parent"), type);
 		}
 		
 		Resource propertyResource = propertyRDFNode.asResource();
 		PropertyService propertyService = new PropertyService();												
-		Property myProperty = new Property(propertyResource.getURI(), propertyResource.getLocalName(), "", 0L, version, parentProperty);
+		Property myProperty = new Property(propertyResource.getURI(), propertyResource.getLocalName(),type, "", version, parentProperty);
 		myProperty = propertyService.addIfNotExist(myProperty);	
 		
 		return myProperty;
@@ -310,14 +313,9 @@ public class RetrieveSchemaService {
 		List<QuerySolution> propertySolns = conn.executeSelect(q);
 		System.out.println(q);
 		for(QuerySolution soln : propertySolns) {
-			DataStoreConnection dataStoreConn = new DataStoreConnection(endpointURL, graphName);			
-			RDFNode predicate = soln.get("s");
 			Resource res = soln.getResource("s");
-			if (res.getLocalName() != null) {
-				String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT (count(?s) as ?Count) FROM " + graphName + " WHERE{ ?s <" + predicate + "> ?o .}";
-				List<QuerySolution> individuals =  dataStoreConn.executeSelect(queryString);
-				Literal count = individuals.get(0).get("Count").asLiteral();							
-				Property myProperty = new Property(res.getURI(), res.getLocalName(), "", count.getLong(), version, null);
+			if (res.getLocalName() != null) {											
+				Property myProperty = new Property(res.getURI(), res.getLocalName(),ObjectPropertyType, "", version, null);
 				propertyList.add(myProperty);
 				
 			}
@@ -343,10 +341,9 @@ public class RetrieveSchemaService {
 			
 			
 			Resource predicate = soln.getResource("name");
-			Literal count = soln.getLiteral("count");
 			
 			if (predicate.getLocalName() != null) {							
-				Property myProperty = new Property(predicate.getURI(), predicate.getLocalName(), "", count.getLong(), version, null);
+				Property myProperty = new Property(predicate.getURI(), predicate.getLocalName(),DatatypePropertyType, "", version, null);
 				propertyList2.add(myProperty);
 			}
 			

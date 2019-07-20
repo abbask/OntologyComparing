@@ -44,12 +44,12 @@ public class PropertyService {
 		try {
 			c.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO property (url,label,comment,count, version_id,parent_id) VALUES (?,?,?,?,?,?)";
+			String queryString = "INSERT INTO property (url,label,type,comment,version_id,parent_id) VALUES (?,?,?,?,?,?)";
 			PreparedStatement statement= c.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,property.getUrl());
 			statement.setString(2,property.getLabel());
-			statement.setString(3,property.getComment());
-			statement.setLong(4,property.getCount());
+			statement.setString(3,property.getType());
+			statement.setString(4,property.getComment());
 			statement.setInt(5, property.getVersion().getID());		
 			if (property.getParent() != null)
 				statement.setInt(6, property.getParent().getID());
@@ -107,7 +107,7 @@ public class PropertyService {
 			if (rs.getInt("parent_id") != 0)
 				prop = getByID(rs.getInt("parent_id") );
 			
-			list.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,prop));
+			list.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("type"), rs.getString("comment"), version,prop));
 		}
 		Property result ;
 		if (list.size() > 0) 
@@ -141,7 +141,7 @@ public class PropertyService {
 			if (rs.getInt("parent_id") != 0)
 				prop = getByID(rs.getInt("parent_id") );
 			
-			list.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,prop));
+			list.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("type"), rs.getString("comment"), version,prop));
 		}
 		logger.info("PropertyService.getByID : retrieved property.");
 		return list.get(0);						
