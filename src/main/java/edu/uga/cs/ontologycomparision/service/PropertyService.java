@@ -148,5 +148,17 @@ public class PropertyService {
 				
 	}
 
-
+	public long count(int versionId) throws SQLException  {
+		long count = 0 ;
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		Connection c = mySQLConnection.openConnection();			
+		
+		Statement stmtSys = c.createStatement();			
+		String query = "SELECT count(*) as count FROM property where type='ObjectProperty' and version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		if (rs.next())
+			count = rs.getLong("count");
+		return count;
+		
+	}
 }

@@ -153,9 +153,21 @@ public class ClassService {
 		c.close();
 		logger.info("ClassService.getByID : retrieved class.");
 		return list.get(0);	
+						
+	}
+	
+	public long count(int versionId) throws SQLException  {
+		long count = 0 ;
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		Connection c = mySQLConnection.openConnection();			
 		
+		Statement stmtSys = c.createStatement();			
+		String query = "SELECT count(*) as count FROM class where version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		if (rs.next())
+			count = rs.getLong("count");
+		return count;
 		
-				
 	}
 
 }
