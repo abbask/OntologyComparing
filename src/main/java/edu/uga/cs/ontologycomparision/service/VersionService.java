@@ -95,6 +95,9 @@ public class VersionService {
 		mySQLConnection.closeConnection();
 		c.close();
 		
+		c = null;
+		mySQLConnection = null;
+		
 		return list.get(0);		
 		
 		
