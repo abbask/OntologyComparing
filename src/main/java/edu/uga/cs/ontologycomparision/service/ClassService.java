@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -158,6 +159,25 @@ public class ClassService {
 		
 		return count;
 		
+	}
+	
+	public List<Class> listAll(int versionId) throws SQLException{
+		List<Class> results = new ArrayList<Class>();
+		
+		Statement stmtSys = connection.createStatement();	
+		String query = "SELECT count(*) as count FROM class where version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		VersionService versionService = new VersionService(connection);
+		while (rs.next()) {
+			Version version = versionService.get(versionId);
+			Class myClass = null;
+			if (rs.getInt("parent_id") != 0)
+				myClass = getByID(rs.getInt("parent_id") );
+			results.add(new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,myClass));
+		}
+		
+		return results;
+			
 	}
 
 }
