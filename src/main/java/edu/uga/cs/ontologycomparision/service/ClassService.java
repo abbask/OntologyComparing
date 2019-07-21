@@ -165,7 +165,7 @@ public class ClassService {
 		long sum = 0 ;
 			
 		Statement stmtSys = connection.createStatement();			
-		String query = "SELECT SUM(`count`) as sum FROM `class` WHERE `version_id`=1" + versionId;
+		String query = "SELECT SUM(`count`) as sum FROM class WHERE version_id=" + versionId;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		if (rs.next())
 			sum = rs.getLong("sum");

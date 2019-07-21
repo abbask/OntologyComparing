@@ -93,8 +93,8 @@ public class CompareService {
 		long classCount2 = classService.individualCount(ver2.getID());
 		
 		List<Result<String, Long>> results = new ArrayList<>();
-		results.add(new Result<String, Long>("Number of classes of version " + ver1.getID(), classCount1));
-		results.add(new Result<String, Long>("Number of classes of version " + ver2.getID(), classCount2));
+		results.add(new Result<String, Long>("Number of individuals of version " + ver1.getID(), classCount1));
+		results.add(new Result<String, Long>("Number of individuals of version " + ver2.getID(), classCount2));
 		
 		return results;
 	}
