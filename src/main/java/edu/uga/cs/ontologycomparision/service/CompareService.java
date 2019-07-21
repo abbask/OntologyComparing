@@ -106,11 +106,11 @@ public class CompareService {
 		System.out.println("class2Set: " + class2Set.size());
 		
 		List<Result<String, String>> class1List = class1Set.stream()
-				.map(myClass -> new Result<String, String>(myClass.getLabel(), "Added"))
+				.map(myClass -> new Result<String, String>(myClass.getLabel(), "Only in Version " + ver1.getNumber()))
 				.collect(Collectors.toList());
 		
 		List<Result<String, String>> class2List = class2Set.stream()
-				.map(myClass -> new Result<String, String>(myClass.getLabel(), "Removed"))
+				.map(myClass -> new Result<String, String>(myClass.getLabel(), "Only in Version " + ver2.getNumber()))
 				.collect(Collectors.toList());
 				
 		List<Result<String, String>> result = new ArrayList<>();
