@@ -143,7 +143,13 @@ public class ClassService {
 		}
 		
 		logger.info("ClassService.getByID : retrieved class.");
-		return list.get(0);	
+		
+		Class result = null;
+		if (list.size() > 0 ) {
+			result = list.get(0);
+		}
+		
+		return result;	
 						
 	}
 	
