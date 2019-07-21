@@ -3,6 +3,7 @@ package edu.uga.cs.ontologycomparision.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -91,8 +92,18 @@ public class CompareService {
 		Set<Class> class1Set = classService.listAll(ver1.getID()).stream().collect(Collectors.toSet());
 		Set<Class> class2Set = classService.listAll(ver2.getID()).stream().collect(Collectors.toSet());
 		
+		Set<Class> class1SetTemp = new HashSet<Class>(class1Set);
+		
+		System.out.println("class1Set: " + class1Set.size());
+		System.out.println("class2Set: " + class2Set.size());
+		System.out.println("class1SetTemp: " + class2Set.size());
+		
 		class1Set.removeAll(class2Set);
-		class2Set.removeAll(class1Set);
+		class2Set.removeAll(class1SetTemp);
+		
+		System.out.println("After Removal:");
+		System.out.println("class1Set: " + class1Set.size());
+		System.out.println("class2Set: " + class2Set.size());
 		
 		List<Result<String, String>> class1List = class1Set.stream()
 				.map(myClass -> new Result<String, String>(myClass.getLabel(), "Added"))
