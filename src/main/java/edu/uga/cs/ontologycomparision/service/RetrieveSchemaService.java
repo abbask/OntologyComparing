@@ -81,6 +81,10 @@ public class RetrieveSchemaService {
 		for(QuerySolution soln : list) {
 			RDFNode subjectRDFNode = soln.get("s");
 			RDFNode parentRDFNode = soln.get("parent");
+			
+			if (subjectRDFNode.asResource().getURI() == null)
+				continue;
+			
 			long count =  soln.get("Count").asLiteral().getLong();
 			Class parentClass = null;
 			
