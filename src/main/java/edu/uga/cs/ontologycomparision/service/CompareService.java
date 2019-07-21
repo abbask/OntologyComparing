@@ -85,9 +85,7 @@ public class CompareService {
 		return results;
 	}
 	
-	public List<Result<String, Long>> compareClasses() throws SQLException{
-		List<Result<String, Long>> results = new ArrayList<>();
-		
+	public List<Result<String, String>> compareClasses() throws SQLException{
 		ClassService classService = new ClassService(connection);
 
 		Set<Class> class1Set = classService.listAll(ver1.getID()).stream().collect(Collectors.toSet());
@@ -103,11 +101,11 @@ public class CompareService {
 		List<Result<String, String>> class2List = class2Set.stream()
 				.map(myClass -> new Result<String, String>(myClass.getLabel(), "Removed"))
 				.collect(Collectors.toList());
-			
+				
 		List<Result<String, String>> result = new ArrayList<>();
 		result.addAll(class1List);
 		result.addAll(class2List);
 
-		return results;
+		return result;
 	}
 }

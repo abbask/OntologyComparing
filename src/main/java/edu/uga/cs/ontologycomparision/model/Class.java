@@ -130,13 +130,9 @@ public class Class {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
-		result = prime * result + ((comment == null) ? 0 : comment.hashCode());
-		result = prime * result + (int) (count ^ (count >>> 32));
+		
 		result = prime * result + ((label == null) ? 0 : label.hashCode());
-		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
-		result = prime * result + ((url == null) ? 0 : url.hashCode());
-		result = prime * result + ((version == null) ? 0 : version.hashCode());
+		
 		return result;
 	}
 
@@ -146,38 +142,15 @@ public class Class {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		
 		Class other = (Class) obj;
-		if (ID != other.ID)
-			return false;
-		if (comment == null) {
-			if (other.comment != null)
-				return false;
-		} else if (!comment.equals(other.comment))
-			return false;
-		if (count != other.count)
-			return false;
+
 		if (label == null) {
 			if (other.label != null)
 				return false;
 		} else if (!label.equals(other.label))
 			return false;
-		if (parent == null) {
-			if (other.parent != null)
-				return false;
-		} else if (!parent.equals(other.parent))
-			return false;
-		if (url == null) {
-			if (other.url != null)
-				return false;
-		} else if (!url.equals(other.url))
-			return false;
-		if (version == null) {
-			if (other.version != null)
-				return false;
-		} else if (!version.equals(other.version))
-			return false;
+		
 		return true;
 	}
 
