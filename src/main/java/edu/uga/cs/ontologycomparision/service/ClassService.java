@@ -165,7 +165,7 @@ public class ClassService {
 		List<Class> results = new ArrayList<Class>();
 		
 		Statement stmtSys = connection.createStatement();	
-		String query = "SELECT count(*) as count FROM class where version_id=" + versionId;
+		String query = "SELECT * FROM class where version_id=" + versionId;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		VersionService versionService = new VersionService(connection);
 		while (rs.next()) {
