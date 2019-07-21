@@ -125,6 +125,8 @@ public class CompareService {
 		property1Set.removeAll(property2Set);
 		property2Set.removeAll(property1SetTemp);
 		
+		System.out.println("property1Set: " + property1Set.size());
+		System.out.println("property2Set: " + property2Set.size());
 		
 		List<Result<String, String>> property1List = property1Set.stream()
 				.map(myProperty -> new Result<String, String>(myProperty.getLabel(), "Only in Version " + ver1.getNumber()))
@@ -152,6 +154,8 @@ public class CompareService {
 		property1Set.removeAll(property2Set);
 		property2Set.removeAll(property1SetTemp);
 		
+		System.out.println("property1Set: " + property1Set.size());
+		System.out.println("property2Set: " + property2Set.size());
 		
 		List<Result<String, String>> property1List = property1Set.stream()
 				.map(myProperty -> new Result<String, String>(myProperty.getLabel(), "Only in Version " + ver1.getNumber()))
