@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
@@ -83,13 +85,29 @@ public class CompareService {
 		return results;
 	}
 	
-	public List<Result<String, Long>> compareNumberOfIndividuals() throws SQLException{
+	public List<Result<String, Long>> compareClasses() throws SQLException{
 		List<Result<String, Long>> results = new ArrayList<>();
 		
 		ClassService classService = new ClassService(connection);
-		ArrayList<Class> classes1 = new ArrayList<Class>( classService.listAll(ver1.getID())); 
-		ArrayList<Class> classes2 = new ArrayList<Class>( classService.listAll(ver2.getID()));
+
+		Set<Class> class1Set = classService.listAll(ver1.getID()).stream().collect(Collectors.toSet());
+		Set<Class> class2Set = classService.listAll(ver2.getID()).stream().collect(Collectors.toSet());
 		
+		class1Set.removeAll(class2Set);
+		class2Set.removeAll(class1Set);
+		
+		List<Result<String, String>> class1List = class1Set.stream()
+				.map(myClass -> new Result<String, String>(myClass.getLabel(), "Added"))
+				.collect(Collectors.toList());
+		
+		List<Result<String, String>> class2List = class2Set.stream()
+				.map(myClass -> new Result<String, String>(myClass.getLabel(), "Removed"))
+				.collect(Collectors.toList());
+			
+		List<Result<String, String>> result = new ArrayList<>();
+		result.addAll(class1List);
+		result.addAll(class2List);
+
 		return results;
 	}
 }
