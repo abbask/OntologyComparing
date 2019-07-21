@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -162,5 +163,24 @@ public class PropertyService {
 			count = rs.getLong("count");
 		return count;
 		
+	}
+	
+	public List<Property> listAll(int versionId) throws SQLException{
+		List<Property> results = new ArrayList<Property>();
+		
+		Statement stmtSys = connection.createStatement();	
+		String query = "SELECT * FROM property where type='" + type + "' AND version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		VersionService versionService = new VersionService(connection);
+		while (rs.next()) {
+			Version version = versionService.get(versionId);
+			Property parentProperty = null;
+			if (rs.getInt("parent_id") != 0)
+				parentProperty = getByID(rs.getInt("parent_id") );
+			results.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("type"),rs.getString("comment"), version,parentProperty));
+		}
+		
+		return results;
+			
 	}
 }
