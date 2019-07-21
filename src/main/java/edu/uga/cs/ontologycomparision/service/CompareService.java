@@ -87,6 +87,18 @@ public class CompareService {
 		return results;
 	}
 	
+	public List<Result<String, Long>> compareIndividualCount() throws SQLException  {
+		ClassService classService = new ClassService(connection);
+		long classCount1 = classService.individualCount(ver1.getID());
+		long classCount2 = classService.individualCount(ver2.getID());
+		
+		List<Result<String, Long>> results = new ArrayList<>();
+		results.add(new Result<String, Long>("Number of classes of version " + ver1.getID(), classCount1));
+		results.add(new Result<String, Long>("Number of classes of version " + ver2.getID(), classCount2));
+		
+		return results;
+	}
+	
 	public List<Result<String, String>> compareClasses() throws SQLException{
 		ClassService classService = new ClassService(connection);
 
