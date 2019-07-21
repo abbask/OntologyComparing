@@ -80,12 +80,11 @@ public class ObjectTripleType {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
-		result = prime * result + (int) (count ^ (count >>> 32));
+		
 		result = prime * result + ((domain == null) ? 0 : domain.hashCode());
 		result = prime * result + ((predicate == null) ? 0 : predicate.hashCode());
 		result = prime * result + ((range == null) ? 0 : range.hashCode());
-		result = prime * result + ((version == null) ? 0 : version.hashCode());
+		
 		return result;
 	}
 
@@ -95,13 +94,9 @@ public class ObjectTripleType {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+		
 		ObjectTripleType other = (ObjectTripleType) obj;
-		if (ID != other.ID)
-			return false;
-		if (count != other.count)
-			return false;
+		
 		if (domain == null) {
 			if (other.domain != null)
 				return false;
@@ -117,11 +112,7 @@ public class ObjectTripleType {
 				return false;
 		} else if (!range.equals(other.range))
 			return false;
-		if (version == null) {
-			if (other.version != null)
-				return false;
-		} else if (!version.equals(other.version))
-			return false;
+		
 		return true;
 	}
 
