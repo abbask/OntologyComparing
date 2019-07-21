@@ -1,8 +1,10 @@
 package edu.uga.cs.ontologycomparision.service;
 
+import java.rmi.UnexpectedException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,6 +16,7 @@ import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Result;
 import edu.uga.cs.ontologycomparision.model.Class;
+import edu.uga.cs.ontologycomparision.model.ClassSortByLabel;
 import edu.uga.cs.ontologycomparision.model.Property;
 
 public class CompareService {
@@ -183,4 +186,39 @@ public class CompareService {
 
 		return result;
 	}
+	
+	public List<Result<Class, Integer>> compareIndividualCountEachClass() throws SQLException, UnexpectedException  {
+		ClassService classService = new ClassService(connection);
+
+		List<Class> class1Set = classService.listAll(ver1.getID());
+		List<Class> class2Set = classService.listAll(ver2.getID());
+		
+		List<Class> class1SetTemp = new ArrayList<Class>(class1Set);
+		
+		class1Set.retainAll(class2Set);
+		class2Set.retainAll(class1SetTemp);
+		
+		System.out.printf("class1Set: %d, class2Set: %d%n", class1Set.size(), class2Set.size());
+		
+		Collections.sort(class1Set, new ClassSortByLabel()); 
+		Collections.sort(class2Set, new ClassSortByLabel()); 
+		
+		List<Result<Class, Integer>> results = new ArrayList<>();
+		
+		for (int i = 0 ; i < class1Set.size() ; i++) {
+			int diff = class2Set.get(i).compareTo(class1Set.get(i));
+			if (diff < 0 ) {
+				results.add(new Result<Class, Integer>(class1Set.get(i), diff));
+			}
+			else if (diff > 0) {
+				results.add(new Result<Class, Integer>(class1Set.get(i), diff));
+			}
+			if (class2Set.get(i).getLabel().compareTo(class1Set.get(i).getLabel()) != 0) {
+				throw new UnexpectedException("sort did not work: " + class2Set.get(i).getLabel() + ", " + class1Set.get(i).getLabel());
+			}
+		}						
+		
+		return results;
+	}
+	
 }
