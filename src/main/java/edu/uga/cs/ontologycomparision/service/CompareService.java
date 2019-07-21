@@ -221,4 +221,30 @@ public class CompareService {
 		return results;
 	}
 	
+	public List<Result<String, Long>> compareObjectTripleTypeCount() throws SQLException  {
+		
+		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
+		long objectTripleCount1 = service.count(ver1.getID());
+		long objectTripleCount2 = service.count(ver2.getID());
+		
+		List<Result<String, Long>> results = new ArrayList<>();
+		results.add(new Result<String, Long>("Number of Object Triple Types of version " + ver1.getID(), objectTripleCount1));
+		results.add(new Result<String, Long>("Number of Object Triple Types of version " + ver2.getID(), objectTripleCount2));
+		
+		return results;
+	}
+	
+	public List<Result<String, Long>> compareDatatypeTripleTypeCount() throws SQLException  {
+		
+		DataTypeTripleTypeService service = new DataTypeTripleTypeService(connection);
+		long datatypeTripleCount1 = service.count(ver1.getID());
+		long datatypeTripleCount2 = service.count(ver2.getID());
+		
+		List<Result<String, Long>> results = new ArrayList<>();
+		results.add(new Result<String, Long>("Number of Datatype Triple Types of version " + ver1.getID(), datatypeTripleCount1));
+		results.add(new Result<String, Long>("Number of Datatype Triple Types of version " + ver2.getID(), datatypeTripleCount2));
+		
+		return results;
+	}
+	
 }

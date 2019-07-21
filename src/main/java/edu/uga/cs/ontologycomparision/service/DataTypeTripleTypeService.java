@@ -181,4 +181,17 @@ public class DataTypeTripleTypeService {
 				
 	}
 
+	public long count(int versionId) throws SQLException  {
+		long count = 0 ;
+		
+		Statement stmtSys = connection.createStatement();			
+		String query = "SELECT count(*) as count FROM triple_type where ISNULL(object_range_id) and version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		if (rs.next())
+			count = rs.getLong("count");
+		
+		return count;
+		
+	}
+	
 }
