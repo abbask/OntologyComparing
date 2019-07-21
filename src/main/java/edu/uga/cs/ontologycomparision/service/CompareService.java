@@ -140,4 +140,31 @@ public class CompareService {
 
 		return result;
 	}
+	
+	public List<Result<String, String>> compareDatetypeProperties() throws SQLException{
+		PropertyService service = new PropertyService(connection, DatatypePropertyType);
+
+		Set<Property> property1Set = service.listAll(ver1.getID()).stream().collect(Collectors.toSet());
+		Set<Property> property2Set = service.listAll(ver2.getID()).stream().collect(Collectors.toSet());
+		
+		Set<Property> property1SetTemp = new HashSet<Property>(property1Set);
+		
+		property1Set.removeAll(property2Set);
+		property2Set.removeAll(property1SetTemp);
+		
+		
+		List<Result<String, String>> property1List = property1Set.stream()
+				.map(myProperty -> new Result<String, String>(myProperty.getLabel(), "Only in Version " + ver1.getNumber()))
+				.collect(Collectors.toList());
+		
+		List<Result<String, String>> property2List = property2Set.stream()
+				.map(myProperty -> new Result<String, String>(myProperty.getLabel(), "Only in Version " + ver2.getNumber()))
+				.collect(Collectors.toList());
+				
+		List<Result<String, String>> result = new ArrayList<>();
+		result.addAll(property1List);
+		result.addAll(property2List);
+
+		return result;
+	}
 }
