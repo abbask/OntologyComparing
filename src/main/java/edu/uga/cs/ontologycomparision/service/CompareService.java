@@ -17,6 +17,7 @@ import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Result;
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.ClassSortByLabel;
+import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
 
 public class CompareService {
@@ -245,6 +246,41 @@ public class CompareService {
 		results.add(new Result<String, Long>("Number of Datatype Triple Types of version " + ver2.getID(), datatypeTripleCount2));
 		
 		return results;
+	}
+	
+	public List<Result<String, String>> compareObjectTripleTypes() throws SQLException{
+		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
+
+		Set<ObjectTripleType> object1Set = service.listAll(ver1.getID()).stream().collect(Collectors.toSet());
+		Set<ObjectTripleType> object2Set = service.listAll(ver2.getID()).stream().collect(Collectors.toSet());
+		
+		Set<ObjectTripleType> class1SetTemp = new HashSet<ObjectTripleType>(object1Set);
+		
+		System.out.println("object1Set: " + object1Set.size());
+		System.out.println("object2Set: " + object2Set.size());
+		
+		object1Set.removeAll(object2Set);
+		object2Set.removeAll(class1SetTemp);
+		
+		System.out.println("object1Set: " + object1Set);
+		System.out.println("object2Set: " + object2Set);
+		
+		
+		List<Result<String, String>> object1List = object1Set.stream()
+				.map(object -> new Result<String, String>("( " + object.getDomain().getLabel() + ", " 
+						+ object.getPredicate().getLabel() + ", " + object.getRange().getLabel() + " )", "Only in Version " + ver1.getNumber()))
+				.collect(Collectors.toList());
+		
+		List<Result<String, String>> object2List = object2Set.stream()
+				.map(object -> new Result<String, String>("( " + object.getDomain().getLabel() + ", " 
+						+ object.getPredicate().getLabel() + ", " + object.getRange().getLabel() + " )", "Only in Version " + ver2.getNumber()))
+				.collect(Collectors.toList());
+				
+		List<Result<String, String>> result = new ArrayList<>();
+		result.addAll(object1List);
+		result.addAll(object2List);
+
+		return result;
 	}
 	
 }
