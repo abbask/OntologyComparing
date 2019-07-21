@@ -1,6 +1,6 @@
 package edu.uga.cs.ontologycomparision.model;
 
-public class Class {
+public class Class implements Comparable<Class>{
 	
 	private int ID;
 	private String url;
@@ -154,10 +154,22 @@ public class Class {
 		return true;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Class [ID=" + ID + ", url=" + url + ", label=" + label + ", comment=" + comment + ", count=" + count
+//				+ ", version=" + version + ", parent=" + parent + "]";
+//	}
+	
 	@Override
 	public String toString() {
-		return "Class [ID=" + ID + ", url=" + url + ", label=" + label + ", comment=" + comment + ", count=" + count
-				+ ", version=" + version + ", parent=" + parent + "]";
+		return "Class [ID=" + ID + ", url=" + url + "]";
+	}
+
+
+	@Override
+	public int compareTo(Class o) {
+		return (int)(this.count - o.getCount());
+		
 	}
 	
 	
