@@ -15,7 +15,7 @@ class CompareDatatypeTripleTypeTest {
 	void test() throws SQLException {
 		MySQLConnection mySQLConnection = new MySQLConnection();
 		VersionService service = new VersionService(mySQLConnection.openConnection());
-		Version ver1 = service.get(1);
+		Version ver1 = service.get(2);
 		Version ver2 = service.get(3);
 		CompareService compare = new CompareService(ver1, ver2);
 		System.out.println(compare.compareDatatypeTripleTypes());
