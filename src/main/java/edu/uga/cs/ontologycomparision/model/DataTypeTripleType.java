@@ -1,6 +1,6 @@
 package edu.uga.cs.ontologycomparision.model;
 
-public class DataTypeTripleType {
+public class DataTypeTripleType implements Comparable<DataTypeTripleType> {
 
 	private int ID;
 	private Class domain;
@@ -125,6 +125,11 @@ public class DataTypeTripleType {
 	public String toString() {
 		return "DataTypeTripleType [ID=" + ID + ", domain=" + domain + ", predicate=" + predicate + ", range=" + range
 				+ "]";
+	}
+
+	@Override
+	public int compareTo(DataTypeTripleType arg0) {
+		return (int)(this.count - arg0.getCount());
 	}
 		
 }
