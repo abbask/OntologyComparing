@@ -124,7 +124,12 @@ public class XSDTypeService {
 		while(rs.next()) {
 			list.add(new XSDType(rs.getInt("ID"), rs.getString("url"), rs.getString("type")));
 		}
-		return list.get(0);						
+		
+		XSDType result = null;
+		if (list.size()>0)
+			result = list.get(0);
+		
+		return result;				
 				
 	}
 
