@@ -4,19 +4,23 @@ import java.rmi.UnexpectedException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.model.Version;
+import edu.uga.cs.ontologycomparision.model.XSDType;
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Result;
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.ClassSortByLabel;
+import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
 
@@ -279,6 +283,48 @@ public class CompareService {
 		List<Result<String, String>> result = new ArrayList<>();
 		result.addAll(object1List);
 		result.addAll(object2List);
+
+		return result;
+	}
+	
+	public List<Result<String, String>> compareDatatypeTripleTypes() throws SQLException{
+		DataTypeTripleTypeService service = new DataTypeTripleTypeService(connection);
+
+		Set<DataTypeTripleType> datatype1Set = service.listAll(ver1.getID()).stream().collect(Collectors.toSet());
+		Set<DataTypeTripleType> datatype2Set = service.listAll(ver2.getID()).stream().collect(Collectors.toSet());
+		
+		Set<DataTypeTripleType> datatype1SetTemp = new HashSet<DataTypeTripleType>(datatype1Set);
+		
+		datatype1Set.removeAll(datatype2Set);
+		datatype2Set.removeAll(datatype1SetTemp);
+		
+		System.out.println("datatype1Set: " + datatype1Set.size());
+		System.out.println("datatype2Set: " + datatype2Set.size());	
+
+
+		List<Result<String, String>> datatype1List = datatype1Set.stream()				
+				.map(d -> 
+					new Result<String, String>("( " 
+						+ (d.getDomain()==null ? "" : d.getDomain().getLabel())+ ", " 
+						+ (d.getPredicate()== null ? "" : d.getPredicate().getLabel()) + ", " 
+						+ (d.getRange() == null ? "" : d.getRange().getType() ) + " )",
+						"Only in Version " + ver1.getNumber())
+				)
+				.collect(Collectors.toList());
+		
+		List<Result<String, String>> datatype2List = datatype1Set.stream()				
+				.map(d -> 
+					new Result<String, String>("( " 
+						+ (d.getDomain()==null ? "" : d.getDomain().getLabel())+ ", " 
+						+ (d.getPredicate()== null ? "" : d.getPredicate().getLabel()) + ", " 
+						+ (d.getRange() == null ? "" : d.getRange().getType() ) + " )",
+						"Only in Version " + ver2.getNumber())
+				)
+				.collect(Collectors.toList());
+				
+		List<Result<String, String>> result = new ArrayList<>();
+		result.addAll(datatype1List);
+		result.addAll(datatype2List);
 
 		return result;
 	}
