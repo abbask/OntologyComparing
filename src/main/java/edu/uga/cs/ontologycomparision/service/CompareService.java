@@ -21,6 +21,7 @@ import edu.uga.cs.ontologycomparision.model.Result;
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.ClassSortByLabel;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
+import edu.uga.cs.ontologycomparision.model.ObjectTripleSortByLabel;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
 
@@ -327,6 +328,37 @@ public class CompareService {
 		result.addAll(datatype2List);
 
 		return result;
+	}
+	
+	public List<Result<ObjectTripleType, Integer>> compareObjectTripleTypeCountEachTriple() throws SQLException, UnexpectedException  {
+		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
+
+		List<ObjectTripleType> object1Set = service.listAll(ver1.getID());
+		List<ObjectTripleType> object2Set = service.listAll(ver2.getID());
+		
+		List<ObjectTripleType> object1SetTemp = new ArrayList<ObjectTripleType>(object1Set);
+		
+		object1Set.retainAll(object2Set);
+		object2Set.retainAll(object1SetTemp);
+		
+		System.out.printf("class1Set: %d, class2Set: %d%n", object1Set.size(), object2Set.size());
+		
+		Collections.sort(object1Set, new ObjectTripleSortByLabel()); 
+		Collections.sort(object2Set, new ObjectTripleSortByLabel()); 
+		
+		List<Result<ObjectTripleType, Integer>> results = new ArrayList<>();
+		
+		for (int i = 0 ; i < object1Set.size() ; i++) {
+			int diff = object2Set.get(i).compareTo(object1Set.get(i));
+			if (diff < 0 ) {
+				results.add(new Result<ObjectTripleType, Integer>(object1Set.get(i), diff));
+			}
+			else if (diff > 0) {
+				results.add(new Result<ObjectTripleType, Integer>(object1Set.get(i), diff));
+			}
+		}						
+		
+		return results;
 	}
 	
 }

@@ -1,6 +1,6 @@
 package edu.uga.cs.ontologycomparision.model;
 
-public class ObjectTripleType {
+public class ObjectTripleType implements Comparable<ObjectTripleType>{
 	
 	private int ID;
 	private Class domain;
@@ -121,7 +121,12 @@ public class ObjectTripleType {
 		return "ObjectTripleType [ID=" + ID + ", domain=" + domain + ", predicate=" + predicate + ", range=" + range
 				+ ", count=" + count + ", version=" + version + "]";
 	}
-
+	
+	@Override
+	public int compareTo(ObjectTripleType o) {
+		return (int)(this.count - o.getCount());
+		
+	}
 	
 
 }

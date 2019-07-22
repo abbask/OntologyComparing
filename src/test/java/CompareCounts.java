@@ -23,8 +23,10 @@ class CompareCounts {
 		
 		//System.out.println(compare.compareIndividualCountEachClass());
 		
-		System.out.println(compare.compareObjectTripleTypeCount());
-		System.out.println(compare.compareDatatypeTripleTypeCount());
+		//System.out.println(compare.compareObjectTripleTypeCount());
+		//System.out.println(compare.compareDatatypeTripleTypeCount());
+		
+		System.out.println(compare.compareObjectTripleTypeCountEachTriple());
 	}
 
 }
