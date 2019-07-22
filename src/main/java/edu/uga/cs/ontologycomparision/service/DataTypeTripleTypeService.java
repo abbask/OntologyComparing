@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.apache.log4j.Logger;
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
+import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.model.XSDType;
@@ -192,6 +194,31 @@ public class DataTypeTripleTypeService {
 		
 		return count;
 		
+	}
+	
+	public List<DataTypeTripleType> listAll(int versionId) throws SQLException{
+		List<DataTypeTripleType> results = new ArrayList<DataTypeTripleType>();
+		
+		Statement stmtSys = connection.createStatement();	
+		String query = "SELECT * FROM triple_type WHERE ISNULL(object_range_id) AND version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		ClassService classService = new ClassService(connection);
+		VersionService versionService = new VersionService(connection);
+		PropertyService propertyService = new PropertyService(connection);
+		XSDTypeService xsdTypeService = new XSDTypeService(connection);
+		
+		while (rs.next()) {
+			Class domain = classService.getByID(rs.getInt("domain_id")); 			
+			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));			
+			XSDType type = xsdTypeService.getByID(rs.getInt("xsd_type_id"));
+			Version version = versionService.get(rs.getInt("version_id")); 
+			
+			results.add(new DataTypeTripleType(rs.getInt("ID"), domain, predicate, type, rs.getLong("count"),version));
+		}
+		
+		return results;
+			
 	}
 	
 }
