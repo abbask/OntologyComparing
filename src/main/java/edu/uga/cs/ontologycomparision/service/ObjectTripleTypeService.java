@@ -37,7 +37,7 @@ public class ObjectTripleTypeService {
 		}
 		else {
 			
-			return objectTripleType;
+			return retrieveObjectTripleType;
 		}
 		
 	}
@@ -72,8 +72,6 @@ public class ObjectTripleTypeService {
 			statement.setInt(3,predicateID);
 			statement.setInt(4,rangeID);
 			statement.setInt(5,objectTriple.getVersion().getID());
-			
-			statement.executeUpdate();			
 			
 			int rowAffected = statement.executeUpdate();
 			if(rowAffected == 1)

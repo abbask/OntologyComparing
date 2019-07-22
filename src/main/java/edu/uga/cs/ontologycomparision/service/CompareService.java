@@ -338,14 +338,23 @@ public class CompareService {
 		List<ObjectTripleType> object2Set = service.listAll(ver2.getID());
 		
 		List<ObjectTripleType> object1SetTemp = new ArrayList<ObjectTripleType>(object1Set);
-		
+
 		object1Set.retainAll(object2Set);
 		object2Set.retainAll(object1SetTemp);
-		
+			
 		System.out.printf("class1Set: %d, class2Set: %d%n", object1Set.size(), object2Set.size());
 		
 		Collections.sort(object1Set, new ObjectTripleSortByLabel()); 
 		Collections.sort(object2Set, new ObjectTripleSortByLabel()); 
+		
+//		System.out.println("***************object1Set: " + object1Set.size());
+//		for (ObjectTripleType o : object1Set) {
+//			System.out.println(o);
+//		}
+//		System.out.println("***************object2Set: " + object2Set.size());
+//		for (ObjectTripleType o : object2Set) {
+//			System.out.println(o);
+//		}
 		
 		List<Result<ObjectTripleType, Integer>> results = new ArrayList<>();
 		

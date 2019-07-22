@@ -75,9 +75,7 @@ public class DataTypeTripleTypeService {
 			statement.setInt(3,predicateID);
 			statement.setInt(4,rangeID);
 			statement.setInt(5,dataTypeTriple.getVersion().getID());
-			
-			statement.executeUpdate();
-			
+					
 			int rowAffected = statement.executeUpdate();
 			if(rowAffected == 1)
             {
