@@ -116,10 +116,14 @@ public class Property {
 		return true;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "Property [ID=" + ID + ", url=" + url + ", label=" + label + ", type=" + type + ", comment=" + comment
+//				+ ", version=" + version + ", parent=" + parent + "]";
+//	}
+
 	@Override
 	public String toString() {
-		return "Property [ID=" + ID + ", url=" + url + ", label=" + label + ", type=" + type + ", comment=" + comment
-				+ ", version=" + version + ", parent=" + parent + "]";
+		return "Property [ID=" + ID + ", url=" + url + "]";
 	}
-
 }
