@@ -29,10 +29,10 @@ class CompareCounts {
 //		System.out.println(compare.compareObjectTripleTypeCount());
 		//System.out.println(compare.compareDatatypeTripleTypeCount());
 		
-		System.out.println(compare.compareObjectTripleTypeCountEachTriple());
+//		System.out.println(compare.compareObjectTripleTypeCountEachTriple());
 //		System.out.println(compare.compareDatatypeTripleTypeCountEachTriple());
 		
-//		List<Result<ObjectTripleType, Integer>> results = compare.compareObjectTripleTypeCountEachTriple();
+		List<Result<ObjectTripleType, Integer>> results = compare.compareObjectTripleTypeCountEachTriple();
 //		System.out.println(results.size());
 //		for (Result<ObjectTripleType, Integer> r : results) {
 //			System.out.println(r);

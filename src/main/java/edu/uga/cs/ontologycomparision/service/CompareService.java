@@ -336,6 +336,44 @@ public class CompareService {
 
 		List<ObjectTripleType> object1Set = service.listAll(ver1.getID());
 		List<ObjectTripleType> object2Set = service.listAll(ver2.getID());
+		List<ObjectTripleType> object1SetTemp = new ArrayList<ObjectTripleType>(object1Set);
+		object1Set.retainAll(object2Set);
+		object2Set.retainAll(object1SetTemp);
+		
+		for (int i = 0 ; i < object1Set.size() ; i++) {
+			
+			ObjectTripleType object1 = object1Set.get(i);
+			ObjectTripleType object2 = null;
+			
+			if (object2Set.contains(object1)) {
+				object2 = object2Set.get( object2Set.indexOf(object1) );
+				
+			}
+			
+			System.out.println( object1 + " " + object2 );
+			
+		}
+		
+		List<Result<ObjectTripleType, Integer>> results = new ArrayList<>();
+//		
+//		for (int i = 0 ; i < object1Set.size() ; i++) {
+//			int diff = object2Set.get(i).compareTo(object1Set.get(i));
+//			if (diff < 0 ) {
+//				results.add(new Result<ObjectTripleType, Integer>(object1Set.get(i), diff));
+//			}
+//			else if (diff > 0) {
+//				results.add(new Result<ObjectTripleType, Integer>(object1Set.get(i), diff));
+//			}
+//		}						
+		
+		return results;
+	}
+	
+	public List<Result<ObjectTripleType, Integer>> compareObjectTripleTypeCountEachTriple_old() throws SQLException, UnexpectedException  {
+		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
+
+		List<ObjectTripleType> object1Set = service.listAll(ver1.getID());
+		List<ObjectTripleType> object2Set = service.listAll(ver2.getID());
 		
 		List<ObjectTripleType> object1SetTemp = new ArrayList<ObjectTripleType>(object1Set);
 
@@ -346,15 +384,17 @@ public class CompareService {
 		
 		Collections.sort(object1Set, new ObjectTripleSortByLabel()); 
 		Collections.sort(object2Set, new ObjectTripleSortByLabel()); 
-		
-//		System.out.println("***************object1Set: " + object1Set.size());
-//		for (ObjectTripleType o : object1Set) {
-//			System.out.println(o);
-//		}
-//		System.out.println("***************object2Set: " + object2Set.size());
-//		for (ObjectTripleType o : object2Set) {
-//			System.out.println(o);
-//		}
+
+//		***********To check by query use this SPARQL**************
+//		select distinct count(*) where { 
+//
+//			?s <http://om.cs.uga.edu/prokino/2.0/#consumes> ?o.
+//			?s a <http://om.cs.uga.edu/prokino/2.0/#Reaction>.
+//			?o a ?c.
+//			?c rdfs:subClassOf* <http://om.cs.uga.edu/prokino/2.0/#PhysicalEntity>
+//
+//			}
+
 		
 		List<Result<ObjectTripleType, Integer>> results = new ArrayList<>();
 		
