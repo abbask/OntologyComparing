@@ -208,14 +208,14 @@ public class RetrieveSchemaService {
 				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
 		
-		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range (COUNT(?object) as ?count) " + 
+		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range " + 
 				"FROM " + graphName + " " +
 				"WHERE {" + 
 				"	?name rdf:type owl:ObjectProperty" + 
 				"	optional {" + 
 				"		?name rdfs:domain ?o." + 
 				"		?o owl:unionOf ?l." + 
-				"		{?l rdf:first ?domain. } UNION {?l rdf:rest ?rest. ?rest rdf:first ?domain}" + 
+				"		{?l rdf:first ?domain. } UNION {?l rdf:rest* ?rest. ?rest rdf:first ?domain}" + 
 				"	}" + 
 				"	optional {" + 
 				"		?name rdfs:domain ?domain" + 
@@ -223,11 +223,11 @@ public class RetrieveSchemaService {
 				"	optional {" + 
 				"		?name rdfs:range ?range. ?range rdf:type owl:Class" + 
 				"	}" + 
-				"	?subject ?name ?object" + 
 				"} " + 
 				"GROUP By ?name ?domain ?range ORDER BY ?name";
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		System.out.println(queryStringTriple);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
 		ClassService classService = new ClassService(connection);		
@@ -284,7 +284,7 @@ public class RetrieveSchemaService {
 		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range (COUNT(?object) as ?count)" + 
 				"FROM " + graphName + " " +
 				"WHERE { ?name rdf:type owl:DatatypeProperty " + 
-				"optional {?name rdfs:domain ?o. ?o owl:unionOf ?l. {?l rdf:first ?domain.} UNION {?l rdf:rest ?rest. ?rest rdf:first ?domain}}" + 
+				"optional {?name rdfs:domain ?o. ?o owl:unionOf ?l. {?l rdf:first ?domain.} UNION {?l rdf:rest* ?rest. ?rest rdf:first ?domain}}" + 
 				"optional {?name rdfs:domain ?domain} " + 
 				"optional {?name rdfs:range ?range} " + 
 				"optional {?subject ?name ?object} " + 
