@@ -26,7 +26,7 @@ import freemarker.template.TemplateException;
 public class RetrieveSchema extends HttpServlet{
 	
 	private static final long serialVersionUID = 2L;
-	final static Logger logger = Logger.getLogger(VersionNew.class);
+	final static Logger logger = Logger.getLogger(RetrieveSchema.class);
 	
 	static String templateName = "RetrieveSchema.ftl";
 	

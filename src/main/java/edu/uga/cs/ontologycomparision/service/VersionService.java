@@ -91,5 +91,18 @@ public class VersionService {
 		
 		return list.get(0);				
 	}
+	
+	public boolean dataExist(int versionId) throws SQLException{
+		ClassService classService = new ClassService(connection);
+		PropertyService propertyService = new PropertyService(connection);
+		ObjectTripleTypeService objectService = new ObjectTripleTypeService(connection);
+		DataTypeTripleTypeService datatypeService = new DataTypeTripleTypeService(connection);
+		
+		if (classService.checkExist(versionId) && propertyService.checkExist(versionId) && objectService.checkExist(versionId) && datatypeService.checkExist(versionId))
+			return true;
+		
+		return false;
+		
+	}
 
 }
