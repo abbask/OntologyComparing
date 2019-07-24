@@ -226,8 +226,7 @@ public class RetrieveSchemaService {
 				"} " + 
 				"GROUP By ?name ?domain ?range ORDER BY ?name";
 		
-		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
-		System.out.println(queryStringTriple);
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);		
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
 		ClassService classService = new ClassService(connection);		
@@ -240,7 +239,7 @@ public class RetrieveSchemaService {
 			RDFNode domainNode = soln.get("domain");
 			RDFNode predicateNode = soln.get("name");
 			RDFNode rangeNode = soln.get("range");
-			Literal count = soln.getLiteral("count");					
+			Literal count = retrieveCountforTriples(domainNode,predicateNode,rangeNode);					
 			
 			Class domain, range;
 			Property predicate;
@@ -273,6 +272,32 @@ public class RetrieveSchemaService {
 		
 		
 		return true;
+	}
+	
+	public Literal retrieveCountforTriples(RDFNode domain, RDFNode property, RDFNode range) {
+		Literal result = null;
+		
+		String queryStringTriple = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" + 
+				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
+				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
+		
+		queryStringTriple += "select (COUNT(?s) as ?count)" + 
+				"WHERE {" + 
+				"?s ?p ?o." + 
+				"?s a <" + domain + ">." +
+				"?s <" + property + "> ?o." + 
+				"optional { ?o a <" + range + ">}" + 
+				"optional { ?o a ?c. ?c rdfs:subClassOf* <" + range + ">}" + 
+				"\n" + 
+				"}";
+		
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);		
+		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
+		
+		if (list.size() > 0 )
+			result = list.get(0).get("count").asLiteral();
+		
+		return result;
 	}
 	
 	public boolean retrieveAllDataTypeTripleTypes() throws SQLException {
