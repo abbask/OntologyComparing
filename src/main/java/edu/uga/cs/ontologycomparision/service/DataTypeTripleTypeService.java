@@ -218,4 +218,17 @@ public class DataTypeTripleTypeService {
 			
 	}
 	
+	public boolean checkExist(int versionId) throws SQLException{
+			
+		Statement stmtSys = connection.createStatement();	
+		String query = "SELECT * FROM triple_type WHERE ISNULL(object_range_id) AND version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+
+		if (rs.next() == true)
+			return true;
+		
+		return false;
+			
+	}
+	
 }

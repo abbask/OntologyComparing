@@ -215,5 +215,18 @@ public class ObjectTripleTypeService {
 		return results;
 			
 	}
+	
+	public boolean checkExist(int versionId) throws SQLException{
+				
+		Statement stmtSys = connection.createStatement();	
+		String query = "SELECT * FROM triple_type WHERE ISNULL(xsd_type_id) AND version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		if (rs.next() == true)
+			return true;
+		
+		return false;
+			
+	}
 
 }

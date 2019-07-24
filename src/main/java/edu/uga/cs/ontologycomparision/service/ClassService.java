@@ -198,5 +198,18 @@ public class ClassService {
 		return results;
 			
 	}
+	
+	public boolean checkExist(int versionId) throws SQLException{
+				
+		Statement stmtSys = connection.createStatement();	
+		String query = "SELECT * FROM class where version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		if (rs.next() == true)
+			return true;
+		
+		return false;
+		
+			
+	}
 
 }

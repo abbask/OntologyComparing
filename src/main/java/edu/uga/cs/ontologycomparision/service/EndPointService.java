@@ -34,6 +34,27 @@ public class EndPointService {
 		
 	}
 	
+	public List<EndPoint> getListAllwithSchemaExist() throws SQLException {
+		
+		List<EndPoint> list = new LinkedList<EndPoint>();
+				
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		Connection c = mySQLConnection.openConnection();			
+		
+		c.setAutoCommit(false);
+		Statement stmtSys = c.createStatement();			
+		String query = "SELECT * FROM endpoint ORDER BY ID";
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		while(rs.next()) {
+			list.add(new EndPoint(rs.getInt("ID"), rs.getString("name"), rs.getString("url")));
+		}
+		
+		return list;						
+		
+		
+	}
+	
 	
 
 
