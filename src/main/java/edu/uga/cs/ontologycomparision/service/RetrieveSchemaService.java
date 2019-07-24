@@ -306,13 +306,12 @@ public class RetrieveSchemaService {
 				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
 		
-		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range (COUNT(?object) as ?count)" + 
+		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range" + 
 				"FROM " + graphName + " " +
 				"WHERE { ?name rdf:type owl:DatatypeProperty " + 
 				"optional {?name rdfs:domain ?o. ?o owl:unionOf ?l. {?l rdf:first ?domain.} UNION {?l rdf:rest* ?rest. ?rest rdf:first ?domain}}" + 
 				"optional {?name rdfs:domain ?domain} " + 
-				"optional {?name rdfs:range ?range} " + 
-				"optional {?subject ?name ?object} " + 
+				"optional {?name rdfs:range ?range} " + 				
 				"}" + 
 				"GROUP By ?name ?domain ?range " + 
 				"ORDER BY ?name ?domain ?range";
@@ -333,7 +332,7 @@ public class RetrieveSchemaService {
 			RDFNode domainNode = soln.get("domain");
 			RDFNode predicateNode = soln.get("name");
 			RDFNode rangeNode = soln.get("range");
-			Literal count = soln.getLiteral("count");					
+			Literal count = retrieveCountforTriples(domainNode, predicateNode, rangeNode);					
 			
 			Class domain;
 			Property predicate;
