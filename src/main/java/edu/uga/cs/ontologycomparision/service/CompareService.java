@@ -4,18 +4,15 @@ import java.rmi.UnexpectedException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.model.Version;
-import edu.uga.cs.ontologycomparision.model.XSDType;
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Result;
 import edu.uga.cs.ontologycomparision.model.Class;
@@ -331,40 +328,37 @@ public class CompareService {
 		return result;
 	}
 	
-	public List<Result<ObjectTripleType, Integer>> compareObjectTripleTypeCountEachTriple() throws SQLException, UnexpectedException  {
+	public List<Result<ObjectTripleType, Integer>> compareObjectTripleTypeCountEachTriple() throws Exception  {
 		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
 
-		List<ObjectTripleType> object1Set = service.listAll(ver1.getID());
-		List<ObjectTripleType> object2Set = service.listAll(ver2.getID());
-		List<ObjectTripleType> object1SetTemp = new ArrayList<ObjectTripleType>(object1Set);
-		object1Set.retainAll(object2Set);
-		object2Set.retainAll(object1SetTemp);
+		List<ObjectTripleType> object1List = service.listAll(ver1.getID());
+		List<ObjectTripleType> object2List = service.listAll(ver2.getID());
+		List<ObjectTripleType> object1ListTemp = new ArrayList<ObjectTripleType>(object1List);
+		object1List.retainAll(object2List);
+		object2List.retainAll(object1ListTemp);
 		
-		for (int i = 0 ; i < object1Set.size() ; i++) {
-			
-			ObjectTripleType object1 = object1Set.get(i);
-			ObjectTripleType object2 = null;
-			
-			if (object2Set.contains(object1)) {
-				object2 = object2Set.get( object2Set.indexOf(object1) );
-				
-			}
-			
-			System.out.println( object1 + " " + object2 );
-			
-		}
+		object1List.retainAll(object2List);
+		object2List.retainAll(object1ListTemp);
+		
+		Collections.sort(object1List, new ObjectTripleSortByLabel()); 
+		Collections.sort(object2List, new ObjectTripleSortByLabel()); 
 		
 		List<Result<ObjectTripleType, Integer>> results = new ArrayList<>();
-//		
-//		for (int i = 0 ; i < object1Set.size() ; i++) {
-//			int diff = object2Set.get(i).compareTo(object1Set.get(i));
-//			if (diff < 0 ) {
-//				results.add(new Result<ObjectTripleType, Integer>(object1Set.get(i), diff));
+		
+		for (int i = 0 ; i < object1List.size() ; i++) {
+			int diff = object2List.get(i).compareTo(object1List.get(i));
+			if (diff < 0 ) {
+				results.add(new Result<ObjectTripleType, Integer>(object1List.get(i), diff));
+			}
+			else if (diff > 0) {
+				results.add(new Result<ObjectTripleType, Integer>(object1List.get(i), diff));
+			}
+//			if (!(object1List.get(i).getDomain().getLabel().equals( object2List.get(i).getDomain().getLabel()) 
+//					&& object1List.get(i).getPredicate().getLabel().equals( object2List.get(i).getPredicate().getLabel())
+//					&& object1List.get(i).getRange().getLabel().equals( object2List.get(i).getRange().getLabel()))) {
+//				throw new UnexpectedException("Objects are not equal after sort.");
 //			}
-//			else if (diff > 0) {
-//				results.add(new Result<ObjectTripleType, Integer>(object1Set.get(i), diff));
-//			}
-//		}						
+		}						
 		
 		return results;
 	}
@@ -372,40 +366,34 @@ public class CompareService {
 	public List<Result<ObjectTripleType, Integer>> compareObjectTripleTypeCountEachTriple_old() throws SQLException, UnexpectedException  {
 		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
 
-		List<ObjectTripleType> object1Set = service.listAll(ver1.getID());
-		List<ObjectTripleType> object2Set = service.listAll(ver2.getID());
+		List<ObjectTripleType> object1List = service.listAll(ver1.getID());
+		List<ObjectTripleType> object2List = service.listAll(ver2.getID());
 		
-		List<ObjectTripleType> object1SetTemp = new ArrayList<ObjectTripleType>(object1Set);
+		List<ObjectTripleType> object1ListTemp = new ArrayList<ObjectTripleType>(object1List);
 
-		object1Set.retainAll(object2Set);
-		object2Set.retainAll(object1SetTemp);
+		object1List.retainAll(object2List);
+		object2List.retainAll(object1ListTemp);
 			
-		System.out.printf("class1Set: %d, class2Set: %d%n", object1Set.size(), object2Set.size());
+		System.out.printf("class1Set: %d, class2Set: %d%n", object1List.size(), object2List.size());
 		
-		Collections.sort(object1Set, new ObjectTripleSortByLabel()); 
-		Collections.sort(object2Set, new ObjectTripleSortByLabel()); 
-
-//		***********To check by query use this SPARQL**************
-//		select distinct count(*) where { 
-//
-//			?s <http://om.cs.uga.edu/prokino/2.0/#consumes> ?o.
-//			?s a <http://om.cs.uga.edu/prokino/2.0/#Reaction>.
-//			?o a ?c.
-//			?c rdfs:subClassOf* <http://om.cs.uga.edu/prokino/2.0/#PhysicalEntity>
-//
-//			}
-
+		Collections.sort(object1List, new ObjectTripleSortByLabel()); 
+		Collections.sort(object2List, new ObjectTripleSortByLabel()); 
 		
 		List<Result<ObjectTripleType, Integer>> results = new ArrayList<>();
 		
-		for (int i = 0 ; i < object1Set.size() ; i++) {
-			int diff = object2Set.get(i).compareTo(object1Set.get(i));
+		for (int i = 0 ; i < object1List.size() ; i++) {
+			int diff = object2List.get(i).compareTo(object1List.get(i));
 			if (diff < 0 ) {
-				results.add(new Result<ObjectTripleType, Integer>(object1Set.get(i), diff));
+				results.add(new Result<ObjectTripleType, Integer>(object1List.get(i), diff));
 			}
 			else if (diff > 0) {
-				results.add(new Result<ObjectTripleType, Integer>(object1Set.get(i), diff));
+				results.add(new Result<ObjectTripleType, Integer>(object1List.get(i), diff));
 			}
+//			if (!(object1List.get(i).getDomain().getLabel().equals( object2List.get(i).getDomain().getLabel()) 
+//					&& object1List.get(i).getPredicate().getLabel().equals( object2List.get(i).getPredicate().getLabel())
+//					&& object1List.get(i).getRange().getLabel().equals( object2List.get(i).getRange().getLabel()))) {
+//				throw new UnexpectedException("Objects are not equal after sort.");
+//			}
 		}						
 		
 		return results;
