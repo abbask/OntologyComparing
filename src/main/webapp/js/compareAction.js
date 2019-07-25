@@ -125,6 +125,39 @@ $(document).ready(function(){
 			}
 			
 			console.log(tableHeader + tableContent + tableFooter);
+			
+		}).fail(function (data) {
+			console.log(data);
+		}).responseText;
+	}
+	
+	function getObjectTriple(version1_id, version2_id){
+		return $.ajax({
+		    url: 'rest/compare/objectTripleTypes',
+		    type: 'GET',
+		    data: { 'version1': version1_id, 'version2': version2_id},
+		    async: true
+		}).done(function (data) {
+			
+			
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			
+			var objectTripleHtml = '';
+			data.objectTriple.forEach(function(e){
+				objectTripleHtml += '<tr><td>' + e.element + '</td><td>'+ e.result +'</td></tr>';
+			});
+			
+			var tableContent = objectTripleHtml;
+			
+			var tableFooter = '</tbody></table>';
+			
+			if (data.objectTriple.length < 1){
+				$('#objectTriple').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
+			}
+			else{
+				$('#objectTriple').html(tableHeader + tableContent + tableFooter);
+			}
+			
 //			$('#myTab a[href="#objectProp"]').tab('show');
 			
 		}).fail(function (data) {
@@ -146,6 +179,8 @@ $(document).ready(function(){
 			getClasses(version1_id, version2_id);
 			getObjectProperties(version1_id, version2_id);
 			getDatatypeProperties(version1_id, version2_id);
+			getObjectTriple(version1_id, version2_id);
+			
 		}// if 
 
 		
