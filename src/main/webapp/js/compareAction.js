@@ -165,6 +165,40 @@ $(document).ready(function(){
 		}).responseText;
 	}
 	
+	function getDatatypeTriple(version1_id, version2_id){
+		return $.ajax({
+		    url: 'rest/compare/datatypeTripleTypes',
+		    type: 'GET',
+		    data: { 'version1': version1_id, 'version2': version2_id},
+		    async: true
+		}).done(function (data) {
+			console.log(data);
+			
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			
+			var datatypeTripleHtml = '';
+			data.datatypeTriple.forEach(function(e){
+				datatypeTripleHtml += '<tr><td>' + e.element + '</td><td>'+ e.result +'</td></tr>';
+			});
+			
+			var tableContent = datatypeTripleHtml;
+			
+			var tableFooter = '</tbody></table>';
+			
+			if (data.datatypeTriple.length < 1){
+				$('#datatypeTriple').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
+			}
+			else{
+				$('#datatypeTriple').html(tableHeader + tableContent + tableFooter);
+			}
+			
+//			$('#myTab a[href="#objectProp"]').tab('show');
+			
+		}).fail(function (data) {
+			console.log(data);
+		}).responseText;
+	}
+	
 	$( "#compare" ).click(function() {
 		event.preventDefault();
 		version1_id = $('#version1').val();
@@ -180,6 +214,7 @@ $(document).ready(function(){
 			getObjectProperties(version1_id, version2_id);
 			getDatatypeProperties(version1_id, version2_id);
 			getObjectTriple(version1_id, version2_id);
+			getDatatypeTriple(version1_id, version2_id);
 			
 		}// if 
 

@@ -68,6 +68,9 @@
 		  <li class="nav-item">
 		    <a class="nav-link" id="objectTriples" data-toggle="tab" href="#objectTriple" role="tab" aria-controls="objectTriple" aria-selected="false">Object Triple Types</a>
 		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="datatypeTriples" data-toggle="tab" href="#datatypeTriple" role="tab" aria-controls="datatypeTriple" aria-selected="false">Datatype Triple Types</a>
+		  </li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
 		  <div class="tab-pane fade" id="count" role="tabpanel" aria-labelledby="home-tab"></div>
@@ -75,6 +78,7 @@
 		  <div class="tab-pane fade" id="objectProp" role="tabpanel" aria-labelledby="contact-tab"></div>
 		  <div class="tab-pane fade" id="datatypeProp" role="tabpanel" aria-labelledby="contact-tab"></div>
 		  <div class="tab-pane fade" id="objectTriple" role="tabpanel" aria-labelledby="contact-tab"></div>
+		  <div class="tab-pane fade" id="datatypeTriple" role="tabpanel" aria-labelledby="contact-tab"></div>
 		</div>
 	</div>
 	

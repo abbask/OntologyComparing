@@ -202,5 +202,38 @@ public class CompareREST {
 		}
 		
 	}
+	
+	@GET
+	@Path("/datatypeTripleTypes")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response compareDatatypeTriple(@QueryParam("version1") int version1Id, @QueryParam("version2") int version2Id) {
+			
+		try {
+			
+			Map<String, Object> root = new HashMap<>();	
+			
+			MySQLConnection mySQLConnection = new MySQLConnection();
+			VersionService versionService = new VersionService(mySQLConnection.openConnection());
+			
+			Version version1 = versionService.get(version1Id);
+			Version version2 = versionService.get(version2Id);
+			
+			CompareService compareService = new CompareService(version1, version2);
+						
+			List<Result<String, String>> datatypeTriple = compareService.compareDatatypeTripleTypes();
+			
+			root.put("datatypeTriple", datatypeTriple);
+
+			Gson gson = new Gson();
+			String result = gson.toJson(root);
+			return Response.ok(result, MediaType.APPLICATION_JSON).build();
+										
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return Response.status(500).entity("failed").build();
+		}
+		
+	}
 
 }
