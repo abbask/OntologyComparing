@@ -52,12 +52,83 @@ $(document).ready(function(){
 			var tableFooter = '</tbody></table>';
 			
 			$('#classD').html(tableHeader + tableContent + tableFooter);
-			console.log($('#classD'));
-			console.log(tableHeader + tableContent + tableFooter);
-			$('#myTab li:second-child a').tab('show');
+//			console.log($('#classD'));
+//			console.log(tableHeader + tableContent + tableFooter);
+			$('#myTab a[href="#classD"]').tab('show');
 			
 		}).fail(function (data) {
 			
+		}).responseText;
+	}
+	
+	function getObjectProperties(version1_id, version2_id){
+		return $.ajax({
+		    url: 'rest/compare/objectproperties',
+		    type: 'GET',
+		    data: { 'version1': version1_id, 'version2': version2_id},
+		    async: true
+		}).done(function (data) {
+			
+			
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			
+			var objectPropHtml = '';
+			data.objectProperties.forEach(function(e){
+				objectPropHtml += '<tr><td>' + e.element + '</td><td>'+ e.result +'</td></tr>';
+			});
+			
+			var tableContent = objectPropHtml;
+			
+			var tableFooter = '</tbody></table>';
+			
+			if (data.objectProperties.length < 1){
+				$('#objectProp').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
+			}
+			else{
+				$('#objectProp').html(tableHeader + tableContent + tableFooter);
+			}
+			
+			console.log(tableHeader + tableContent + tableFooter);
+//			$('#myTab a[href="#objectProp"]').tab('show');
+			
+		}).fail(function (data) {
+			console.log(data);
+		}).responseText;
+	}
+	
+	
+	function getDatatypeProperties(version1_id, version2_id){
+		return $.ajax({
+		    url: 'rest/compare/datatypeproperties',
+		    type: 'GET',
+		    data: { 'version1': version1_id, 'version2': version2_id},
+		    async: true
+		}).done(function (data) {
+			
+			
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			
+			var datatypePropHtml = '';
+			data.datatypeProperties.forEach(function(e){
+				datatypePropHtml += '<tr><td>' + e.element + '</td><td>'+ e.result +'</td></tr>';
+			});
+			
+			var tableContent = datatypePropHtml;
+			
+			var tableFooter = '</tbody></table>';
+			
+			if (data.datatypeProperties.length < 1){
+				$('#datatypeProp').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
+			}
+			else{
+				$('#datatypeProp').html(tableHeader + tableContent + tableFooter);
+			}
+			
+			console.log(tableHeader + tableContent + tableFooter);
+//			$('#myTab a[href="#objectProp"]').tab('show');
+			
+		}).fail(function (data) {
+			console.log(data);
 		}).responseText;
 	}
 	
@@ -73,8 +144,8 @@ $(document).ready(function(){
 			
 			getGeneralCounts(version1_id, version2_id);
 			getClasses(version1_id, version2_id);
-			
-			
+			getObjectProperties(version1_id, version2_id);
+			getDatatypeProperties(version1_id, version2_id);
 		}// if 
 
 		

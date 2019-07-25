@@ -103,5 +103,71 @@ public class CompareREST {
 		}
 		
 	}
+	
+	@GET
+	@Path("/objectproperties")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response compareObjectProperties(@QueryParam("version1") int version1Id, @QueryParam("version2") int version2Id) {
+			
+		try {
+			
+			Map<String, Object> root = new HashMap<>();	
+			
+			MySQLConnection mySQLConnection = new MySQLConnection();
+			VersionService versionService = new VersionService(mySQLConnection.openConnection());
+			
+			Version version1 = versionService.get(version1Id);
+			Version version2 = versionService.get(version2Id);
+			
+			CompareService compareService = new CompareService(version1, version2);
+						
+			List<Result<String, String>> objectProperties = compareService.compareObjectProperties();
+					
+			root.put("objectProperties", objectProperties);
+
+			Gson gson = new Gson();
+			String result = gson.toJson(root);
+			return Response.ok(result, MediaType.APPLICATION_JSON).build();
+										
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return Response.status(500).entity("failed").build();
+		}
+		
+	}
+	
+	@GET
+	@Path("/datatypeproperties")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response compareDatatypeProperties(@QueryParam("version1") int version1Id, @QueryParam("version2") int version2Id) {
+			
+		try {
+			
+			Map<String, Object> root = new HashMap<>();	
+			
+			MySQLConnection mySQLConnection = new MySQLConnection();
+			VersionService versionService = new VersionService(mySQLConnection.openConnection());
+			
+			Version version1 = versionService.get(version1Id);
+			Version version2 = versionService.get(version2Id);
+			
+			CompareService compareService = new CompareService(version1, version2);
+						
+			List<Result<String, String>> datatypeProperties = compareService.compareDatetypeProperties();
+			
+			root.put("datatypeProperties", datatypeProperties);
+
+			Gson gson = new Gson();
+			String result = gson.toJson(root);
+			return Response.ok(result, MediaType.APPLICATION_JSON).build();
+										
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return Response.status(500).entity("failed").build();
+		}
+		
+	}
 
 }

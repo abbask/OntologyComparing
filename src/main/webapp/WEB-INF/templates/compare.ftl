@@ -60,13 +60,17 @@
 		    <a class="nav-link" id="classes" data-toggle="tab" href="#classD" role="tab" aria-controls="classes" aria-selected="false">Classes</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Other</a>
+		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">object Properties</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="datatypeProps" data-toggle="tab" href="#datatypeProp" role="tab" aria-controls="datatypeProp" aria-selected="false">Datatype Properties</a>
 		  </li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
 		  <div class="tab-pane fade" id="count" role="tabpanel" aria-labelledby="home-tab"></div>
 		  <div class="tab-pane fade" id="classD" role="tabpanel" aria-labelledby="profile-tab"></div>
-		  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+		  <div class="tab-pane fade" id="objectProp" role="tabpanel" aria-labelledby="contact-tab"></div>
+		  <div class="tab-pane fade" id="datatypeProp" role="tabpanel" aria-labelledby="contact-tab"></div>
 		</div>
 	</div>
 	
