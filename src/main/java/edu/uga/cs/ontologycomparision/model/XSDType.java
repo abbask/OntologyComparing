@@ -60,11 +60,9 @@ public class XSDType {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+
 		XSDType other = (XSDType) obj;
-		if (ID != other.ID)
-			return false;
+
 		if (type == null) {
 			if (other.type != null)
 				return false;

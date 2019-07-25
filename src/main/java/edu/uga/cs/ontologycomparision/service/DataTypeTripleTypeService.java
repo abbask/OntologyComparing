@@ -210,7 +210,6 @@ public class DataTypeTripleTypeService {
 			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));			
 			XSDType type = xsdTypeService.getByID(rs.getInt("xsd_type_id"));
 			Version version = versionService.get(rs.getInt("version_id")); 
-			
 			results.add(new DataTypeTripleType(rs.getInt("ID"), domain, predicate, type, rs.getLong("count"),version));
 		}
 		

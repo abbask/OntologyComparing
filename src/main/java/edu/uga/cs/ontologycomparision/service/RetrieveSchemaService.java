@@ -288,7 +288,6 @@ public class RetrieveSchemaService {
 				"?s <" + property + "> ?o." + 
 				"optional { ?o a <" + range + ">}" + 
 				"optional { ?o a ?c. ?c rdfs:subClassOf* <" + range + ">}" + 
-				"\n" + 
 				"}";
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);		

@@ -288,13 +288,13 @@ public class CompareService {
 
 		Set<DataTypeTripleType> datatype1Set = service.listAll(ver1.getID()).stream().collect(Collectors.toSet());
 		Set<DataTypeTripleType> datatype2Set = service.listAll(ver2.getID()).stream().collect(Collectors.toSet());
-		
+		System.out.println("datatype1Set: " + datatype1Set);
 		Set<DataTypeTripleType> datatype1SetTemp = new HashSet<DataTypeTripleType>(datatype1Set);
 		
 		datatype1Set.removeAll(datatype2Set);
 		datatype2Set.removeAll(datatype1SetTemp);
 		
-		System.out.println("datatype1Set: " + datatype1Set.size());
+		System.out.println("datatype1Set: " + datatype1Set);
 		System.out.println("datatype2Set: " + datatype2Set.size());	
 
 
