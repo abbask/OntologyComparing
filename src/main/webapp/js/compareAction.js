@@ -52,9 +52,39 @@ $(document).ready(function(){
 			var tableFooter = '</tbody></table>';
 			
 			$('#classD').html(tableHeader + tableContent + tableFooter);
-//			console.log($('#classD'));
-//			console.log(tableHeader + tableContent + tableFooter);
 			$('#myTab a[href="#classD"]').tab('show');
+			
+		}).fail(function (data) {
+			
+		}).responseText;
+	}
+	
+	function getIndividualsOfClasses(version1_id, version2_id){
+		return $.ajax({
+		    url: 'rest/compare/IndividualCountEachClass',
+		    type: 'GET',
+		    data: { 'version1': version1_id, 'version2': version2_id},
+		    async: true
+		}).done(function (data) {
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			
+			var individualCountEachClassHtml = '';
+			data.individualsOfclasses.forEach(function(e){
+				individualCountEachClassHtml += '<tr><td>' + e.element.label + '</td><td>'+ e.result +'</td></tr>';
+			});
+			
+			
+			var tableContent = individualCountEachClassHtml;
+			var tableFooter = '</tbody></table>';
+			
+			if (data.individualsOfclasses.length < 1){
+				$('#IndividualOfClass').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
+			}
+			else{
+				$('#IndividualOfClass').html(tableHeader + tableContent + tableFooter);
+			}
+			
+//			$('#myTab a[href="#individualsOfclasses"]').tab('show');
 			
 		}).fail(function (data) {
 			
@@ -88,7 +118,6 @@ $(document).ready(function(){
 				$('#objectProp').html(tableHeader + tableContent + tableFooter);
 			}
 			
-			console.log(tableHeader + tableContent + tableFooter);
 //			$('#myTab a[href="#objectProp"]').tab('show');
 			
 		}).fail(function (data) {
@@ -124,7 +153,6 @@ $(document).ready(function(){
 				$('#datatypeProp').html(tableHeader + tableContent + tableFooter);
 			}
 			
-			console.log(tableHeader + tableContent + tableFooter);
 			
 		}).fail(function (data) {
 			console.log(data);
@@ -172,7 +200,6 @@ $(document).ready(function(){
 		    data: { 'version1': version1_id, 'version2': version2_id},
 		    async: true
 		}).done(function (data) {
-			console.log(data);
 			
 			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
 			
@@ -211,6 +238,7 @@ $(document).ready(function(){
 			
 			getGeneralCounts(version1_id, version2_id);
 			getClasses(version1_id, version2_id);
+			getIndividualsOfClasses(version1_id, version2_id);
 			getObjectProperties(version1_id, version2_id);
 			getDatatypeProperties(version1_id, version2_id);
 			getObjectTriple(version1_id, version2_id);

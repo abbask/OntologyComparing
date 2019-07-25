@@ -60,6 +60,9 @@
 		    <a class="nav-link" id="classes" data-toggle="tab" href="#classD" role="tab" aria-controls="classes" aria-selected="false">Classes</a>
 		  </li>
 		  <li class="nav-item">
+		    <a class="nav-link" id="IndividualOfClasses" data-toggle="tab" href="#IndividualOfClass" role="tab" aria-controls="IndividualOfClass" aria-selected="false">Individual of each Class</a>
+		  </li>
+		  <li class="nav-item">
 		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">object Properties</a>
 		  </li>
 		  <li class="nav-item">
@@ -73,12 +76,13 @@
 		  </li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
-		  <div class="tab-pane fade" id="count" role="tabpanel" aria-labelledby="home-tab"></div>
-		  <div class="tab-pane fade" id="classD" role="tabpanel" aria-labelledby="profile-tab"></div>
-		  <div class="tab-pane fade" id="objectProp" role="tabpanel" aria-labelledby="contact-tab"></div>
-		  <div class="tab-pane fade" id="datatypeProp" role="tabpanel" aria-labelledby="contact-tab"></div>
-		  <div class="tab-pane fade" id="objectTriple" role="tabpanel" aria-labelledby="contact-tab"></div>
-		  <div class="tab-pane fade" id="datatypeTriple" role="tabpanel" aria-labelledby="contact-tab"></div>
+		  <div class="tab-pane fade" id="count" role="tabpanel" aria-labelledby="count"></div>
+		  <div class="tab-pane fade" id="classD" role="tabpanel" aria-labelledby="classes"></div>
+		  <div class="tab-pane fade" id="IndividualOfClass" role="tabpanel" aria-labelledby="IndividualOfClass"></div>
+		  <div class="tab-pane fade" id="objectProp" role="tabpanel" aria-labelledby="objectProp"></div>
+		  <div class="tab-pane fade" id="datatypeProp" role="tabpanel" aria-labelledby="datatypeProp"></div>
+		  <div class="tab-pane fade" id="objectTriple" role="tabpanel" aria-labelledby="objectTriple"></div>
+		  <div class="tab-pane fade" id="datatypeTriple" role="tabpanel" aria-labelledby="datatypeTriple"></div>
 		</div>
 	</div>
 	

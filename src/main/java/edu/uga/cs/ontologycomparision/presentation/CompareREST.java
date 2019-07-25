@@ -1,22 +1,20 @@
 package edu.uga.cs.ontologycomparision.presentation;
 
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.HttpHeaders;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import com.google.gson.Gson;
 
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
+import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.Result;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.service.CompareService;
@@ -91,6 +89,39 @@ public class CompareREST {
 
 			
 			root.put("classes", classes);
+
+			Gson gson = new Gson();
+			String result = gson.toJson(root);
+			return Response.ok(result, MediaType.APPLICATION_JSON).build();
+										
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return Response.status(500).entity("failed").build();
+		}
+		
+	}
+	
+	@GET
+	@Path("/IndividualCountEachClass")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response compareIndividualsOfClasses(@QueryParam("version1") int version1Id, @QueryParam("version2") int version2Id) {
+			
+		try {
+			
+			Map<String, Object> root = new HashMap<>();	
+			
+			MySQLConnection mySQLConnection = new MySQLConnection();
+			VersionService versionService = new VersionService(mySQLConnection.openConnection());
+			
+			Version version1 = versionService.get(version1Id);
+			Version version2 = versionService.get(version2Id);
+			
+			CompareService compareService = new CompareService(version1, version2);
+			
+			List<Result<Class, Integer>> individualsOfclasses 		  = compareService.compareIndividualCountEachClass();
+
+			root.put("individualsOfclasses", individualsOfclasses);
 
 			Gson gson = new Gson();
 			String result = gson.toJson(root);
