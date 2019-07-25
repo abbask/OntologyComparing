@@ -26,29 +26,48 @@
 </nav>
   
 <div class="container">
-	<h3>List of Versions</h3>
-	<p>please select versions you want to compare.</p>
-	
-	<div  style="float: left;">
+	<div class="row">
+		<h3>List of Versions</h3>
+		<p>please select versions you want to compare.</p>
+	</div>
+	<div class="row" >
 		<form class="form-inline">
 		
-		<div class="col-xs-16">
-			
-			<select class="form-control" id="version1" name="version1">
-				<option value="0">-- select --</option>
-				<#list versions as version>
-					<option value="${version.ID}">${version.name} - ${version.number}</option>
-				</#list>			    		
-		    </select>
-		    <select class="form-control" id="version2" name="version2">
-				<option value="0">-- select --</option>
-				<#list versions as version>
-					<option value="${version.ID}">${version.name} - ${version.number}</option>
-				</#list>			    		
-		    </select>
-			<button id="compare" type="button" class="btn btn-primary">Compare</button>
+			<div class="col-xs-16">
+				
+				<select class="form-control" id="version1" name="version1">
+					<option value="0">-- select --</option>
+					<#list versions as version>
+						<option value="${version.ID}">${version.name} - ${version.number}</option>
+					</#list>			    		
+			    </select>
+			    <select class="form-control" id="version2" name="version2">
+					<option value="0">-- select --</option>
+					<#list versions as version>
+						<option value="${version.ID}">${version.name} - ${version.number}</option>
+					</#list>			    		
+			    </select>
+				<button id="compare" type="button" class="btn btn-primary">Compare</button>
+			</div>
+		</form>
+	</div>
+	 <div class="row " style="padding-top: 40px;">
+		<ul class="nav nav-tabs" id="myTab" role="tablist">
+		  <li class="nav-item">
+		    <a class="nav-link active" id="Counts" data-toggle="tab" href="#count" role="tab" aria-controls="count" aria-selected="true">Count</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="classes" data-toggle="tab" href="#classD" role="tab" aria-controls="classes" aria-selected="false">Classes</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Other</a>
+		  </li>
+		</ul>
+		<div class="tab-content" id="myTabContent">
+		  <div class="tab-pane fade" id="count" role="tabpanel" aria-labelledby="home-tab"></div>
+		  <div class="tab-pane fade" id="classD" role="tabpanel" aria-labelledby="profile-tab"></div>
+		  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
 		</div>
-	</form>
 	</div>
 	
 </div>
