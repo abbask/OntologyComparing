@@ -20,6 +20,9 @@
       <li class="active"><a href="/OntologyComparing/VersionList">Version</a></li>      
       
     </ul>
+    <ul class="nav navbar-nav">
+      <li ><a href="/OntologyComparing/compare">Comparison</a></li>   
+    </ul>
   </div>
 </nav>
     
