@@ -15,6 +15,8 @@ import com.google.gson.Gson;
 
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Class;
+import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
+import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Result;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.service.CompareService;
@@ -254,6 +256,72 @@ public class CompareREST {
 			List<Result<String, String>> datatypeTriple = compareService.compareDatatypeTripleTypes();
 			
 			root.put("datatypeTriple", datatypeTriple);
+
+			Gson gson = new Gson();
+			String result = gson.toJson(root);
+			return Response.ok(result, MediaType.APPLICATION_JSON).build();
+										
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return Response.status(500).entity("failed").build();
+		}
+		
+	}
+	
+	@GET
+	@Path("/objectTripleTypeCountEachTriple")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response compareObjectTripleTypeCountEach(@QueryParam("version1") int version1Id, @QueryParam("version2") int version2Id) {
+			
+		try {
+			
+			Map<String, Object> root = new HashMap<>();	
+			
+			MySQLConnection mySQLConnection = new MySQLConnection();
+			VersionService versionService = new VersionService(mySQLConnection.openConnection());
+			
+			Version version1 = versionService.get(version1Id);
+			Version version2 = versionService.get(version2Id);
+			
+			CompareService compareService = new CompareService(version1, version2);
+						
+			List<Result<ObjectTripleType, Integer>>  objectTripleforEach = compareService.compareObjectTripleTypeCountEachTriple();
+			
+			root.put("objectTripleforEach", objectTripleforEach);
+
+			Gson gson = new Gson();
+			String result = gson.toJson(root);
+			return Response.ok(result, MediaType.APPLICATION_JSON).build();
+										
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return Response.status(500).entity("failed").build();
+		}
+		
+	}
+	
+	@GET
+	@Path("/datatypeTripleTypeCountEachTriple")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response compareDatatypeTripleTypeCountEach(@QueryParam("version1") int version1Id, @QueryParam("version2") int version2Id) {
+			
+		try {
+			
+			Map<String, Object> root = new HashMap<>();	
+			
+			MySQLConnection mySQLConnection = new MySQLConnection();
+			VersionService versionService = new VersionService(mySQLConnection.openConnection());
+			
+			Version version1 = versionService.get(version1Id);
+			Version version2 = versionService.get(version2Id);
+			
+			CompareService compareService = new CompareService(version1, version2);
+						
+			List<Result<DataTypeTripleType, Integer>> datatypeTripleforEach = compareService.compareDatatypeTripleTypeCountEachTriple();
+			
+			root.put("datatypeTripleforEach", datatypeTripleforEach);
 
 			Gson gson = new Gson();
 			String result = gson.toJson(root);

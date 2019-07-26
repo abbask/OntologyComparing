@@ -60,7 +60,7 @@
 		    <a class="nav-link" id="classes" data-toggle="tab" href="#classD" role="tab" aria-controls="classes" aria-selected="false">Classes</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="IndividualOfClasses" data-toggle="tab" href="#IndividualOfClass" role="tab" aria-controls="IndividualOfClass" aria-selected="false">Individual of each Class</a>
+		    <a class="nav-link" id="IndividualOfClasses" data-toggle="tab" href="#IndividualOfClass" role="tab" aria-controls="IndividualOfClass" aria-selected="false">Individuals</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">object Properties</a>
@@ -69,10 +69,16 @@
 		    <a class="nav-link" id="datatypeProps" data-toggle="tab" href="#datatypeProp" role="tab" aria-controls="datatypeProp" aria-selected="false">Datatype Properties</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="objectTriples" data-toggle="tab" href="#objectTriple" role="tab" aria-controls="objectTriple" aria-selected="false">Object Triple Types</a>
+		    <a class="nav-link" id="objectTriples" data-toggle="tab" href="#objectTriple" role="tab" aria-controls="objectTriple" aria-selected="false">Object Triple</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="datatypeTriples" data-toggle="tab" href="#datatypeTriple" role="tab" aria-controls="datatypeTriple" aria-selected="false">Datatype Triple Types</a>
+		    <a class="nav-link" id="datatypeTriples" data-toggle="tab" href="#datatypeTriple" role="tab" aria-controls="datatypeTriple" aria-selected="false">Datatype Triple</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="objectTripleforEachTriple" data-toggle="tab" href="#objectTripleforEach" role="tab" aria-controls="objectTripleforEach" aria-selected="false">Object Triple Counts</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="datatypeTripleforEachTriple" data-toggle="tab" href="#datatypeTripleforEach" role="tab" aria-controls="datatypeTripleforEach" aria-selected="false">Datatype Triple Counts</a>
 		  </li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
@@ -83,6 +89,8 @@
 		  <div class="tab-pane fade" id="datatypeProp" role="tabpanel" aria-labelledby="datatypeProp"></div>
 		  <div class="tab-pane fade" id="objectTriple" role="tabpanel" aria-labelledby="objectTriple"></div>
 		  <div class="tab-pane fade" id="datatypeTriple" role="tabpanel" aria-labelledby="datatypeTriple"></div>
+		  <div class="tab-pane fade" id="objectTripleforEach" role="tabpanel" aria-labelledby="objectTripleforEach"></div>
+		  <div class="tab-pane fade" id="datatypeTripleforEach" role="tabpanel" aria-labelledby="datatypeTripleforEach"></div>
 		</div>
 	</div>
 	

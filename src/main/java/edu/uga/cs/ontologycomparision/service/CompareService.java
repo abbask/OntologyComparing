@@ -355,24 +355,16 @@ public class CompareService {
 		object1List.retainAll(object2List);
 		object2List.retainAll(object1ListTemp);
 			
-		Collections.sort(object1List, new ObjectTripleSortByLabel()); 
-		Collections.sort(object2List, new ObjectTripleSortByLabel()); 
+//		Collections.sort(object1List, new ObjectTripleSortByLabel()); 
+//		Collections.sort(object2List, new ObjectTripleSortByLabel()); 
 		
 		List<Result<ObjectTripleType, Integer>> results = new ArrayList<>();
 		
 		for (int i = 0 ; i < object1List.size() ; i++) {
-			int diff = object2List.get(i).compareTo(object1List.get(i));
-			if (diff < 0 ) {
-				results.add(new Result<ObjectTripleType, Integer>(object1List.get(i), diff));
-			}
-			else if (diff > 0) {
-				results.add(new Result<ObjectTripleType, Integer>(object1List.get(i), diff));
-			}
-//			if (!(object1List.get(i).getDomain().getLabel().equals( object2List.get(i).getDomain().getLabel()) 
-//					&& object1List.get(i).getPredicate().getLabel().equals( object2List.get(i).getPredicate().getLabel())
-//					&& object1List.get(i).getRange().getLabel().equals( object2List.get(i).getRange().getLabel()))) {
-//				throw new UnexpectedException("Objects are not equal after sort.");
-//			}
+			int list2Index = object2List.indexOf(object1List.get(i));
+			int diff = object2List.get(list2Index).compareTo(object1List.get(i));
+			results.add(new Result<ObjectTripleType, Integer>(object1List.get(i), diff));
+
 		}						
 		
 		return results;
@@ -390,18 +382,16 @@ public class CompareService {
 		datatype2Set.retainAll(datatype1SetTemp);
 		
 		
-		Collections.sort(datatype1Set, new DatatypeTripleSortByLabel()); 
+//		Collections.sort(datatype1Set, new DatatypeTripleSortByLabel()); 
+		//Collections.sort(datatype2Set, new DatatypeTripleSortByLabel()); 
 				
 		List<Result<DataTypeTripleType, Integer>> results = new ArrayList<>();
 		
 		for (int i = 0 ; i < datatype1Set.size() ; i++) {
-			int diff = datatype1Set.get(i).compareTo(datatype2Set.get(i));
-			if (diff < 0 ) {
-				results.add(new Result<DataTypeTripleType, Integer>(datatype1Set.get(i), diff));
-			}
-			else if (diff > 0) {
-				results.add(new Result<DataTypeTripleType, Integer>(datatype1Set.get(i), diff));
-			}			
+			int set2Index = datatype2Set.indexOf(datatype1Set.get(i));
+			int diff = datatype2Set.get(set2Index).compareTo(datatype1Set.get(i));
+			results.add(new Result<DataTypeTripleType, Integer>(datatype1Set.get(i), diff));
+						
 		}						
 		
 		return results;

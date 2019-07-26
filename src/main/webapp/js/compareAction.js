@@ -226,6 +226,80 @@ $(document).ready(function(){
 		}).responseText;
 	}
 	
+	function getObjectTripleForEach(version1_id, version2_id){
+		return $.ajax({
+		    url: 'rest/compare/objectTripleTypeCountEachTriple',
+		    type: 'GET',
+		    data: { 'version1': version1_id, 'version2': version2_id},
+		    async: true
+		}).done(function (data) {
+			
+			
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			
+			var objectTripleforEachHtml = '';
+			data.objectTripleforEach.forEach(function(e){
+				objectTripleforEachHtml += '<tr><td>(' + e.element.domain.lable + ', ' + e.element.predicate.label + ', ' + e.element.range.label +  ')</td><td>'+ e.result +'</td></tr>';
+			});
+			
+			var tableContent = objectTripleforEachHtml;
+			
+			var tableFooter = '</tbody></table>';
+			
+			if (data.objectTripleforEach.length < 1){
+				$('#objectTripleforEach').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
+			}
+			else{
+				$('#objectTripleforEach').html(tableHeader + tableContent + tableFooter);
+			}
+			
+//			$('#myTab a[href="#objectProp"]').tab('show');
+			
+		}).fail(function (data) {
+			console.log(data);
+		}).responseText;
+	}
+	
+	function getDatatypeTripleForEach(version1_id, version2_id){
+		return $.ajax({
+		    url: 'rest/compare/datatypeTripleTypeCountEachTriple',
+		    type: 'GET',
+		    data: { 'version1': version1_id, 'version2': version2_id},
+		    async: true
+		}).done(function (data) {
+			
+			
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			
+			var datatypeTripleforEachHtml = '';
+			data.datatypeTripleforEach.forEach(function(e){
+				if (e.result != 0){
+					domainName = (e.element.domain == null ? "" : e.element.domain.label);
+					predicateName = (e.element.predicate == null ? "" : e.element.predicate.label);
+					rangeType = (e.element.range == null ? "" : e.element.range.type);
+					
+					datatypeTripleforEachHtml += '<tr><td>(' + domainName + ', ' + predicateName + ', ' + rangeType +  ')</td><td>'+ e.result +'</td></tr>';
+				}
+			});
+			
+			var tableContent = datatypeTripleforEachHtml;
+			
+			var tableFooter = '</tbody></table>';
+			
+			if (data.datatypeTripleforEach.length < 1){
+				$('#datatypeTripleforEach').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
+			}
+			else{
+				$('#datatypeTripleforEach').html(tableHeader + tableContent + tableFooter);
+			}
+			
+//			$('#myTab a[href="#objectProp"]').tab('show');
+			
+		}).fail(function (data) {
+			console.log(data);
+		}).responseText;
+	}
+	
 	$( "#compare" ).click(function() {
 		event.preventDefault();
 		version1_id = $('#version1').val();
@@ -243,6 +317,8 @@ $(document).ready(function(){
 			getDatatypeProperties(version1_id, version2_id);
 			getObjectTriple(version1_id, version2_id);
 			getDatatypeTriple(version1_id, version2_id);
+			getObjectTripleForEach(version1_id, version2_id);
+			getDatatypeTripleForEach(version1_id, version2_id);
 			
 		}// if 
 
