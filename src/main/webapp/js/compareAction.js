@@ -239,7 +239,7 @@ $(document).ready(function(){
 			
 			var objectTripleforEachHtml = '';
 			data.objectTripleforEach.forEach(function(e){
-				objectTripleforEachHtml += '<tr><td>(' + e.element.domain.lable + ', ' + e.element.predicate.label + ', ' + e.element.range.label +  ')</td><td>'+ e.result +'</td></tr>';
+				objectTripleforEachHtml += '<tr><td>(' + e.element.domain.label + ', ' + e.element.predicate.label + ', ' + e.element.range.label +  ')</td><td>'+ e.result +'</td></tr>';
 			});
 			
 			var tableContent = objectTripleforEachHtml;
