@@ -49,7 +49,7 @@
 		    <small id="dateHelp" class="form-text text-muted">Please specify the version date.</small>
 		  </div>
 		  <button type="submit" class="btn btn-primary">Submit</button>
-		  <a class="btn btn-default pull-right" href="/OntologyTesting/VersionList" role="button">Cancel</a>
+		  <a class="btn btn-default pull-right" href="/OntologyComparing/VersionList" role="button">Cancel</a>
 
 		</form>
 	</div>

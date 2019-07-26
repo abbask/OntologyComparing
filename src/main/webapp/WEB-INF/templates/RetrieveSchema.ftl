@@ -44,7 +44,7 @@
 		    <input type="text" class="form-control" id="graphName" placeholder="Graph name">
 		  </div>
 		  <button id="Retrieve" type="submit" class="btn btn-primary mb-2">Retrieve</button>
-		  <a  class="btn btn-default " href="/OntologyTesting/VersionList" role="button">Cancel</a>
+		  <a  class="btn btn-default " href="/OntologyComparing/VersionList" role="button">Cancel</a>
 		</form>
 	</div>
 	<div class="progressDiv">
