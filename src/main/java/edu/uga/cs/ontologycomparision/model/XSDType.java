@@ -48,9 +48,9 @@ public class XSDType {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ID;
+		
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
-		result = prime * result + ((url == null) ? 0 : url.hashCode());
+		
 		return result;
 	}
 
@@ -76,12 +76,16 @@ public class XSDType {
 		return true;
 	}
 
+//	@Override
+//	public String toString() {
+//		return "XSDType [ID=" + ID + ", url=" + url + ", type=" + type + "]";
+//	}
+//	
+	
 	@Override
 	public String toString() {
-		return "XSDType [ID=" + ID + ", url=" + url + ", type=" + type + "]";
+		return "XSDType [ID=" + ID + ", type=" + type + "]";
 	}
-	
-	
 	
 	
 	

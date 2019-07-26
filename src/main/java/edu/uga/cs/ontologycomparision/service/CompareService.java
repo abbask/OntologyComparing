@@ -170,9 +170,6 @@ public class CompareService {
 		property1Set.removeAll(property2Set);
 		property2Set.removeAll(property1SetTemp);
 		
-		System.out.println("property1Set: " + property1Set.size());
-		System.out.println("property2Set: " + property2Set.size());
-		
 		List<Result<String, String>> property1List = property1Set.stream()
 				.map(myProperty -> new Result<String, String>(myProperty.getLabel(), "Only in Version " + ver1.getNumber()))
 				.collect(Collectors.toList());
@@ -198,8 +195,6 @@ public class CompareService {
 		
 		class1Set.retainAll(class2Set);
 		class2Set.retainAll(class1SetTemp);
-		
-		System.out.printf("class1Set: %d, class2Set: %d%n", class1Set.size(), class2Set.size());
 		
 		Collections.sort(class1Set, new ClassSortByLabel()); 
 		Collections.sort(class2Set, new ClassSortByLabel()); 
@@ -256,15 +251,8 @@ public class CompareService {
 		
 		Set<ObjectTripleType> class1SetTemp = new HashSet<ObjectTripleType>(object1Set);
 		
-		System.out.println("object1Set: " + object1Set.size());
-		System.out.println("object2Set: " + object2Set.size());
-		
 		object1Set.removeAll(object2Set);
 		object2Set.removeAll(class1SetTemp);
-		
-		System.out.println("object1Set: " + object1Set);
-		System.out.println("object2Set: " + object2Set);
-		
 		
 		List<Result<String, String>> object1List = object1Set.stream()
 				.map(object -> new Result<String, String>("( " + object.getDomain().getLabel() + ", " 
@@ -288,16 +276,12 @@ public class CompareService {
 
 		Set<DataTypeTripleType> datatype1Set = service.listAll(ver1.getID()).stream().collect(Collectors.toSet());
 		Set<DataTypeTripleType> datatype2Set = service.listAll(ver2.getID()).stream().collect(Collectors.toSet());
-		System.out.println("datatype1Set: " + datatype1Set);
+
 		Set<DataTypeTripleType> datatype1SetTemp = new HashSet<DataTypeTripleType>(datatype1Set);
 		
 		datatype1Set.removeAll(datatype2Set);
 		datatype2Set.removeAll(datatype1SetTemp);
 		
-		System.out.println("datatype1Set: " + datatype1Set);
-		System.out.println("datatype2Set: " + datatype2Set.size());	
-
-
 		List<Result<String, String>> datatype1List = datatype1Set.stream()				
 				.map(d -> 
 					new Result<String, String>("( " 
@@ -308,7 +292,7 @@ public class CompareService {
 				)
 				.collect(Collectors.toList());
 		
-		List<Result<String, String>> datatype2List = datatype1Set.stream()				
+		List<Result<String, String>> datatype2List = datatype2Set.stream()				
 				.map(d -> 
 					new Result<String, String>("( " 
 						+ (d.getDomain()==null ? "" : d.getDomain().getLabel())+ ", " 
@@ -371,8 +355,6 @@ public class CompareService {
 		object1List.retainAll(object2List);
 		object2List.retainAll(object1ListTemp);
 			
-		System.out.printf("class1Set: %d, class2Set: %d%n", object1List.size(), object2List.size());
-		
 		Collections.sort(object1List, new ObjectTripleSortByLabel()); 
 		Collections.sort(object2List, new ObjectTripleSortByLabel()); 
 		
@@ -407,7 +389,6 @@ public class CompareService {
 		datatype1Set.retainAll(datatype2Set);
 		datatype2Set.retainAll(datatype1SetTemp);
 		
-		System.out.printf("class1Set: %d, class2Set: %d%n", datatype1Set.size(), datatype2Set.size());
 		
 		Collections.sort(datatype1Set, new DatatypeTripleSortByLabel()); 
 				

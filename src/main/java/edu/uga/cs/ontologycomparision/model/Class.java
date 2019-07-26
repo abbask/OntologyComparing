@@ -162,7 +162,7 @@ public class Class implements Comparable<Class>{
 	
 	@Override
 	public String toString() {
-		return "Class [ID=" + ID + ", url=" + url + "]";
+		return "Class [ID=" + ID + ", label=" + label + "]";
 	}
 
 

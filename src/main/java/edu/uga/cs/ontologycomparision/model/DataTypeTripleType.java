@@ -92,6 +92,8 @@ public class DataTypeTripleType implements Comparable<DataTypeTripleType> {
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
+		if (obj == null)
+			return false;
 
 		DataTypeTripleType other = (DataTypeTripleType) obj;
 		
