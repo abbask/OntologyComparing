@@ -9,14 +9,17 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.log4j.Logger;
 
+import com.github.andrewoma.dexx.collection.ArrayList;
+
 import edu.uga.cs.ontologycomparision.data.DataStoreConnection;
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Class;
+import edu.uga.cs.ontologycomparision.model.ObjectProperty;
+import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
 
 public class RetrieveSchemaInUseService {
-	final static String ObjectPropertyType = "ObjectProperty";
-	final static String DatatypePropertyType = "DatatypeProperty";
+
 	
 	final static Logger logger = Logger.getLogger(RetrieveSchemaInUseService.class);
 	
@@ -123,6 +126,73 @@ public boolean checkEndPoint(String endpointURL, String graphName) {
 		myClass = classService.addIfNotExist(myClass);	
 		
 		return myClass;
+		
+	}
+	
+	public boolean retrieveAllObjectProperties() throws SQLException {
+		
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
+		queryStringTriple += "SELECT ?predicate FROM " + graphName + " WHERE {?predicate a owl:ObjectProperty.}";
+
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
+		
+		for(QuerySolution soln : list) {
+			RDFNode predicate = soln.get("predicate");
+			Resource res = soln.getResource("predicate");
+
+			if (res.getLocalName() != null) {				
+				collectObjectProperty(predicate);						
+			}			
+		}
+		
+		return true;
+	}
+	
+	private ObjectProperty collectObjectProperty(RDFNode propertyRDFNode) throws SQLException {
+		
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + propertyRDFNode + "> rdfs:subPropertyOf ?parent .}";
+		List<QuerySolution> parents =  conn.executeSelect(queryString);
+		
+		queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + propertyRDFNode + "> rdfs:domain ?domain .}";
+		List<QuerySolution> domains =  conn.executeSelect(queryString);
+		
+		queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent FROM " + graphName + " WHERE{ <" + propertyRDFNode + "> rdfs:range ?range .}";
+		List<QuerySolution> ranges =  conn.executeSelect(queryString);
+		
+		ObjectProperty parentProperty = null;	
+		if (parents.size() > 0) {	
+			parentProperty = collectObjectProperty(parents.get(0).get("parent"));
+		}
+
+		Resource propertyResource = propertyRDFNode.asResource();	
+		ArrayList<ObjectProperty> objectProperties = new ArrayList<ObjectProperty>();
+		
+		Class domain = null;
+		Class range = null;
+		if (domains.size() > 0 && ranges.size() > 0 ) {
+			for (QuerySolution domainSoln : domains) { // We might have more than domain and range
+				domain = collectClass(domainSoln.getResource("domain"));	
+				for (QuerySolution rangeSoln : ranges) {
+					range = collectClass(rangeSoln.getResource("range"));
+					
+					ObjectPropertyService propertyService = new ObjectPropertyService(connection);												
+					ObjectProperty objectProperty = new ObjectProperty(propertyResource.getURI(), propertyResource.getLocalName(), "", version, parentProperty, domain, range);
+					objectProperty = propertyService.addIfNotExist(objectProperty);	
+					objectProperties.append(objectProperty);
+					range = null;
+				}
+				domain = null;
+			}			 
+		}
+		
+			
+		
+		
+		
+		return objectProperties.get(0);
 		
 	}
 	

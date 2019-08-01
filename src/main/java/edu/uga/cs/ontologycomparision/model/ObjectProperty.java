@@ -3,21 +3,21 @@ package edu.uga.cs.ontologycomparision.model;
 public class ObjectProperty {
 	
 	private int ID;
-	private String url;
+	private String uri;
 	private String label;
 	private String comment;
 	private Version version;
-	private Property parent;
+	private ObjectProperty parent;
 	private Class domain;
 	private Class range;
 	
 	public ObjectProperty() {
 	}
 
-	public ObjectProperty(String url, String label, String comment, Version version,
-			Property parent, Class domain, Class range) {
+	public ObjectProperty(String uri, String label, String comment, Version version,
+			ObjectProperty parent, Class domain, Class range) {
 		super();
-		this.url = url;
+		this.uri = uri;
 		this.label = label;
 		
 		this.comment = comment;
@@ -28,10 +28,10 @@ public class ObjectProperty {
 	}
 	
 	public ObjectProperty(int iD, String url, String label, String comment, Version version,
-			Property parent, Class domain, Class range) {
+			ObjectProperty parent, Class domain, Class range) {
 		super();
 		ID = iD;
-		this.url = url;
+		this.uri = uri;
 		this.label = label;
 		this.comment = comment;
 		this.version = version;
@@ -48,12 +48,12 @@ public class ObjectProperty {
 		ID = iD;
 	}
 
-	public String getUrl() {
-		return url;
+	public String getUri() {
+		return uri;
 	}
 
-	public void setUrl(String url) {
-		this.url = url;
+	public void setUrl(String uri) {
+		this.uri = uri;
 	}
 
 	public String getLabel() {
@@ -80,11 +80,11 @@ public class ObjectProperty {
 		this.version = version;
 	}
 
-	public Property getParent() {
+	public ObjectProperty getParent() {
 		return parent;
 	}
 
-	public void setParent(Property parent) {
+	public void setParent(ObjectProperty parent) {
 		this.parent = parent;
 	}
 
@@ -149,7 +149,7 @@ public class ObjectProperty {
 
 	@Override
 	public String toString() {
-		return "ObjectProperty [ID=" + ID + ", url=" + url + ", label=" + label + ", comment=" + comment + ", version="
+		return "ObjectProperty [ID=" + ID + ", uri=" + uri + ", label=" + label + ", comment=" + comment + ", version="
 				+ version + ", parent=" + parent + ", domain=" + domain + ", range=" + range + "]";
 	}
 	
