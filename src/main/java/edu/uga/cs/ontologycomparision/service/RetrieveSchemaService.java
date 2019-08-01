@@ -239,7 +239,7 @@ public class RetrieveSchemaService {
 			RDFNode domainNode = soln.get("domain");
 			RDFNode predicateNode = soln.get("name");
 			RDFNode rangeNode = soln.get("range");
-			Literal count = retrieveCountforTriples(domainNode,predicateNode,rangeNode);					
+			long count = retrieveCountforTriples(domainNode,predicateNode,rangeNode);					
 			
 			Class domain, range;
 			Property predicate;
@@ -265,7 +265,7 @@ public class RetrieveSchemaService {
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : range is missing for domain: " + domainNode + " and predicate: " + predicateNode);
 			}
 													
-			ObjectTripleType objectTriple = new ObjectTripleType(domain, predicate, range, count.getLong(),version);			
+			ObjectTripleType objectTriple = new ObjectTripleType(domain, predicate, range, count,version);			
 			service.addIfNotExist(objectTriple);			
 					
 		}
@@ -274,8 +274,9 @@ public class RetrieveSchemaService {
 		return true;
 	}
 	
-	public Literal retrieveCountforTriples(RDFNode domain, RDFNode property, RDFNode range) {
-		Literal result = null;
+	public long retrieveCountforTriples(RDFNode domain, RDFNode property, RDFNode range) {
+		
+		long result = 0;
 		
 		String queryStringTriple = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" + 
 				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
@@ -283,20 +284,29 @@ public class RetrieveSchemaService {
 		
 		queryStringTriple += "select (COUNT(?s) as ?count)" + 
 				"WHERE {" + 
-				"?s ?p ?o." + 
-				"?s a <" + domain + ">." +
-				"?s <" + property + "> ?o." + 
-				"optional { ?o a <" + range + ">}" + 
-				"optional { ?o a ?c. ?c rdfs:subClassOf* <" + range + ">}" + 
-				"}";
+				"?s <" + property + "> ?o." ;
+		
+		String[] restrictionList = {"?s a <" + domain + ">. ?o a <" + range + ">.}" , "?s a ?k. ?k rdfs:subClassOf* <" + domain + ">. ?o a <" + range + ">.}",
+				"?s a ?k. ?k rdfs:subClassOf* <" + domain + ">. ?o a ?c. ?c rdfs:subClassOf* <" + range + ">.}", "?s a <" + domain + ">. ?o a ?c. ?c rdfs:subClassOf* <" + range + ">.} " };
+		
+		
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);		
-		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
-		if (list.size() > 0 )
-			result = list.get(0).get("count").asLiteral();
+		for (String rest : restrictionList) {
+			System.out.println("query: "+ queryStringTriple + rest);
+			List<QuerySolution> list = conn.executeSelect(queryStringTriple + rest);
+			
+			long value = list.get(0).getLiteral("count").getLong();
+			if (value == 0 ) {
+				System.out.println("zero result ");
+			}
+			result += value;
+		}
 		
 		return result;
+		
+		
 	}
 	
 	public boolean retrieveAllDataTypeTripleTypes() throws SQLException {
@@ -331,7 +341,7 @@ public class RetrieveSchemaService {
 			RDFNode domainNode = soln.get("domain");
 			RDFNode predicateNode = soln.get("name");
 			RDFNode rangeNode = soln.get("range");
-			Literal count = retrieveCountforTriples(domainNode, predicateNode, rangeNode);					
+			long count = retrieveCountforTriples(domainNode, predicateNode, rangeNode);					
 			
 			Class domain;
 			Property predicate;
@@ -359,7 +369,7 @@ public class RetrieveSchemaService {
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : range is missing for domain: " + domainNode + " and predicate: " + predicateNode);
 			}
 													
-			DataTypeTripleType dataTypeTriple = new DataTypeTripleType(domain, predicate, range, count.getLong(),version);			
+			DataTypeTripleType dataTypeTriple = new DataTypeTripleType(domain, predicate, range, count,version);			
 			service.addIfNotExist(dataTypeTriple);			
 					
 		}
