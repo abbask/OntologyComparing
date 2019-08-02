@@ -255,14 +255,24 @@ public class CompareService {
 		object2Set.removeAll(class1SetTemp);
 		
 		List<Result<String, String>> object1List = object1Set.stream()
-				.map(object -> new Result<String, String>("( " + object.getDomain().getLabel() + ", " 
-						+ object.getPredicate().getLabel() + ", " + object.getRange().getLabel() + " )", "Only in Version " + ver1.getNumber()))
-				.collect(Collectors.toList());
+				.map(obj -> 
+				new Result<String, String>("( " 
+					+ (obj.getDomain()==null ? "" : obj.getDomain().getLabel())+ ", " 
+					+ (obj.getPredicate()== null ? "" : obj.getPredicate().getLabel()) + ", " 
+					+ (obj.getRange() == null ? "" : obj.getRange().getLabel() ) + " )",
+					"Only in Version " + ver1.getNumber())
+			)
+			.collect(Collectors.toList());
 		
 		List<Result<String, String>> object2List = object2Set.stream()
-				.map(object -> new Result<String, String>("( " + object.getDomain().getLabel() + ", " 
-						+ object.getPredicate().getLabel() + ", " + object.getRange().getLabel() + " )", "Only in Version " + ver2.getNumber()))
-				.collect(Collectors.toList());
+				.map(obj -> 
+				new Result<String, String>("( " 
+					+ (obj.getDomain()==null ? "" : obj.getDomain().getLabel())+ ", " 
+					+ (obj.getPredicate()== null ? "" : obj.getPredicate().getLabel()) + ", " 
+					+ (obj.getRange() == null ? "" : obj.getRange().getLabel() ) + " )",
+					"Only in Version " + ver2.getNumber())
+			)
+			.collect(Collectors.toList());
 				
 		List<Result<String, String>> result = new ArrayList<>();
 		result.addAll(object1List);
