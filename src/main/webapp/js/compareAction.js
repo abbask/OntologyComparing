@@ -51,7 +51,13 @@ $(document).ready(function(){
 			var tableContent = classHtml;
 			var tableFooter = '</tbody></table>';
 			
-			$('#classD').html(tableHeader + tableContent + tableFooter);
+			if (data.classes.length < 1){
+				$('#classD').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
+			}
+			else{
+				$('#classD').html(tableHeader + tableContent + tableFooter);
+			}
+			
 			$('#myTab a[href="#classD"]').tab('show');
 			
 		}).fail(function (data) {
@@ -270,7 +276,7 @@ $(document).ready(function(){
 			
 			
 			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
-			
+			var count = 0;
 			var datatypeTripleforEachHtml = '';
 			data.datatypeTripleforEach.forEach(function(e){
 				if (e.result != 0){
@@ -279,6 +285,7 @@ $(document).ready(function(){
 					rangeType = (e.element.range == null ? "" : e.element.range.type);
 					
 					datatypeTripleforEachHtml += '<tr><td>(' + domainName + ', ' + predicateName + ', ' + rangeType +  ')</td><td>'+ e.result +'</td></tr>';
+					count += 1;
 				}
 			});
 			
@@ -286,7 +293,7 @@ $(document).ready(function(){
 			
 			var tableFooter = '</tbody></table>';
 			
-			if (data.datatypeTripleforEach.length < 1){
+			if (count< 1){
 				$('#datatypeTripleforEach').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
 			}
 			else{
