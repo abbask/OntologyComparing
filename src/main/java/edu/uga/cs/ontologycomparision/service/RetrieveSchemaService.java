@@ -208,23 +208,15 @@ public class RetrieveSchemaService {
 				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
 		
-		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range " + 
-				"FROM " + graphName + " " +
-				"WHERE {" + 
-				"	?name rdf:type owl:ObjectProperty" + 
-				"	optional {" + 
-				"		?name rdfs:domain ?o." + 
-				"		?o owl:unionOf ?l." + 
-				"		{?l rdf:first ?domain. } UNION {?l rdf:rest* ?rest. ?rest rdf:first ?domain}" + 
-				"	}" + 
-				"	optional {" + 
-				"		?name rdfs:domain ?domain" + 
-				"	}" + 
-				"	optional {" + 
-				"		?name rdfs:range ?range. ?range rdf:type owl:Class" + 
-				"	}" + 
-				"} " + 
-				"GROUP By ?name ?domain ?range ORDER BY ?name";
+		queryStringTriple += "SELECT distinct (?sc as ?domain) (?p as ?property) (?oc as ?range) (count(?s) as ?count)" + 
+				"WHERE{" + 
+				"   ?p a owl:ObjectProperty." + 
+				"   ?s ?p ?o." + 
+				"   ?s a ?sc." + 
+				"   ?o a ?oc" + 
+				"}" +
+				"GROUP BY ?sc ?p ?oc " +
+				"ORDER BY ?sc ?p ?oc";
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);		
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
@@ -237,10 +229,11 @@ public class RetrieveSchemaService {
 		
 		for(QuerySolution soln : list) {
 			RDFNode domainNode = soln.get("domain");
-			RDFNode predicateNode = soln.get("name");
+			RDFNode predicateNode = soln.get("property");
 			RDFNode rangeNode = soln.get("range");
-			long count = retrieveCountforTriples(domainNode,predicateNode,rangeNode);					
-			
+//			long count = retrieveCountforTriples(domainNode,predicateNode,rangeNode);					
+			long count = soln.get("count").asLiteral().getLong();
+					
 			Class domain, range;
 			Property predicate;
 			
@@ -315,15 +308,10 @@ public class RetrieveSchemaService {
 				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
 		
-		queryStringTriple += "SELECT DISTINCT ?domain ?name ?range " + 
-				"FROM " + graphName + " " +
-				"WHERE { ?name rdf:type owl:DatatypeProperty " + 
-				"optional {?name rdfs:domain ?o. ?o owl:unionOf ?l. {?l rdf:first ?domain.} UNION {?l rdf:rest* ?rest. ?rest rdf:first ?domain}}" + 
-				"optional {?name rdfs:domain ?domain} " + 
-				"optional {?name rdfs:range ?range} " + 				
-				"}" + 
-				"GROUP By ?name ?domain ?range " + 
-				"ORDER BY ?name ?domain ?range";
+		queryStringTriple += "SELECT (?sc as ?domain) (?p as ?property) (count(?s) as ?count) "
+				+ "WHERE{ ?p a owl:DatatypeProperty. ?s ?p ?o. ?s a ?sc. } "
+				+ "GROUP BY ?sc ?p "
+				+ "ORDER BY ?sc ?p" ;
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		
@@ -334,18 +322,27 @@ public class RetrieveSchemaService {
 		PropertyService propertyService = new PropertyService(connection);
 		XSDTypeService xsdTypeService = new XSDTypeService(connection);
 		DataTypeTripleTypeService service = new DataTypeTripleTypeService(connection); 
-		
-				
-		
+					
 		for(QuerySolution soln : list) {
 			RDFNode domainNode = soln.get("domain");
-			RDFNode predicateNode = soln.get("name");
-			RDFNode rangeNode = soln.get("range");
-			long count = retrieveCountforTriples(domainNode, predicateNode, rangeNode);					
+			RDFNode predicateNode = soln.get("property");
+//			RDFNode rangeNode = soln.get("range"); we need to find the range for predicate later
+			long count = soln.get("count").asLiteral().getLong();			
+//			long count = retrieveCountforTriples(domainNode, predicateNode, rangeNode);										
 			
 			Class domain;
 			Property predicate;
 			XSDType range;
+			
+			List<QuerySolution> rangeList = conn.executeSelect("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?range WHERE{ optional { <" + predicateNode.asResource() + "> rdfs:range ?range} optional { <" + predicateNode.asResource()  + "> rdfs:subClassOf* ?c. ?c rdfs:range ?range} }" );
+			RDFNode rangeNode = rangeList.get(0).get("range");
+			try {
+				range = new XSDType(rangeNode.asResource().getURI(), rangeNode.asResource().getLocalName());
+				range = xsdTypeService.addIfNotExist(range);	
+			} catch (NullPointerException e) {
+				range = null;
+				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : range is missing for domain: " + domainNode + " and predicate: " + predicateNode);
+			}
 			
 			try {
 				domain = classService.getByLabel(domainNode.asResource().getLocalName(), version.getID());				
@@ -361,13 +358,7 @@ public class RetrieveSchemaService {
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : predicate is missing for domain: " + domainNode + " and range: " + rangeNode);
 			}
 			
-			try {
-				range = new XSDType(rangeNode.asResource().getURI(), rangeNode.asResource().getLocalName());
-				range = xsdTypeService.addIfNotExist(range);	
-			} catch (NullPointerException e) {
-				range = null;
-				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : range is missing for domain: " + domainNode + " and predicate: " + predicateNode);
-			}
+			
 													
 			DataTypeTripleType dataTypeTriple = new DataTypeTripleType(domain, predicate, range, count,version);			
 			service.addIfNotExist(dataTypeTriple);			

@@ -132,10 +132,7 @@ public class DataTypeTripleTypeService {
 	
 	public DataTypeTripleType getByTriple(DataTypeTripleType dataTypeTripleType) throws SQLException {
 		
-		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection c = mySQLConnection.openConnection();			
-		
-		Statement stmtSys = c.createStatement();
+		Statement stmtSys = connection.createStatement();
 		
 		String query = "SELECT * FROM triple_type ";
 		String whereClause = "";
