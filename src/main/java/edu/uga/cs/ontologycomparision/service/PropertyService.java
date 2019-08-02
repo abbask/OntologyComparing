@@ -138,6 +138,8 @@ public class PropertyService {
 		String query = "SELECT * FROM property where ID=" + ID;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		VersionService versionService = new VersionService(connection);
+//		System.out.println("QUERY: " + query);
+		Property result = null;
 		
 		while(rs.next()) {
 			
@@ -148,8 +150,11 @@ public class PropertyService {
 			
 			list.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("type"), rs.getString("comment"), version,prop));
 		}
+		if (list.size() > 0 )
+			result = list.get(0);
+		
 		logger.info("PropertyService.getByID : retrieved property.");
-		return list.get(0);						
+		return result;						
 				
 	}
 
