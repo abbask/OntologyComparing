@@ -307,6 +307,20 @@ $(document).ready(function(){
 		}).responseText;
 	}
 	
+	function loadSpinner(){
+		console.log($('#spinning'));
+		$('#count').html('<div class="loader"></div>');	
+		$('#classD').html('<div class="loader"></div>');	
+		$('#IndividualOfClass').html('<div class="loader"></div>');	
+		$('#objectProp').html('<div class="loader"></div>');	
+		$('#datatypeProp').html('<div class="loader"></div>');	
+		$('#objectTriple').html('<div class="loader"></div>');	
+		$('#datatypeTriple').html('<div class="loader"></div>');	
+		$('#objectTripleforEach').html('<div class="loader"></div>');	
+		
+		$('#datatypeTripleforEach').html('<div class="loader"></div>');		
+	}
+	
 	$( "#compare" ).click(function() {
 		event.preventDefault();
 		version1_id = $('#version1').val();
@@ -316,7 +330,7 @@ $(document).ready(function(){
 		version2_text = $('#version2 :selected').text();
 
 		if (version1_id != "" && version2_id != ""){
-			
+			loadSpinner();
 			getGeneralCounts(version1_id, version2_id);
 			getClasses(version1_id, version2_id);
 			getIndividualsOfClasses(version1_id, version2_id);
