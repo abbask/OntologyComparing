@@ -4,7 +4,9 @@ import java.rmi.UnexpectedException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -273,10 +275,15 @@ public class CompareService {
 					"Only in Version " + ver2.getNumber())
 			)
 			.collect(Collectors.toList());
+		
+		Collections.sort(object1List, Comparator.comparing(Result::getElement));
+		Collections.sort(object2List, Comparator.comparing(Result::getElement));
 				
 		List<Result<String, String>> result = new ArrayList<>();
 		result.addAll(object1List);
 		result.addAll(object2List);
+		
+		
 
 		return result;
 	}
@@ -312,6 +319,10 @@ public class CompareService {
 				)
 				.collect(Collectors.toList());
 				
+		
+		Collections.sort(datatype1List, Comparator.comparing(Result::getElement));
+		Collections.sort(datatype2List, Comparator.comparing(Result::getElement));
+		
 		List<Result<String, String>> result = new ArrayList<>();
 		result.addAll(datatype1List);
 		result.addAll(datatype2List);
