@@ -72,7 +72,7 @@ $(document).ready(function(){
 		    data: { 'version1': version1_id, 'version2': version2_id},
 		    async: true
 		}).done(function (data) {
-			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Difference </th></tr></thead><tbody>';
 			
 			var individualCountEachClassHtml = '';
 			data.individualsOfclasses.forEach(function(e){
@@ -241,7 +241,7 @@ $(document).ready(function(){
 		}).done(function (data) {
 			
 			
-			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Difference </th></tr></thead><tbody>';
 			
 			var objectTripleforEachHtml = '';
 			data.objectTripleforEach.forEach(function(e){
@@ -275,7 +275,7 @@ $(document).ready(function(){
 		}).done(function (data) {
 			
 			
-			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Difference </th></tr></thead><tbody>';
 			var count = 0;
 			var datatypeTripleforEachHtml = '';
 			data.datatypeTripleforEach.forEach(function(e){
