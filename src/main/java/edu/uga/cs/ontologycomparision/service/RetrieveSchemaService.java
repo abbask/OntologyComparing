@@ -17,6 +17,7 @@ import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
+import edu.uga.cs.ontologycomparision.model.Restriction;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.model.XSDType;
 import edu.uga.cs.ontologycomparision.data.DataStoreConnection;
@@ -32,6 +33,7 @@ public class RetrieveSchemaService {
 	private String endpointURL;
 	private String graphName;
 	private Version version;
+	private ArrayList<Class> classList;
 	
 	private Connection connection;	
 	
@@ -375,7 +377,7 @@ public class RetrieveSchemaService {
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		String q = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT ?s FROM " + graphName + " WHERE{ ?s a owl:ObjectProperty.  }";
 		List<QuerySolution> propertySolns = conn.executeSelect(q);
-		System.out.println(q);
+
 		for(QuerySolution soln : propertySolns) {
 			Resource res = soln.getResource("s");
 			if (res.getLocalName() != null) {											
@@ -417,6 +419,81 @@ public class RetrieveSchemaService {
 		System.out.println("Property List 2 :" + propertyList2);
 		
 		
+	}
+	
+	public boolean retrieveAllRestrictions() throws SQLException{
+		boolean result = false;
+		
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		String q = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT ?s FROM " + graphName + " WHERE { ?s a owl:Restriction } LIMIT 100";
+		List<QuerySolution> propertyRestrictionSolns = conn.executeSelect(q);
+		
+		
+		
+		for(QuerySolution soln : propertyRestrictionSolns) {
+			Resource propertyRestriction = soln.getResource("s"); // prob. it is a blank node
+			classList = new ArrayList<Class>();					
+						
+			
+			retrieveClassesForRestriction(propertyRestriction);
+			
+		
+		}
+		
+		return result;
+	}
+	
+	private void retrieveClassesForRestriction(Resource propertyRestriction) throws SQLException{
+		PropertyService propertyService = new PropertyService(connection);
+		ClassService classService = new ClassService(connection);
+		Class myClass = null;
+		Property myProperty =null;
+		
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		String q = "PREFIX owl: <http://www.w3.org/2002/07/owl#> SELECT ?p ?o FROM " + graphName + " where { <" + propertyRestriction + "> ?p ?o }";
+		List<QuerySolution> solns = conn.executeSelect(q);
+		for(QuerySolution soln : solns) {
+			Resource predicate = soln.getResource("p");
+			Resource object = soln.getResource("o");
+			String indicator  = isIndicator(predicate.getLocalName());
+			if ( indicator != "" )  {
+				//property / class
+				if ( indicator != "class" )  {
+					//object is a class
+					myClass = new Class(object.getURI(), object.getLocalName(), "", 0);
+					myClass = classService.addIfNotExist(myClass);
+				}
+				else {
+					//object is a property
+					myProperty = new Property(object.getURI(), object.getLocalName(), "","", version,null);
+					myProperty = propertyService.addIfNotExist(myProperty);
+				}
+				
+			}
+			else if (existInRestrictions(predicate.getLocalName())!= "") {
+				//object is a blank node, needs to recursively retrieve other resources
+			}
+		}
+		
+	}
+	
+	private String isIndicator(String predicateLocalName) {
+		switch (predicateLocalName) {
+			case "onProperty":
+				return "property";
+			case "onClass":
+				return "class";
+		}
+		return "";
+	}
+	
+	private String existInRestrictions(String predicateLocalName) {
+		for (Restriction type : Restriction.values()) {
+			if (type.toString().equals(predicateLocalName))
+				return type.toString();
+		}
+		
+		return "";
 	}
 	
 }
