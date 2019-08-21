@@ -14,6 +14,17 @@ public class Restriction {
 	public Restriction() {
 	
 	}
+	
+	public Restriction(Property onProperty, RestrictionType type, int cardinalityValue, Class onClass,
+			Version version) {
+		
+		
+		this.onProperty = onProperty;
+		this.type = type;
+		CardinalityValue = cardinalityValue;
+		this.onClass = onClass;
+		this.version = version;
+	}
 
 	public Restriction(int iD, Property onProperty, RestrictionType type, int cardinalityValue, Class onClass,
 			Version version) {
