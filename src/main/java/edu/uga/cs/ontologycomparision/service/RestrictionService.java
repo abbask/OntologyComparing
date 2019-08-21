@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import org.apache.log4j.Logger;
+
 import edu.uga.cs.ontologycomparision.model.Restriction;
+
 
 public class RestrictionService {
 	
@@ -19,6 +21,21 @@ private Connection connection;
 	
 	final static Logger logger = Logger.getLogger(RestrictionService.class);
 	
+	public Restriction addIfNotExist(Restriction restriction) throws SQLException {
+		
+		Restriction retrievedRestriction = getByRestriction(restriction);
+		
+		if (retrievedRestriction == null) {
+			int id = add(restriction);
+			restriction.setID(id);
+			return restriction;
+
+		}
+		else
+			return retrievedRestriction;
+		
+	}
+	
 	public int add(Restriction restriction) {
 		
 		int candidateId = 0;
@@ -26,7 +43,7 @@ private Connection connection;
 		try {
 			connection.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO class (property_id,type_id,class_id, value) VALUES (?,?,?,?)";
+			String queryString = "INSERT INTO class (property_id,type_id,class_id, value, version_id) VALUES (?,?,?,?,?)";
 			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1,restriction.getOnProperty().getID());
 			statement.setInt(2,restriction.getType().getID());
@@ -37,6 +54,7 @@ private Connection connection;
 				statement.setNull(3, java.sql.Types.INTEGER);
 			
 			statement.setInt(4,restriction.getCardinalityValue());
+			statement.setInt(5, restriction.getVersion().getID());
 						
 			int rowAffected = statement.executeUpdate();
 			if(rowAffected == 1)
@@ -68,6 +86,59 @@ private Connection connection;
 			return 0;
 		}
 		
+	}
+	
+	public Restriction getByRestriction(Restriction restriction) throws SQLException {
+		
+		Statement stmtSys = connection.createStatement();
+		
+		String query = "SELECT * FROM restriction ";
+		String whereClause = "";
+		if (restriction.getOnProperty() != null) {
+			whereClause += " property_id=" + restriction.getOnProperty().getID() ;
+		}
+		
+		if (restriction.getType() != null) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " type_id=" + restriction.getType().getID();
+		}
+		
+		if (restriction.getOnClass() != null) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " class_id=" + restriction.getOnClass().getID();
+		}
+		
+		if (restriction.getCardinalityValue() != 0) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " value=" + restriction.getCardinalityValue();
+		}
+		
+		if (restriction.getVersion() != null) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " version_id= " + restriction.getVersion().getID();
+		}
+		
+		if (whereClause != "")
+			whereClause = "WHERE " + whereClause;
+		
+		ResultSet rs = stmtSys.executeQuery(query + whereClause); 
+		
+		while(rs.next()) {
+			restriction.setID(rs.getInt("ID"));
+		}
+		
+		
+		if (restriction.getID() == 0) {
+			return null;
+		}
+		
+		logger.info("RestrictionService.getByRestriction : retrieved Restriction.");
+		return restriction;	
+				
 	}
 
 }
