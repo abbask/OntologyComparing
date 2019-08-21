@@ -54,7 +54,7 @@ private Connection connection;
 			statement.setInt(1,restriction.getOnProperty().getID());
 			statement.setInt(2,restriction.getType().getID());
 			
-			if (restriction.getClass() != null)
+			if (restriction.getOnClass() != null)
 				statement.setInt(3,restriction.getOnClass().getID());
 			else
 				statement.setNull(3, java.sql.Types.INTEGER);
