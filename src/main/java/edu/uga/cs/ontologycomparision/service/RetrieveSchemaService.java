@@ -427,8 +427,12 @@ public class RetrieveSchemaService {
 	}
 	
 	public boolean retrieveAllRestrictions() throws SQLException {
-		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
-		queryStringTriple += "SELECT ?s FROM " + graphName + " WHERE {?s rdf:type owl:Restriction.}";
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?s";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?s FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {?s rdf:type owl:Restriction.}";
 		
 		if (test )
 			queryStringTriple += " ORDER BY ?s LIMIT 1000";
@@ -461,10 +465,15 @@ public class RetrieveSchemaService {
 	}
 	
 	public Restriction findRestrictionByNode(RDFNode node, Map<String, Integer> restrictionTypeMap) throws SQLException {
-		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
-		queryStringTriple += "SELECT ?p ?o FROM " + graphName + " WHERE {" + node.asResource() + " ?p ?o}";
-
+		String selectFrom  = "SELECT ?p ?o";
 		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?p ?o FROM " + graphName;
+		
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
+		queryStringTriple += selectFrom + " WHERE {<" + node.asResource() + "> ?p ?o}";
+
+		System.out.println("Query: " + queryStringTriple);
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
@@ -482,6 +491,7 @@ public class RetrieveSchemaService {
 			RDFNode predicateNode = soln.get("p");
 			RDFNode objectNode = soln.get("o");			
 			
+			System.out.println("predicate: " + predicateNode);
 			String predicate = removeNS(predicateNode.asResource().getLocalName());
 			
 			
