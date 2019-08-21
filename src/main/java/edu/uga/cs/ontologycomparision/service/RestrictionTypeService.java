@@ -67,7 +67,7 @@ final static Logger logger = Logger.getLogger(RestrictionTypeService.class);
 		
 		while(rs.next()) {
 			
-			RestrictionType retrictionType = new RestrictionType(rs.getInt("version_id"), type);
+			RestrictionType retrictionType = new RestrictionType(rs.getInt("id"), type);
 			
 			list.add(retrictionType);
 		}
