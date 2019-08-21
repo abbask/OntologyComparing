@@ -9,6 +9,11 @@ public class RestrictionType {
 	
 	}
 	
+	public RestrictionType(String type) {
+
+		this.type = type;
+	}
+	
 	public RestrictionType(int iD, String type) {
 		super();
 		ID = iD;
