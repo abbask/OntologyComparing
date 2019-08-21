@@ -9,18 +9,21 @@ public class Restriction {
 	private RestrictionType type;
 	private int CardinalityValue;
 	private Class onClass;
+	private Version version;
 	
 	public Restriction() {
 	
 	}
 
-	public Restriction(int iD, Property onProperty, RestrictionType type, int cardinalityValue, Class onClass) {
+	public Restriction(int iD, Property onProperty, RestrictionType type, int cardinalityValue, Class onClass,
+			Version version) {
 		
 		ID = iD;
 		this.onProperty = onProperty;
 		this.type = type;
 		CardinalityValue = cardinalityValue;
 		this.onClass = onClass;
+		this.version = version;
 	}
 
 	public int getID() {
@@ -63,22 +66,30 @@ public class Restriction {
 		this.onClass = onClass;
 	}
 
+	public Version getVersion() {
+		return version;
+	}
+
+	public void setVersion(Version version) {
+		this.version = version;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + CardinalityValue;
-//		result = prime * result + ID;
+		
 		result = prime * result + ((onClass == null) ? 0 : onClass.hashCode());
 		result = prime * result + ((onProperty == null) ? 0 : onProperty.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
+
 		if (obj == null)
 			return false;
 		if (getClass() != obj.getClass())
@@ -86,8 +97,7 @@ public class Restriction {
 		Restriction other = (Restriction) obj;
 		if (CardinalityValue != other.CardinalityValue)
 			return false;
-//		if (ID != other.ID)
-//			return false;
+		
 		if (onClass == null) {
 			if (other.onClass != null)
 				return false;
@@ -98,16 +108,20 @@ public class Restriction {
 				return false;
 		} else if (!onProperty.equals(other.onProperty))
 			return false;
-		if (type != other.type)
+		if (type == null) {
+			if (other.type != null)
+				return false;
+		} else if (!type.equals(other.type))
 			return false;
+		
 		return true;
 	}
 
 	@Override
 	public String toString() {
 		return "Restriction [ID=" + ID + ", onProperty=" + onProperty + ", type=" + type + ", CardinalityValue="
-				+ CardinalityValue + ", onClass=" + onClass + "]";
+				+ CardinalityValue + ", onClass=" + onClass + ", version=" + version + "]";
 	}
-
 	
+		
 }
