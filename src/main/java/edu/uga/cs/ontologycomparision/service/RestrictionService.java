@@ -49,7 +49,7 @@ private Connection connection;
 		try {
 			connection.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO class (property_id,type_id,class_id, value, version_id) VALUES (?,?,?,?,?)";
+			String queryString = "INSERT INTO restriction (property_id,type_id,class_id, value, version_id) VALUES (?,?,?,?,?)";
 			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1,restriction.getOnProperty().getID());
 			statement.setInt(2,restriction.getType().getID());
