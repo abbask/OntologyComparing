@@ -496,16 +496,24 @@ public class RetrieveSchemaService {
 			
 			
 			if (restrictionTypeMap.containsKey(predicate)) {			
-				RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);				
-				type = restrictionTypeService.getByType(predicate);											
+				RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
+				RestrictionType restrictionType = new RestrictionType(predicate) ;
+				type = restrictionTypeService.addIfNotExist(restrictionType);											
 			}
 			else if (predicate == "onProperty"){
 				String object = removeNS(objectNode.asResource().getLocalName());
 				onProperty = propertyService.getByLabel(object, version.getID());
+				if ( onProperty == null )
+					onProperty = propertyService.addIfNotExist(new Property(objectNode.asResource().getURI(), objectNode.asResource().getLocalName(), "", "", version, null));
+				
+				
 			}
 			else if (predicate == "onClass"){
 				String object = removeNS(objectNode.asResource().getLocalName());
 				onClass = classService.getByLabel(object, version.getID());
+				if (onClass == null)
+					onClass = classService.addIfNotExist(new Class(objectNode.asResource().getURI(), objectNode.asResource().getLocalName(), "", 0));				
+					
 			}
 			else if (containsCardinality(predicate)){
 				cardinalityValue = objectNode.asLiteral().getInt();
