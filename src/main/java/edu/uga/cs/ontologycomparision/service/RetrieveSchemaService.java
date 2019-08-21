@@ -6,6 +6,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.rdf.model.Literal;
@@ -17,6 +19,7 @@ import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
+import edu.uga.cs.ontologycomparision.model.Restriction;
 import edu.uga.cs.ontologycomparision.model.RestrictionType;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.model.XSDType;
@@ -24,6 +27,8 @@ import edu.uga.cs.ontologycomparision.data.DataStoreConnection;
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 
 public class RetrieveSchemaService {
+	
+	final static boolean test = true; //for retrieve restriction from LOD
 	
 	final static String ObjectPropertyType = "ObjectProperty";
 	final static String DatatypePropertyType = "DatatypeProperty";
@@ -421,6 +426,97 @@ public class RetrieveSchemaService {
 		
 	}
 	
+	public boolean retrieveAllRestrictions() throws SQLException {
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
+		queryStringTriple += "SELECT ?s FROM " + graphName + " WHERE {?s rdf:type owl:Restriction.}";
+		
+		if (test )
+			queryStringTriple += " ORDER BY ?s LIMIT 1000";
+
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
+		
+		RestrictionService restrictionService = new RestrictionService(connection);
+		RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
+		List<RestrictionType> restrictionTypes = restrictionTypeService.getListAll();
+		
+		Map<String, Integer> restrictionTypeMap = restrictionTypes.stream().collect(
+                Collectors.toMap(RestrictionType::getType, RestrictionType::getID));
+		
+		System.out.println("All records " + list.size());
+		int count = 0;
+		for(QuerySolution soln : list) {
+						
+			RDFNode node = soln.get("s");
+					
+			Restriction restriction = findRestrictionByNode(node, restrictionTypeMap);
+			restrictionService.add(restriction);
+			
+			System.out.println(count++ + " Finished " + node.asResource().getLocalName());
+		}
+		
+		
+		return true;
+		
+	}
 	
+	public Restriction findRestrictionByNode(RDFNode node, Map<String, Integer> restrictionTypeMap) throws SQLException {
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
+		queryStringTriple += "SELECT ?p ?o FROM " + graphName + " WHERE {" + node.asResource() + " ?p ?o}";
+
+		
+		
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
+		
+		RestrictionType type = null;
+		Property onProperty = null;
+		Class onClass = null;
+		int cardinalityValue = 0;
+		
+		PropertyService propertyService = new PropertyService(connection);	
+		ClassService classService = new ClassService(connection);
+		
+		for(QuerySolution soln : list) {
+			
+			RDFNode predicateNode = soln.get("p");
+			RDFNode objectNode = soln.get("o");			
+			
+			String predicate = removeNS(predicateNode.asResource().getLocalName());
+			
+			
+			if (restrictionTypeMap.containsKey(predicate)) {			
+				RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);				
+				type = restrictionTypeService.getByType(predicate);											
+			}
+			else if (predicate == "onProperty"){
+				String object = removeNS(objectNode.asResource().getLocalName());
+				onProperty = propertyService.getByLabel(object, version.getID());
+			}
+			else if (predicate == "onClass"){
+				String object = removeNS(objectNode.asResource().getLocalName());
+				onClass = classService.getByLabel(object, version.getID());
+			}
+			else if (containsCardinality(predicate)){
+				cardinalityValue = objectNode.asLiteral().getInt();
+			}
+			else {
+				logger.warn("RetrieveSchemaService.findRestrictionByNode : Cannot find the predicate of restriction");
+			}
+						
+		}//for
+		
+		return( new Restriction(onProperty, type, cardinalityValue, onClass, version));
+		
+		
+	}
+	
+	private String removeNS(String name) {
+		return name.replace("owl:", "");
+	}
+	
+	private boolean containsCardinality(String name) {
+		return name.toLowerCase().contains("cardinality");
+	}
 	
 }
