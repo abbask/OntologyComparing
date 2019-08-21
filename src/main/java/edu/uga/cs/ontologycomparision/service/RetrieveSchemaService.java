@@ -424,7 +424,6 @@ public class RetrieveSchemaService {
 		System.out.println("Property List 1 :" + propertyList);
 		System.out.println("Property List 2 :" + propertyList2);
 		
-		
 	}
 	
 	public boolean retrieveAllRestrictions() throws SQLException {
@@ -448,18 +447,13 @@ public class RetrieveSchemaService {
 		Map<String, Integer> restrictionTypeMap = restrictionTypes.stream().collect(
                 Collectors.toMap(RestrictionType::getType, RestrictionType::getID));
 		
-		System.out.println("All records " + list.size());
-		int count = 0;
 		for(QuerySolution soln : list) {
 						
 			RDFNode node = soln.get("s");
 					
 			Restriction restriction = findRestrictionByNode(node, restrictionTypeMap);
 			restrictionService.add(restriction);
-			
-			System.out.println(count++ + " Finished " + node.asResource().getLocalName());
 		}
-		
 		
 		return true;
 		
@@ -474,8 +468,6 @@ public class RetrieveSchemaService {
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
 		queryStringTriple += selectFrom + " WHERE {<" + node.asResource() + "> ?p ?o}";
 
-		System.out.println("Query: " + queryStringTriple);
-		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
@@ -484,17 +476,12 @@ public class RetrieveSchemaService {
 		Class onClass = null;
 		int cardinalityValue = 0;
 		
-		PropertyService propertyService = new PropertyService(connection);	
-		ClassService classService = new ClassService(connection);
-		
 		for(QuerySolution soln : list) {
 			
 			RDFNode predicateNode = soln.get("p");
 			RDFNode objectNode = soln.get("o");			
 			
-			
 			String predicate = removeNS(predicateNode.asResource().getLocalName());
-			System.out.println("predicate: " + predicate);
 			
 			if (restrictionTypeMap.containsKey(predicate)) {			
 				RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
@@ -502,25 +489,12 @@ public class RetrieveSchemaService {
 				type = restrictionTypeService.addIfNotExist(restrictionType);											
 			}
 			else if (predicate.equals("onProperty")){
-//				String object = removeNS(objectNode.asResource().getLocalName());
 				
 				onProperty = collectProperty(objectNode.asResource(), ObjectPropertyType);
-				
-//				onProperty = propertyService.getByLabel(object, version.getID());
-//				if ( onProperty == null )
-//					onProperty = propertyService.addIfNotExist(new Property(objectNode.asResource().getURI(), objectNode.asResource().getLocalName(), "", "", version, null));
-				
-				
 			}
 			else if (predicate.equals("onClass")){
-//				String object = removeNS(objectNode.asResource().getLocalName());
-//				onClass = classService.getByLabel(object, version.getID());
 				
 				onClass = collectClass(objectNode.asResource());
-				
-//				if (onClass == null)
-//					onClass = classService.addIfNotExist(new Class(objectNode.asResource().getURI(), objectNode.asResource().getLocalName(), "", 0,version));				
-					
 			}
 			else if (containsCardinality(predicate)){
 				cardinalityValue = objectNode.asLiteral().getInt();
