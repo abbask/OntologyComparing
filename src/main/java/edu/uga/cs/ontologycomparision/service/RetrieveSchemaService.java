@@ -17,7 +17,7 @@ import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
-import edu.uga.cs.ontologycomparision.model.Restriction;
+import edu.uga.cs.ontologycomparision.model.RestrictionType;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.model.XSDType;
 import edu.uga.cs.ontologycomparision.data.DataStoreConnection;
@@ -488,7 +488,7 @@ public class RetrieveSchemaService {
 	}
 	
 	private String existInRestrictions(String predicateLocalName) {
-		for (Restriction type : Restriction.values()) {
+		for (RestrictionType type : RestrictionType.values()) {
 			if (type.toString().equals(predicateLocalName))
 				return type.toString();
 		}
