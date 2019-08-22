@@ -544,24 +544,31 @@ public class RetrieveSchemaService {
 		queryStringTriple += selectFrom + " WHERE {?s ?p ?o. FILTER( ?p IN(owl:unionOf, owl:intersectionOf) ) }";
 		
 		if (test )
-			queryStringTriple += " ORDER BY ?s LIMIT 1000";
+			queryStringTriple += " ORDER BY ?s LIMIT 20";
 
+		System.out.println(queryStringTriple);
+		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 
 		ExpressionService expressionService = new ExpressionService(connection);
 		
 		for(QuerySolution soln : list) {
-						
+			
+//			RDFNode subjectNode = soln.get("s");
 			RDFNode predicateNode = soln.get("p");
 			RDFNode objectNode = soln.get("o");									
 			
 			if (predicateNode.asResource().getLocalName().equals("unionOf") || predicateNode.asResource().getLocalName().equals("intersectionOf")) {
 				String type = "";
+				
 				type = predicateNode.asResource().getLocalName();
 				classes = new LinkedList<Class>();
 				//call to recursive method
+				System.out.println("object node: " + objectNode.asResource().getId());
+				System.out.println("object node: " + objectNode.asResource());
 				classes = findClasses(objectNode, classes);
+//				System.out.println("subject: " + subjectNode.asResource().getLocalName() + " size: " + classes.size());
 				//add the expression here
 				Expression expression = new Expression(type, classes, version);
 				expressionService.add(expression);
@@ -574,6 +581,9 @@ public class RetrieveSchemaService {
 	}
 	
 	private List<Class> findClasses(RDFNode node, List<Class> classes) throws JenaException, SQLException{
+		
+		System.out.println("call to findClasses by: " + node.asResource());
+		
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
 		String selectFrom  = "SELECT ?p ?o";
 		
@@ -598,14 +608,11 @@ public class RetrieveSchemaService {
 				classes.add(myClass);
 			}
 			else if (predicateNode.asResource().getLocalName().equals("rest")) {
-				
-				if (objectNode.asNode().isBlank()) {
-					
-					classes = findClasses(objectNode, classes);
-				}
+												
+					classes = findClasses(objectNode, classes);				
 			}
 			else {
-				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence.");
+				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicateNode.asResource().getLocalName());
 			}
 		}
 		return classes;
