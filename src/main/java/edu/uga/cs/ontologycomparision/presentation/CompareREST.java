@@ -44,7 +44,7 @@ public class CompareREST {
 			Version version2 = versionService.get(version2Id);
 			
 			CompareService compareService = new CompareService(version1, version2);
-			List<Result<String, Long>> classCountList          = compareService.compareClassCount();			
+			List<Result<String, Long>> classCountList          = compareService.compareClassCount();
 			List<Result<String, Long>> objectPropertCount      = compareService.compareObjectPropertyCount();
 			List<Result<String, Long>> datatypePropertyCount   = compareService.compareDatatypePropertyCount();
 			
@@ -52,12 +52,15 @@ public class CompareREST {
 			List<Result<String, Long>> objectTripleTypeCount   = compareService.compareObjectTripleTypeCount();
 			List<Result<String, Long>> datatypeTripleTypeCount = compareService.compareDatatypeTripleTypeCount();
 			
+			List<Result<String, Long>> restrictionCount        = compareService.compareRestrictionCount();
+			
 			root.put("classCountList", classCountList);
 			root.put("objectPropertCount", objectPropertCount);
 			root.put("datatypePropertyCount", datatypePropertyCount);
 			root.put("individualCount", individualCount);
 			root.put("objectTripleTypeCount", objectTripleTypeCount);
 			root.put("datatypeTripleTypeCount", datatypeTripleTypeCount);
+			root.put("restrictionCount", restrictionCount);
 
 			Gson gson = new Gson();
 			String result = gson.toJson(root);
