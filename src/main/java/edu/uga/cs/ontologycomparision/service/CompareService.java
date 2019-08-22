@@ -419,6 +419,21 @@ public class CompareService {
 		return results;
 	}
 	
+	public List<Result<String, Long>> compareRestrictionCount() throws SQLException  {
+		
+		RestrictionService restrictionService = new RestrictionService(connection);
+		
+		long restrictionCount1 = restrictionService.count(ver1.getID());
+		long restrictionCount2 = restrictionService.count(ver2.getID());
+		
+		
+		List<Result<String, Long>> results = new ArrayList<>();
+		results.add(new Result<String, Long>("Number of restrictions of version " + ver1.getID(), restrictionCount1));
+		results.add(new Result<String, Long>("Number of restrictions of version " + ver2.getID(), restrictionCount2));
+		
+		return results;
+	}
+	
 	public List<Result<String, String>> compareRestrictions() throws SQLException{
 		RestrictionService restrictionService = new RestrictionService(connection);
 		
