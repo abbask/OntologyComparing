@@ -24,6 +24,7 @@ import edu.uga.cs.ontologycomparision.model.DatatypeTripleSortByLabel;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleSortByLabel;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
+import edu.uga.cs.ontologycomparision.model.Restriction;
 
 public class CompareService {
 	
@@ -416,6 +417,47 @@ public class CompareService {
 		}						
 		
 		return results;
+	}
+	
+	public List<Result<String, String>> compareRestrictions() throws SQLException{
+		RestrictionService restrictionService = new RestrictionService(connection);
+		
+		Set<Restriction> restriction1Set = restrictionService.listAll(ver1.getID()).stream().collect(Collectors.toSet());
+		Set<Restriction> restriction2Set = restrictionService.listAll(ver2.getID()).stream().collect(Collectors.toSet());
+
+		Set<Restriction> restriction1SetTemp = new HashSet<Restriction>(restriction1Set);
+		
+		restriction1Set.removeAll(restriction2Set);
+		restriction2Set.removeAll(restriction1SetTemp);
+				
+		List<Result<String, String>> restriction1List = restriction1Set.stream()				
+				.map(d -> 
+					new Result<String, String>("( " 
+						+ (d.getOnProperty()==null ? "" : d.getOnProperty().getLabel())+ ", " 
+						+ (d.getOnClass()== null ? "" : d.getOnClass().getLabel()) + ", " 
+						+ (d.getType() == null ? "" : d.getType().getType() ) + " )",
+						"Only in Version " + ver1.getNumber())
+				)
+				.collect(Collectors.toList());
+		
+		List<Result<String, String>> restriction2List = restriction2Set.stream()				
+				.map(d -> 
+				new Result<String, String>("( " 
+						+ (d.getOnProperty()==null ? "" : d.getOnProperty().getLabel())+ ", " 
+						+ (d.getOnClass()== null ? "" : d.getOnClass().getLabel()) + ", " 
+						+ (d.getType() == null ? "" : d.getType().getType() ) + " )",
+						"Only in Version " + ver2.getNumber())
+				)
+				.collect(Collectors.toList());
+						
+		Collections.sort(restriction1List, Comparator.comparing(Result::getElement));
+		Collections.sort(restriction2List, Comparator.comparing(Result::getElement));
+		
+		List<Result<String, String>> result = new ArrayList<>();
+		result.addAll(restriction1List);
+		result.addAll(restriction2List);
+
+		return result;
 	}
 	
 }
