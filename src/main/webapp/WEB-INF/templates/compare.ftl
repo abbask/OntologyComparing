@@ -76,10 +76,13 @@
 		    <a class="nav-link" id="datatypeTriples" data-toggle="tab" href="#datatypeTriple" role="tab" aria-controls="datatypeTriple" aria-selected="false">Datatype Triple</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="objectTripleforEachTriple" data-toggle="tab" href="#objectTripleforEach" role="tab" aria-controls="objectTripleforEach" aria-selected="false">Object Triple Counts</a>
+		    <a class="nav-link" id="objectTripleforEachTriple" data-toggle="tab" href="#objectTripleforEach" role="tab" aria-controls="objectTripleforEach" aria-selected="false">Object Triple #</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="datatypeTripleforEachTriple" data-toggle="tab" href="#datatypeTripleforEach" role="tab" aria-controls="datatypeTripleforEach" aria-selected="false">Datatype Triple Counts</a>
+		    <a class="nav-link" id="datatypeTripleforEachTriple" data-toggle="tab" href="#datatypeTripleforEach" role="tab" aria-controls="datatypeTripleforEach" aria-selected="false">Datatype Triple #</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="restrictionsL" data-toggle="tab" href="#restrictions" role="tab" aria-controls="restrictions" aria-selected="false">Restriction</a>
 		  </li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
@@ -92,6 +95,7 @@
 		  <div class="tab-pane fade" id="datatypeTriple" role="tabpanel" aria-labelledby="datatypeTriple"></div>
 		  <div class="tab-pane fade" id="objectTripleforEach" role="tabpanel" aria-labelledby="objectTripleforEach"></div>
 		  <div class="tab-pane fade" id="datatypeTripleforEach" role="tabpanel" aria-labelledby="datatypeTripleforEach"></div>
+		  <div class="tab-pane fade" id="restrictions" role="tabpanel" aria-labelledby="restrictions"></div>
 		</div>
 	</div>
 	
