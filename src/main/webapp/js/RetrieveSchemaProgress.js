@@ -1,9 +1,7 @@
 /**
  * 
  */
-$(document).ready(function(){
-	
-	
+$(document).ready(function(){	
 	
 	function getRemote(endpoint, graphname) {
 	    return $.ajax({
@@ -34,6 +32,7 @@ $(document).ready(function(){
 			$('.progressDiv').append('<p>Classes: <span class="glyphicon glyphicon-ok"></span></p>');	
 			getObjectTripleTypes(endpoint, graphname, versionId);
 			getDataTypeTripleTypes(endpoint, graphname, versionId);
+			getRestrictions(endpoint, graphname, versionId);
 		}).fail(function (data) {
 			$('.progressDiv').append('<p>Classes: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
@@ -88,6 +87,19 @@ $(document).ready(function(){
 			$('.progressDiv').append('<p>Data Type Triple Types: <span class="glyphicon glyphicon-ok"></span></p>');
 		}).fail(function (data) {
 			$('.progressDiv').append('<p>Data Type Triple Types: <span class="glyphicon glyphicon-remove"></span></p>');
+		}).responseText;
+	}
+	
+	function getRestrictions(endpoint, graphname, versionId){
+		return $.ajax({
+		    url: 'rest/RetrieveSchema/Restriction',
+		    type: 'GET',
+		    data: {'endpoint': endpoint, 'graphName': graphname, 'version_id': version_id},
+		    async: true
+		}).done(function (data) {
+			$('.progressDiv').append('<p>Restrictions: <span class="glyphicon glyphicon-ok"></span></p>');
+		}).fail(function (data) {
+			$('.progressDiv').append('<p>Restrictions: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
 	}
 	
