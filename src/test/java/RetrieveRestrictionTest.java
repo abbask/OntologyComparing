@@ -11,7 +11,7 @@ class RetrieveRestrictionTest {
 	@Test
 	void test() throws SQLException {
 		String 	endpointURL 	= "http://lod.openlinksw.com/sparql/";
-		String 	graphName 		= "";
+		String 	graphName 		= "<prokino.uga.edu>";
 		int 	versionId 		= 1;
 		
 		RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
