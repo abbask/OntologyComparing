@@ -50,6 +50,7 @@ private Connection connection;
 				PreparedStatement statement2= connection.prepareStatement(queryString2, Statement.RETURN_GENERATED_KEYS);
 				statement2.setInt(1,candidateId);
 				statement2.setInt(2,c.getID());
+				statement2.executeUpdate();
 			}
 			
 			connection.commit();
