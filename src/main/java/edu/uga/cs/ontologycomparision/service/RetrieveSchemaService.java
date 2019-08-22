@@ -10,9 +10,9 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.jena.query.QuerySolution;
-import org.apache.jena.rdf.model.Literal;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
+import org.apache.jena.shared.JenaException;
 import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.model.Class;
@@ -38,7 +38,7 @@ public class RetrieveSchemaService {
 	private String endpointURL;
 	private String graphName;
 	private Version version;
-	private ArrayList<Class> classList;
+	
 	
 	private Connection connection;	
 	
@@ -452,7 +452,8 @@ public class RetrieveSchemaService {
 			RDFNode node = soln.get("s");
 					
 			Restriction restriction = findRestrictionByNode(node, restrictionTypeMap);
-			restrictionService.add(restriction);
+			if (restriction != null)
+				restrictionService.add(restriction);
 		}
 		
 		return true;
@@ -476,36 +477,44 @@ public class RetrieveSchemaService {
 		Class onClass = null;
 		int cardinalityValue = 0;
 		
-		for(QuerySolution soln : list) {
-			
-			RDFNode predicateNode = soln.get("p");
-			RDFNode objectNode = soln.get("o");			
-			
-			String predicate = removeNS(predicateNode.asResource().getLocalName());
-			
-			if (restrictionTypeMap.containsKey(predicate)) {			
-				RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
-				RestrictionType restrictionType = new RestrictionType(predicate) ;
-				type = restrictionTypeService.addIfNotExist(restrictionType);											
-			}
-			else if (predicate.equals("onProperty")){
-				
-				onProperty = collectProperty(objectNode.asResource(), ObjectPropertyType);
-			}
-			else if (predicate.equals("onClass")){
-				
-				onClass = collectClass(objectNode.asResource());
-			}
-			else if (containsCardinality(predicate)){
-				cardinalityValue = objectNode.asLiteral().getInt();
-			}
-			else {
-				logger.warn("RetrieveSchemaService.findRestrictionByNode : Cannot find the predicate of restriction");
-			}
-						
-		}//for
+		try {
 		
-		return( new Restriction(onProperty, type, cardinalityValue, onClass, version));
+			for(QuerySolution soln : list) {
+				
+				RDFNode predicateNode = soln.get("p");
+				RDFNode objectNode = soln.get("o");			
+				
+				String predicate = removeNS(predicateNode.asResource().getLocalName());
+				
+				if (restrictionTypeMap.containsKey(predicate)) {			
+					RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
+					RestrictionType restrictionType = new RestrictionType(predicate) ;
+					type = restrictionTypeService.addIfNotExist(restrictionType);
+					
+					if (containsCardinality(predicate)) {
+						cardinalityValue = objectNode.asLiteral().getInt();
+					}
+				}
+				else if (predicate.equals("onProperty")){
+					
+					onProperty = collectProperty(objectNode.asResource(), ObjectPropertyType);
+				}
+				else if (predicate.equals("onClass")){
+					
+					onClass = collectClass(objectNode.asResource());
+				}				
+				else {
+					logger.warn("RetrieveSchemaService.findRestrictionByNode : Cannot find the predicate of restriction");
+				}
+							
+			}//for
+			
+			return( new Restriction(onProperty, type, cardinalityValue, onClass, version));
+		}
+		catch (JenaException jex) {
+			logger.error("RetrieveSchemaService.findRestrictionByNode : error in Jena conversion Node to Resource. The record Skipped.");
+			return null;
+		}
 		
 		
 	}
@@ -515,7 +524,11 @@ public class RetrieveSchemaService {
 	}
 	
 	private boolean containsCardinality(String name) {
-		return name.toLowerCase().contains("cardinality");
+		if (name.toLowerCase().indexOf("cardinality") != -1) {
+			return true;
+		}
+		return false;
+		
 	}
 	
 }
