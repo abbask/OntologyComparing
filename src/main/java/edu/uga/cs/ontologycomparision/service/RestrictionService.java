@@ -5,16 +5,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.model.Class;
+import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Restriction;
 import edu.uga.cs.ontologycomparision.model.RestrictionType;
 import edu.uga.cs.ontologycomparision.model.Version;
+import edu.uga.cs.ontologycomparision.model.XSDType;
 
 
 public class RestrictionService {
@@ -173,6 +176,36 @@ private Connection connection;
 		}
 		return list.get(0);						
 				
+	}
+	
+	public List<Restriction> listAll(int versionId) throws SQLException{
+		List<Restriction> results = new ArrayList<Restriction>();
+		
+		Statement stmtSys = connection.createStatement();	
+		String query = "SELECT * FROM restriction WHERE version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		ClassService classService = new ClassService(connection);
+		VersionService versionService = new VersionService(connection);
+		PropertyService propertyService = new PropertyService(connection);
+		RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
+		
+		
+		
+		while (rs.next()) {
+			int iD = rs.getInt("id");
+			Property onProperty = propertyService.getByID(rs.getInt("property_id"));				
+			Class onClass = classService.getByID(rs.getInt("class_id")); 			
+			RestrictionType restrictionType = restrictionTypeService.get(rs.getInt("type_id"));
+			int cardinalityValue = rs.getInt("value");
+			
+			Version version = versionService.get(rs.getInt("version_id")); 
+			results.add(new Restriction(iD, onProperty, restrictionType, cardinalityValue, onClass, version));
+			
+		}
+		
+		return results;
+			
 	}
 
 }
