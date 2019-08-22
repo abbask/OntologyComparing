@@ -106,6 +106,7 @@ public class Restriction {
 		if (getClass() != obj.getClass())
 			return false;
 		Restriction other = (Restriction) obj;
+		
 		if (CardinalityValue != other.CardinalityValue)
 			return false;
 		
