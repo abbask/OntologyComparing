@@ -5,6 +5,7 @@ package edu.uga.cs.ontologycomparision.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -17,6 +18,7 @@ import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
+import edu.uga.cs.ontologycomparision.model.Expression;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Restriction;
@@ -38,6 +40,7 @@ public class RetrieveSchemaService {
 	private String endpointURL;
 	private String graphName;
 	private Version version;
+	private List<Class> classes;
 	
 	
 	private Connection connection;	
@@ -530,5 +533,84 @@ public class RetrieveSchemaService {
 		return false;
 		
 	}
+	
+	public boolean retrieveAllExpressions() throws SQLException {
+			
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?s ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?s ?p ?o FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {?s ?p ?o. FILTER( ?p IN(owl:unionOf, owl:intersectionOf) ) }";
+		
+		if (test )
+			queryStringTriple += " ORDER BY ?s LIMIT 1000";
+
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
+
+		ExpressionService expressionService = new ExpressionService(connection);
+		
+		for(QuerySolution soln : list) {
+						
+			RDFNode predicateNode = soln.get("p");
+			RDFNode objectNode = soln.get("o");									
+			
+			if (predicateNode.asResource().getLocalName().equals("unionOf") || predicateNode.asResource().getLocalName().equals("intersectionOf")) {
+				String type = "";
+				type = predicateNode.asResource().getLocalName();
+				classes = new LinkedList<Class>();
+				//call to recursive method
+				classes = findClasses(objectNode, classes);
+				//add the expression here
+				Expression expression = new Expression(type, classes, version);
+				expressionService.add(expression);
+				
+			}
+		}
+		
+		return true;
+		
+	}
+	
+	private List<Class> findClasses(RDFNode node, List<Class> classes) throws JenaException, SQLException{
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?p ?o FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {<" + node + "> ?p ?o. }";
+		
+		if (test )
+			queryStringTriple += " ORDER BY ?s LIMIT 1000";
+
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
+		
+		for(QuerySolution soln : list) {
+			
+			RDFNode predicateNode = soln.get("p");
+			RDFNode objectNode = soln.get("o");
+			
+			if (predicateNode.asResource().getLocalName().equals("first")) {
+				
+				Class myClass = collectClass(objectNode.asResource());
+				classes.add(myClass);
+			}
+			else if (predicateNode.asResource().getLocalName().equals("rest")) {
+				
+				if (objectNode.asNode().isBlank()) {
+					
+					classes = findClasses(objectNode, classes);
+				}
+			}
+			else {
+				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence.");
+			}
+		}
+		return classes;
+		
+	}
+	
 	
 }

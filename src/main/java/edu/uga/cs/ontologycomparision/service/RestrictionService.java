@@ -22,7 +22,7 @@ import edu.uga.cs.ontologycomparision.model.XSDType;
 
 public class RestrictionService {
 	
-private Connection connection;	
+	private Connection connection;	
 	
 	public RestrictionService(Connection connection) {
 		this.connection = connection;
