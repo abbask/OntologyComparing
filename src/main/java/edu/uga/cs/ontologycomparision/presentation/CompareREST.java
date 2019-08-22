@@ -339,7 +339,7 @@ public class CompareREST {
 	}
 	
 	@GET
-	@Path("/restriction")
+	@Path("/restrictions")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response compareRestriction(@QueryParam("version1") int version1Id, @QueryParam("version2") int version2Id) {
 			
