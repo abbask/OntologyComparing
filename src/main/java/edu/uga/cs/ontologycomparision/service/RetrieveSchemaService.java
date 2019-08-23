@@ -5,6 +5,7 @@ package edu.uga.cs.ontologycomparision.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +16,9 @@ import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
 import org.apache.jena.shared.JenaException;
 import org.apache.log4j.Logger;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
@@ -545,8 +549,7 @@ public class RetrieveSchemaService {
 		
 		if (test )
 			queryStringTriple += " ORDER BY ?s LIMIT 20";
-
-		System.out.println(queryStringTriple);
+		
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
@@ -618,6 +621,49 @@ public class RetrieveSchemaService {
 		return classes;
 		
 	}
+	
+	public ArrayList<ArrayList<String>> parseJson(String strJSON) {
+		try {
+			
+			ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
+			
+			JSONObject jsonObject = new JSONObject(strJSON);
+			
+			//Read the variable names
+			JSONArray varsObj = new JSONArray(new JSONObject(jsonObject.get("head").toString()).get("vars").toString());
+			String[] vars = new String[varsObj.length()];
+			
+			for (int i = 0; i < varsObj.length(); i++) {
+				vars[i] = varsObj.getString(i);
+			}
+			
+			JSONObject resultObject = jsonObject.getJSONObject("results");			
+			JSONArray array = new JSONArray(resultObject.get("bindings").toString());
+			
+			for (int i = 0; i < array.length(); i++) {
+				
+				ArrayList<String> result = new ArrayList<String>();
+				
+				for (int j = 0 ; j < vars.length ; j++) {
+					JSONObject row = array.getJSONObject(i);
+					JSONObject p = new JSONObject(row.get(vars[j]).toString());
+					result.add(p.get("value").toString());
+				}
+				
+				results.add(result);
+
+			}
+		    
+			return results;
+		     
+		}catch (JSONException err){
+		     System.out.println("Error json.");
+		}
+		
+		return null;
+	}
+	
+	
 	
 	
 }
