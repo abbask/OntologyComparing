@@ -18,6 +18,7 @@ jaxws/jaxws-endpoint/src/main/webapp/WEB-INF/wsdl/
 *.war
 *.ear
 *.db
+*.log
 rebel.xml
 
 ######################
