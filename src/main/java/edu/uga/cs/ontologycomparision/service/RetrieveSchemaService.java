@@ -587,8 +587,8 @@ public class RetrieveSchemaService {
 	
 					//add the expression here
 					Expression expression = new Expression(type, classes, version);
-					System.out.println(expression);
-					System.out.println(expressionService.add(expression));
+					
+					expressionService.add(expression);
 				}	
 			}					
 		}				
