@@ -22,28 +22,21 @@ public class HTTPConnection { // took from web page https://www.baeldung.com/jav
 	
 	
 	public HTTPConnection(String endPoint, String sparqlQuery) {
-		// TODO Auto-generated constructor stub
 		this.endPoint = endPoint;
 		this.query = sparqlQuery;
 		
 		debug = "off";
 		timeout = "0" ;
 		outputFormat = "application/sparql-results+json";
-		
-		
-		
 	}
 
-	public String execute( ) throws IOException {
-		
-		String strURL = endPoint + "?default-graph-uri=&query=" + query + 
-				"&format=" + outputFormat + "&timeout=" + timeout + "&debug=" + debug;
+	public String execute() throws IOException {
+		String strURL = endPoint;
 		
 		url = new URL(strURL);
 				
 		HttpURLConnection con = (HttpURLConnection) url.openConnection();
-		
-		
+				
 		Map<String, String> parameters = new HashMap<>();
 		parameters.put("default-graph-uri", "");
 		parameters.put("query", query);
@@ -52,24 +45,27 @@ public class HTTPConnection { // took from web page https://www.baeldung.com/jav
 		parameters.put("debug", debug);
 		
 		con.setDoOutput(true);
-		
-		con.setDoOutput(true);
 		DataOutputStream out = new DataOutputStream(con.getOutputStream());
 		out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
 		out.flush();
 		out.close();
 		
 		int status = con.getResponseCode();
-					
+		
 		BufferedReader in = new BufferedReader(
 				  new InputStreamReader(con.getInputStream()));
+		
 		String inputLine;
 		StringBuffer content = new StringBuffer();
 		while ((inputLine = in.readLine()) != null) {
 		    content.append(inputLine);
 		}
+		
 		in.close();
 		con.disconnect();
+		
+		in =null;
+		con = null;
 		return content.toString();
 		
 	}

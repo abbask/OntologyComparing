@@ -14,12 +14,12 @@ class HTTPConnectionTest {
 	void test() throws IOException, SQLException {
 		String endPoint = "http://vulcan.cs.uga.edu:8890/sparql/";
 		String sparqlQuery = "select * where {?s ?p ?o. FILTER( ?p IN(owl:unionOf, owl:intersectionOf) ) } LIMIT 100";
-		
-		HTTPConnection connection = new HTTPConnection(endPoint, sparqlQuery);
-		String result = connection.execute();
-		RetrieveSchemaService service = new RetrieveSchemaService("", "");
-		service.parseJson(result);
-		
+		for (int i = 0 ; i < 3 ; i++) {
+			HTTPConnection connection = new HTTPConnection(endPoint, sparqlQuery);
+			String result = connection.execute();
+			RetrieveSchemaService service = new RetrieveSchemaService("", "");
+			service.parseJson(result);
+		}
 		
 	}
 	

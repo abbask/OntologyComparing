@@ -2,6 +2,7 @@ package edu.uga.cs.ontologycomparision.service;
 
 
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -9,8 +10,10 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
+import org.apache.http.HttpConnection;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.rdf.model.RDFNode;
 import org.apache.jena.rdf.model.Resource;
@@ -30,6 +33,7 @@ import edu.uga.cs.ontologycomparision.model.RestrictionType;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.model.XSDType;
 import edu.uga.cs.ontologycomparision.data.DataStoreConnection;
+import edu.uga.cs.ontologycomparision.data.HTTPConnection;
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 
 public class RetrieveSchemaService {
@@ -103,7 +107,7 @@ public class RetrieveSchemaService {
 			Class parentClass = null;
 			
 			if (parentRDFNode != null) {				
-				 parentClass = collectClass(parentRDFNode.asResource());						
+				 parentClass = collectClass(parentRDFNode.asResource().toString());						
 			}	
 			
 			
@@ -117,26 +121,28 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	private Class collectClass(Resource subjectResource) throws SQLException {
+	private Class collectClass(String subjectString) throws SQLException {
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>";
 		queryString += "SELECT DISTINCT ?s ?parent (count(?ind) as ?Count) "
 				+ (graphName.isBlank()? "" : " FROM " + graphName )+ " "
-						+ "WHERE{ optional {?ind a <" + subjectResource.getURI()  + ">.} "
-								+ "optional {<" + subjectResource.getURI()  + "> rdfs:subClassOf ?p} "
-						+ "bind(IF(?p = '', '' , ?p) AS ?parent) } "
+						+ "WHERE{ optional {?ind a <" + subjectString  + ">.} "
+								+ "optional {<" + subjectString  + "> rdfs:subClassOf ?p} "
+						+ "bind(IF(?p = '', '' , ?p) AS ?parent)  "
+						+ "bind(<" + subjectString + "> AS ?s) }"
 						+ "GROUP BY ?s ?parent "
 						+ "ORDER BY ?s ?parent";
 		
 		List<QuerySolution> records =  conn.executeSelect(queryString);
 		RDFNode parentRDFNode = records.get(0).get("parent");
+		Resource subjectResource = records.get(0).get("s").asResource();
+		
 		long count = records.get(0).get("Count").asLiteral().getLong();
 				
 		Class parentClass = null;	
 		if (parentRDFNode != null) {
-			
-			parentClass = collectClass(parentRDFNode.asResource());
+			parentClass = collectClass(parentRDFNode.toString());
 		}
 				
 		
@@ -302,12 +308,10 @@ public class RetrieveSchemaService {
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);		
 		
 		for (String rest : restrictionList) {
-			System.out.println("query: "+ queryStringTriple + rest);
 			List<QuerySolution> list = conn.executeSelect(queryStringTriple + rest);
 			
 			long value = list.get(0).getLiteral("count").getLong();
 			if (value == 0 ) {
-				System.out.println("zero result ");
 			}
 			result += value;
 		}
@@ -428,8 +432,6 @@ public class RetrieveSchemaService {
 			
 		}
 		
-		System.out.println("Property List 1 :" + propertyList);
-		System.out.println("Property List 2 :" + propertyList2);
 		
 	}
 	
@@ -508,7 +510,7 @@ public class RetrieveSchemaService {
 				}
 				else if (predicate.equals("onClass")){
 					
-					onClass = collectClass(objectNode.asResource());
+					onClass = collectClass(objectNode.asResource().toString());
 				}				
 				else {
 					logger.warn("RetrieveSchemaService.findRestrictionByNode : Cannot find the predicate of restriction");
@@ -538,8 +540,9 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public boolean retrieveAllExpressions() throws SQLException {
-			
+	public boolean retrieveAllExpressions() throws SQLException, IOException, InterruptedException {
+		ExpressionService expressionService = new ExpressionService(connection);
+					
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
 		String selectFrom  = "SELECT ?s ?p ?o";
 		
@@ -549,75 +552,97 @@ public class RetrieveSchemaService {
 		
 		if (test )
 			queryStringTriple += " ORDER BY ?s LIMIT 20";
+					
+		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
 		
-		
-		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
-		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
-
-		ExpressionService expressionService = new ExpressionService(connection);
-		
-		for(QuerySolution soln : list) {
-			
-//			RDFNode subjectNode = soln.get("s");
-			RDFNode predicateNode = soln.get("p");
-			RDFNode objectNode = soln.get("o");									
-			
-			if (predicateNode.asResource().getLocalName().equals("unionOf") || predicateNode.asResource().getLocalName().equals("intersectionOf")) {
-				String type = "";
-				
-				type = predicateNode.asResource().getLocalName();
-				classes = new LinkedList<Class>();
-				//call to recursive method
-				System.out.println("object node: " + objectNode.asResource().getId());
-				System.out.println("object node: " + objectNode.asResource());
-				classes = findClasses(objectNode, classes);
-//				System.out.println("subject: " + subjectNode.asResource().getLocalName() + " size: " + classes.size());
-				//add the expression here
-				Expression expression = new Expression(type, classes, version);
-				expressionService.add(expression);
-				
+		for(ArrayList<String> row : list) {
+									
+			String subject = "", predicate = "", object="";
+			for(String item : row) {
+				int index = item.indexOf(":");
+				switch (item.substring(0,index)) {
+				case "s":
+					subject = item.substring(index+1, item.length());
+					break;
+				case "p":
+					predicate = item.substring(index+1, item.length());
+					break;
+				case "o":
+					object = item.substring(index+1, item.length());
+					break;
+				default:
+					break;
+				}
 			}
-		}
-		
+			String predicateLocalName = getLocalName(predicate);
+			if (!subject.equals("http://www.w3.org/2002/07/owl#Thing")) {
+				if (predicateLocalName.equals("unionOf") || predicateLocalName.equals("intersectionOf")) {
+					String type = "";
+					type = predicate;
+					classes = new LinkedList<Class>();
+					
+					//call to recursive method
+					classes = findClasses(object, classes);
+	
+					//add the expression here
+					Expression expression = new Expression(type, classes, version);
+					System.out.println(expression);
+					System.out.println(expressionService.add(expression));
+				}	
+			}					
+		}				
 		return true;
 		
 	}
 	
-	private List<Class> findClasses(RDFNode node, List<Class> classes) throws JenaException, SQLException{
+	private List<Class> findClasses(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
 		
-		System.out.println("call to findClasses by: " + node.asResource());
-		
+			
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
 		String selectFrom  = "SELECT ?p ?o";
 		
 		if (!graphName.isBlank())
 			selectFrom = "SELECT ?p ?o FROM " + graphName;
-		queryStringTriple += selectFrom + " WHERE {<" + node + "> ?p ?o. }";
+		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
 		
 		if (test )
-			queryStringTriple += " ORDER BY ?s LIMIT 1000";
+			queryStringTriple += " ORDER BY ?p ?o LIMIT 1000";
 
-		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
-		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
+		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
 		
-		for(QuerySolution soln : list) {
-			
-			RDFNode predicateNode = soln.get("p");
-			RDFNode objectNode = soln.get("o");
-			
-			if (predicateNode.asResource().getLocalName().equals("first")) {
+		for(ArrayList<String> row : list) {
+			String predicate = "", object="";
+			for(String item : row) {
+				int index = item.indexOf(":");
+				switch (item.substring(0,index)) {
+				case "p":
+					predicate = item.substring(index+1, item.length());
+					break;
+				case "o":
+					object = item.substring(index+1, item.length());
+					break;
+				default:
+					break;
+				}
+			}
+			String predicateLocalName = getLocalName(predicate);
+			if (predicateLocalName.equals("first")) {
 				
-				Class myClass = collectClass(objectNode.asResource());
+				
+				Class myClass = collectClass(object);
 				classes.add(myClass);
 			}
-			else if (predicateNode.asResource().getLocalName().equals("rest")) {
-												
-					classes = findClasses(objectNode, classes);				
+			else if (predicateLocalName.equals("rest")) {
+					if (!object.equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#nil")	)					
+						classes = findClasses(getLocalName(object), classes);				
 			}
 			else {
-				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicateNode.asResource().getLocalName());
+				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicate);
 			}
 		}
+								
 		return classes;
 		
 	}
@@ -643,11 +668,12 @@ public class RetrieveSchemaService {
 			for (int i = 0; i < array.length(); i++) {
 				
 				ArrayList<String> result = new ArrayList<String>();
+				JSONObject row = array.getJSONObject(i);
 				
 				for (int j = 0 ; j < vars.length ; j++) {
-					JSONObject row = array.getJSONObject(i);
-					JSONObject p = new JSONObject(row.get(vars[j]).toString());
-					result.add(p.get("value").toString());
+					String var = row.get(vars[j]).toString();
+					JSONObject p = new JSONObject(var);
+					result.add(vars[j] + ":" + p.get("value").toString());
 				}
 				
 				results.add(result);
@@ -663,7 +689,9 @@ public class RetrieveSchemaService {
 		return null;
 	}
 	
-	
+	private String getLocalName(String uri) {
+		return uri.substring(uri.indexOf("#")+1 , uri.length());
+	}
 	
 	
 }
