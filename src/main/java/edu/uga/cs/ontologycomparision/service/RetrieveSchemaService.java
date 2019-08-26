@@ -558,7 +558,9 @@ public class RetrieveSchemaService {
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list = parseJson(http.execute());
 		
+		System.out.println("first query size: " + list.size());
 		for(ArrayList<String> row : list) {
+			
 									
 			String subject = "", predicate = "", object="";
 			for(String item : row) {
@@ -577,6 +579,7 @@ public class RetrieveSchemaService {
 					break;
 				}
 			}
+			
 			String predicateLocalName = getLocalName(predicate);
 			if (!subject.equals("http://www.w3.org/2002/07/owl#Thing")) {
 				if (predicateLocalName.equals("unionOf") || predicateLocalName.equals("intersectionOf")) {
@@ -601,6 +604,8 @@ public class RetrieveSchemaService {
 					
 					if (test )
 						query += " ORDER BY ?s LIMIT 20";
+					
+//					System.out.println("subject query: " + query);
 					
 					HTTPConnection http2 = new HTTPConnection(endpointURL, query);
 					
@@ -631,7 +636,7 @@ public class RetrieveSchemaService {
 					//add the expression here
 					Expression expression = new Expression(type,myClass, property, classes, version);
 					
-					expressionService.add(expression);
+					expressionService.addIfNotExist(expression);
 				}	
 			}								
 		}				

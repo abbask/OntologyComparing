@@ -19332,3 +19332,900 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Colu
 	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:209)
 2019-08-26 11:33:34 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
 2019-08-26 11:33:34 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:11 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:11 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:12 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:12 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:12 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:13 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:41 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:41 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:41 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:42 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:42 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:42 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:42 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:42 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:42 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:28:42 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:42 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:42 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:28:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:28:43 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:43 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:43 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:28:43 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:28:43 INFO  ExpressionService:75 - ExpressionService.add : new Expression commited.
+2019-08-26 12:43:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:13 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:43:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:13 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:43:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:13 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:43:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:13 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:43:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:43:13 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 12:43:51 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:51 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:43:51 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:51 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:51 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:43:51 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:51 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:43:51 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:44:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:44:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:44:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:44:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:44:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:44:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:44:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:44:48 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:07 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:07 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:07 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:46 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:47 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:47 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:47 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:47 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:47 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:45:48 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:48 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:48 INFO  ExpressionService:88 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:45:48 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:45:48 INFO  ExpressionService:88 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 12:52:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:44 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:44 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:45 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 12:52:45 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:45 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:45 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:45 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:45 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:45 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:45 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:46 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 12:52:47 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:47 INFO  ExpressionService:137 - ExpressionService.add : new Expression commited.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:47 INFO  ExpressionService:88 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 12:52:47 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 12:52:47 INFO  ExpressionService:88 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:23:13 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:23:13 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:35:28 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:35:28 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:35:29 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:35:29 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:35:29 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:35:29 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:35:29 INFO  ExpressionService:86 - ExpressionService.getByExpression : retrieved Expression.
+2019-08-26 13:36:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:30 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:36:30 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 13:36:30 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:30 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:36:30 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:31 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:36:31 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:31 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:36:31 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:32 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:36:32 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:36:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:32 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:32 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:36:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:36:32 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:36:32 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:36:32 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.

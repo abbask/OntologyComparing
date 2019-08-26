@@ -14,8 +14,6 @@ import org.apache.log4j.Logger;
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.Expression;
 import edu.uga.cs.ontologycomparision.model.Property;
-import edu.uga.cs.ontologycomparision.model.Restriction;
-import edu.uga.cs.ontologycomparision.model.RestrictionType;
 import edu.uga.cs.ontologycomparision.model.Version;
 
 public class ExpressionService {
@@ -27,6 +25,68 @@ private Connection connection;
 	}
 	
 	final static Logger logger = Logger.getLogger(ExpressionService.class);
+	
+	public Expression addIfNotExist(Expression expression) throws SQLException {
+		
+		Expression retrievedExpression = getByExpression(expression);
+		
+		if (retrievedExpression == null) {
+			int id = add(expression);
+			expression.setId(id);
+			return expression;
+
+		}
+		else
+			return retrievedExpression;
+		
+	}
+	
+	public Expression getByExpression(Expression expression) throws SQLException {
+		
+		Statement stmtSys = connection.createStatement();
+		
+		String query = "SELECT * FROM expression ";
+		String whereClause = "";
+		if (expression.getOnProperty() != null) {
+			whereClause += " property_id=" + expression.getOnProperty().getID() ;
+		}
+		
+		if (expression.getType() != null) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " type='" + expression.getType() + "' ";
+		}
+		
+		if (expression.getOnClass() != null) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " class_id=" + expression.getOnClass().getID();
+		}
+		
+		if (expression.getVersion() != null) {
+			if (whereClause != "")
+				whereClause += " AND";
+			whereClause += " version_id= " + expression.getVersion().getID();
+		}
+		
+		if (whereClause != "")
+			whereClause = "WHERE " + whereClause;
+		
+		ResultSet rs = stmtSys.executeQuery(query + whereClause); 
+		
+		while(rs.next()) {
+			expression.setId(rs.getInt("ID"));
+		}
+		
+		
+		if (expression.getId() == 0) {
+			return null;
+		}
+		
+		logger.info("ExpressionService.getByExpression : retrieved Expression.");
+		return expression;	
+				
+	}
 	
 	public int add(Expression expression) {
 		
