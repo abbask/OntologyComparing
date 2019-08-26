@@ -16753,3 +16753,69 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Colu
 2019-08-23 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
 2019-08-23 14:49:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
 2019-08-23 14:49:45 INFO  ExpressionService:58 - ExpressionService.add : new Expression commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ExpressionService:58 - ExpressionService.add : new Expression commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ExpressionService:58 - ExpressionService.add : new Expression commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 08:37:21 INFO  ExpressionService:58 - ExpressionService.add : new Expression commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ExpressionService:58 - ExpressionService.add : new Expression commited.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:22 INFO  ExpressionService:58 - ExpressionService.add : new Expression commited.
+2019-08-26 08:37:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 08:37:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 08:37:22 INFO  ExpressionService:58 - ExpressionService.add : new Expression commited.

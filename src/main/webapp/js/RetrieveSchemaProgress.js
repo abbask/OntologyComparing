@@ -33,6 +33,7 @@ $(document).ready(function(){
 			getObjectTripleTypes(endpoint, graphname, versionId);
 			getDataTypeTripleTypes(endpoint, graphname, versionId);
 			getRestrictions(endpoint, graphname, versionId);
+			getRestrictions(endpoint, graphname, versionId);
 		}).fail(function (data) {
 			$('.progressDiv').append('<p>Classes: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
@@ -100,6 +101,19 @@ $(document).ready(function(){
 			$('.progressDiv').append('<p>Restrictions: <span class="glyphicon glyphicon-ok"></span></p>');
 		}).fail(function (data) {
 			$('.progressDiv').append('<p>Restrictions: <span class="glyphicon glyphicon-remove"></span></p>');
+		}).responseText;
+	}
+	
+	function getRestrictions(endpoint, graphname, versionId){
+		return $.ajax({
+		    url: 'rest/RetrieveSchema/Expression',
+		    type: 'GET',
+		    data: {'endpoint': endpoint, 'graphName': graphname, 'version_id': version_id},
+		    async: true
+		}).done(function (data) {
+			$('.progressDiv').append('<p>Expressions: <span class="glyphicon glyphicon-ok"></span></p>');
+		}).fail(function (data) {
+			$('.progressDiv').append('<p>Expressions: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
 	}
 	
