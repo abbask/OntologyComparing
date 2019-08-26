@@ -5,12 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
 
 import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.Expression;
+import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Restriction;
+import edu.uga.cs.ontologycomparision.model.RestrictionType;
+import edu.uga.cs.ontologycomparision.model.Version;
 
 public class ExpressionService {
 	
@@ -87,6 +93,40 @@ private Connection connection;
 		
 		return count;
 		
+	}
+	
+	public List<Expression> listAll(int versionId) throws SQLException{
+		List<Expression> results = new ArrayList<Expression>();
+		
+		Statement stmtSys = connection.createStatement();	
+		String query = "SELECT * FROM expression WHERE version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		ClassService classService = new ClassService(connection);
+		VersionService versionService = new VersionService(connection);				
+		
+		while (rs.next()) {
+			int iD = rs.getInt("id");
+			String type = rs.getString("type");
+			
+			Statement stmtExp = connection.createStatement();	
+			String queryExp = "SELECT * FROM expression_class WHERE expression_id=" + iD;
+			ResultSet rsExp = stmtExp.executeQuery(queryExp); 
+			
+			List<Class> classes = new LinkedList<Class>();
+			while (rsExp.next()) {
+				int classId = rsExp.getInt("id");
+				Class myClass= classService.getByID(classId);
+				classes.add(myClass);
+			}
+			Version version = versionService.get(rs.getInt("version_id")); 			
+			Expression expression = new Expression(type, classes, version);			
+			results.add(expression);
+			
+		}
+		
+		return results;
+			
 	}
 
 }

@@ -84,6 +84,9 @@
 		  <li class="nav-item">
 		    <a class="nav-link" id="restrictionsL" data-toggle="tab" href="#restrictions" role="tab" aria-controls="restrictions" aria-selected="false">Restriction</a>
 		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" id="expressionsL" data-toggle="tab" href="#expressions" role="tab" aria-controls="expressions" aria-selected="false">Expressions</a>
+		  </li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
 		  <div class="tab-pane fade" id="count" role="tabpanel" aria-labelledby="count"></div>
@@ -96,6 +99,7 @@
 		  <div class="tab-pane fade" id="objectTripleforEach" role="tabpanel" aria-labelledby="objectTripleforEach"></div>
 		  <div class="tab-pane fade" id="datatypeTripleforEach" role="tabpanel" aria-labelledby="datatypeTripleforEach"></div>
 		  <div class="tab-pane fade" id="restrictions" role="tabpanel" aria-labelledby="restrictions"></div>
+		  <div class="tab-pane fade" id="expressions" role="tabpanel" aria-labelledby="expressions"></div>
 		</div>
 	</div>
 	

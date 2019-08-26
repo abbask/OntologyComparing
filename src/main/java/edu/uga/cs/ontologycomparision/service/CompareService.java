@@ -21,6 +21,7 @@ import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.ClassSortByLabel;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
 import edu.uga.cs.ontologycomparision.model.DatatypeTripleSortByLabel;
+import edu.uga.cs.ontologycomparision.model.Expression;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleSortByLabel;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
@@ -488,6 +489,45 @@ public class CompareService {
 		results.add(new Result<String, Long>("Number of expressions of version " + ver2.getID(), expressionCount2));
 		
 		return results;
+	}
+	
+	public List<Result<String, String>> compareExpressions() throws SQLException{
+		ExpressionService expressionService = new ExpressionService(connection);
+		
+		Set<Expression> expression1Set = expressionService.listAll(ver1.getID()).stream().collect(Collectors.toSet());
+		Set<Expression> expression2Set = expressionService.listAll(ver2.getID()).stream().collect(Collectors.toSet());
+
+		Set<Expression> restriction1SetTemp = new HashSet<Expression>(expression1Set);
+		
+		expression1Set.removeAll(expression2Set);
+		expression2Set.removeAll(restriction1SetTemp);
+				
+		List<Result<String, String>> expression1List = expression1Set.stream()				
+				.map(d -> 
+					new Result<String, String>("( " 
+						+ (d.getType() ==null ? "" : d.getType())+ ", " 
+						+ (d.getClasses()== null ? "" : d.getClasses().toString()) + ", ",
+						"Only in Version " + ver1.getNumber())
+				)
+				.collect(Collectors.toList());
+		
+		List<Result<String, String>> expression2List = expression2Set.stream()				
+				.map(d -> 
+				new Result<String, String>("( " 
+					+ (d.getType() ==null ? "" : d.getType())+ ", " 
+					+ (d.getClasses()== null ? "" : d.getClasses().toString()) + ", ",
+					"Only in Version " + ver2.getNumber())
+			)
+			.collect(Collectors.toList());
+						
+		Collections.sort(expression1List, Comparator.comparing(Result::getElement));
+		Collections.sort(expression2List, Comparator.comparing(Result::getElement));
+		
+		List<Result<String, String>> result = new ArrayList<>();
+		result.addAll(expression1List);
+		result.addAll(expression2List);
+
+		return result;
 	}
 	
 }

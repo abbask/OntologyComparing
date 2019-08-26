@@ -342,6 +342,37 @@ $(document).ready(function(){
 		}).responseText;
 	}
 	
+	function getExpressions(version1_id, version2_id){
+		return $.ajax({
+		    url: 'rest/compare/expressions',
+		    type: 'GET',
+		    data: { 'version1': version1_id, 'version2': version2_id},
+		    async: true
+		}).done(function (data) {
+			
+			var tableHeader = '<table class="table table-striped"><thead><tr><th scope="col"></th><th scope="col">Version </th></tr></thead><tbody>';
+			
+			var expressionsHtml = '';
+			data.expressions.forEach(function(e){
+				expressionsHtml += '<tr><td>' + e.element + '</td><td>'+ e.result +'</td></tr>';
+			});
+			
+			var tableContent = expressionsHtml;
+			
+			var tableFooter = '</tbody></table>';
+			
+			if (data.expressions.length < 1){
+				$('#expressions').html('<table class="table table-striped"><thead><tr><th scope="col">No Difference</th></tr></thead><tbody></tbody></table>');
+			}
+			else{
+				$('#expressions').html(tableHeader + tableContent + tableFooter);
+			}
+			
+		}).fail(function (data) {
+			console.log(data);
+		}).responseText;
+	}
+	
 	function loadSpinner(){
 		console.log($('#spinning'));
 		$('#count').html('<div class="loader"></div>');	
@@ -355,6 +386,7 @@ $(document).ready(function(){
 		
 		$('#datatypeTripleforEach').html('<div class="loader"></div>');	
 		$('#restrictions').html('<div class="loader"></div>');	
+		$('#expressions').html('<div class="loader"></div>');	
 	}
 	
 	$( "#compare" ).click(function() {
@@ -377,6 +409,7 @@ $(document).ready(function(){
 			getObjectTripleForEach(version1_id, version2_id);
 			getDatatypeTripleForEach(version1_id, version2_id);
 			getRestrictions(version1_id, version2_id);
+			getExpressions(version1_id, version2_id);
 		}// if 
 
 		

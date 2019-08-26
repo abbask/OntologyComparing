@@ -94,8 +94,6 @@ public class CompareREST {
 			CompareService compareService = new CompareService(version1, version2);
 			
 			List<Result<String, String>> classes 		  = compareService.compareClasses();
-//			List<Result<String, String>> objectProperties = compareService.compareObjectProperties();
-//			List<Result<String, String>> datatypeProperties = compareService.compareDatetypeProperties();
 
 			
 			root.put("classes", classes);
@@ -394,10 +392,10 @@ public class CompareREST {
 			
 			CompareService compareService = new CompareService(version1, version2);
 
-			List<Result<String, String>> restrictions = compareService.compareRestrictions();
+			List<Result<String, String>> expressions = compareService.compareExpressions();
 			
 			
-			root.put("restrictions", restrictions);
+			root.put("expressions", expressions);
 
 			Gson gson = new Gson();
 			String result = gson.toJson(root);
