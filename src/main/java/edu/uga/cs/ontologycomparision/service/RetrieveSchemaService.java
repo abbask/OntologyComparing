@@ -593,11 +593,11 @@ public class RetrieveSchemaService {
 					
 					
 					String query= "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
-					selectFrom  = "SELECT ?s ?p ?o";
+					selectFrom  = "SELECT ?s ?p";
 					
 					if (!graphName.isBlank())
-						selectFrom = "SELECT ?s ?p ?o FROM " + graphName;
-					query += selectFrom + " WHERE {?s ?p ?o. FILTER( ?p IN(owl:unionOf, owl:intersectionOf) ) }";
+						selectFrom = "SELECT ?s ?p FROM " + graphName;
+					query += selectFrom + " WHERE {?s ?p <" + subject + "> }";
 					
 					if (test )
 						query += " ORDER BY ?s LIMIT 20";
@@ -625,6 +625,7 @@ public class RetrieveSchemaService {
 						
 						myClass = collectClass(subjectUsedIn);
 						property = collectProperty(predicateUsedIn, "");
+						
 					}
 	
 					//add the expression here
