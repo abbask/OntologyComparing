@@ -590,7 +590,8 @@ public class RetrieveSchemaService {
 					
 					expressionService.add(expression);
 				}	
-			}					
+			}						
+			
 		}				
 		return true;
 		
@@ -641,6 +642,38 @@ public class RetrieveSchemaService {
 			else {
 				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicate);
 			}
+			
+			// retrieve where the expression were used
+			String query= "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+			selectFrom  = "SELECT ?s ?p ?o";
+			
+			if (!graphName.isBlank())
+				selectFrom = "SELECT ?s ?p ?o FROM " + graphName;
+			query += selectFrom + " WHERE {?s ?p ?o. FILTER( ?p IN(owl:unionOf, owl:intersectionOf) ) }";
+			
+			if (test )
+				query += " ORDER BY ?s LIMIT 20";
+			
+			ArrayList<ArrayList<String>> usedInList = parseJson(http.execute());
+			for(ArrayList<String> usedIn : usedInList) {
+				String subjectUsedIn = "";
+				String predicateUsedIn = "";
+				
+				for(String item : usedIn) {
+					int index = item.indexOf(":");
+					switch (item.substring(0,index)) {
+					case "s":
+						predicate = item.substring(index+1, item.length());
+						break;
+					case "p":
+						object = item.substring(index+1, item.length());
+						break;
+					default:
+						break;
+					}
+				}
+			}
+			
 		}
 								
 		return classes;
