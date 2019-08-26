@@ -33,7 +33,7 @@ $(document).ready(function(){
 			getObjectTripleTypes(endpoint, graphname, versionId);
 			getDataTypeTripleTypes(endpoint, graphname, versionId);
 			getRestrictions(endpoint, graphname, versionId);
-			getRestrictions(endpoint, graphname, versionId);
+			getExpressions(endpoint, graphname, versionId);
 		}).fail(function (data) {
 			$('.progressDiv').append('<p>Classes: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
@@ -104,7 +104,7 @@ $(document).ready(function(){
 		}).responseText;
 	}
 	
-	function getRestrictions(endpoint, graphname, versionId){
+	function getExpressions(endpoint, graphname, versionId){
 		return $.ajax({
 		    url: 'rest/RetrieveSchema/Expression',
 		    type: 'GET',
