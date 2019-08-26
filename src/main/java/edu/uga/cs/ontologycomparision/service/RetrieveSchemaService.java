@@ -625,7 +625,7 @@ public class RetrieveSchemaService {
 					}
 	
 					//add the expression here
-					Expression expression = new Expression(type, classes, version);
+					Expression expression = new Expression(type,myClass, property, classes, version);
 					
 					expressionService.add(expression);
 				}	

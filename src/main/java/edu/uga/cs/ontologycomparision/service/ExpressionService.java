@@ -35,10 +35,21 @@ private Connection connection;
 		try {
 			connection.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO expression (type, version_id) VALUES (?,?)";
+			String queryString = "INSERT INTO expression (type,class_id, property_id, version_id) VALUES (?,?,?,?)";
 			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,expression.getType());
-			statement.setInt(2,expression.getVersion().getID());
+			
+			if (expression.getOnClass() != null)
+				statement.setInt(2,expression.getOnClass().getID());
+			else
+				statement.setNull(2, java.sql.Types.INTEGER);
+			
+			if (expression.getOnProperty() != null)
+				statement.setInt(3,expression.getOnProperty().getID());
+			else
+				statement.setNull(3, java.sql.Types.INTEGER);
+			
+			statement.setInt(4,expression.getVersion().getID());
 
 						
 			int rowAffected = statement.executeUpdate();
@@ -103,6 +114,7 @@ private Connection connection;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		ClassService classService = new ClassService(connection);
+		PropertyService propertyService = new PropertyService(connection);
 		VersionService versionService = new VersionService(connection);				
 		
 		while (rs.next()) {
@@ -119,8 +131,11 @@ private Connection connection;
 				Class myClass= classService.getByID(classId);
 				classes.add(myClass);
 			}
-			Version version = versionService.get(rs.getInt("version_id")); 			
-			Expression expression = new Expression(type, classes, version);			
+			Version version = versionService.get(rs.getInt("version_id")); 		
+			Class onClass = classService.getByID(rs.getInt("class_id"));
+			Property onProperty = propertyService.getByID(rs.getInt("property_id"));
+			
+			Expression expression = new Expression(type,onClass, onProperty, classes, version);	
 			results.add(expression);
 			
 		}
