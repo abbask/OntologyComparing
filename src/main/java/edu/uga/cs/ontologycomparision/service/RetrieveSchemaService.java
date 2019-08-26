@@ -170,7 +170,7 @@ public class RetrieveSchemaService {
 			Resource res = soln.getResource("predicate");
 
 			if (res.getLocalName() != null) {				
-				collectProperty(predicate, ObjectPropertyType);						
+				collectProperty(predicate.toString(), ObjectPropertyType);						
 			}			
 		}
 		
@@ -190,7 +190,7 @@ public class RetrieveSchemaService {
 			Resource res = soln.getResource("predicate");
 
 			if (res.getLocalName() != null) {				
-				collectProperty(predicate, DatatypePropertyType);						
+				collectProperty(predicate.toString(), DatatypePropertyType);						
 			}			
 		}
 		
@@ -198,23 +198,22 @@ public class RetrieveSchemaService {
 	}
 	
 	
-	private Property collectProperty(RDFNode propertyRDFNode, String type) throws SQLException {
+	private Property collectProperty(String propertyString, String type) throws SQLException {
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		
-		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent "
-				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{ <" + propertyRDFNode + "> rdfs:subPropertyOf ?parent .}";
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent ?p"
+				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{ <" + propertyString + "> rdfs:subPropertyOf ?parent .bind(<" + propertyString + "> AS ?p)}";
 		List<QuerySolution> parents =  conn.executeSelect(queryString);
 		
 		Property parentProperty = null;	
 		if (parents.size() > 0) {
 			
-			parentProperty = collectProperty(parents.get(0).get("parent"), type);
+			parentProperty = collectProperty(parents.get(0).get("parent").toString(), type);
 		}
-		
-		Resource propertyResource = propertyRDFNode.asResource();
-		
-		
+				
+		Resource propertyResource = parents.get(0).get("p").asResource();
+				
 		PropertyService propertyService = new PropertyService(connection);												
 		Property myProperty = new Property(propertyResource.getURI(), propertyResource.getLocalName(),type, "", version, parentProperty);
 		myProperty = propertyService.addIfNotExist(myProperty);	
@@ -506,7 +505,7 @@ public class RetrieveSchemaService {
 				}
 				else if (predicate.equals("onProperty")){
 					
-					onProperty = collectProperty(objectNode.asResource(), ObjectPropertyType);
+					onProperty = collectProperty(objectNode.asResource().toString(), ObjectPropertyType);
 				}
 				else if (predicate.equals("onClass")){
 					
@@ -584,6 +583,46 @@ public class RetrieveSchemaService {
 					
 					//call to recursive method
 					classes = findClasses(object, classes);
+					
+					// retrieve where the expression were used
+					Class myClass = null;
+					Property property = null;
+					
+					
+					String query= "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+					selectFrom  = "SELECT ?s ?p ?o";
+					
+					if (!graphName.isBlank())
+						selectFrom = "SELECT ?s ?p ?o FROM " + graphName;
+					query += selectFrom + " WHERE {?s ?p ?o. FILTER( ?p IN(owl:unionOf, owl:intersectionOf) ) }";
+					
+					if (test )
+						query += " ORDER BY ?s LIMIT 20";
+					
+					HTTPConnection http2 = new HTTPConnection(endpointURL, query);
+					
+					ArrayList<ArrayList<String>> usedInList = parseJson(http2.execute());
+					for(ArrayList<String> usedIn : usedInList) {
+						String subjectUsedIn = "";
+						String predicateUsedIn = "";
+						
+						for(String item : usedIn) {
+							int index = item.indexOf(":");
+							switch (item.substring(0,index)) {
+							case "s":
+								subjectUsedIn = item.substring(index+1, item.length());
+								break;
+							case "p":
+								predicateUsedIn = item.substring(index+1, item.length());
+								break;
+							default:
+								break;
+							}
+						}
+						
+						myClass = collectClass(subjectUsedIn);
+						property = collectProperty(predicateUsedIn, "");
+					}
 	
 					//add the expression here
 					Expression expression = new Expression(type, classes, version);
@@ -641,38 +680,7 @@ public class RetrieveSchemaService {
 			}
 			else {
 				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicate);
-			}
-			
-			// retrieve where the expression were used
-			String query= "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
-			selectFrom  = "SELECT ?s ?p ?o";
-			
-			if (!graphName.isBlank())
-				selectFrom = "SELECT ?s ?p ?o FROM " + graphName;
-			query += selectFrom + " WHERE {?s ?p ?o. FILTER( ?p IN(owl:unionOf, owl:intersectionOf) ) }";
-			
-			if (test )
-				query += " ORDER BY ?s LIMIT 20";
-			
-			ArrayList<ArrayList<String>> usedInList = parseJson(http.execute());
-			for(ArrayList<String> usedIn : usedInList) {
-				String subjectUsedIn = "";
-				String predicateUsedIn = "";
-				
-				for(String item : usedIn) {
-					int index = item.indexOf(":");
-					switch (item.substring(0,index)) {
-					case "s":
-						predicate = item.substring(index+1, item.length());
-						break;
-					case "p":
-						object = item.substring(index+1, item.length());
-						break;
-					default:
-						break;
-					}
-				}
-			}
+			}										
 			
 		}
 								
