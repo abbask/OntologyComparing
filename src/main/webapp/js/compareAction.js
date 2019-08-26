@@ -20,8 +20,9 @@ $(document).ready(function(){
 			var objectTripleTypeHtml = '<tr><th scope="row">Number of Object Triple Types</th><td>'+data.objectTripleTypeCount[0].result +'</td><td>'+ data.objectTripleTypeCount[1].result + '</td><td>' + (data.objectTripleTypeCount[1].result - data.objectTripleTypeCount[0].result) + '</td></tr>';
 			var datatypeTripleTypeHtml = '<tr><th scope="row">Number of Datatype Triple Types</th><td>'+data.datatypeTripleTypeCount[0].result +'</td><td>'+ data.datatypeTripleTypeCount[1].result + '</td><td>' + (data.datatypeTripleTypeCount[1].result - data.datatypeTripleTypeCount[0].result) + '</td></tr>';
 			var restrictionCountHtml = '<tr><th scope="row">Number of Restrictions</th><td>'+data.restrictionCount[0].result +'</td><td>'+ data.restrictionCount[1].result + '</td><td>' + (data.restrictionCount[1].result - data.restrictionCount[0].result) + '</td></tr>';
+			var expressionCountHtml = '<tr><th scope="row">Number of Expressions</th><td>'+data.expresionCount[0].result +'</td><td>'+ data.expresionCount[1].result + '</td><td>' + (data.expresionCount[1].result - data.expresionCount[0].result) + '</td></tr>';
 			
-			var tableContent = classCountHtml + objectPropertyHtml + datatypePropertyHtml + individualHtml +objectTripleTypeHtml +  datatypeTripleTypeHtml + restrictionCountHtml;
+			var tableContent = classCountHtml + objectPropertyHtml + datatypePropertyHtml + individualHtml +objectTripleTypeHtml +  datatypeTripleTypeHtml + restrictionCountHtml + expressionCountHtml;
 			var tableFooter = '</tbody></table>';
 			
 			$('#count').html(tableHeader + tableContent + tableFooter);
