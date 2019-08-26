@@ -578,7 +578,7 @@ public class RetrieveSchemaService {
 			if (!subject.equals("http://www.w3.org/2002/07/owl#Thing")) {
 				if (predicateLocalName.equals("unionOf") || predicateLocalName.equals("intersectionOf")) {
 					String type = "";
-					type = predicate;
+					type = getLocalName(predicate);
 					classes = new LinkedList<Class>();
 					
 					//call to recursive method
@@ -629,8 +629,7 @@ public class RetrieveSchemaService {
 					
 					expressionService.add(expression);
 				}	
-			}						
-			
+			}								
 		}				
 		return true;
 		
