@@ -61,13 +61,13 @@
 		    <a class="nav-link" id="classes" data-toggle="tab" href="#classD" role="tab" aria-controls="classes" aria-selected="false">Classes</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="IndividualOfClasses" data-toggle="tab" href="#IndividualOfClass" role="tab" aria-controls="IndividualOfClass" aria-selected="false">Individuals</a>
+		    <a class="nav-link" id="IndividualOfClasses" data-toggle="tab" href="#IndividualOfClass" role="tab" aria-controls="IndividualOfClass" aria-selected="false">Indvs</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">object Properties</a>
+		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">object Props</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="datatypeProps" data-toggle="tab" href="#datatypeProp" role="tab" aria-controls="datatypeProp" aria-selected="false">Datatype Properties</a>
+		    <a class="nav-link" id="datatypeProps" data-toggle="tab" href="#datatypeProp" role="tab" aria-controls="datatypeProp" aria-selected="false">Datatype Props</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" id="objectTriples" data-toggle="tab" href="#objectTriple" role="tab" aria-controls="objectTriple" aria-selected="false">Object Triple</a>
