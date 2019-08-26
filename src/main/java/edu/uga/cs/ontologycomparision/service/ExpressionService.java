@@ -74,5 +74,19 @@ private Connection connection;
 		}
 		
 	}
+	
+	public long count(int versionId) throws SQLException  {
+		long count = 0 ;
+				
+		
+		Statement stmtSys = connection.createStatement();			
+		String query = "SELECT count(*) as count FROM expression where version_id=" + versionId;
+		ResultSet rs = stmtSys.executeQuery(query); 
+		if (rs.next())
+			count = rs.getLong("count");
+		
+		return count;
+		
+	}
 
 }

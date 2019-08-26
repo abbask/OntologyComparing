@@ -475,4 +475,19 @@ public class CompareService {
 		return result;
 	}
 	
+	public List<Result<String, Long>> compareExpressionCount() throws SQLException  {
+		
+		ExpressionService service = new ExpressionService(connection);
+		
+		long expressionCount1 = service.count(ver1.getID());
+		long expressionCount2 = service.count(ver2.getID());
+		
+		
+		List<Result<String, Long>> results = new ArrayList<>();
+		results.add(new Result<String, Long>("Number of expressions of version " + ver1.getID(), expressionCount1));
+		results.add(new Result<String, Long>("Number of expressions of version " + ver2.getID(), expressionCount2));
+		
+		return results;
+	}
+	
 }
