@@ -20229,3 +20229,1655 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Colu
 2019-08-26 13:36:32 INFO  ClassService:74 - ClassService.add : new Class commited.
 2019-08-26 13:36:32 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
 2019-08-26 13:36:32 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:40:36 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:36 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:36 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:36 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:37 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:37 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:37 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:37 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:37 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:37 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:37 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:38 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:38 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:38 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:38 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 13:40:38 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:38 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:38 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:38 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 13:40:38 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:40:39 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:39 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:39 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:39 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:39 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:39 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:39 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:39 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:39 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:39 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:39 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:39 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:39 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:40 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:41 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:42 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:43 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:43 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:43 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:43 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:43 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:43 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:43 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:44 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:45 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 13:40:45 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:45 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 13:40:45 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:40:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:46 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:46 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:47 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:48 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:49 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:49 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:49 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:49 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:49 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:50 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:51 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:51 INFO  ClassService:156 - PropertyService.getByID : retrieved property.
+2019-08-26 13:40:51 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:51 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:40:52 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:52 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:53 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:53 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:54 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:55 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:55 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:56 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:57 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:57 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:57 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:57 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:57 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:57 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:57 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:57 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:57 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:40:58 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:58 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:58 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:59 INFO  ClassService:156 - PropertyService.getByID : retrieved property.
+2019-08-26 13:40:59 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:40:59 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:40:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:40:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:40:59 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:00 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:00 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:00 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:00 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:00 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:00 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:00 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:00 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:00 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:00 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:00 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:00 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:01 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:01 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:01 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:01 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:01 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:01 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:01 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:02 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:02 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:03 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:03 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:05 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:05 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:05 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:05 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:05 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:05 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:05 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:06 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:06 INFO  ClassService:156 - PropertyService.getByID : retrieved property.
+2019-08-26 13:41:06 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:06 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:07 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:07 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:07 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:07 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:07 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:07 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:08 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:08 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 13:41:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:08 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:08 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:08 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:09 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:09 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:09 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:10 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:10 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:10 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:10 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:10 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:12 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:12 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:12 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:12 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:12 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:12 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:12 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:12 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 13:41:12 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:14 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:14 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:14 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:14 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:14 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:14 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:14 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:14 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:14 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:15 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:15 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:15 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:15 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:15 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:15 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:15 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:16 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:16 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:16 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 13:41:16 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:16 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:17 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:17 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:17 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:17 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:17 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:17 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:17 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:17 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:17 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:17 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:17 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:17 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:18 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:18 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:18 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:18 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:18 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:18 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:18 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:18 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:18 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:18 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:19 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:19 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:19 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:19 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:19 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:19 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:19 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:20 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:21 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:22 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:22 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:22 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:22 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:22 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:22 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:22 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:22 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:22 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:22 INFO  ClassService:83 - PropertyService.add : new Property commited.
+2019-08-26 13:41:23 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:23 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:23 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:23 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:23 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:23 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:23 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:24 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:24 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:24 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:24 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:24 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:24 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:24 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:24 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:24 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:24 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:24 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:24 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:27 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:27 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:27 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:27 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:27 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:27 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:28 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:28 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:28 INFO  ClassService:156 - PropertyService.getByID : retrieved property.
+2019-08-26 13:41:28 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:28 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:29 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:29 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:29 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:30 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:30 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:31 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:31 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:31 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:32 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:32 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:32 INFO  ClassService:156 - PropertyService.getByID : retrieved property.
+2019-08-26 13:41:32 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:32 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:32 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:33 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:33 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:33 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:33 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:33 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:33 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:34 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 13:41:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:34 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:34 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:34 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 13:41:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:35 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:35 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:35 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 13:41:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:35 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:35 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 13:41:35 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 13:41:36 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
+2019-08-26 13:41:36 INFO  ExpressionService:135 - ExpressionService.add : new Expression commited.
+2019-08-26 14:46:05 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:46:05 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:46:05 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:46:05 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:46:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:46:06 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:46:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:46:06 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:46:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:46:06 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:46:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:46:06 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:46:06 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:46:06 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:46:06 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:46:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:46:07 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:46:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:46:07 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:09 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:09 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:13 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:13 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:15 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:15 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:15 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:15 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:15 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:16 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:16 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:16 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:49:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:26 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:33 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:33 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:33 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:33 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:33 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:34 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:49:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:35 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:36 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:36 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:37 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:38 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:38 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:38 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:38 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:38 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:38 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:49:39 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:39 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:41 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:41 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:49:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:42 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:45 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:48 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:49 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:49:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:50 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:49:59 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:04 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:04 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:04 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:04 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:04 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:04 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:04 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:04 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:04 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:05 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:05 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:05 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:06 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:06 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:06 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:06 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:06 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:06 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:07 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:07 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:07 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:07 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:07 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:07 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:07 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:07 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:07 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:08 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:09 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:10 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:10 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:10 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:10 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:10 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:11 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:11 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:12 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:12 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:12 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:12 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:12 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:13 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:13 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:13 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:13 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:14 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:14 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:14 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:14 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:14 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:14 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:14 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:14 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:14 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:15 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:15 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:15 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:15 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:15 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:16 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:16 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:16 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:16 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:16 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:17 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:17 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:17 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:17 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:17 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:17 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:17 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:17 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:17 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:17 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:17 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:18 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:18 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:18 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:18 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:18 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:18 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:18 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:18 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:18 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:18 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:18 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:19 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:19 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:19 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:19 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:19 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:19 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:19 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:19 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:20 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:20 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:20 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:20 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:20 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:20 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:21 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:21 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:21 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:21 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:21 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:22 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:22 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:22 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:22 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:22 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:22 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:23 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:23 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:23 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:23 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:23 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:23 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:23 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:23 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:23 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:23 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:24 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:24 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:24 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:24 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:24 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:24 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:24 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:24 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:24 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:24 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:24 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:24 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:24 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:24 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:24 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:25 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:25 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:25 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:25 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:25 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:25 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:26 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:26 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:26 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:26 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:27 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:28 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:28 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:28 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:28 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:28 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:28 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:28 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:29 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:29 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:29 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:29 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:29 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:29 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:30 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:30 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:30 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:31 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:31 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:31 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:31 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:32 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:32 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:32 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:32 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:33 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:33 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:33 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:33 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:33 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:33 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:33 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.
+2019-08-26 14:50:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:34 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:34 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:34 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:34 INFO  ClassService:145 - ClassService.getByID : retrieved class.
+2019-08-26 14:50:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:34 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:35 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:35 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:35 WARN  RetrieveSchemaService:690 - RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : http://www.w3.org/2002/07/owl#sameAs
+2019-08-26 14:50:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:35 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:35 INFO  ClassService:121 - ClassService.getByLabel : retrieved class.
+2019-08-26 14:50:35 INFO  ClassService:74 - ClassService.add : new Class commited.
+2019-08-26 14:50:35 INFO  ExpressionService:133 - ExpressionService.add : new Expression commited.

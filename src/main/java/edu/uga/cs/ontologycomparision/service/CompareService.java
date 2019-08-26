@@ -506,7 +506,7 @@ public class CompareService {
 				.map(d -> 
 					new Result<String, String>("( " 
 						+ (d.getType() ==null ? "" : d.getType())+ ", " 
-						+ (d.getOnClass() ==null ? "" : d.getOnClass())+ ", " 
+						+ (d.getOnClass() ==null ? "" : d.getOnClass().getLabel())+ ", " 
 						+ (d.getOnProperty() ==null ? "" : d.getOnProperty())+ ", " 		
 						+ (d.getClasses()== null ? "" : d.getClasses().toString()) + ", ",
 						"Only in Version " + ver1.getNumber())
@@ -517,7 +517,7 @@ public class CompareService {
 				.map(d -> 
 				new Result<String, String>("( " 
 					+ (d.getType() ==null ? "" : d.getType())+ ", " 
-					+ (d.getOnClass() ==null ? "" : d.getOnClass())+ ", " 
+					+ (d.getOnClass() ==null ? "" : d.getOnClass().getLabel())+ ", " 
 					+ (d.getOnProperty() ==null ? "" : d.getOnProperty())+ ", " 							
 					+ (d.getClasses()== null ? "" : d.getClasses().toString()) + ", ",
 					"Only in Version " + ver2.getNumber())

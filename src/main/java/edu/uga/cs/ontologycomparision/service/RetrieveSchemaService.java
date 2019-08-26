@@ -592,7 +592,7 @@ public class RetrieveSchemaService {
 					
 					// retrieve where the expression were used
 					Class myClass = null;
-					Property property = null;
+					String predicateUsedIn = "";
 					
 					
 					String query= "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
@@ -612,7 +612,7 @@ public class RetrieveSchemaService {
 					ArrayList<ArrayList<String>> usedInList = parseJson(http2.execute());
 					for(ArrayList<String> usedIn : usedInList) {
 						String subjectUsedIn = "";
-						String predicateUsedIn = "";
+						
 						
 						for(String item : usedIn) {
 							int index = item.indexOf(":");
@@ -629,12 +629,12 @@ public class RetrieveSchemaService {
 						}
 						
 						myClass = collectClass(subjectUsedIn);
-						property = collectProperty(predicateUsedIn, "");
+						
 						
 					}
 	
 					//add the expression here
-					Expression expression = new Expression(type,myClass, property, classes, version);
+					Expression expression = new Expression(type,myClass, getLocalName(predicateUsedIn), classes, version);
 					
 					expressionService.addIfNotExist(expression);
 				}	

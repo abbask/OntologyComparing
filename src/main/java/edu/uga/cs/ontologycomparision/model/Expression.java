@@ -13,14 +13,15 @@ public class Expression {
 	private int id;
 	private String type;
 	private Class onClass;
-	private Property onProperty;
+	private String onProperty;
 	private List<Class> classes;
 	private Version version;
 	
 	
 	public Expression() { }
 
-	public Expression(String type, Class onClass, Property onProperty, List<Class> classes, Version version) {
+	public Expression(String type, Class onClass, String onProperty, List<Class> classes, Version version) {
+
 		this.type = type;
 		this.onClass = onClass;
 		this.onProperty = onProperty;
@@ -28,8 +29,7 @@ public class Expression {
 		this.version = version;
 	}
 
-	public Expression(int id, String type, Class onClass, Property onProperty, List<Class> classes, Version version) {
-		super();
+	public Expression(int id, String type, Class onClass, String onProperty, List<Class> classes, Version version) {
 		this.id = id;
 		this.type = type;
 		this.onClass = onClass;
@@ -62,11 +62,11 @@ public class Expression {
 		this.onClass = onClass;
 	}
 
-	public Property getOnProperty() {
+	public String getOnProperty() {
 		return onProperty;
 	}
 
-	public void setOnProperty(Property onProperty) {
+	public void setOnProperty(String onProperty) {
 		this.onProperty = onProperty;
 	}
 

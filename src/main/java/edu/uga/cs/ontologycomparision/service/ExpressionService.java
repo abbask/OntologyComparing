@@ -13,7 +13,6 @@ import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.Expression;
-import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
 
 public class ExpressionService {
@@ -48,7 +47,7 @@ private Connection connection;
 		String query = "SELECT * FROM expression ";
 		String whereClause = "";
 		if (expression.getOnProperty() != null) {
-			whereClause += " property_id=" + expression.getOnProperty().getID() ;
+			whereClause += " property='" + expression.getOnProperty() + "' " ;
 		}
 		
 		if (expression.getType() != null) {
@@ -95,7 +94,7 @@ private Connection connection;
 		try {
 			connection.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO expression (type,class_id, property_id, version_id) VALUES (?,?,?,?)";
+			String queryString = "INSERT INTO expression (type,class_id, property, version_id) VALUES (?,?,?,?)";
 			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,expression.getType());
 			
@@ -104,10 +103,9 @@ private Connection connection;
 			else
 				statement.setNull(2, java.sql.Types.INTEGER);
 			
-			if (expression.getOnProperty() != null)
-				statement.setInt(3,expression.getOnProperty().getID());
-			else
-				statement.setNull(3, java.sql.Types.INTEGER);
+			
+			statement.setString(3,expression.getOnProperty());
+			
 			
 			statement.setInt(4,expression.getVersion().getID());
 
@@ -174,7 +172,6 @@ private Connection connection;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		ClassService classService = new ClassService(connection);
-		PropertyService propertyService = new PropertyService(connection);
 		VersionService versionService = new VersionService(connection);				
 		
 		while (rs.next()) {
@@ -193,7 +190,7 @@ private Connection connection;
 			}
 			Version version = versionService.get(rs.getInt("version_id")); 		
 			Class onClass = classService.getByID(rs.getInt("class_id"));
-			Property onProperty = propertyService.getByID(rs.getInt("property_id"));
+			String onProperty = rs.getString("property");
 			
 			Expression expression = new Expression(type,onClass, onProperty, classes, version);	
 			results.add(expression);
