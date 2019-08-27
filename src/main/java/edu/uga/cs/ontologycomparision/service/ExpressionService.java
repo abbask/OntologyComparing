@@ -184,7 +184,7 @@ private Connection connection;
 			
 			List<Class> classes = new LinkedList<Class>();
 			while (rsExp.next()) {
-				int classId = rsExp.getInt("id");
+				int classId = rsExp.getInt("class_id");
 				Class myClass= classService.getByID(classId);
 				classes.add(myClass);
 			}
