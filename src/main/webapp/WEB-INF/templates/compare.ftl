@@ -58,16 +58,16 @@
 		    <a class="nav-link active" id="Counts" data-toggle="tab" href="#count" role="tab" aria-controls="count" aria-selected="true">Count</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="classes" data-toggle="tab" href="#classD" role="tab" aria-controls="classes" aria-selected="false">Classes</a>
+		    <a class="nav-link" id="classes" data-toggle="tab" href="#classD" role="tab" aria-controls="classes" aria-selected="false">Class</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="IndividualOfClasses" data-toggle="tab" href="#IndividualOfClass" role="tab" aria-controls="IndividualOfClass" aria-selected="false">Indvs</a>
+		    <a class="nav-link" id="IndividualOfClasses" data-toggle="tab" href="#IndividualOfClass" role="tab" aria-controls="IndividualOfClass" aria-selected="false">Indv</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">object Props</a>
+		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">object Prop</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="datatypeProps" data-toggle="tab" href="#datatypeProp" role="tab" aria-controls="datatypeProp" aria-selected="false">Datatype Props</a>
+		    <a class="nav-link" id="datatypeProps" data-toggle="tab" href="#datatypeProp" role="tab" aria-controls="datatypeProp" aria-selected="false">Datatype Prop</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" id="objectTriples" data-toggle="tab" href="#objectTriple" role="tab" aria-controls="objectTriple" aria-selected="false">Object Triple</a>

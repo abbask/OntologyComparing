@@ -8,6 +8,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -504,22 +505,23 @@ public class CompareService {
 				
 		List<Result<String, String>> expression1List = expression1Set.stream()				
 				.map(d -> 
-					new Result<String, String>("( " 
-						+ (d.getType() ==null ? "" : d.getType())+ ", " 
+					new Result<String, String>("( " 						
 						+ (d.getOnClass() ==null ? "" : d.getOnClass().getLabel())+ ", " 
-						+ (d.getOnProperty() ==null ? "" : d.getOnProperty())+ ", " 		
-						+ (d.getClasses()== null ? "" : d.getClasses().toString()) + ", ",
-						"Only in Version " + ver1.getNumber())
+						+ (d.getOnProperty() ==null ? "" : d.getOnProperty())+ ") ,"
+						+ (d.getType() ==null ? "" : d.getType())+ ", " 
+						+ (d.getClasses()== null ? "" : d.getClasses().stream().map(Class::getLabel).collect(Collectors.toCollection(LinkedList::new)) ) + " ",
+						"Only in Version " + ver1.getNumber() )
 				)
 				.collect(Collectors.toList());
 		
 		List<Result<String, String>> expression2List = expression2Set.stream()				
 				.map(d -> 
-				new Result<String, String>("( " 
-					+ (d.getType() ==null ? "" : d.getType())+ ", " 
+				new Result<String, String>(" " 
+					+ " ("
 					+ (d.getOnClass() ==null ? "" : d.getOnClass().getLabel())+ ", " 
-					+ (d.getOnProperty() ==null ? "" : d.getOnProperty())+ ", " 							
-					+ (d.getClasses()== null ? "" : d.getClasses().toString()) + ", ",
+					+ (d.getOnProperty() ==null ? "" : d.getOnProperty())+ ") ," 
+					+ (d.getType() ==null ? "" : d.getType())+ ", " 
+					+ (d.getClasses()== null ? "" : d.getClasses().stream().map(Class::getLabel).collect(Collectors.toCollection(LinkedList::new)) ) + " ",
 					"Only in Version " + ver2.getNumber())
 			)
 			.collect(Collectors.toList());
