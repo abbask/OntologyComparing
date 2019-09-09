@@ -100,16 +100,16 @@ public class RetrieveSchemaService {
 			RDFNode subjectRDFNode = soln.get("s");
 			RDFNode parentRDFNode = soln.get("parent");
 			
-			if (subjectRDFNode.asResource().getURI() == null)
+			if (subjectRDFNode.asResource().getURI() == null){
 				continue;
-			
+			}
+
 			long count =  soln.get("Count").asLiteral().getLong();
 			Class parentClass = null;
 			
 			if (parentRDFNode != null) {				
 				 parentClass = collectClass(parentRDFNode.asResource().toString());						
 			}	
-			
 			
 			Class myClass = new Class(subjectRDFNode.asResource().getURI(), subjectRDFNode.asResource().getLocalName(), "", count, version, parentClass);
 			
@@ -558,7 +558,7 @@ public class RetrieveSchemaService {
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list = parseJson(http.execute());
 		
-		System.out.println("first query size: " + list.size());
+		//System.out.println("first query size: " + list.size());
 		for(ArrayList<String> row : list) {
 			
 									
@@ -591,7 +591,7 @@ public class RetrieveSchemaService {
 					classes = findClasses(object, classes);
 					
 					// retrieve where the expression were used
-					Class myClass = null;
+					Property property = null;
 					String predicateUsedIn = "";
 					
 					
@@ -628,13 +628,13 @@ public class RetrieveSchemaService {
 							}
 						}
 						
-						myClass = collectClass(subjectUsedIn);
-						
+//						myClass = collectClass(subjectUsedIn);
+						property = collectProperty(subjectUsedIn, "");
 						
 					}
 	
 					//add the expression here
-					Expression expression = new Expression(type,myClass, getLocalName(predicateUsedIn), classes, version);
+					Expression expression = new Expression(type,property, getLocalName(predicateUsedIn), classes, version);
 					
 					expressionService.addIfNotExist(expression);
 				}	

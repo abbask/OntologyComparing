@@ -12,27 +12,29 @@ public class Expression {
 	
 	private int id;
 	private String type;
-	private Class onClass;
+	private Property property;
 	private String onProperty;
 	private List<Class> classes;
 	private Version version;
 	
+	public Expression() {
 	
-	public Expression() { }
-
-	public Expression(String type, Class onClass, String onProperty, List<Class> classes, Version version) {
+	}
+	
+	public Expression(String type, Property property, String onProperty, List<Class> classes, Version version) {
 
 		this.type = type;
-		this.onClass = onClass;
+		this.property = property;
 		this.onProperty = onProperty;
 		this.classes = classes;
 		this.version = version;
 	}
 
-	public Expression(int id, String type, Class onClass, String onProperty, List<Class> classes, Version version) {
+	public Expression(int id, String type, Property property, String onProperty, List<Class> classes, Version version) {
+
 		this.id = id;
 		this.type = type;
-		this.onClass = onClass;
+		this.property = property;
 		this.onProperty = onProperty;
 		this.classes = classes;
 		this.version = version;
@@ -54,12 +56,12 @@ public class Expression {
 		this.type = type;
 	}
 
-	public Class getOnClass() {
-		return onClass;
+	public Property getProperty() {
+		return property;
 	}
 
-	public void setOnClass(Class onClass) {
-		this.onClass = onClass;
+	public void setProperty(Property property) {
+		this.property = property;
 	}
 
 	public String getOnProperty() {
@@ -91,9 +93,11 @@ public class Expression {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((classes == null) ? 0 : classes.hashCode());
-		result = prime * result + ((onClass == null) ? 0 : onClass.hashCode());
+		
 		result = prime * result + ((onProperty == null) ? 0 : onProperty.hashCode());
+		result = prime * result + ((property == null) ? 0 : property.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		
 		return result;
 	}
 
@@ -108,19 +112,17 @@ public class Expression {
 		if (classes == null) {
 			if (other.classes != null)
 				return false;
-		} else if (!classes.equals(other.classes))
-			return false;
-		if (id != other.id)
-			return false;
-		if (onClass == null) {
-			if (other.onClass != null)
-				return false;
-		} else if (!onClass.equals(other.onClass))
-			return false;
+		} 
+
 		if (onProperty == null) {
 			if (other.onProperty != null)
 				return false;
 		} else if (!onProperty.equals(other.onProperty))
+			return false;
+		if (property == null) {
+			if (other.property != null)
+				return false;
+		} else if (!property.equals(other.property))
 			return false;
 		if (type == null) {
 			if (other.type != null)
@@ -133,10 +135,12 @@ public class Expression {
 
 	@Override
 	public String toString() {
-		return "Expression [id=" + id + ", type=" + type + ", onClass=" + onClass + ", onProperty=" + onProperty
+		return "Expression [id=" + id + ", type=" + type + ", property=" + property + ", onProperty=" + onProperty
 				+ ", classes=" + classes + ", version=" + version + "]";
 	}
 	
 	
-		
+	
+	
+	
 }
