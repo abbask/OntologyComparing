@@ -300,7 +300,7 @@ public class RetrieveSchemaService {
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
 		
 		queryStringTriple += "select (COUNT(?s) as ?count)" + 
-				 + (graphName.isBlank()? "" : " FROM " + graphName )+ " " +
+				 (graphName.isBlank()? "" : " FROM " + graphName )+ " " +
 				"WHERE {" + 				
 				"?s <" + property + "> ?o." ;
 		
