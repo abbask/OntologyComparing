@@ -231,7 +231,8 @@ public class RetrieveSchemaService {
 				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
 		
-		queryStringTriple += "SELECT distinct (?sc as ?domain) (?p as ?property) (?oc as ?range) (count(?s) as ?count)" + 
+		queryStringTriple += "SELECT distinct (?sc as ?domain) (?p as ?property) (?oc as ?range) (count(?s) as ?count)" +
+				(graphName.isBlank()? "" : " FROM " + graphName )+ " " +
 				"WHERE{" + 
 				"   ?p a owl:ObjectProperty." + 
 				"   ?s ?p ?o." + 
@@ -299,7 +300,8 @@ public class RetrieveSchemaService {
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
 		
 		queryStringTriple += "select (COUNT(?s) as ?count)" + 
-				"WHERE {" + 
+				 + (graphName.isBlank()? "" : " FROM " + graphName )+ " " +
+				"WHERE {" + 				
 				"?s <" + property + "> ?o." ;
 		
 		String[] restrictionList = {"?s a <" + domain + ">. ?o a <" + range + ">.}" , "?s a ?k. ?k rdfs:subClassOf* <" + domain + ">. ?o a <" + range + ">.}",
@@ -330,6 +332,7 @@ public class RetrieveSchemaService {
 				"PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>";	
 		
 		queryStringTriple += "SELECT (?sc as ?domain) (?p as ?property) (count(?s) as ?count) "
+				+ (graphName.isBlank()? "" : " FROM " + graphName )+ " "
 				+ "WHERE{ ?p a owl:DatatypeProperty. ?s ?p ?o. ?s a ?sc. } "
 				+ "GROUP BY ?sc ?p "
 				+ "ORDER BY ?sc ?p" ;
@@ -355,7 +358,7 @@ public class RetrieveSchemaService {
 			Property predicate;
 			XSDType range;
 			
-			List<QuerySolution> rangeList = conn.executeSelect("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?range WHERE{ optional { <" + predicateNode.asResource() + "> rdfs:range ?range} optional { <" + predicateNode.asResource()  + "> rdfs:subClassOf* ?c. ?c rdfs:range ?range} }" );
+			List<QuerySolution> rangeList = conn.executeSelect("PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> SELECT ?range " + (graphName.isBlank()? "" : " FROM " + graphName )+ " WHERE{ optional { <" + predicateNode.asResource() + "> rdfs:range ?range} optional { <" + predicateNode.asResource()  + "> rdfs:subClassOf* ?c. ?c rdfs:range ?range} }" );
 			RDFNode rangeNode = rangeList.get(0).get("range");
 			try {
 				range = new XSDType(rangeNode.asResource().getURI(), rangeNode.asResource().getLocalName());
