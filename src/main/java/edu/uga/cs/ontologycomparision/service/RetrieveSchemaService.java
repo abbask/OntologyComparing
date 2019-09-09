@@ -440,7 +440,7 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public boolean retrieveAllRestrictions() throws SQLException {
+	public boolean retrieveAllRestrictions() throws SQLException, IOException {
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
 		String selectFrom  = "SELECT ?s";
 		
@@ -449,8 +449,10 @@ public class RetrieveSchemaService {
 		queryStringTriple += selectFrom + " WHERE {?s rdf:type owl:Restriction.}";
 		
 		if (test )
-			queryStringTriple += " ORDER BY ?s LIMIT 1000";
+			queryStringTriple += " ORDER BY ?s LIMIT 20";
 
+		System.out.println(queryStringTriple);
+		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
@@ -474,7 +476,7 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public Restriction findRestrictionByNode(RDFNode node, Map<String, Integer> restrictionTypeMap) throws SQLException {
+	public Restriction findRestrictionByNode(RDFNode node, Map<String, Integer> restrictionTypeMap) throws SQLException, IOException {
 		String selectFrom  = "SELECT ?p ?o";
 		
 		if (!graphName.isBlank())
@@ -489,7 +491,7 @@ public class RetrieveSchemaService {
 		RestrictionType type = null;
 		Property onProperty = null;
 		Class onClass = null;
-		int cardinalityValue = 0;
+		String value = null;
 		
 		try {
 		
@@ -505,9 +507,23 @@ public class RetrieveSchemaService {
 					RestrictionType restrictionType = new RestrictionType(predicate) ;
 					type = restrictionTypeService.addIfNotExist(restrictionType);
 					
-					if (containsCardinality(predicate)) {
-						cardinalityValue = objectNode.asLiteral().getInt();
+					if (!containsCardinality(predicate)) {
+						List<Class> classes = new ArrayList<Class>();
+						classes = findClassesForRestriction(objectNode.asResource().getURI(), classes);
+//						System.out.println("Predicate: " + predicate);
+						System.out.println(classes);
+//						//String s = list.stream().map(Object::toString).collect(Collectors.joining(",")
+						value = classes.stream().map(Class::getLabel).collect(Collectors.joining(", "));
 					}
+					else {
+						value = objectNode.asLiteral().getString();
+					}
+					
+					//value = objectNode.asLiteral().getString();
+					
+//					if (containsCardinality(predicate)) {
+//						value = objectNode.asLiteral().getString();
+//					}
 				}
 				else if (predicate.equals("onProperty")){
 					
@@ -523,7 +539,7 @@ public class RetrieveSchemaService {
 							
 			}//for
 			
-			return( new Restriction(onProperty, type, cardinalityValue, onClass, version));
+			return( new Restriction(onProperty, type, value, onClass, version));
 		}
 		catch (JenaException jex) {
 			logger.error("RetrieveSchemaService.findRestrictionByNode : error in Jena conversion Node to Resource. The record Skipped.");
@@ -649,7 +665,7 @@ public class RetrieveSchemaService {
 	
 	private List<Class> findClasses(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
 		
-			
+		System.out.println(strNode);
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
 		String selectFrom  = "SELECT ?p ?o";
 		
@@ -658,7 +674,7 @@ public class RetrieveSchemaService {
 		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
 		
 		if (test )
-			queryStringTriple += " ORDER BY ?p ?o LIMIT 1000";
+			queryStringTriple += " ORDER BY ?p ?o LIMIT 100";
 
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list = parseJson(http.execute());
@@ -698,6 +714,7 @@ public class RetrieveSchemaService {
 		return classes;
 		
 	}
+	
 	
 	public ArrayList<ArrayList<String>> parseJson(String strJSON) {
 		try {
@@ -741,9 +758,86 @@ public class RetrieveSchemaService {
 		return null;
 	}
 	
+	public boolean parseJsonBoolean(String strJSON) {
+		try {
+						
+			JSONObject jsonObject = new JSONObject(strJSON);
+			
+			String result = jsonObject.get("boolean").toString();
+			
+			return result.equals("true");
+					     
+		}catch (JSONException err){
+		     System.out.println("Error json.");
+		}
+		
+		return false;
+	}
+	
 	private String getLocalName(String uri) {
 		return uri.substring(uri.indexOf("#")+1 , uri.length());
 	}
 	
+	private List<Class> findClassesForRestriction(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
+		
+		System.out.println(strNode);
+		// check whether is a class or blank node
+		String queryCheckClass = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ASK {<" + strNode + "> a owl:Class.}";
+		HTTPConnection http = new HTTPConnection(endpointURL, queryCheckClass);
+		boolean result = parseJsonBoolean(http.execute());
+		if ( result) {
+			Class myClass = collectClass(strNode);
+			classes.add(myClass);
+			return classes;
+		
+		}
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?p ?o FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
+		
+		if (test )
+			queryStringTriple += " ORDER BY ?p ?o LIMIT 100";
+
+		http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
+		
+		for(ArrayList<String> row : list) {
+			String predicate = "", object="";
+			for(String item : row) {
+				int index = item.indexOf(":");
+				switch (item.substring(0,index)) {
+				case "p":
+					predicate = item.substring(index+1, item.length());
+					break;
+				case "o":
+					object = item.substring(index+1, item.length());
+					break;
+				default:
+					break;
+				}
+			}
+			String predicateLocalName = getLocalName(predicate);
+			if (predicateLocalName.equals("first")) {
+				
+				
+				Class myClass = collectClass(object);
+				classes.add(myClass);
+			}
+			else if (predicateLocalName.equals("rest")) {
+					if (!object.equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#nil")	)					
+						classes = findClasses(getLocalName(object), classes);				
+			}
+			else {
+				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicate);
+			}										
+			
+		}
+								
+		return classes;
+		
+	}
 	
 }

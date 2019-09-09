@@ -452,7 +452,8 @@ public class CompareService {
 					new Result<String, String>("( " 
 						+ (d.getOnProperty()==null ? "" : d.getOnProperty().getLabel())+ ", " 
 						+ (d.getOnClass()== null ? "" : d.getOnClass().getLabel()) + ", " 
-						+ (d.getType() == null ? "" : d.getType().getType() ) + " )",
+						+ (d.getType() == null ? "" : d.getType().getType() ) + ", "
+						+ (d.getValue() == null ? "" : d.getValue() ) + ") ",
 						"Only in Version " + ver1.getNumber())
 				)
 				.collect(Collectors.toList());
@@ -462,7 +463,8 @@ public class CompareService {
 				new Result<String, String>("( " 
 						+ (d.getOnProperty()==null ? "" : d.getOnProperty().getLabel())+ ", " 
 						+ (d.getOnClass()== null ? "" : d.getOnClass().getLabel()) + ", " 
-						+ (d.getType() == null ? "" : d.getType().getType() ) + " )",
+						+ (d.getType() == null ? "" : d.getType().getType() ) + " )"
+						+ (d.getValue() == null ? "" : d.getValue() ) + ") ",
 						"Only in Version " + ver2.getNumber())
 				)
 				.collect(Collectors.toList());

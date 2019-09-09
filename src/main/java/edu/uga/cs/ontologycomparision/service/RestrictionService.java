@@ -62,7 +62,7 @@ public class RestrictionService {
 			else
 				statement.setNull(3, java.sql.Types.INTEGER);
 			
-			statement.setInt(4,restriction.getCardinalityValue());
+			statement.setString(4,restriction.getValue());
 			statement.setInt(5, restriction.getVersion().getID());
 						
 			int rowAffected = statement.executeUpdate();
@@ -119,10 +119,10 @@ public class RestrictionService {
 			whereClause += " class_id=" + restriction.getOnClass().getID();
 		}
 		
-		if (restriction.getCardinalityValue() != 0) {
+		if (restriction.getValue() != null) {
 			if (whereClause != "")
 				whereClause += " AND";
-			whereClause += " value=" + restriction.getCardinalityValue();
+			whereClause += " value=" + restriction.getValue();
 		}
 		
 		if (restriction.getVersion() != null) {
@@ -169,9 +169,9 @@ public class RestrictionService {
 			Class onClass = classService.getByID(rs.getInt("class_id")); 			
 						
 			RestrictionType type = restrictionTypeService.get(rs.getInt("type_id"));
-			int cardinalityValue = rs.getInt("value");
+			String value = rs.getString("value");
 			Version version = versionService.get(rs.getInt("version_id")); 
-			list.add(new Restriction(id, onProperty, type, cardinalityValue, onClass, version));
+			list.add(new Restriction(id, onProperty, type, value, onClass, version));
 					
 		}
 		return list.get(0);						
@@ -197,10 +197,10 @@ public class RestrictionService {
 			Property onProperty = propertyService.getByID(rs.getInt("property_id"));				
 			Class onClass = classService.getByID(rs.getInt("class_id")); 			
 			RestrictionType restrictionType = restrictionTypeService.get(rs.getInt("type_id"));
-			int cardinalityValue = rs.getInt("value");
+			String value = rs.getString("value");
 			
 			Version version = versionService.get(rs.getInt("version_id")); 
-			results.add(new Restriction(iD, onProperty, restrictionType, cardinalityValue, onClass, version));
+			results.add(new Restriction(iD, onProperty, restrictionType, value, onClass, version));
 			
 		}
 		

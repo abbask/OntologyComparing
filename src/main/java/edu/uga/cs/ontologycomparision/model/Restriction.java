@@ -7,7 +7,7 @@ public class Restriction {
 	private int ID;
 	private Property onProperty;
 	private RestrictionType type;
-	private int CardinalityValue;
+	private String value;
 	private Class onClass;
 	private Version version;
 	
@@ -15,24 +15,24 @@ public class Restriction {
 	
 	}
 	
-	public Restriction(Property onProperty, RestrictionType type, int cardinalityValue, Class onClass,
+	public Restriction(Property onProperty, RestrictionType type, String value, Class onClass,
 			Version version) {
 		
 		
 		this.onProperty = onProperty;
 		this.type = type;
-		CardinalityValue = cardinalityValue;
+		this.value = value;
 		this.onClass = onClass;
 		this.version = version;
 	}
 
-	public Restriction(int iD, Property onProperty, RestrictionType type, int cardinalityValue, Class onClass,
+	public Restriction(int iD, Property onProperty, RestrictionType type, String value, Class onClass,
 			Version version) {
 		
 		ID = iD;
 		this.onProperty = onProperty;
 		this.type = type;
-		CardinalityValue = cardinalityValue;
+		this.value = value;
 		this.onClass = onClass;
 		this.version = version;
 	}
@@ -61,12 +61,12 @@ public class Restriction {
 		this.type = type;
 	}
 
-	public int getCardinalityValue() {
-		return CardinalityValue;
+	public String getValue() {
+		return value;
 	}
 
-	public void setCardinalityValue(int cardinalityValue) {
-		CardinalityValue = cardinalityValue;
+	public void setValue(String value) {
+		this.value = value;
 	}
 
 	public Class getOnClass() {
@@ -89,27 +89,24 @@ public class Restriction {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + CardinalityValue;
 		
 		result = prime * result + ((onClass == null) ? 0 : onClass.hashCode());
 		result = prime * result + ((onProperty == null) ? 0 : onProperty.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((value == null) ? 0 : value.hashCode());
 		
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-
+		if (this == obj)
+			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
-			return false;
+
 		Restriction other = (Restriction) obj;
-		
-		if (CardinalityValue != other.CardinalityValue)
-			return false;
-		
+
 		if (onClass == null) {
 			if (other.onClass != null)
 				return false;
@@ -125,15 +122,23 @@ public class Restriction {
 				return false;
 		} else if (!type.equals(other.type))
 			return false;
-		
+		if (value == null) {
+			if (other.value != null)
+				return false;
+		} else if (!value.equals(other.value))
+			return false;
+
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Restriction [ID=" + ID + ", onProperty=" + onProperty + ", type=" + type + ", CardinalityValue="
-				+ CardinalityValue + ", onClass=" + onClass + ", version=" + version + "]";
+		return "Restriction [ID=" + ID + ", onProperty=" + onProperty + ", type=" + type + ", value=" + value
+				+ ", onClass=" + onClass + ", version=" + version + "]";
 	}
+	
+	
+	
 	
 		
 }

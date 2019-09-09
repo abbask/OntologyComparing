@@ -32849,3 +32849,4 @@ com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Colu
 2019-08-28 13:15:43 INFO  ClassService:128 - PropertyService.getByLabel : retrieved property.
 2019-08-28 13:15:43 INFO  RestrictionTypeService:138 - RestrictionTypeService.getByType : retrieved Restriction Type.
 2019-08-28 13:15:43 INFO  RestrictionService:80 - RestrictionService.add : new Restriction commited.
+2019-09-09 12:09:56 ERROR RetrieveSchemaService:543 - RetrieveSchemaService.findRestrictionByNode : error in Jena conversion Node to Resource. The record Skipped.
