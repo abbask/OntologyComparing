@@ -66,7 +66,7 @@
 		    <a class="nav-link" id="classes" data-toggle="tab" href="#classD" role="tab" aria-controls="classes" aria-selected="false">Class</a>
 		  </li>
 		  <li class="nav-item">
-		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">object Prop</a>
+		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">Object Prop</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" id="datatypeProps" data-toggle="tab" href="#datatypeProp" role="tab" aria-controls="datatypeProp" aria-selected="false">Datatype Prop</a>
@@ -76,12 +76,6 @@
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" id="datatypeTriples" data-toggle="tab" href="#datatypeTriple" role="tab" aria-controls="datatypeTriple" aria-selected="false">Datatype Triple</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" id="objectTripleforEachTriple" data-toggle="tab" href="#objectTripleforEach" role="tab" aria-controls="objectTripleforEach" aria-selected="false">Object Triple #</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" id="datatypeTripleforEachTriple" data-toggle="tab" href="#datatypeTripleforEach" role="tab" aria-controls="datatypeTripleforEach" aria-selected="false">Datatype Triple #</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" id="restrictionsL" data-toggle="tab" href="#restrictions" role="tab" aria-controls="restrictions" aria-selected="false">Restriction</a>
@@ -112,25 +106,118 @@
 		  </div>
 		  <div class="tab-pane fade" id="classD" role="tabpanel" aria-labelledby="classes">
 		  	<table class="table table-striped">
-		  		<#if classes??> 
-			  		<thead><tr><th scope="col">Label</th><th scope="col">Counts</th><th scope="col">Parent class</th></tr></thead><tbody>
-					<#list classes as c>
-					
-						<tr><td> ${c.label} </td><td> ${c.count} </td><td><#if c.parent??> ${c.parent.label} </#if> </td></tr> 					
-					</#list>	
+		  		
+			  	<#if classes?? >
+			  		<#if classes?size != 0> 
+				  		<thead><tr><th scope="col">Label</th><th scope="col">Counts</th><th scope="col">Parent class</th></tr></thead><tbody>
+						<#list classes as c>
+						
+							<tr><td> ${c.label} </td><td> ${c.count} </td><td><#if c.parent??> ${c.parent.label} </#if> </td></tr> 					
+						</#list>
+					<#else>
+						<thead><tr><th scope="col"></th></tr></thead><tbody><tr><th>No data available</td></tr>	
+					</#if>
 				</#if>
 			</tbody></table>
 		  </div>
 		  <div class="tab-pane fade" id="objectProp" role="tabpanel" aria-labelledby="objectProp">
-		  
+		  	<table class="table table-striped">
+		  		<#if objectProperties??>
+		  			<#if objectProperties?size != 0> 
+				  		<thead><tr><th scope="col">Label</th><th scope="col">Parent Property</th></tr></thead><tbody>
+						<#list objectProperties as o>
+						
+							<tr><td> ${o.label} </td><td><#if o.parent??> ${o.parent.label} </#if> </td></tr> 					
+						</#list>
+					<#else>
+						<thead><tr><th scope="col"></th></tr></thead><tbody><tr><th>No data available</td></tr>	
+					</#if>
+				</#if>
+			</tbody></table>
 		  </div>
-		  <div class="tab-pane fade" id="datatypeProp" role="tabpanel" aria-labelledby="datatypeProp"></div>
-		  <div class="tab-pane fade" id="objectTriple" role="tabpanel" aria-labelledby="objectTriple"></div>
-		  <div class="tab-pane fade" id="datatypeTriple" role="tabpanel" aria-labelledby="datatypeTriple"></div>
-		  <div class="tab-pane fade" id="objectTripleforEach" role="tabpanel" aria-labelledby="objectTripleforEach"></div>
-		  <div class="tab-pane fade" id="datatypeTripleforEach" role="tabpanel" aria-labelledby="datatypeTripleforEach"></div>
-		  <div class="tab-pane fade" id="restrictions" role="tabpanel" aria-labelledby="restrictions"></div>
-		  <div class="tab-pane fade" id="expressions" role="tabpanel" aria-labelledby="expressions"></div>
+		  <div class="tab-pane fade" id="datatypeProp" role="tabpanel" aria-labelledby="datatypeProp">
+		  	<table class="table table-striped">
+		  		<#if datatypeProperties??> 
+			  		<thead><tr><th scope="col">Label</th><th scope="col">Parent Property</th></tr></thead><tbody>
+					<#list datatypeProperties as d>
+					
+						<tr><td> ${d.label} </td><td><#if d.parent??> ${d.parent.label} </#if> </td></tr> 					
+					</#list>	
+				</#if>
+			</tbody></table>
+		  </div>
+		  <div class="tab-pane fade" id="objectTriple" role="tabpanel" aria-labelledby="objectTriple">
+		  	<table class="table table-striped">
+		  		<#if objectTripleTypes??> 
+			  		<thead><tr><th scope="col">Domain</th><th scope="col">Property</th><th scope="col">Range</th><th scope="col">Count</th></tr></thead><tbody>
+					<#list objectTripleTypes as o>					
+						<tr>
+							<td><#if o.domain??> ${o.domain.label} </#if></td>
+							<td><#if o.predicate??> ${o.predicate.label} </#if></td>
+							<td><#if o.range??> ${o.range.label} </#if></td>
+							<td> ${o.count} </td>
+						</tr> 					
+					</#list>	
+				</#if>
+			</tbody></table>
+		  </div>
+		  <div class="tab-pane fade" id="datatypeTriple" role="tabpanel" aria-labelledby="datatypeTriple">
+		  	<table class="table table-stripeobjectPropertiesd">
+		  		<#if datatypeTripleTypes??> 
+			  		<thead><tr><th scope="col">Domain</th><th scope="col">Property</th><th scope="col">Range</th><th scope="col">Count</th></tr></thead><tbody>
+					<#list datatypeTripleTypes as d>					
+						<tr>
+							<td><#if d.domain??> ${d.domain.label} </#if></td>
+							<td><#if d.predicate??> ${d.predicate.label} </#if></td>
+							<td><#if d.range??> ${d.range.type} </#if></td>
+							<td> ${d.count} </td>
+						</tr> 					
+					</#list>	
+				</#if>
+			</tbody></table>
+		  </div>
+		  <div class="tab-pane fade" id="restrictions" role="tabpanel" aria-labelledby="restrictions">
+		  	<table class="table table-striped">
+		  		<#if restrictions??> 
+		  			<#if restrictions?size != 0>
+				  		<thead><tr><th scope="col">Propert</th><th scope="col">Type</th><th scope="col">Class</th><th scope="col">cardinality</th></tr></thead><tbody>
+						<#list restrictions as r>					
+							<tr>
+								<td><#if r.onProperty??> ${r.onProperty.label} </#if></td>
+								<td><#if r.type??> ${r.type.type} </#if></td>
+								<td><#if r.onClass??> ${r.onClass.label} </#if></td>
+								<td> ${r.value} </td>
+							</tr> 					
+						</#list>	
+					<#else>
+						<thead><tr><th scope="col"></th></tr></thead><tbody><tr><th>No data available</td></tr>
+					</#if>
+				</#if>
+			</tbody></table>
+
+		  </div>
+		  <div class="tab-pane fade" id="expressions" role="tabpanel" aria-labelledby="expressions">
+		  	<table class="table table-striped">
+		  		<#if expressions??> 
+		  			<#if expressions?size != 0>
+				  		<thead><tr><th scope="col">type</th><th scope="col">Property</th><th scope="col"> </th><th scope="col">Count</th></tr></thead><tbody>
+						<#list expressions as e>					
+							<tr>
+								<td>${e.type}</td>
+								<td><#if e.property??> ${e.property.label} </#if></td>
+								<td> ${e.onProperty}</td>
+								<td> 
+									<#list e.classes as c> ${c.label} &nbsp; </#list>
+								</td>
+								
+							</tr> 					
+						</#list>	
+					<#else>
+						<thead><tr><th scope="col"></th></tr></thead><tbody><tr><th>No data available</td></tr>
+					</#if>
+				</#if>
+			</tbody></table>
+		  </div>
 		</div>
 	</div>
 	

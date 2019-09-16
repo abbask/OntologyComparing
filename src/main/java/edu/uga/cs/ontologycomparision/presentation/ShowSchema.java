@@ -18,6 +18,7 @@ import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 import edu.uga.cs.ontologycomparision.model.Version;
+import edu.uga.cs.ontologycomparision.service.ShowService;
 import edu.uga.cs.ontologycomparision.service.VersionService;
 import edu.uga.cs.ontologycomparision.util.FreeMarkerTemplate;
 import freemarker.template.Template;
@@ -98,6 +99,12 @@ public class ShowSchema extends HttpServlet{
 			
 			root = showService.getAllCounts(root);
 			root.put("classes", showService.getClasses());
+			root.put("objectProperties", showService.getObjectProperties());
+			root.put("datatypeProperties", showService.getDatatypeProperties());
+			root.put("objectTripleTypes", showService.getObjectTripleTypes());
+			root.put("datatypeTripleTypes", showService.getDataTypeTripleTypes());
+			root.put("restrictions", showService.getRestrictions());
+			root.put("expressions", showService.getExpressions());
 			
 			toClient = new BufferedWriter(
 					new OutputStreamWriter(res.getOutputStream(), template.getEncoding()));
