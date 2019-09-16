@@ -22,6 +22,9 @@
    	<ul class="nav navbar-nav">
       <li class="active"><a href="/OntologyComparing/compare">Comparison</a></li>   
     </ul>
+    <ul class="nav navbar-nav">
+      <li ><a href="/OntologyComparing/showschema">Schema</a></li>   
+    </ul>
   </div>
 </nav>
   
