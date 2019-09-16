@@ -37,9 +37,8 @@ public class ShowSchema extends HttpServlet{
 
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {		
-
-		loadPage(req, res);
-		
+		loadData(req, res);
+	
 	}
 	
 	public void loadPage(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
@@ -56,6 +55,47 @@ public class ShowSchema extends HttpServlet{
 		try {		
 			list =  service.getListAll();			
 			root.put("versions", list);
+			
+			toClient = new BufferedWriter(
+					new OutputStreamWriter(res.getOutputStream(), template.getEncoding()));
+			res.setContentType("text/html; charset=" + template.getEncoding());
+			
+			template.process(root, toClient);
+			toClient.flush();
+
+		} catch (TemplateException e) {
+			throw new ServletException(
+					"Error while processing FreeMarker template", e);
+		} catch(SQLException sqlEx) {
+			throw new ServletException("Error while query Database", sqlEx);
+		}		
+		toClient.close();
+	}
+	
+	public void loadData(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+
+		BufferedWriter toClient = null;
+		Map<String, Object> root = new HashMap<>();	
+
+		FreeMarkerTemplate freeMarkerTemplate = new FreeMarkerTemplate();
+		Template template = freeMarkerTemplate.loadTemplate(getServletContext(), templateName);									
+		
+		MySQLConnection mySQLConnection = new MySQLConnection();
+		VersionService versionService = new VersionService(mySQLConnection.openConnection());
+		try {
+			
+			int version_id = 0;
+			version_id = (!req.getParameter("version").equals(""))? Integer.parseInt(req.getParameter("version")) : version_id ;
+			Version version = versionService.get(version_id);
+			
+			ShowService showService = new ShowService(version);
+			List<Version> list;
+		
+		
+			list =  versionService.getListAll();			
+			root.put("versions", list);
+			
+			root = showService.getAllCounts(root);
 			
 			toClient = new BufferedWriter(
 					new OutputStreamWriter(res.getOutputStream(), template.getEncoding()));

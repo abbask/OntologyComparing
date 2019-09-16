@@ -8,7 +8,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="css/compare-style.css">
-  <script src="js/compareAction.js"></script>
 </head>
 <body>
 
@@ -35,7 +34,7 @@
 		
 	</div>
 	<div class="row" >
-		<form class="form-inline">
+		<form class="form-inline" method="POST" action="/OntologyComparing/showschema">
 		
 			<div class="col-xs-16">
 				
@@ -45,7 +44,7 @@
 						<option value="${version.ID}">${version.name} - ${version.number}</option>
 					</#list>			    		
 			    </select>
-				<button id="show" type="button" class="btn btn-primary">Show</button>
+				<button id="show" type="submit" class="btn btn-primary">Show</button>
 			</div>
 		</form>
 	</div>
@@ -86,7 +85,22 @@
 		  </li>
 		</ul>
 		<div class="tab-content" id="myTabContent">
-		  <div class="tab-pane fade" id="count" role="tabpanel" aria-labelledby="count"></div>
+		  <div class="tab-pane fade" id="count" role="tabpanel" aria-labelledby="count">
+		  	<table class="table table-striped">
+				<#if classCount??> 
+				<thead><tr><th scope="col"></th><th scope="col">Counts</th></tr></thead><tbody>
+				<tr><th scope="row">Number of Classes</th><td> ${classCount.result} </td></tr> 
+			
+				<tr><th scope="row">Number of Object Property</th><td> ${objectPropertyCount.result} </td></tr> 
+				<tr><th scope="row">Number of Datatype Property</th><td> ${datatypePropertyCount.result} </td></tr> 
+				<tr><th scope="row">Number of Individual</th><td> ${individualCount.result} </td></tr> 
+				<tr><th scope="row">Number of Object Triple Type</th><td> ${objectTripleTypeCount.result} </td></tr> 
+				<tr><th scope="row">Number of Datatype Triple Type</th><td> ${datatypeTripleTypeCount.result} </td></tr> 
+				<tr><th scope="row">Number of Restriction</th><td> ${restrictionCount.result} </td></tr> 
+				<tr><th scope="row">Number of Expression</th><td> ${expressionCount.result} </td></tr> 
+				</#if>	
+			</tbody></table>
+		  </div>
 		  <div class="tab-pane fade" id="classD" role="tabpanel" aria-labelledby="classes"></div>
 		  <div class="tab-pane fade" id="IndividualOfClass" role="tabpanel" aria-labelledby="IndividualOfClass"></div>
 		  <div class="tab-pane fade" id="objectProp" role="tabpanel" aria-labelledby="objectProp"></div>
