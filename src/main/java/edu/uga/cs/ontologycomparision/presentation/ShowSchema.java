@@ -90,12 +90,14 @@ public class ShowSchema extends HttpServlet{
 			
 			ShowService showService = new ShowService(version);
 			List<Version> list;
-		
-		
+			root.put("selectedVersion", version);
+			
+				
 			list =  versionService.getListAll();			
 			root.put("versions", list);
 			
 			root = showService.getAllCounts(root);
+			root.put("classes", showService.getClasses());
 			
 			toClient = new BufferedWriter(
 					new OutputStreamWriter(res.getOutputStream(), template.getEncoding()));

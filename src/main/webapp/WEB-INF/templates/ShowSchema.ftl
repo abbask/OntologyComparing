@@ -41,7 +41,16 @@
 				<select class="form-control" id="version" name="version">
 					<option value="0">-- select --</option>
 					<#list versions as version>
-						<option value="${version.ID}">${version.name} - ${version.number}</option>
+						<#if selectedVersion??> 
+							<#if selectedVersion.ID == version.ID>
+								<option value="${version.ID}" selected="selected">${version.name} - ${version.number}</option>
+							<#else>
+								<option value="${version.ID}">${version.name} - ${version.number}</option>
+							</#if>
+						<#else>
+							<option value="${version.ID}">${version.name} - ${version.number}</option>
+						</#if>
+						
 					</#list>			    		
 			    </select>
 				<button id="show" type="submit" class="btn btn-primary">Show</button>
@@ -55,9 +64,6 @@
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" id="classes" data-toggle="tab" href="#classD" role="tab" aria-controls="classes" aria-selected="false">Class</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" id="IndividualOfClasses" data-toggle="tab" href="#IndividualOfClass" role="tab" aria-controls="IndividualOfClass" aria-selected="false">Indv</a>
 		  </li>
 		  <li class="nav-item">
 		    <a class="nav-link" id="objectProps" data-toggle="tab" href="#objectProp" role="tab" aria-controls="objectProp" aria-selected="false">object Prop</a>
@@ -89,8 +95,7 @@
 		  	<table class="table table-striped">
 				<#if classCount??> 
 				<thead><tr><th scope="col"></th><th scope="col">Counts</th></tr></thead><tbody>
-				<tr><th scope="row">Number of Classes</th><td> ${classCount.result} </td></tr> 
-			
+				<tr><th scope="row">Number of Classes</th><td> ${classCount.result} </td></tr> 			
 				<tr><th scope="row">Number of Object Property</th><td> ${objectPropertyCount.result} </td></tr> 
 				<tr><th scope="row">Number of Datatype Property</th><td> ${datatypePropertyCount.result} </td></tr> 
 				<tr><th scope="row">Number of Individual</th><td> ${individualCount.result} </td></tr> 
@@ -98,12 +103,27 @@
 				<tr><th scope="row">Number of Datatype Triple Type</th><td> ${datatypeTripleTypeCount.result} </td></tr> 
 				<tr><th scope="row">Number of Restriction</th><td> ${restrictionCount.result} </td></tr> 
 				<tr><th scope="row">Number of Expression</th><td> ${expressionCount.result} </td></tr> 
+				<script>
+					$('#myTab li:first-child a').tab('show');
+				</script>
+				
 				</#if>	
 			</tbody></table>
 		  </div>
-		  <div class="tab-pane fade" id="classD" role="tabpanel" aria-labelledby="classes"></div>
-		  <div class="tab-pane fade" id="IndividualOfClass" role="tabpanel" aria-labelledby="IndividualOfClass"></div>
-		  <div class="tab-pane fade" id="objectProp" role="tabpanel" aria-labelledby="objectProp"></div>
+		  <div class="tab-pane fade" id="classD" role="tabpanel" aria-labelledby="classes">
+		  	<table class="table table-striped">
+		  		<#if classes??> 
+			  		<thead><tr><th scope="col">Label</th><th scope="col">Counts</th><th scope="col">Parent class</th></tr></thead><tbody>
+					<#list classes as c>
+					
+						<tr><td> ${c.label} </td><td> ${c.count} </td><td><#if c.parent??> ${c.parent.label} </#if> </td></tr> 					
+					</#list>	
+				</#if>
+			</tbody></table>
+		  </div>
+		  <div class="tab-pane fade" id="objectProp" role="tabpanel" aria-labelledby="objectProp">
+		  
+		  </div>
 		  <div class="tab-pane fade" id="datatypeProp" role="tabpanel" aria-labelledby="datatypeProp"></div>
 		  <div class="tab-pane fade" id="objectTriple" role="tabpanel" aria-labelledby="objectTriple"></div>
 		  <div class="tab-pane fade" id="datatypeTriple" role="tabpanel" aria-labelledby="datatypeTriple"></div>

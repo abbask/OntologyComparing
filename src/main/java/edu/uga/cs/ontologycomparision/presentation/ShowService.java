@@ -3,12 +3,16 @@ package edu.uga.cs.ontologycomparision.presentation;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
 
 import edu.uga.cs.ontologycomparision.data.MySQLConnection;
+import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.Result;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.service.ClassService;
@@ -40,7 +44,7 @@ public class ShowService {
 		return ver;
 	}
 
-	public void setVer1(Version ver1) {
+	public void setVer1(Version ver) {
 		this.ver = ver;
 	}
 
@@ -135,6 +139,14 @@ public class ShowService {
 		Result<String, Long> result = new Result<String, Long>("Number of expressions of version " + ver.getID(), expressionCount1);
 		
 		return result;
+	}
+	
+	public List<Class> getClasses() throws SQLException{
+		ClassService classService = new ClassService(connection);
+
+		List<Class> classList = classService.listAll(ver.getID());
+
+		return classList;
 	}
 
 }
