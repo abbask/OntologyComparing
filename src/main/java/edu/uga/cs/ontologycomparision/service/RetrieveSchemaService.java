@@ -485,6 +485,7 @@ public class RetrieveSchemaService {
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
 		queryStringTriple += selectFrom + " WHERE {<" + node.asResource() + "> ?p ?o}";
 
+		System.out.println(queryStringTriple);
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
@@ -510,20 +511,15 @@ public class RetrieveSchemaService {
 					if (!containsCardinality(predicate)) {
 						List<Class> classes = new ArrayList<Class>();
 						classes = findClassesForRestriction(objectNode.asResource().getURI(), classes);
-//						System.out.println("Predicate: " + predicate);
-						System.out.println(classes);
-//						//String s = list.stream().map(Object::toString).collect(Collectors.joining(",")
+						// AK: should handle datatypes
+//						System.out.println(classes);
+
 						value = classes.stream().map(Class::getLabel).collect(Collectors.joining(", "));
 					}
 					else {
 						value = objectNode.asLiteral().getString();
 					}
-					
-					//value = objectNode.asLiteral().getString();
-					
-//					if (containsCardinality(predicate)) {
-//						value = objectNode.asLiteral().getString();
-//					}
+
 				}
 				else if (predicate.equals("onProperty")){
 					
@@ -780,7 +776,7 @@ public class RetrieveSchemaService {
 	
 	private List<Class> findClassesForRestriction(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
 		
-		System.out.println(strNode);
+//		System.out.println(strNode);
 		// check whether is a class or blank node
 		String queryCheckClass = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ASK {<" + strNode + "> a owl:Class.}";
 		HTTPConnection http = new HTTPConnection(endpointURL, queryCheckClass);
