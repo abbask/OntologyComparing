@@ -200,12 +200,13 @@
 		  	<table class="table table-striped">
 		  		<#if expressions??> 
 		  			<#if expressions?size != 0>
-				  		<thead><tr><th scope="col">type</th><th scope="col">Property</th><th scope="col"> </th><th scope="col">Count</th></tr></thead><tbody>
+				  		<thead><tr><th scope="col">Property</th><th scope="col"></th><th scope="col">Type</th><th scope="col">Classes</th></tr></thead><tbody>
 						<#list expressions as e>					
 							<tr>
-								<td>${e.type}</td>
+								
 								<td><#if e.property??> ${e.property.label} </#if></td>
 								<td> ${e.onProperty}</td>
+								<td>${e.type}</td>
 								<td> 
 									<#list e.classes as c> ${c.label} &nbsp; </#list>
 								</td>
