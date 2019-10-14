@@ -11,6 +11,7 @@ import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Version;
 import edu.uga.cs.ontologycomparision.service.CompareService;
 import edu.uga.cs.ontologycomparision.service.ObjectTripleTypeService;
+import edu.uga.cs.ontologycomparision.service.RetrieveSchemaService;
 import edu.uga.cs.ontologycomparision.service.VersionService;
 
 class CompareClasses {
@@ -26,11 +27,22 @@ class CompareClasses {
 ////		System.out.println(compare.compareClasses());
 //		System.out.println(compare.compareClassCount());
 		
-		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
-		List<ObjectTripleType> list = service.listAll(5);
-		for (ObjectTripleType obj : list) {
-			System.out.println(obj);
-		}
+//		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
+//		List<ObjectTripleType> list = service.listAll(5);
+//		for (ObjectTripleType obj : list) {
+//			System.out.println(obj);
+//		}
+		
+		String endpointURL = "http://128.192.62.253:8890/sparql";
+		String graphName = "<http://ncicb.nci.nih.gov>";
+		
+		RetrieveSchemaService retrieve = new RetrieveSchemaService(endpointURL, graphName);
+		if ( retrieve.retrieveAllDataTypeProperties() )
+			System.out.println("done.");
+		else
+			System.out.println(" Failed");
+		
+		
 	}
 
 }

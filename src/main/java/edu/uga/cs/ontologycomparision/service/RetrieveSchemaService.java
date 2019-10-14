@@ -83,22 +83,26 @@ public class RetrieveSchemaService {
 	public boolean retrieveAllClasses() throws SQLException {		
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
-		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>";
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> ";
 		queryString += "SELECT DISTINCT ?s ?parent (count(?ind) as ?Count) "
-				+ " FROM " + graphName + " "
+				+ (graphName.isBlank()? "" : "FROM " + graphName) + " "
 						+ "WHERE{ ?s a owl:Class. optional {?ind a ?s.} optional {?s rdfs:subClassOf ?p} "
 						+ "bind(IF(?p = '', '' , ?p) AS ?parent) } "
 						+ "GROUP BY ?s ?parent "
 						+ "ORDER BY ?s ?parent";
 		
+		System.out.println(queryString);
 		List<QuerySolution> list = conn.executeSelect(queryString);
 		
 		
 		ClassService classService = new ClassService(connection);		
 
 		for(QuerySolution soln : list) {
+			
 			RDFNode subjectRDFNode = soln.get("s");
 			RDFNode parentRDFNode = soln.get("parent");
+			
+			System.out.println("s:" + subjectRDFNode + ", p:" + parentRDFNode);
 			
 			if (subjectRDFNode.asResource().getURI() == null){
 				continue;
@@ -112,7 +116,7 @@ public class RetrieveSchemaService {
 			}	
 			
 			Class myClass = new Class(subjectRDFNode.asResource().getURI(), subjectRDFNode.asResource().getLocalName(), "", count, version, parentClass);
-			
+			System.out.println(myClass);
 			myClass = classService.addIfNotExist(myClass);				
 			
 		}
@@ -158,10 +162,12 @@ public class RetrieveSchemaService {
 	
 	
 	public boolean retrieveAllObjectProperties() throws SQLException {
-						
+		
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
-		queryStringTriple += "SELECT ?predicate FROM " + graphName + " WHERE {?predicate a owl:ObjectProperty.}";
-
+		queryStringTriple += "SELECT ?predicate " + (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE {?predicate a owl:ObjectProperty.}";
+		
+		
+		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
@@ -179,16 +185,17 @@ public class RetrieveSchemaService {
 	
 	public boolean retrieveAllDataTypeProperties() throws SQLException {
 		
-		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
-		queryStringTriple += "SELECT ?predicate FROM " + graphName + " WHERE {?predicate a owl:DatatypeProperty.}";
-
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>";						
+		queryStringTriple += "SELECT ?predicate" + (graphName.isBlank()? "" : " FROM " + graphName) + "WHERE {?predicate rdf:type owl:DatatypeProperty.}";
+		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
 		
 		for(QuerySolution soln : list) {
 			RDFNode predicate = soln.get("predicate");
 			Resource res = soln.getResource("predicate");
-
+			if (res == null)
+				continue;
 			if (res.getLocalName() != null) {				
 				collectProperty(predicate.toString(), DatatypePropertyType);						
 			}			
@@ -204,6 +211,7 @@ public class RetrieveSchemaService {
 		
 		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent ?p "
 				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{ optional{<" + propertyString + "> rdfs:subPropertyOf ?parent} .bind(<" + propertyString + "> AS ?p)}";
+		
 		
 		List<QuerySolution> parents =  conn.executeSelect(queryString);
 		

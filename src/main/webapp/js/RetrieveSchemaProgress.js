@@ -128,7 +128,7 @@ $(document).ready(function(){
 		graphName = $('#graphName').val();
 		version_id = $('#version_id').val();		
 		
-		if (endpoint != "" && graphName != ""){
+		if (endpoint != ""){
 			
 			getRemote(endpoint, graphName);
 		}// if 
