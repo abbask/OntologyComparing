@@ -79,46 +79,71 @@ public class RetrieveSchemaService {
 		return true;
 		
 	}
+	
+	public int retrieveClassCount() throws SQLException{
+		int count = 0 ;
+		
+		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		
+		
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> ";
+		queryString += "SELECT (count(?s) as ?count)"
+				+ (graphName.isBlank()? "" : "FROM " + graphName) + " "
+						+ "WHERE{ ?s a owl:Class. } ";
+		
+		List<QuerySolution> list = conn.executeSelect(queryString);
+		
+		count = list.get(0).get("count").asLiteral().getInt();
+		
+		return count;
+	}
 
 	public boolean retrieveAllClasses() throws SQLException {		
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
-		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> ";
-		queryString += "SELECT DISTINCT ?s ?parent (count(?ind) as ?Count) "
-				+ (graphName.isBlank()? "" : "FROM " + graphName) + " "
-						+ "WHERE{ ?s a owl:Class. optional {?ind a ?s.} optional {?s rdfs:subClassOf ?p} "
-						+ "bind(IF(?p = '', '' , ?p) AS ?parent) } "
-						+ "GROUP BY ?s ?parent "
-						+ "ORDER BY ?s ?parent";
 		
-		System.out.println(queryString);
-		List<QuerySolution> list = conn.executeSelect(queryString);
+		int numberofLimit = 1000;
+		int countClasses = retrieveClassCount();
 		
+		int page = countClasses / numberofLimit;
 		
-		ClassService classService = new ClassService(connection);		
-
-		for(QuerySolution soln : list) {
+		for(int i = 0 ; i < page ; i++) {
+		
+			String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> ";
+			queryString += " SELECT ?s ?parent ?Count " + (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE { { SELECT DISTINCT ?s ?parent (count(?ind) as ?Count) "
+							+ "WHERE{ ?s a owl:Class. optional {?ind a ?s.} optional {?s rdfs:subClassOf ?p} "
+							+ "bind(IF(?p = '', '' , ?p) AS ?parent) } "
+							+ "GROUP BY ?s ?parent "
+							+ "ORDER BY ?s ?parent } } LIMIT " + numberofLimit + " OFFSET " + i * numberofLimit;
 			
-			RDFNode subjectRDFNode = soln.get("s");
-			RDFNode parentRDFNode = soln.get("parent");
+			System.out.println("page: " + i + ": " + queryString);
+			List<QuerySolution> list = conn.executeSelect(queryString);
 			
-			System.out.println("s:" + subjectRDFNode + ", p:" + parentRDFNode);
-			
-			if (subjectRDFNode.asResource().getURI() == null){
-				continue;
+			ClassService classService = new ClassService(connection);		
+	
+			for(QuerySolution soln : list) {
+				
+				RDFNode subjectRDFNode = soln.get("s");
+				RDFNode parentRDFNode = soln.get("parent");
+				
+//				System.out.println("s:" + subjectRDFNode + ", p:" + parentRDFNode);
+				
+				if (subjectRDFNode.asResource().getURI() == null){
+					continue;
+				}
+	
+				long count =  soln.get("Count").asLiteral().getLong();
+				Class parentClass = null;
+				
+				if (parentRDFNode != null) {				
+					 parentClass = collectClass(parentRDFNode.asResource().toString());						
+				}	
+				
+				Class myClass = new Class(subjectRDFNode.asResource().getURI(), subjectRDFNode.asResource().getLocalName(), "", count, version, parentClass);
+//				System.out.println(myClass);
+				myClass = classService.addIfNotExist(myClass);				
+				
 			}
-
-			long count =  soln.get("Count").asLiteral().getLong();
-			Class parentClass = null;
-			
-			if (parentRDFNode != null) {				
-				 parentClass = collectClass(parentRDFNode.asResource().toString());						
-			}	
-			
-			Class myClass = new Class(subjectRDFNode.asResource().getURI(), subjectRDFNode.asResource().getLocalName(), "", count, version, parentClass);
-			System.out.println(myClass);
-			myClass = classService.addIfNotExist(myClass);				
-			
 		}
 		
 		return true;
