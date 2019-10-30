@@ -3,6 +3,7 @@ package edu.uga.cs.ontologycomparision.service;
 
 
 import java.io.IOException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,7 +39,7 @@ import edu.uga.cs.ontologycomparision.data.MySQLConnection;
 
 public class RetrieveSchemaService {
 	
-	final static boolean test = true; //for retrieve restriction from LOD
+	final static boolean test = false; //for retrieve restriction from LOD
 	
 	final static String ObjectPropertyType = "ObjectProperty";
 	final static String DatatypePropertyType = "DatatypeProperty";
@@ -135,7 +136,8 @@ public class RetrieveSchemaService {
 				long count =  soln.get("Count").asLiteral().getLong();
 				Class parentClass = null;
 				
-				if (parentRDFNode != null) {				
+				if (parentRDFNode != null) {
+					
 					 parentClass = collectClass(parentRDFNode.asResource().toString());						
 				}	
 				
@@ -161,11 +163,15 @@ public class RetrieveSchemaService {
 						+ "WHERE{optional{?s rdfs:label ?label.} optional {?ind a <" + subjectString  + ">.} "
 								+ "optional {<" + subjectString  + "> rdfs:subClassOf ?p} "
 						+ "bind(IF(?p = '', '' , ?p) AS ?parent)  "
-						+ "bind(<" + subjectString + "> AS ?s) }"
+						+ "VALUES (?s) {(<" + subjectString + "> )} }" 
 						+ "GROUP BY ?s ?label ?parent "
 						+ "ORDER BY ?s ?label ?parent";
-		
+//		System.out.println(queryString);
 		List<QuerySolution> records =  conn.executeSelect(queryString);
+		
+		if (records.size() == 0 ) 
+			return null;
+		
 		RDFNode parentRDFNode = records.get(0).get("parent");
 		String classLabel = records.get(0).get("label").asLiteral().getString();
 		Resource subjectResource = records.get(0).get("s").asResource();
@@ -489,8 +495,8 @@ public class RetrieveSchemaService {
 
 		System.out.println(queryStringTriple);
 		
-		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
-		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
+		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
 		
 		RestrictionService restrictionService = new RestrictionService(connection);
 		RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
@@ -499,27 +505,55 @@ public class RetrieveSchemaService {
 		Map<String, Integer> restrictionTypeMap = restrictionTypes.stream().collect(
                 Collectors.toMap(RestrictionType::getType, RestrictionType::getID));
 		
-		for(QuerySolution soln : list) {
+		for(ArrayList<String> row : list) {
+//			System.out.println("row: " + row);
+			
+			String subject = "", predicate = "", object="";
+			for(String item : row) {
+				int index = item.indexOf(":");
+				switch (item.substring(0,index)) {
+				case "s":
+					subject = item.substring(index+1, item.length());
+					break;
+				case "p":
+					predicate = item.substring(index+1, item.length());
+					break;
+				case "o":
+					object = item.substring(index+1, item.length());
+					break;
+				default:
+					break;
+				}
+				
+				
+				
+				String subjectLocalName = getAppropriateLocalName(subject);
+				
+//				System.out.println("subject: " + subject + " subjectLocalName: " + subjectLocalName);
+//				
+				Restriction restriction = findRestrictionByNode(subject, restrictionTypeMap);
+				if (restriction != null)
+					restrictionService.add(restriction);
+			}
 						
-			RDFNode node = soln.get("s");
-					
-			Restriction restriction = findRestrictionByNode(node, restrictionTypeMap);
-			if (restriction != null)
-				restrictionService.add(restriction);
+
 		}
 		
 		return true;
 		
 	}
 	
-	public Restriction findRestrictionByNode(RDFNode node, Map<String, Integer> restrictionTypeMap) throws SQLException, IOException {
+	
+	
+	public Restriction findRestrictionByNode(String node, Map<String, Integer> restrictionTypeMap) throws SQLException, IOException {
+		
 		String selectFrom  = "SELECT ?p ?o";
 		
 		if (!graphName.isBlank())
 			selectFrom = "SELECT ?p ?o FROM " + graphName;
 		
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
-		queryStringTriple += selectFrom + " WHERE {<" + node.asResource() + "> ?p ?o}";
+		queryStringTriple += selectFrom + " WHERE {<" + node + "> ?p ?o}";
 
 		System.out.println(queryStringTriple);
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
@@ -806,6 +840,17 @@ public class RetrieveSchemaService {
 		}
 		
 		return false;
+	}
+	
+	private String getAppropriateLocalName(String uri) {
+		if (uri.contains("nodeID"))
+			return getLocalNamefromBlankNode(uri);
+		else
+			return getLocalName(uri);
+	}
+	
+	private String getLocalNamefromBlankNode(String uri) {
+		return uri.substring(uri.indexOf("/")+2 , uri.length());
 	}
 	
 	private String getLocalName(String uri) {
