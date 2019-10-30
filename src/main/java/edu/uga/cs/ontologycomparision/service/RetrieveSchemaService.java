@@ -110,11 +110,11 @@ public class RetrieveSchemaService {
 		for(int i = 0 ; i < page ; i++) {
 		
 			String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> ";
-			queryString += " SELECT ?s ?parent ?Count " + (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE { { SELECT DISTINCT ?s ?parent (count(?ind) as ?Count) "
-							+ "WHERE{ ?s a owl:Class. optional {?ind a ?s.} optional {?s rdfs:subClassOf ?p} "
+			queryString += " SELECT ?s ?label ?parent ?Count " + (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE { { SELECT DISTINCT ?s ?label ?parent (count(?ind) as ?Count) "
+							+ "WHERE{ ?s a owl:Class. ?s rdfs:label ?label. optional {?ind a ?s.} optional {?s rdfs:subClassOf ?p} "
 							+ "bind(IF(?p = '', '' , ?p) AS ?parent) } "
-							+ "GROUP BY ?s ?parent "
-							+ "ORDER BY ?s ?parent } } LIMIT " + numberofLimit + " OFFSET " + i * numberofLimit;
+							+ "GROUP BY ?s ?label ?parent "
+							+ "ORDER BY ?s ?label ?parent } } LIMIT " + numberofLimit + " OFFSET " + i * numberofLimit;
 			
 			System.out.println("page: " + i + ": " + queryString);
 			List<QuerySolution> list = conn.executeSelect(queryString);
@@ -124,6 +124,7 @@ public class RetrieveSchemaService {
 			for(QuerySolution soln : list) {
 				
 				RDFNode subjectRDFNode = soln.get("s");
+				String classLabel = soln.get("label").asLiteral().getString();
 				RDFNode parentRDFNode = soln.get("parent");
 				
 //				System.out.println("s:" + subjectRDFNode + ", p:" + parentRDFNode);
@@ -139,7 +140,9 @@ public class RetrieveSchemaService {
 					 parentClass = collectClass(parentRDFNode.asResource().toString());						
 				}	
 				
-				Class myClass = new Class(subjectRDFNode.asResource().getURI(), subjectRDFNode.asResource().getLocalName(), "", count, version, parentClass);
+				
+				
+				Class myClass = new Class(subjectRDFNode.asResource().getURI(),classLabel  , "", count, version, parentClass);
 //				System.out.println(myClass);
 				myClass = classService.addIfNotExist(myClass);				
 				
