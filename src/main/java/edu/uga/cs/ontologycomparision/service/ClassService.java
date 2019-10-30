@@ -26,7 +26,7 @@ public class ClassService {
 	
 	public Class addIfNotExist(Class myClass) throws SQLException {
 				
-		Class retrieveClass = getByLabel(myClass.getLabel(), myClass.getVersion().getID());
+		Class retrieveClass = getByNodeId(myClass.getComment(), myClass.getVersion().getID());
 		
 		if (retrieveClass == null) {
 			int id = add(myClass);
@@ -91,13 +91,13 @@ public class ClassService {
 		
 	}
 	
-	public Class getByLabel(String label, int versionId) throws SQLException {
+	public Class getByNodeId(String nodeId, int versionId) throws SQLException {
 		
 		List<Class> list = new LinkedList<Class>();
 				
 		
 		Statement stmtSys = connection.createStatement();			
-		String query = "SELECT * FROM class where version_id =" + versionId  + " and label='" + label + "'";
+		String query = "SELECT * FROM class where version_id =" + versionId  + " and comment='" + nodeId + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		VersionService versionService = new VersionService(connection);
 		

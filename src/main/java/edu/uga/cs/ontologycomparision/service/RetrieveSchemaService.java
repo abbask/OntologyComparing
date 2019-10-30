@@ -111,7 +111,7 @@ public class RetrieveSchemaService {
 		
 			String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> ";
 			queryString += " SELECT ?s ?label ?parent ?Count " + (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE { { SELECT DISTINCT ?s ?label ?parent (count(?ind) as ?Count) "
-							+ "WHERE{ ?s a owl:Class. ?s rdfs:label ?label. optional {?ind a ?s.} optional {?s rdfs:subClassOf ?p} "
+							+ "WHERE{ ?s a owl:Class. optional{?s rdfs:label ?label.} optional {?ind a ?s.} optional {?s rdfs:subClassOf ?p} "
 							+ "bind(IF(?p = '', '' , ?p) AS ?parent) } "
 							+ "GROUP BY ?s ?label ?parent "
 							+ "ORDER BY ?s ?label ?parent } } LIMIT " + numberofLimit + " OFFSET " + i * numberofLimit;
@@ -127,7 +127,6 @@ public class RetrieveSchemaService {
 				String classLabel = soln.get("label").asLiteral().getString();
 				RDFNode parentRDFNode = soln.get("parent");
 				
-//				System.out.println("s:" + subjectRDFNode + ", p:" + parentRDFNode);
 				
 				if (subjectRDFNode.asResource().getURI() == null){
 					continue;
@@ -142,7 +141,7 @@ public class RetrieveSchemaService {
 				
 				
 				
-				Class myClass = new Class(subjectRDFNode.asResource().getURI(),classLabel  , "", count, version, parentClass);
+				Class myClass = new Class(subjectRDFNode.asResource().getURI(),classLabel  , subjectRDFNode.asResource().getLocalName(), count, version, parentClass);
 //				System.out.println(myClass);
 				myClass = classService.addIfNotExist(myClass);				
 				
@@ -157,17 +156,18 @@ public class RetrieveSchemaService {
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>";
-		queryString += "SELECT DISTINCT ?s ?parent (count(?ind) as ?Count) "
+		queryString += "SELECT DISTINCT ?s ?label ?parent (count(?ind) as ?Count) "
 				+ (graphName.isBlank()? "" : " FROM " + graphName )+ " "
-						+ "WHERE{ optional {?ind a <" + subjectString  + ">.} "
+						+ "WHERE{optional{?s rdfs:label ?label.} optional {?ind a <" + subjectString  + ">.} "
 								+ "optional {<" + subjectString  + "> rdfs:subClassOf ?p} "
 						+ "bind(IF(?p = '', '' , ?p) AS ?parent)  "
 						+ "bind(<" + subjectString + "> AS ?s) }"
-						+ "GROUP BY ?s ?parent "
-						+ "ORDER BY ?s ?parent";
+						+ "GROUP BY ?s ?label ?parent "
+						+ "ORDER BY ?s ?label ?parent";
 		
 		List<QuerySolution> records =  conn.executeSelect(queryString);
 		RDFNode parentRDFNode = records.get(0).get("parent");
+		String classLabel = records.get(0).get("label").asLiteral().getString();
 		Resource subjectResource = records.get(0).get("s").asResource();
 		
 		long count = records.get(0).get("Count").asLiteral().getLong();
@@ -180,7 +180,7 @@ public class RetrieveSchemaService {
 		
 		ClassService classService = new ClassService(connection);		
 		
-		Class myClass = new Class(subjectResource.getURI(), subjectResource.getLocalName(), "", count, version, parentClass);
+		Class myClass = new Class(subjectResource.getURI(),classLabel ,subjectResource.getLocalName(), count, version, parentClass);
 		
 		myClass = classService.addIfNotExist(myClass);	
 		
@@ -298,7 +298,7 @@ public class RetrieveSchemaService {
 			Property predicate;
 			
 			try {
-				domain = classService.getByLabel(domainNode.asResource().getLocalName(), version.getID());				
+				domain = classService.getByNodeId(domainNode.asResource().getLocalName(), version.getID());				
 			} catch (NullPointerException e) {
 				domain = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : domain is missing for predicate: " + predicateNode + " and range: " + rangeNode);
@@ -312,7 +312,7 @@ public class RetrieveSchemaService {
 			}
 			
 			try {
-				range = classService.getByLabel(rangeNode.asResource().getLocalName(), version.getID());				
+				range = classService.getByNodeId(rangeNode.asResource().getLocalName(), version.getID());				
 			} catch (NullPointerException e) {
 				range = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : range is missing for domain: " + domainNode + " and predicate: " + predicateNode);
@@ -405,7 +405,7 @@ public class RetrieveSchemaService {
 			}
 			
 			try {
-				domain = classService.getByLabel(domainNode.asResource().getLocalName(), version.getID());				
+				domain = classService.getByNodeId(domainNode.asResource().getLocalName(), version.getID());				
 			} catch (NullPointerException e) {
 				domain = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : domain is missing for predicate: " + predicateNode + " and range: " + rangeNode);
