@@ -82,10 +82,10 @@ public class ClassService {
 				logger.info("ClassService.add : new Class is rolled back.");
 				
 			} catch (SQLException e) {
-				logger.error(e.getMessage(), e);
+				logger.error(e.getMessage(), e);				
 				return 0;
 			}
-			logger.error(sqlException.getMessage(), sqlException);
+			logger.error(sqlException.getMessage(), sqlException);			
 			return 0;
 		}
 		

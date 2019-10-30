@@ -705,6 +705,7 @@ public class RetrieveSchemaService {
 		if (test )
 			queryStringTriple += " ORDER BY ?p ?o LIMIT 100";
 
+		System.out.println(queryStringTriple);
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list = parseJson(http.execute());
 		
@@ -723,6 +724,7 @@ public class RetrieveSchemaService {
 					break;
 				}
 			}
+			System.out.println("p: " + predicate + ", o:" + object);
 			String predicateLocalName = getLocalName(predicate);
 			if (predicateLocalName.equals("first")) {
 				
