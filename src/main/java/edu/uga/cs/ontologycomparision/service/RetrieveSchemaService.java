@@ -246,6 +246,7 @@ public class RetrieveSchemaService {
 		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent ?p "
 				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{ optional{<" + propertyString + "> rdfs:subPropertyOf ?parent} .bind(<" + propertyString + "> AS ?p)}";
 		
+		System.out.println("collect property: " + queryString);
 		
 		List<QuerySolution> parents =  conn.executeSelect(queryString);
 		
@@ -646,7 +647,8 @@ public class RetrieveSchemaService {
 		//System.out.println("first query size: " + list.size());
 		for(ArrayList<String> row : list) {
 			
-									
+			System.out.println("---start---");
+			
 			String subject = "", predicate = "", object="";
 			for(String item : row) {
 				int index = item.indexOf(":");
@@ -671,7 +673,7 @@ public class RetrieveSchemaService {
 					String type = "";
 					type = getLocalName(predicate);
 					classes = new LinkedList<Class>();
-					
+					System.out.println("object: " + object);
 					//call to recursive method
 					classes = findClasses(object, classes);
 					
@@ -690,7 +692,7 @@ public class RetrieveSchemaService {
 					if (test )
 						query += " ORDER BY ?s LIMIT 20";
 					
-//					System.out.println("subject query: " + query);
+					System.out.println("subject query: " + query);
 					
 					HTTPConnection http2 = new HTTPConnection(endpointURL, query);
 					
@@ -714,13 +716,14 @@ public class RetrieveSchemaService {
 						}
 						
 //						myClass = collectClass(subjectUsedIn);
+						System.out.println("subjectUsedIn: " + subjectUsedIn);
 						property = collectProperty(subjectUsedIn, "");
 						
 					}
 	
 					//add the expression here
 					Expression expression = new Expression(type,property, getLocalName(predicateUsedIn), classes, version);
-					
+					System.out.println(expression);
 					expressionService.addIfNotExist(expression);
 				}	
 			}								
@@ -731,7 +734,7 @@ public class RetrieveSchemaService {
 	
 	private List<Class> findClasses(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
 		
-		System.out.println(strNode);
+		//System.out.println(strNode);
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
 		String selectFrom  = "SELECT ?p ?o";
 		
@@ -742,7 +745,7 @@ public class RetrieveSchemaService {
 		if (test )
 			queryStringTriple += " ORDER BY ?p ?o LIMIT 100";
 
-		System.out.println(queryStringTriple);
+//		System.out.println(queryStringTriple);
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list = parseJson(http.execute());
 		
@@ -761,7 +764,7 @@ public class RetrieveSchemaService {
 					break;
 				}
 			}
-			System.out.println("p: " + predicate + ", o:" + object);
+//			System.out.println("p: " + predicate + ", o:" + object);
 			String predicateLocalName = getLocalName(predicate);
 			if (predicateLocalName.equals("first")) {
 				

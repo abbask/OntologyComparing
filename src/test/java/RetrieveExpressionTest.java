@@ -14,7 +14,7 @@ class RetrieveExpressionTest {
 		String 	endpointURL 	= "http://128.192.62.253:8890/sparql";//"http://lod.openlinksw.com/sparql/";//"http://lod.openlinksw.com/sparql/";
 //		/http://vulcan.cs.uga.edu:8890/sparql
 		String 	graphName 		= "<http://obi-ontology.org>";
-		int 	versionId 		= 5;
+		int 	versionId 		= 7;
 		
 		RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
 		System.out.println(service.retrieveAllExpressions());
