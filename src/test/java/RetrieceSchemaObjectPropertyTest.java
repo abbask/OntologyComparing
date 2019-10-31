@@ -15,7 +15,7 @@ class RetrieceSchemaObjectPropertyTest {
 		int 	versionId 		= 5;
 		
 		RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
-		service.retrieveAllClasses();
+//		service.retrieveAllClasses();
 		
 		
 	}

@@ -17,7 +17,7 @@ class RetrieveExpressionTest {
 		int 	versionId 		= 7;
 		
 		RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
-		System.out.println(service.retrieveAllExpressions());
+//		System.out.println(service.retrieveAllExpressions());
 		
 	}
 

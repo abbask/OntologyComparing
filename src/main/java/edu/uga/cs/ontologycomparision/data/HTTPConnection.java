@@ -19,6 +19,13 @@ public class HTTPConnection { // took from web page https://www.baeldung.com/jav
 	private String timeout;
 	private String outputFormat ;
 	
+	public HTTPConnection(String endPoint) {
+		this.endPoint = endPoint;		
+		
+		debug = "off";
+		timeout = "0" ;
+		outputFormat = "application/sparql-results+json";
+	}
 	
 	
 	public HTTPConnection(String endPoint, String sparqlQuery) {
@@ -28,6 +35,10 @@ public class HTTPConnection { // took from web page https://www.baeldung.com/jav
 		debug = "off";
 		timeout = "0" ;
 		outputFormat = "application/sparql-results+json";
+	}
+	
+	public void setSparqlQuery(String sparqlQuery) {
+		this.query = sparqlQuery;
 	}
 
 	public String execute() throws IOException {
