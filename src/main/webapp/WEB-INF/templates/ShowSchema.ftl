@@ -112,7 +112,7 @@
 				  		<thead><tr><th scope="col">Label</th><th scope="col">Counts</th><th scope="col">Parent class</th></tr></thead><tbody>
 						<#list classes as c>
 						
-							<tr><td> ${c.label} </td><td> ${c.count} </td><td><#if c.parent??> ${c.parent.label} </#if> </td></tr> 					
+							<tr><td> ${c.label} </td><td> ${c.count} </td><td><#if c.parents?size != 0><#list c.parents as p>${p.label},</#list></#if></td></tr> 					
 						</#list>
 					<#else>
 						<thead><tr><th scope="col"></th></tr></thead><tbody><tr><th>No data available</td></tr>	
