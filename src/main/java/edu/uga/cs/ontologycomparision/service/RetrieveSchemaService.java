@@ -545,6 +545,8 @@ public class RetrieveSchemaService {
 		Map<String, Integer> restrictionTypeMap = restrictionTypes.stream().collect(
                 Collectors.toMap(RestrictionType::getType, RestrictionType::getID));
 		
+//		restrictionTypeMap.forEach((K,V)->{System.out.println(V);});
+		
 		for(ArrayList<String> row : list) {
 //			System.out.println("row: " + row);
 			String[] vars = new String[] {"s"};
@@ -594,7 +596,9 @@ public class RetrieveSchemaService {
 				HashMap<String, Resource> map = extractItemResources(row, vars);
 				
 				Resource predicateResource = map.get("p");
-				Resource objectResource = map.get("o");				
+				Resource objectResource = map.get("o");	
+				
+//				System.out.println("p: " + predicateResource + ", o:" + objectResource.toString());
 				
 				String predicate = removeNS(predicateResource.getLocalName());
 				
@@ -603,19 +607,16 @@ public class RetrieveSchemaService {
 					RestrictionType restrictionType = new RestrictionType(predicate) ;
 					type = restrictionTypeService.addIfNotExist(restrictionType);
 					
-					if (!containsCardinality(predicate)) {
+//					if (containsCardinality(predicate)) {
 						
-						List<Class> classes = new ArrayList<Class>();
-						classes = findClassesForRestriction(objectResource.getURI(), classes);
-						// AK: should handle datatypes
-
-						value = classes.stream().map(Class::getLabel).collect(Collectors.joining(", "));
-					}
-					else {
-						value = objectResource.asLiteral().getString();
-					}
-					
-
+//						List<Class> classes = new ArrayList<Class>();
+//						classes = findClassesForRestriction(objectResource.getURI(), classes);
+//						// AK: should handle datatypes
+//						value = objectResource.asLiteral().getString();
+						
+						value = objectResource.toString();
+								
+//					}
 				}
 				else if (predicate.equals("onProperty")){
 					
@@ -997,6 +998,7 @@ public class RetrieveSchemaService {
 //					if (value.matches("[0-9]+")) {
 //						
 //					}
+					
 					Resource res = ResourceFactory.createResource(value);
 					map.put(var, res);
 					
