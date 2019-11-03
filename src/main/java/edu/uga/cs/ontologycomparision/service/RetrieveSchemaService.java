@@ -111,24 +111,24 @@ public class RetrieveSchemaService {
 
 	public boolean retrieveAllClasses() throws IOException, SQLException {		
 		
-		HTTPConnection http = new HTTPConnection(endpointURL);
-		
-		
 		int numberofLimit = 1000;
-		int countClasses = retrieveClassCount();
 		
+		int countClasses = retrieveClassCount();
+		System.out.println(countClasses);
 		int page = countClasses / numberofLimit;
 		
 		for(int i = 0 ; i < page ; i++) {
+			
+			HTTPConnection http = new HTTPConnection(endpointURL);
 		
 			String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> ";
-			queryString += " SELECT ?s ?label ?parent ?Count " + (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE { { SELECT DISTINCT ?s ?label ?parent (count(?ind) as ?Count) "
-							+ "WHERE{ ?s a owl:Class. optional{?s rdfs:label ?label.} optional {?ind a ?s.} optional {?s rdfs:subClassOf ?p. ?p a owl:Class.} "
-							+ "bind(IF(?p = '', '' , ?p) AS ?parent) } "
-							+ "GROUP BY ?s ?label ?parent "
-							+ "ORDER BY ?s ?label ?parent } } LIMIT " + numberofLimit + " OFFSET " + i * numberofLimit;
+			queryString += " SELECT ?s " + (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE { ?s a owl:Class.}"
+							+ " LIMIT " + numberofLimit + " OFFSET " + i * numberofLimit;
 			http.setSparqlQuery(queryString);
-			ArrayList<ArrayList<String>> list = parseJson(http.execute());
+			String strResult = http.execute();
+
+			
+			ArrayList<ArrayList<String>> list = parseJson(strResult);
 			
 			System.out.println("page: " + i + ": " + queryString);			
 			
@@ -139,7 +139,7 @@ public class RetrieveSchemaService {
 				String[] vars = new String[] {"s"};	
 				HashMap <String, Resource> map = extractItemResources(row, vars);
 				
-				collectClass(map.get("s").toString(),  http);									
+				collectClass(map.get("s").toString(), http);	
 				
 //				String classLabel = soln.get("label").asLiteral().getString();
 //				RDFNode parentRDFNode = soln.get("parent");
@@ -171,49 +171,56 @@ public class RetrieveSchemaService {
 	}
 	
 	private Class collectClass(String subjectString, HTTPConnection http) throws SQLException, IOException {
-				
 		
-		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>";
-		queryString += "SELECT DISTINCT ?s ?label ?parent (count(?ind) as ?Count) "
-				+ (graphName.isBlank()? "" : " FROM " + graphName )+ " "
-						+ "WHERE{optional{?s rdfs:label ?label.} optional {?ind a <" + subjectString  + ">.} "
-								+ "optional {<" + subjectString  + "> rdfs:subClassOf ?p. ?p a owl:Class.} "
-						+ "bind(IF(?p = '', '' , ?p) AS ?parent)  "						
-						+ "VALUES (?s) {(<" + subjectString + "> )} }" 
-						+ "GROUP BY ?s ?label ?parent "
-						+ "ORDER BY ?s ?label ?parent";
-
-		http.setSparqlQuery(queryString);
-		ArrayList<ArrayList<String>> list = parseJson(http.execute());
-		
-			
-		if (list.size() == 0 ) 
+		if (subjectString.isEmpty())
 			return null;
-		String[] vars = new String[] {"s", "label", "parent", "Count"};
-		HashMap<String, Resource> items = extractItemResources(list.get(0), vars);	
 		
-		Resource subjectResource = items.get("s");
-		Resource labelResource = items.get("label");
-		Resource parentResource = items.get("parent");
-		long count  = Long.valueOf(items.get("Count").toString());
-		
-		
-		if (subjectResource.isAnon()) {
-			System.out.println("*********** BLANK NODE **************");
-		}
-		
+		ClassService classService = new ClassService(connection);
+		Class myClass = classService.getByURI(subjectString, version.getID());
+//		System.out.println(myClass);
+		if (myClass == null ) {
+			if (http.isUsed())
+				http = new HTTPConnection(endpointURL);
+
+			String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#>";
+			queryString += "SELECT DISTINCT ?s IF(bound(?label), ?label, '') as ?label IF(bound(?parent), ?parent, '') as ?parent (count(?ind) as ?Count) "
+					+ (graphName.isBlank()? "" : " FROM " + graphName )+ " "
+							+ "WHERE{optional{?s rdfs:label ?label.} optional {?ind a <" + subjectString  + ">.} "	
+							+ "optional{<" + subjectString + "> rdfs:subClassOf ?parent. ?parent a owl:Class. }"		
+							+ "VALUES (?s) {(<" + subjectString + "> )}  }" 
+							+ "GROUP BY ?s ?parent ?label "
+							+ "ORDER BY ?s ?parent ?label ";
+			http.setSparqlQuery(queryString);
+			ArrayList<ArrayList<String>> list = parseJson(http.execute());
 				
-		Class parentClass = null;	
-		if (parentResource != null) {
-			parentClass = collectClass(parentResource.toString(), http);
-		}
+			if (list.size() == 0 ) 
+				return null;
+			String[] vars = new String[] {"s", "label", "parent", "Count"};
+			HashMap<String, Resource> items = extractItemResources(list.get(0), vars);	
+			
+			Resource subjectResource = items.get("s");
+			Resource labelResource = items.get("label");
+			long count  = Long.valueOf(items.get("Count").toString());
+			
+			List<Class> parents = new ArrayList<Class>();
+			
+			for (ArrayList<String> item : list) {
+				String[] parentVars = new String[] {"parent"};	
+				HashMap <String, Resource> map = extractItemResources(item, parentVars);
 				
-		
-		ClassService classService = new ClassService(connection);		
-		
-		Class myClass = new Class(subjectResource.getURI(),labelResource.toString() ,subjectResource.getLocalName(), count, version, parentClass);
-		
-		myClass = classService.addIfNotExist(myClass);	
+				Class parentClass = collectClass(map.get("parent").toString(), http);
+				if (parentClass != null)
+					parents.add(parentClass);
+			}
+			
+			myClass = new Class(subjectResource.getURI(),labelResource.toString() ,subjectResource.getLocalName(), count, version, parents);
+			
+			myClass = classService.addIfNotExist(myClass);
+			
+		}
+		else {
+//			System.out.println("Not null");
+		}
 		
 		return myClass;
 		
@@ -330,7 +337,7 @@ public class RetrieveSchemaService {
 			Property predicate;
 			
 			try {
-				domain = classService.getByNodeId(domainNode.asResource().getLocalName(), version.getID());				
+				domain = classService.getByURI(domainNode.asResource().toString(), version.getID());				
 			} catch (NullPointerException e) {
 				domain = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : domain is missing for predicate: " + predicateNode + " and range: " + rangeNode);
@@ -344,7 +351,7 @@ public class RetrieveSchemaService {
 			}
 			
 			try {
-				range = classService.getByNodeId(rangeNode.asResource().getLocalName(), version.getID());				
+				range = classService.getByURI(rangeNode.asResource().toString(), version.getID());				
 			} catch (NullPointerException e) {
 				range = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : range is missing for domain: " + domainNode + " and predicate: " + predicateNode);
@@ -437,7 +444,7 @@ public class RetrieveSchemaService {
 			}
 			
 			try {
-				domain = classService.getByNodeId(domainNode.asResource().getLocalName(), version.getID());				
+				domain = classService.getByURI(domainNode.asResource().toString(), version.getID());				
 			} catch (NullPointerException e) {
 				domain = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : domain is missing for predicate: " + predicateNode + " and range: " + rangeNode);
@@ -830,7 +837,6 @@ public class RetrieveSchemaService {
 	
 	public ArrayList<ArrayList<String>> parseJson(String strJSON) {
 		try {
-			
 			ArrayList<ArrayList<String>> results = new ArrayList<ArrayList<String>>();
 			
 			JSONObject jsonObject = new JSONObject(strJSON);
@@ -845,6 +851,8 @@ public class RetrieveSchemaService {
 			
 			JSONObject resultObject = jsonObject.getJSONObject("results");			
 			JSONArray array = new JSONArray(resultObject.get("bindings").toString());
+			
+//			System.out.println("array: " + array.toString());
 			
 			for (int i = 0; i < array.length(); i++) {
 				
@@ -864,7 +872,8 @@ public class RetrieveSchemaService {
 			return results;
 		     
 		}catch (JSONException err){
-		     System.out.println("Error json.");
+//		     System.out.println("Error json.");
+			err.printStackTrace();
 		}
 		
 		return null;

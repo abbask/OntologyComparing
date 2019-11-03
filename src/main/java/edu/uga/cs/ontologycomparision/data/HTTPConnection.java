@@ -19,12 +19,17 @@ public class HTTPConnection { // took from web page https://www.baeldung.com/jav
 	private String timeout;
 	private String outputFormat ;
 	
+	private boolean used = false;
+	
+	
 	public HTTPConnection(String endPoint) {
 		this.endPoint = endPoint;		
 		
 		debug = "off";
 		timeout = "0" ;
 		outputFormat = "application/sparql-results+json";
+		
+		
 	}
 	
 	
@@ -35,6 +40,7 @@ public class HTTPConnection { // took from web page https://www.baeldung.com/jav
 		debug = "off";
 		timeout = "0" ;
 		outputFormat = "application/sparql-results+json";
+		
 	}
 	
 	public void setSparqlQuery(String sparqlQuery) {
@@ -60,7 +66,7 @@ public class HTTPConnection { // took from web page https://www.baeldung.com/jav
 		out.writeBytes(ParameterStringBuilder.getParamsString(parameters));
 		out.flush();
 		out.close();
-		
+	
 		int status = con.getResponseCode();
 		
 		BufferedReader in = new BufferedReader(
@@ -79,6 +85,17 @@ public class HTTPConnection { // took from web page https://www.baeldung.com/jav
 		con = null;
 		return content.toString();
 		
+	}
+	
+	public boolean isUsed() {
+		if (used == false) {
+			this.used = true;
+			return false;
+		}
+		else {
+			this.used = false;
+			return true;
+		}
 	}
 	
 }

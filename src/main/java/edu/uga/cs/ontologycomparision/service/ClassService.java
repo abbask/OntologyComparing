@@ -15,7 +15,7 @@ import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.Version;
 
 public class ClassService {
-	
+		
 	private Connection connection;	
 	
 	public ClassService(Connection connection) {
@@ -24,9 +24,20 @@ public class ClassService {
 	
 	final static Logger logger = Logger.getLogger(ClassService.class);
 	
+	public Boolean checkIfExists(String comment, int versionId) throws SQLException {
+		Statement stmtSys = connection.createStatement();			
+		String query = "SELECT * FROM class where version_id =" + versionId  + " and comment='" + comment + "'";
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		if (rs.next()) 
+			return false;
+		else
+			return true;
+		
+	}
+	
 	public Class addIfNotExist(Class myClass) throws SQLException {
-				
-		Class retrieveClass = getByNodeId(myClass.getComment(), myClass.getVersion().getID());
+		Class retrieveClass = getByURI(myClass.getUrl(), myClass.getVersion().getID());
 		
 		if (retrieveClass == null) {
 			int id = add(myClass);
@@ -43,21 +54,20 @@ public class ClassService {
 		
 		int candidateId = 0;
 		
+		if (myClass.getLabel().isEmpty()) {
+			myClass.setLabel(myClass.getComment());
+		}
+		
 		try {
 			connection.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO class (url,label,comment,count, version_id,parent_id) VALUES (?,?,?,?,?,?)";
+			String queryString = "INSERT INTO class (url,label,comment,count, version_id) VALUES (?,?,?,?,?)";
 			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
 			statement.setString(1,myClass.getUrl());
 			statement.setString(2,myClass.getLabel());
 			statement.setString(3,myClass.getComment());
 			statement.setLong(4,myClass.getCount());
 			statement.setInt(5, myClass.getVersion().getID());
-			if (myClass.getParent() != null)
-				statement.setInt(6, myClass.getParent().getID());
-			else
-				statement.setNull(6, java.sql.Types.INTEGER);
-			
 			
 			int rowAffected = statement.executeUpdate();
 			if(rowAffected == 1)
@@ -68,6 +78,14 @@ public class ClassService {
                     candidateId = rs.getInt(1);
  
             }
+			
+			for(Class parent : myClass.getParents()) {
+				String queryStringParent = "INSERT INTO class_parent (class_id,parent_id) VALUES (?,?)";
+				PreparedStatement statementParent= connection.prepareStatement(queryStringParent, Statement.RETURN_GENERATED_KEYS);
+				statementParent.setInt(1,candidateId);
+				statementParent.setInt(2,parent.getID());
+				statementParent.executeUpdate();
+			}
 			
 			connection.commit();
 			
@@ -91,37 +109,51 @@ public class ClassService {
 		
 	}
 	
-	public Class getByNodeId(String nodeId, int versionId) throws SQLException {
+	public Class getByURI(String nodeId, int versionId) throws SQLException {
 		
 		List<Class> list = new LinkedList<Class>();
-				
 		
 		Statement stmtSys = connection.createStatement();			
-		String query = "SELECT * FROM class where version_id =" + versionId  + " and comment='" + nodeId + "'";
+		String query = "SELECT * FROM class where version_id =" + versionId  + " and url='" + nodeId + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		VersionService versionService = new VersionService(connection);
+		
+//		System.out.println(query);
 		
 		
 		while(rs.next()) {
 			
 			Version version = versionService.get(rs.getInt("version_id"));
-			Class myClass = null;
-			if (rs.getInt("parent_id") != 0)
-				myClass = getByID(rs.getInt("parent_id") );
+			Class myClass = new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),
+					rs.getString("comment"), rs.getLong("count"), version);
 			
-			list.add(new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,myClass));
+			int classId = rs.getInt("ID");
+			List<Class> parents = new ArrayList<Class>();
+			Statement stmtParent = connection.createStatement();			
+			String queryParent = "SELECT * FROM class_parent where class_id =" + classId ;
+			ResultSet rsP = stmtParent.executeQuery(queryParent); 
+			while(rsP.next()) {
+				int parentId = rsP.getInt("ID");
+				Class parent = getByID(parentId);
+				parents.add(parent);
+				
+			}
+			myClass.setParents(parents);
+			
+			list.add(myClass);
 		}
+		
 		Class result ;
 		if (list.size() > 0) 
 			result = list.get(0);
 		else
 			result = null;
-		
-		
+	
 		logger.info("ClassService.getByLabel : retrieved class.");
 		return result;					
 				
 	}
+	
 	
 	public Class getByID(int ID) throws SQLException {
 		
@@ -135,11 +167,23 @@ public class ClassService {
 		while(rs.next()) {
 			
 			Version version = versionService.get(rs.getInt("version_id"));
-			Class myClass = null;
-			if (rs.getInt("parent_id") != 0)
-				myClass = getByID(rs.getInt("parent_id") );
-			
-			list.add(new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,myClass));
+			Class myClass = new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),
+					rs.getString("comment"), rs.getLong("count"), version);
+						
+//			int classId = rs.getInt("ID");
+//			List<Class> parents = new ArrayList<Class>();
+//			Statement stmtParent = connection.createStatement();			
+//			String queryParent = "SELECT * FROM class_parent where class_id =" + classId ;
+//			ResultSet rsP = stmtParent.executeQuery(queryParent); 
+//			while(rsP.next()) {
+//				int parentId = rsP.getInt("ID");
+//				Class parent = getByID(parentId);
+//				parents.add(parent);
+//				
+//			}
+//			
+//			myClass.setParents(parents);
+			list.add(myClass);
 		}
 		
 		logger.info("ClassService.getByID : retrieved class.");
@@ -189,10 +233,22 @@ public class ClassService {
 		VersionService versionService = new VersionService(connection);
 		while (rs.next()) {
 			Version version = versionService.get(versionId);
-			Class myClass = null;
-			if (rs.getInt("parent_id") != 0)
-				myClass = getByID(rs.getInt("parent_id") );
-			results.add(new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version,myClass));
+			Class myClass = new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version);
+			
+			int classId = rs.getInt("ID");
+			List<Class> parents = new ArrayList<Class>();
+			Statement stmtParent = connection.createStatement();			
+			String queryParent = "SELECT * FROM class_parent where class_id =" + classId ;
+			ResultSet rsP = stmtParent.executeQuery(queryParent); 
+			while(rsP.next()) {
+				int parentId = rsP.getInt("ID");
+				Class parent = getByID(parentId);
+				parents.add(parent);
+				
+			}
+			
+			myClass.setParents(parents);
+			results.add(myClass);
 		}
 		
 		return results;

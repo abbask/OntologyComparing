@@ -1,5 +1,7 @@
 package edu.uga.cs.ontologycomparision.model;
 
+import java.util.List;
+
 public class Class implements Comparable<Class>{
 	
 	private int ID;
@@ -8,10 +10,11 @@ public class Class implements Comparable<Class>{
 	private String comment;
 	private long count;
 	private Version version;
-	private Class parent;
+	private List<Class> parents;
 	
 	public Class() {
 	}
+	
 	
 	public Class(String url, String label, String comment, long count) {
 		
@@ -49,17 +52,17 @@ public class Class implements Comparable<Class>{
 		this.version = version;
 	}
 
-	public Class(String url, String label, String comment, long count, Version version, Class parent) {
+	public Class(String url, String label, String comment, long count, Version version, List<Class> parents) {
 		
 		this.url = url;
 		this.label = label;
 		this.comment = comment;
 		this.count = count;
 		this.version = version;
-		this.parent = parent;
+		this.parents = parents;
 	}
 	
-	public Class(int iD, String url, String label, String comment, long count, Version version, Class parent) {
+	public Class(int iD, String url, String label, String comment, long count, Version version, List<Class> parents) {
 		
 		ID = iD;
 		this.url = url;
@@ -67,7 +70,7 @@ public class Class implements Comparable<Class>{
 		this.comment = comment;
 		this.count = count;
 		this.version = version;
-		this.parent = parent;
+		this.parents = parents;
 	}
 
 	public int getID() {
@@ -118,13 +121,15 @@ public class Class implements Comparable<Class>{
 		this.version = version;
 	}
 
-	public Class getParent() {
-		return parent;
+	public List<Class> getParents() {
+		return parents;
 	}
 
-	public void setParent(Class parent) {
-		this.parent = parent;
+
+	public void setParents(List<Class> parents) {
+		this.parents = parents;
 	}
+
 
 	@Override
 	public int hashCode() {
@@ -162,7 +167,7 @@ public class Class implements Comparable<Class>{
 	
 	@Override
 	public String toString() {
-		return "Class [ID=" + ID + ", label=" + label + "]";
+		return "Class [ID=" + ID + ", label=" + label + ", parents size=" + parents.size() + "]";
 	}
 
 

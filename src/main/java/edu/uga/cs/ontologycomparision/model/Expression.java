@@ -16,7 +16,7 @@ public class Expression {
 	private String onProperty;
 	private List<Class> classes;
 	private Version version;
-	
+
 	public Expression() {
 	
 	}
