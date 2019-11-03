@@ -227,7 +227,7 @@ public class RetrieveSchemaService {
 	}
 	
 	
-	public boolean retrieveAllObjectProperties() throws SQLException {
+	public boolean retrieveAllObjectProperties() throws SQLException, IOException {
 		
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
 		queryStringTriple += "SELECT ?predicate " + (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE {?predicate a owl:ObjectProperty.}";
@@ -249,7 +249,7 @@ public class RetrieveSchemaService {
 		return true;
 	}
 	
-	public boolean retrieveAllDataTypeProperties() throws SQLException {
+	public boolean retrieveAllDataTypeProperties() throws SQLException, IOException {
 		
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>";						
 		queryStringTriple += "SELECT ?predicate" + (graphName.isBlank()? "" : " FROM " + graphName) + "WHERE {?predicate rdf:type owl:DatatypeProperty.}";
@@ -271,29 +271,36 @@ public class RetrieveSchemaService {
 	}
 	
 	
-	private Property collectProperty(String propertyString, String type) throws SQLException {
+	private Property collectProperty(String propertyString, String type) throws SQLException, IOException {
 		
-		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
+		if (propertyString.isEmpty())
+			return null;
+		Property myProperty ;
+
 		
-		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT ?parent ?p "
-				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{ optional{<" + propertyString + "> rdfs:subPropertyOf ?parent} .bind(<" + propertyString + "> AS ?p)}";
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT IF(bound(?parent), ?parent, '') as ?parent ?p "
+				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{ optional{?p rdfs:subPropertyOf ?parent} .values (?p ) {(<" + propertyString + ">)}}";
 		
-		System.out.println("collect property: " + queryString);
+//		System.out.println(queryString);
+		HTTPConnection http = new HTTPConnection(endpointURL, queryString);
+		ArrayList<ArrayList<String>> list = parseJson( http.execute() ) ;
 		
-		List<QuerySolution> parents =  conn.executeSelect(queryString);
 		
 		Property parentProperty = null;	
 		
-		Resource propertyResource = parents.get(0).get("p").asResource();
-		RDFNode parentNode = parents.get(0).get("parent");
+		String[] vars = new String[] {"p", "parent"};
+		HashMap<String, Resource> items = extractItemResources(list.get(0), vars);	
 		
-		if (parentNode != null) {
+		Resource propertyResource = items.get("p");
+		Resource parentResource = items.get("parent");
+				
+		if (parentResource != null) {
 			
-			parentProperty = collectProperty(parents.get(0).get("parent").toString(), type);
+			parentProperty = collectProperty(parentResource.toString(), type);
 		}
 				
 		PropertyService propertyService = new PropertyService(connection);												
-		Property myProperty = new Property(propertyResource.getURI(), propertyResource.getLocalName(),type, "", version, parentProperty);
+		myProperty = new Property(propertyResource.getURI(), propertyResource.getLocalName(),type, "", version, parentProperty);
 		myProperty = propertyService.addIfNotExist(myProperty);	
 		
 		return myProperty;
@@ -578,11 +585,12 @@ public class RetrieveSchemaService {
 		Class onClass = null;
 		String value = null;
 		
+		
 		try {
 		
 			for(ArrayList<String> row : list) {
 //				System.out.println("row: " + row);
-				String[] vars = new String[] {"s"};
+				String[] vars = new String[] {"s","p","o"};
 				HashMap<String, Resource> map = extractItemResources(row, vars);
 				
 				Resource predicateResource = map.get("p");
@@ -596,16 +604,17 @@ public class RetrieveSchemaService {
 					type = restrictionTypeService.addIfNotExist(restrictionType);
 					
 					if (!containsCardinality(predicate)) {
+						
 						List<Class> classes = new ArrayList<Class>();
 						classes = findClassesForRestriction(objectResource.getURI(), classes);
 						// AK: should handle datatypes
-//						System.out.println(classes);
 
 						value = classes.stream().map(Class::getLabel).collect(Collectors.joining(", "));
 					}
 					else {
 						value = objectResource.asLiteral().getString();
 					}
+					
 
 				}
 				else if (predicate.equals("onProperty")){
@@ -625,6 +634,8 @@ public class RetrieveSchemaService {
 			return( new Restriction(onProperty, type, value, onClass, version));
 		}
 		catch (JenaException jex) {
+			System.out.println(queryStringTriple);
+			System.out.println(value);
 			logger.error("RetrieveSchemaService.findRestrictionByNode : error in Jena conversion Node to Resource. The record Skipped.");
 			return null;
 		}

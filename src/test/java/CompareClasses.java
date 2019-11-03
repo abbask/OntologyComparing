@@ -1,5 +1,6 @@
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -17,7 +18,7 @@ import edu.uga.cs.ontologycomparision.service.VersionService;
 class CompareClasses {
 
 	@Test
-	void test() throws SQLException {
+	void test() throws SQLException, IOException {
 		MySQLConnection mySQLConnection = new MySQLConnection();
 		Connection connection = mySQLConnection.openConnection();
 //		VersionService service = new VersionService(mySQLConnection.openConnection());
