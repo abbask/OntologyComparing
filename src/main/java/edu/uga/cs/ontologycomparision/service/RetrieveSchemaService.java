@@ -695,32 +695,29 @@ public class RetrieveSchemaService {
 		
 		
 		for(ArrayList<String> row : list) {
+			String[] vars = new String[] {"s","p","o"};
+			HashMap<String, Resource> map = extractItemResources(row, vars);
 			
-			System.out.println("---start---");			
-			
-			String subject = "", predicate = "", object="";
-			String[] arrItems = extractItems(row);
-			subject = arrItems[0];
-			predicate = arrItems[1];
-			object = arrItems[2];
-			
-			
-			// check if ?s is datatype intersection or object intersectionOf/unionOf
-			String queryCHK = makeQuery("?type", "<" + subject + "> a ?type");
+			Resource subjectResource = map.get("s");
+			Resource predicateResource = map.get("p");
+			Resource objectResource = map.get("o");
+						
+			// check if ?s is datatype or object intersectionOf/unionOf
+			String queryCHK = makeQuery("?type", "<" + subjectResource.toString() + "> a ?type");
 			http = new HTTPConnection(endpointURL, queryCHK);
 			ArrayList<ArrayList<String>> listType = parseJson(http.execute());
 			
 			String expressionTypeString = listType.get(0).get(0);
 			
 			Resource expressionTypeResource = ResourceFactory.createResource(expressionTypeString);
-			System.out.println("s: " + expressionTypeResource.getLocalName());
+//			System.out.println("s: " + expressionTypeResource.getLocalName());
 			/////////////////////////////////////////////////////////////////////////////
 			
-			Resource predicateResource = ResourceFactory.createResource(predicate);
-			System.out.println("p: " + predicateResource);
+			
+//			System.out.println("p: " + predicateResource);
 			
 //			String predicateLocalName = getLocalName(predicate);
-			if (!subject.equals("http://www.w3.org/2002/07/owl#Thing")) {
+			if (!subjectResource.getLocalName().equals("Thing")) {
 				if (predicateResource.getLocalName().equals("unionOf") || predicateResource.getLocalName().equals("intersectionOf")) {
 					
 					String TypeforDB = expressionTypeResource.getLocalName() + predicateResource.getLocalName();
@@ -729,7 +726,7 @@ public class RetrieveSchemaService {
 					
 					if (expressionTypeResource.getLocalName().equals("Class")) {												
 						//call to recursive method
-						classes = findClasses(object, classes);
+						classes = findClasses(objectResource.toString(), classes);
 					}
 					else if (expressionTypeResource.getLocalName().equals("Datatype")) {
 						
