@@ -515,324 +515,327 @@ public class RetrieveSchemaService {
 		
 	}
 	
-//	public boolean retrieveAllRestrictions() throws SQLException, IOException {
-//		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
-//		String selectFrom  = "SELECT ?s";
-//		
-//		if (!graphName.isBlank())
-//			selectFrom = "SELECT ?s FROM " + graphName;
-//		queryStringTriple += selectFrom + " WHERE {?s rdf:type owl:Restriction.}";
-//		
-//		if (test )
-//			queryStringTriple += " ORDER BY ?s LIMIT 20";
-//
+	public boolean retrieveAllRestrictions() throws SQLException, IOException {
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?s";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?s FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {?s rdf:type owl:Restriction.}";
+		
+		if (test )
+			queryStringTriple += " ORDER BY ?s LIMIT 20";
+
 //		System.out.println(queryStringTriple);
-//		
-//		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
-//		ArrayList<ArrayList<String>> list = parseJson(http.execute());
-//		
-//		RestrictionService restrictionService = new RestrictionService(connection);
-//		RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
-//		List<RestrictionType> restrictionTypes = restrictionTypeService.getListAll();
-//		
-//		Map<String, Integer> restrictionTypeMap = restrictionTypes.stream().collect(
-//                Collectors.toMap(RestrictionType::getType, RestrictionType::getID));
-//		
-//		for(ArrayList<String> row : list) {
-////			System.out.println("row: " + row);
-//			String[] vars = new String[] {"s"};
-//			Resource subjectResource = extractItemResources(row, vars).get("s");
-//			
-//			
-//			
-////				String subjectLocalName = getAppropriateLocalName(subject);
-//			
-////				System.out.println("subject: " + subject + " subjectLocalName: " + subjectLocalName);
-////				
-//			Restriction restriction = findRestrictionByNode(subjectResource.toString(), restrictionTypeMap);
-//			if (restriction != null)
-//				restrictionService.add(restriction);
-//
-//		}
-//		
-//		return true;
-//		
-//	}	
-//	
-//	public Restriction findRestrictionByNode(String node, Map<String, Integer> restrictionTypeMap) throws SQLException, IOException {
-//		
-//		String selectFrom  = "SELECT ?p ?o";
-//		
-//		if (!graphName.isBlank())
-//			selectFrom = "SELECT ?p ?o FROM " + graphName;
-//		
-//		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
-//		queryStringTriple += selectFrom + " WHERE {<" + node + "> ?p ?o}";
-//
+		
+		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
+		
+		RestrictionService restrictionService = new RestrictionService(connection);
+		RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
+		List<RestrictionType> restrictionTypes = restrictionTypeService.getListAll();
+		
+		Map<String, Integer> restrictionTypeMap = restrictionTypes.stream().collect(
+                Collectors.toMap(RestrictionType::getType, RestrictionType::getID));
+		
+		for(ArrayList<String> row : list) {
+//			System.out.println("row: " + row);
+			String[] vars = new String[] {"s"};
+			Resource subjectResource = extractItemResources(row, vars).get("s");
+			
+			
+			
+//				String subjectLocalName = getAppropriateLocalName(subject);
+			
+//				System.out.println("subject: " + subject + " subjectLocalName: " + subjectLocalName);
+//				
+			Restriction restriction = findRestrictionByNode(subjectResource.toString(), restrictionTypeMap, http);
+			if (restriction != null)
+				restrictionService.add(restriction);
+
+		}
+		
+		return true;
+		
+	}	
+	
+	public Restriction findRestrictionByNode(String node, Map<String, Integer> restrictionTypeMap, HTTPConnection http) throws SQLException, IOException {
+		
+		String selectFrom  = "SELECT ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?p ?o FROM " + graphName;
+		
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ";						
+		queryStringTriple += selectFrom + " WHERE {<" + node + "> ?p ?o}";
+
 //		System.out.println(queryStringTriple);
-//		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
-//		List<QuerySolution> list = conn.executeSelect(queryStringTriple);
-//		
-//		RestrictionType type = null;
-//		Property onProperty = null;
-//		Class onClass = null;
-//		String value = null;
-//		
-//		try {
-//		
-//			for(QuerySolution soln : list) {
-//				
-//				RDFNode predicateNode = soln.get("p");
-//				RDFNode objectNode = soln.get("o");			
-//				
-//				String predicate = removeNS(predicateNode.asResource().getLocalName());
-//				
-//				if (restrictionTypeMap.containsKey(predicate)) {			
-//					RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
-//					RestrictionType restrictionType = new RestrictionType(predicate) ;
-//					type = restrictionTypeService.addIfNotExist(restrictionType);
-//					
-//					if (!containsCardinality(predicate)) {
-//						List<Class> classes = new ArrayList<Class>();
-//						classes = findClassesForRestriction(objectNode.asResource().getURI(), classes);
-//						// AK: should handle datatypes
-////						System.out.println(classes);
-//
-//						value = classes.stream().map(Class::getLabel).collect(Collectors.joining(", "));
-//					}
-//					else {
-//						value = objectNode.asLiteral().getString();
-//					}
-//
-//				}
-//				else if (predicate.equals("onProperty")){
-//					
-//					onProperty = collectProperty(objectNode.asResource().toString(), ObjectPropertyType);
-//				}
-//				else if (predicate.equals("onClass")){
-//					
-//					onClass = collectClass(objectNode.asResource().toString());
-//				}				
-//				else {
-//					logger.warn("RetrieveSchemaService.findRestrictionByNode : Cannot find the predicate of restriction");
-//				}
-//							
-//			}//for
-//			
-//			return( new Restriction(onProperty, type, value, onClass, version));
-//		}
-//		catch (JenaException jex) {
-//			logger.error("RetrieveSchemaService.findRestrictionByNode : error in Jena conversion Node to Resource. The record Skipped.");
-//			return null;
-//		}
-//		
-//		
-//	}
-//	
-//	private String removeNS(String name) {
-//		return name.replace("owl:", "");
-//	}
-//	
-//	private boolean containsCardinality(String name) {
-//		if (name.toLowerCase().indexOf("cardinality") != -1) {
-//			return true;
-//		}
-//		return false;
-//		
-//	}
-//	
-//	public String[] extractItems(ArrayList<String> row) {
-//		String subject = "", predicate = "", object="";
-//		for(String item : row) {
-//			int index = item.indexOf(":");
-//			switch (item.substring(0,index)) {
-//			case "s":
-//				subject = item.substring(index+1, item.length());
-//				break;
-//			case "p":
-//				predicate = item.substring(index+1, item.length());
-//				break;
-//			case "o":
-//				object = item.substring(index+1, item.length());
-//				break;
-//			default:
-//				break;
-//			}
-//		}
-//		return new String[] {subject, predicate, object};
-//	}
-//	
-//	public boolean retrieveAllExpressions() throws SQLException, IOException, InterruptedException {
-//		ExpressionService expressionService = new ExpressionService(connection);
-//					
-//		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
-//		String selectFrom  = "SELECT ?s ?p ?o";
-//		
-//		if (!graphName.isBlank())
-//			selectFrom = "SELECT ?s ?p ?o FROM " + graphName;
-//		queryStringTriple += selectFrom + " WHERE {?s ?p ?o. FILTER( ?p IN(owl:unionOf, owl:intersectionOf) ) }";
-//		
-//		if (test )
-//			queryStringTriple += " ORDER BY ?s LIMIT 20";
-//					
-//		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
-//		ArrayList<ArrayList<String>> list = parseJson(http.execute());
-//		
-//		
-//		for(ArrayList<String> row : list) {
-//			
-//			System.out.println("---start---");			
-//			
-//			String subject = "", predicate = "", object="";
-//			String[] arrItems = extractItems(row);
-//			subject = arrItems[0];
-//			predicate = arrItems[1];
-//			object = arrItems[2];
-//			
-//			
-//			// check if ?s is datatype intersection or object intersectionOf/unionOf
-//			String queryCHK = makeQuery("?type", "<" + subject + "> a ?type");
-//			http = new HTTPConnection(endpointURL, queryCHK);
-//			ArrayList<ArrayList<String>> listType = parseJson(http.execute());
-//			
-//			String expressionTypeString = listType.get(0).get(0);
-//			
-//			Resource expressionTypeResource = ResourceFactory.createResource(expressionTypeString);
-//			System.out.println("s: " + expressionTypeResource.getLocalName());
-//			/////////////////////////////////////////////////////////////////////////////
-//			
-//			Resource predicateResource = ResourceFactory.createResource(predicate);
-//			System.out.println("p: " + predicateResource);
-//			
-////			String predicateLocalName = getLocalName(predicate);
-//			if (!subject.equals("http://www.w3.org/2002/07/owl#Thing")) {
-//				if (predicateResource.getLocalName().equals("unionOf") || predicateResource.getLocalName().equals("intersectionOf")) {
-//					
-//					String TypeforDB = expressionTypeResource.getLocalName() + predicateResource.getLocalName();
-//					
-//					classes = new LinkedList<Class>();
-//					
-//					if (expressionTypeResource.getLocalName().equals("Class")) {												
-//						//call to recursive method
-//						classes = findClasses(object, classes);
-//					}
-//					else if (expressionTypeResource.getLocalName().equals("Datatype")) {
-//						
-//					}
-//					else{
-//						
-//					}
-//					
-//					
-//					
-//					// retrieve where the expression were used
-//					Property property = null;
-//					String predicateUsedIn = "";
-//					
-//					
-//					String query= "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
-//					selectFrom  = "SELECT ?s ?p";
-//					
-//					if (!graphName.isBlank())
-//						selectFrom = "SELECT ?s ?p FROM " + graphName;
-//					query += selectFrom + " WHERE {?s ?p <" + subject + "> }";
-//					
-//					if (test )
-//						query += " ORDER BY ?s LIMIT 20";
-//					
-//					System.out.println("subject query: " + query);
-//					
-//					HTTPConnection http2 = new HTTPConnection(endpointURL, query);
-//					
-//					ArrayList<ArrayList<String>> usedInList = parseJson(http2.execute());
-//					for(ArrayList<String> usedIn : usedInList) {
-//						String subjectUsedIn = "";
-//						
-//						
-//						for(String item : usedIn) {
-//							int index = item.indexOf(":");
-//							switch (item.substring(0,index)) {
-//							case "s":
-//								subjectUsedIn = item.substring(index+1, item.length());
-//								break;
-//							case "p":
-//								predicateUsedIn = item.substring(index+1, item.length());
-//								break;
-//							default:
-//								break;
-//							}
-//						}
-//						
-////						myClass = collectClass(subjectUsedIn);
-//						System.out.println("subjectUsedIn: " + subjectUsedIn);
-//						property = collectProperty(subjectUsedIn, "");
-//						
-//					}
-//	
-//					//add the expression here
-//					Expression expression = new Expression(TypeforDB,property, getLocalName(predicateUsedIn), classes, version);
-//					System.out.println(expression);
-//					expressionService.addIfNotExist(expression);
-//				}	
-//			}								
-//		}				
-//		return true;
-//		
-//	}
-//	
-//	private List<Class> findClasses(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
-//		
-//		//System.out.println(strNode);
-//		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
-//		String selectFrom  = "SELECT ?p ?o";
-//		
-//		if (!graphName.isBlank())
-//			selectFrom = "SELECT ?p ?o FROM " + graphName;
-//		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
-//		
-//		if (test )
-//			queryStringTriple += " ORDER BY ?p ?o LIMIT 100";
-//
-////		System.out.println(queryStringTriple);
-//		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
-//		ArrayList<ArrayList<String>> list = parseJson(http.execute());
-//		
-//		for(ArrayList<String> row : list) {
-//			String predicate = "", object="";
-//			for(String item : row) {
-//				int index = item.indexOf(":");
-//				switch (item.substring(0,index)) {
-//				case "p":
-//					predicate = item.substring(index+1, item.length());
-//					break;
-//				case "o":
-//					object = item.substring(index+1, item.length());
-//					break;
-//				default:
-//					break;
-//				}
-//			}
-////			System.out.println("p: " + predicate + ", o:" + object);
+		http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
+				
+		RestrictionType type = null;
+		Property onProperty = null;
+		Class onClass = null;
+		String value = null;
+		
+		try {
+		
+			for(ArrayList<String> row : list) {
+//				System.out.println("row: " + row);
+				String[] vars = new String[] {"s"};
+				HashMap<String, Resource> map = extractItemResources(row, vars);
+				
+				Resource predicateResource = map.get("p");
+				Resource objectResource = map.get("o");				
+				
+				String predicate = removeNS(predicateResource.getLocalName());
+				
+				if (restrictionTypeMap.containsKey(predicate)) {			
+					RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
+					RestrictionType restrictionType = new RestrictionType(predicate) ;
+					type = restrictionTypeService.addIfNotExist(restrictionType);
+					
+					if (!containsCardinality(predicate)) {
+						List<Class> classes = new ArrayList<Class>();
+						classes = findClassesForRestriction(objectResource.getURI(), classes);
+						// AK: should handle datatypes
+//						System.out.println(classes);
+
+						value = classes.stream().map(Class::getLabel).collect(Collectors.joining(", "));
+					}
+					else {
+						value = objectResource.asLiteral().getString();
+					}
+
+				}
+				else if (predicate.equals("onProperty")){
+					
+					onProperty = collectProperty(objectResource.toString(), ObjectPropertyType);
+				}
+				else if (predicate.equals("onClass")){
+					
+					onClass = collectClass(objectResource.toString(), http);
+				}				
+				else {
+					logger.warn("RetrieveSchemaService.findRestrictionByNode : Cannot find the predicate of restriction");
+				}
+							
+			}//for
+			
+			return( new Restriction(onProperty, type, value, onClass, version));
+		}
+		catch (JenaException jex) {
+			logger.error("RetrieveSchemaService.findRestrictionByNode : error in Jena conversion Node to Resource. The record Skipped.");
+			return null;
+		}
+		
+		
+	}
+	
+	private String removeNS(String name) {
+		return name.replace("owl:", "");
+	}
+	
+	private boolean containsCardinality(String name) {
+		if (name.toLowerCase().indexOf("cardinality") != -1) {
+			return true;
+		}
+		return false;
+		
+	}
+	
+	public String[] extractItems(ArrayList<String> row) {
+		String subject = "", predicate = "", object="";
+		for(String item : row) {
+			int index = item.indexOf(":");
+			switch (item.substring(0,index)) {
+			case "s":
+				subject = item.substring(index+1, item.length());
+				break;
+			case "p":
+				predicate = item.substring(index+1, item.length());
+				break;
+			case "o":
+				object = item.substring(index+1, item.length());
+				break;
+			default:
+				break;
+			}
+		}
+		return new String[] {subject, predicate, object};
+	}
+	
+	public boolean retrieveAllExpressions() throws SQLException, IOException, InterruptedException {
+		ExpressionService expressionService = new ExpressionService(connection);
+					
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?s ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?s ?p ?o FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {?s ?p ?o. FILTER( ?p IN(owl:unionOf, owl:intersectionOf) ) }";
+		
+		if (test )
+			queryStringTriple += " ORDER BY ?s LIMIT 20";
+					
+		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
+		
+		
+		for(ArrayList<String> row : list) {
+			
+			System.out.println("---start---");			
+			
+			String subject = "", predicate = "", object="";
+			String[] arrItems = extractItems(row);
+			subject = arrItems[0];
+			predicate = arrItems[1];
+			object = arrItems[2];
+			
+			
+			// check if ?s is datatype intersection or object intersectionOf/unionOf
+			String queryCHK = makeQuery("?type", "<" + subject + "> a ?type");
+			http = new HTTPConnection(endpointURL, queryCHK);
+			ArrayList<ArrayList<String>> listType = parseJson(http.execute());
+			
+			String expressionTypeString = listType.get(0).get(0);
+			
+			Resource expressionTypeResource = ResourceFactory.createResource(expressionTypeString);
+			System.out.println("s: " + expressionTypeResource.getLocalName());
+			/////////////////////////////////////////////////////////////////////////////
+			
+			Resource predicateResource = ResourceFactory.createResource(predicate);
+			System.out.println("p: " + predicateResource);
+			
 //			String predicateLocalName = getLocalName(predicate);
-//			if (predicateLocalName.equals("first")) {
-//				
-//				
-//				Class myClass = collectClass(object);
-//				classes.add(myClass);
-//			}
-//			else if (predicateLocalName.equals("rest")) {
-//					if (!object.equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#nil")	)					
-//						classes = findClasses(getLocalName(object), classes);				
-//			}
-//			else {
-//				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicate);
-//			}										
-//			
-//		}
-//								
-//		return classes;
-//		
-//	}
+			if (!subject.equals("http://www.w3.org/2002/07/owl#Thing")) {
+				if (predicateResource.getLocalName().equals("unionOf") || predicateResource.getLocalName().equals("intersectionOf")) {
+					
+					String TypeforDB = expressionTypeResource.getLocalName() + predicateResource.getLocalName();
+					
+					classes = new LinkedList<Class>();
+					
+					if (expressionTypeResource.getLocalName().equals("Class")) {												
+						//call to recursive method
+						classes = findClasses(object, classes);
+					}
+					else if (expressionTypeResource.getLocalName().equals("Datatype")) {
+						
+					}
+					else{
+						
+					}
+					
+					
+					
+					// retrieve where the expression were used
+					Property property = null;
+					String predicateUsedIn = "";
+					
+					
+					String query= "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+					selectFrom  = "SELECT ?s ?p";
+					
+					if (!graphName.isBlank())
+						selectFrom = "SELECT ?s ?p FROM " + graphName;
+					query += selectFrom + " WHERE {?s ?p <" + subject + "> }";
+					
+					if (test )
+						query += " ORDER BY ?s LIMIT 20";
+					
+					System.out.println("subject query: " + query);
+					
+					HTTPConnection http2 = new HTTPConnection(endpointURL, query);
+					
+					ArrayList<ArrayList<String>> usedInList = parseJson(http2.execute());
+					for(ArrayList<String> usedIn : usedInList) {
+						String subjectUsedIn = "";
+						
+						
+						for(String item : usedIn) {
+							int index = item.indexOf(":");
+							switch (item.substring(0,index)) {
+							case "s":
+								subjectUsedIn = item.substring(index+1, item.length());
+								break;
+							case "p":
+								predicateUsedIn = item.substring(index+1, item.length());
+								break;
+							default:
+								break;
+							}
+						}
+						
+//						myClass = collectClass(subjectUsedIn);
+						System.out.println("subjectUsedIn: " + subjectUsedIn);
+						property = collectProperty(subjectUsedIn, "");
+						
+					}
+	
+					//add the expression here
+					Expression expression = new Expression(TypeforDB,property, getLocalName(predicateUsedIn), classes, version);
+					System.out.println(expression);
+					expressionService.addIfNotExist(expression);
+				}	
+			}								
+		}				
+		return true;
+		
+	}
+	
+	private List<Class> findClasses(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
+		
+		//System.out.println(strNode);
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?p ?o FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
+		
+		if (test )
+			queryStringTriple += " ORDER BY ?p ?o LIMIT 100";
+
+//		System.out.println(queryStringTriple);
+		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
+		
+		for(ArrayList<String> row : list) {
+			String predicate = "", object="";
+			for(String item : row) {
+				int index = item.indexOf(":");
+				switch (item.substring(0,index)) {
+				case "p":
+					predicate = item.substring(index+1, item.length());
+					break;
+				case "o":
+					object = item.substring(index+1, item.length());
+					break;
+				default:
+					break;
+				}
+			}
+//			System.out.println("p: " + predicate + ", o:" + object);
+			String predicateLocalName = getLocalName(predicate);
+			if (predicateLocalName.equals("first")) {
+				
+				
+				Class myClass = collectClass(object, http);
+				classes.add(myClass);
+			}
+			else if (predicateLocalName.equals("rest")) {
+					if (!object.equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#nil")	)					
+						classes = findClasses(getLocalName(object), classes);				
+			}
+			else {
+				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicate);
+			}										
+			
+		}
+								
+		return classes;
+		
+	}
 	
 	
 	public ArrayList<ArrayList<String>> parseJson(String strJSON) {
@@ -910,67 +913,67 @@ public class RetrieveSchemaService {
 		return uri.substring(uri.indexOf("#")+1 , uri.length());
 	}
 	
-//	private List<Class> findClassesForRestriction(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
-//		
-////		System.out.println(strNode);
-//		// check whether is a class or blank node
-//		String queryCheckClass = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ASK {<" + strNode + "> a owl:Class.}";
-//		HTTPConnection http = new HTTPConnection(endpointURL, queryCheckClass);
-//		boolean result = parseJsonBoolean(http.execute());
-//		if ( result) {
-//			Class myClass = collectClass(strNode);
-//			classes.add(myClass);
-//			return classes;
-//		
-//		}
-//		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
-//		String selectFrom  = "SELECT ?p ?o";
-//		
-//		if (!graphName.isBlank())
-//			selectFrom = "SELECT ?p ?o FROM " + graphName;
-//		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
-//		
-//		if (test )
-//			queryStringTriple += " ORDER BY ?p ?o LIMIT 100";
-//
-//		http = new HTTPConnection(endpointURL, queryStringTriple);
-//		ArrayList<ArrayList<String>> list = parseJson(http.execute());
-//		
-//		for(ArrayList<String> row : list) {
-//			String predicate = "", object="";
-//			for(String item : row) {
-//				int index = item.indexOf(":");
-//				switch (item.substring(0,index)) {
-//				case "p":
-//					predicate = item.substring(index+1, item.length());
-//					break;
-//				case "o":
-//					object = item.substring(index+1, item.length());
-//					break;
-//				default:
-//					break;
-//				}
-//			}
-//			String predicateLocalName = getLocalName(predicate);
-//			if (predicateLocalName.equals("first")) {
-//				
-//				
-//				Class myClass = collectClass(object);
-//				classes.add(myClass);
-//			}
-//			else if (predicateLocalName.equals("rest")) {
-//					if (!object.equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#nil")	)					
-//						classes = findClasses(getLocalName(object), classes);				
-//			}
-//			else {
-//				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicate);
-//			}										
-//			
-//		}
-//								
-//		return classes;
-//		
-//	}
+	private List<Class> findClassesForRestriction(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
+		
+//		System.out.println(strNode);
+		// check whether is a class or blank node
+		String queryCheckClass = "PREFIX owl: <http://www.w3.org/2002/07/owl#> ASK {<" + strNode + "> a owl:Class.}";
+		HTTPConnection http = new HTTPConnection(endpointURL, queryCheckClass);
+		boolean result = parseJsonBoolean(http.execute());
+		if ( result) {
+			Class myClass = collectClass(strNode, http);
+			classes.add(myClass);
+			return classes;
+		
+		}
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?p ?o FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
+		
+		if (test )
+			queryStringTriple += " ORDER BY ?p ?o LIMIT 100";
+
+		http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
+		
+		for(ArrayList<String> row : list) {
+			String predicate = "", object="";
+			for(String item : row) {
+				int index = item.indexOf(":");
+				switch (item.substring(0,index)) {
+				case "p":
+					predicate = item.substring(index+1, item.length());
+					break;
+				case "o":
+					object = item.substring(index+1, item.length());
+					break;
+				default:
+					break;
+				}
+			}
+			String predicateLocalName = getLocalName(predicate);
+			if (predicateLocalName.equals("first")) {
+				
+				
+				Class myClass = collectClass(object, http);
+				classes.add(myClass);
+			}
+			else if (predicateLocalName.equals("rest")) {
+					if (!object.equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#nil")	)					
+						classes = findClasses(getLocalName(object), classes);				
+			}
+			else {
+				logger.warn("RetrieveSchemaService.findClasses : UNKOWN predicate in Sequence : " + predicate);
+			}										
+			
+		}
+								
+		return classes;
+		
+	}
 	
 	public HashMap<String, Resource> extractItemResources(ArrayList<String> row, String[] vars) {
 		HashMap<String, Resource> map = new HashMap<String, Resource>();
