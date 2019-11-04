@@ -30,6 +30,33 @@ public class RestrictionService {
 	
 	final static Logger logger = Logger.getLogger(RestrictionService.class);
 	
+	public Restriction getByURI(String URI) throws SQLException {	
+		
+		ClassService classService = new ClassService(connection);
+		VersionService versionService = new VersionService(connection);
+		PropertyService propertyService = new PropertyService(connection);
+		RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
+		
+		Statement stmtSys = connection.createStatement();			
+		String query = "SELECT * FROM triple_type where URI='" + URI + "'";
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		Restriction myRestriction = null;
+		
+		if(rs.next()) {
+			int id = rs.getInt("ID");
+			Property onProperty = propertyService.getByID(rs.getInt("property_id"));
+			Class onClass = classService.getByID(rs.getInt("class_id")); 			
+						
+			RestrictionType type = restrictionTypeService.get(rs.getInt("type_id"));
+			String value = rs.getString("value");
+			Version version = versionService.get(rs.getInt("version_id")); 
+			myRestriction = new Restriction(id,URI, onProperty, type, value, onClass, version);
+					
+		}
+		return myRestriction;	
+	}
+	
 	public Restriction addIfNotExist(Restriction restriction) throws SQLException {
 		
 		Restriction retrievedRestriction = getByRestriction(restriction);
@@ -52,18 +79,20 @@ public class RestrictionService {
 		try {
 			connection.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO restriction (property_id,type_id,class_id, value, version_id) VALUES (?,?,?,?,?)";
+			String queryString = "INSERT INTO restriction (URI, property_id,type_id,class_id, value, version_id) VALUES (?,?,?,?,?,?)";
 			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
-			statement.setInt(1,restriction.getOnProperty().getID());
-			statement.setInt(2,restriction.getType().getID());
+			
+			statement.setString(1,restriction.getURI());
+			statement.setInt(2,restriction.getOnProperty().getID());
+			statement.setInt(3,restriction.getType().getID());
 			
 			if (restriction.getOnClass() != null)
-				statement.setInt(3,restriction.getOnClass().getID());
+				statement.setInt(4,restriction.getOnClass().getID());
 			else
-				statement.setNull(3, java.sql.Types.INTEGER);
+				statement.setNull(4, java.sql.Types.INTEGER);
 			
-			statement.setString(4,restriction.getValue());
-			statement.setInt(5, restriction.getVersion().getID());
+			statement.setString(5,restriction.getValue());
+			statement.setInt(6, restriction.getVersion().getID());
 						
 			int rowAffected = statement.executeUpdate();
 			if(rowAffected == 1)
@@ -103,6 +132,11 @@ public class RestrictionService {
 		
 		String query = "SELECT * FROM restriction ";
 		String whereClause = "";
+		if (restriction.getURI() != null) {
+			whereClause += " URI=" + restriction.getURI() ;
+		}
+		
+		
 		if (restriction.getOnProperty() != null) {
 			whereClause += " property_id=" + restriction.getOnProperty().getID() ;
 		}
@@ -160,18 +194,18 @@ public class RestrictionService {
 		RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
 		
 		Statement stmtSys = connection.createStatement();			
-		String query = "SELECT * FROM triple_type where id='" + id + "'";
+		String query = "SELECT * FROM restriction where id='" + id + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		while(rs.next()) {
-			
+			String  URI = rs.getString("URI");
 			Property onProperty = propertyService.getByID(rs.getInt("property_id"));
 			Class onClass = classService.getByID(rs.getInt("class_id")); 			
 						
 			RestrictionType type = restrictionTypeService.get(rs.getInt("type_id"));
 			String value = rs.getString("value");
 			Version version = versionService.get(rs.getInt("version_id")); 
-			list.add(new Restriction(id, onProperty, type, value, onClass, version));
+			list.add(new Restriction(id,URI, onProperty, type, value, onClass, version));
 					
 		}
 		return list.get(0);						
@@ -194,13 +228,14 @@ public class RestrictionService {
 		
 		while (rs.next()) {
 			int iD = rs.getInt("id");
+			String URI = rs.getString("URI");
 			Property onProperty = propertyService.getByID(rs.getInt("property_id"));				
 			Class onClass = classService.getByID(rs.getInt("class_id")); 			
 			RestrictionType restrictionType = restrictionTypeService.get(rs.getInt("type_id"));
 			String value = rs.getString("value");
 			
 			Version version = versionService.get(rs.getInt("version_id")); 
-			results.add(new Restriction(iD, onProperty, restrictionType, value, onClass, version));
+			results.add(new Restriction(iD,URI,  onProperty, restrictionType, value, onClass, version));
 			
 		}
 		

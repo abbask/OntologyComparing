@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class Restriction {
 	
 	private int ID;
+	private String URI;
 	private Property onProperty;
 	private RestrictionType type;
 	private String value;
@@ -15,10 +16,10 @@ public class Restriction {
 	
 	}
 	
-	public Restriction(Property onProperty, RestrictionType type, String value, Class onClass,
+	public Restriction(String URI, Property onProperty, RestrictionType type, String value, Class onClass,
 			Version version) {
 		
-		
+		this.URI = URI; 
 		this.onProperty = onProperty;
 		this.type = type;
 		this.value = value;
@@ -26,10 +27,11 @@ public class Restriction {
 		this.version = version;
 	}
 
-	public Restriction(int iD, Property onProperty, RestrictionType type, String value, Class onClass,
+	public Restriction(int iD, String URI, Property onProperty, RestrictionType type, String value, Class onClass,
 			Version version) {
 		
 		ID = iD;
+		this.URI = URI; 
 		this.onProperty = onProperty;
 		this.type = type;
 		this.value = value;
@@ -43,6 +45,14 @@ public class Restriction {
 
 	public void setID(int iD) {
 		ID = iD;
+	}
+	
+	public String getURI() {
+		return URI;
+	}
+
+	public void setURI(String uRI) {
+		URI = uRI;
 	}
 
 	public Property getOnProperty() {
@@ -89,7 +99,7 @@ public class Restriction {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		
+		result = prime * result + ((URI == null) ? 0 : URI.hashCode());
 		result = prime * result + ((onClass == null) ? 0 : onClass.hashCode());
 		result = prime * result + ((onProperty == null) ? 0 : onProperty.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
@@ -107,9 +117,15 @@ public class Restriction {
 
 		Restriction other = (Restriction) obj;
 
-		if (onClass == null) {
-			if (other.onClass != null)
+		if (URI == null) {
+			if (other.URI != null)
 				return false;
+		} else if (!URI.equals(other.URI))
+			return false;
+		if (URI == null) {
+			if (other.URI != null)
+				return false;
+			
 		} else if (!onClass.equals(other.onClass))
 			return false;
 		if (onProperty == null) {
@@ -133,7 +149,7 @@ public class Restriction {
 
 	@Override
 	public String toString() {
-		return "Restriction [ID=" + ID + ", onProperty=" + onProperty + ", type=" + type + ", value=" + value
+		return "Restriction [ID=" + ID + ", URI=" + URI + ", onProperty=" + onProperty + ", type=" + type + ", value=" + value
 				+ ", onClass=" + onClass + ", version=" + version + "]";
 	}
 	

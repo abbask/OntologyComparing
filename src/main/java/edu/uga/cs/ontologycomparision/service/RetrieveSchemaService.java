@@ -634,7 +634,7 @@ public class RetrieveSchemaService {
 							
 			}//for
 			
-			return( new Restriction(onProperty, type, value, onClass, version));
+			return( new Restriction(node, onProperty, type, value, onClass, version));
 		}
 		catch (JenaException jex) {
 			System.out.println(queryStringTriple);
@@ -712,7 +712,7 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public boolean retrieveEachExpression(String strNode) {
+	public boolean retrieveEachExpression(String strNode) throws IOException {
 		
 		if (strNode.isEmpty())
 			return false;
@@ -725,20 +725,26 @@ public class RetrieveSchemaService {
 		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
 		
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
-		ArrayList<ArrayList<String>> list = parseJson(http.execute());
-		
-		for (ArrayList<String> row : list) {
-			String[] vars = new String[] {"p", "s"};
-			HashMap<String, Resource> items = extractItemResources(row, vars);
+		ArrayList<ArrayList<String>> list;
+		try {
+			list = parseJson(http.execute());
 			
-			Resource predicateResource = items.get("p");
-			Resource objectResource = items.get("o");
-			
-			if (predicateResource.getLocalName().equals("rest")  && objectResource.getLocalName().equals("nill") ) {
+			for (ArrayList<String> row : list) {
+				String[] vars = new String[] {"p", "s"};
+				HashMap<String, Resource> items = extractItemResources(row, vars);
 				
+				Resource predicateResource = items.get("p");
+				Resource objectResource = items.get("o");
+				
+				if (!(predicateResource.getLocalName().equals("rest") && objectResource.getLocalName().equals("nill") )) {
+					
+				}
 			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
+					
 		return true;
 	}
 		
