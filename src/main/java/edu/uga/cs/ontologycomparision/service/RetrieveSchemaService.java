@@ -61,7 +61,7 @@ public class RetrieveSchemaService {
 	private String endpointURL;
 	private String graphName;
 	private Version version;
-	private List<Class> classes;
+	
 	
 	
 	private Connection connection;	
@@ -713,6 +713,7 @@ public class RetrieveSchemaService {
 	}
 	
 	public boolean retrieveEachExpression(String strNode) throws IOException {
+		List<Class> classes = new ArrayList<Class>();
 		
 		if (strNode.isEmpty())
 			return false;
@@ -737,9 +738,11 @@ public class RetrieveSchemaService {
 				Resource objectResource = items.get("o");
 				
 				if (!(predicateResource.getLocalName().equals("rest") && objectResource.getLocalName().equals("nill") )) {
-					
+					classes = findClasses(objectResource.toString(), classes);
 				}
 			}
+			
+			//Expression myExpression = new Expression(type, property, onProperty, classes, version)
 			
 		} catch (Exception e) {
 			e.printStackTrace();
