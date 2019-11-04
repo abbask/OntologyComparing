@@ -11,6 +11,7 @@ import java.util.List;
 public class Expression {
 	
 	private int id;
+	private String URI;
 	private String type;
 	private Property property;
 	private String onProperty;
