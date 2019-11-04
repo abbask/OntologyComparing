@@ -10,6 +10,10 @@ public class Property {
 	private Version version;
 	private Property parent;
 	
+	public Property() {
+	
+	}
+	
 	public Property(String url, String label, String type, String comment, Version version, Property parent) {
 		
 		this.url = url;

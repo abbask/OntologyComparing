@@ -679,8 +679,7 @@ public class RetrieveSchemaService {
 		return new String[] {subject, predicate, object};
 	}
 	
-	public boolean retrieveAllExpressions() throws SQLException, IOException, InterruptedException {
-		ExpressionService expressionService = new ExpressionService(connection);
+	public boolean retrieveAllExpressions() throws SQLException, IOException, InterruptedException {		
 					
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
 		String selectFrom  = "SELECT ?s ?p ?o";
@@ -703,8 +702,10 @@ public class RetrieveSchemaService {
 			Resource subjectResource = map.get("s");
 			Resource predicateResource = map.get("p");
 			Resource objectResource = map.get("o");
-						
-			if (retrieveEachExpression(objectResource.toString()) == false)
+		
+			String[] result = getExpressionType(subjectResource.toString());
+			
+			if (retrieveEachExpression(objectResource.toString(),result) == null)
 				return false;
 			
 		}				
@@ -712,11 +713,48 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public boolean retrieveEachExpression(String strNode) throws IOException {
+	public String[] getExpressionType(String strNode) throws IOException {
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?p ?o FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
+					
+		String type = "", property ="";
+		
+		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
+		
+		for (ArrayList<String> row : list) {
+			String[] vars = new String[] {"p", "o"};
+			HashMap<String, Resource> items = extractItemResources(row, vars);
+						
+			Resource predicateResource = items.get("p");
+			Resource objectResource = items.get("o");
+			if (predicateResource.getLocalName().equals("type")) {
+				property = objectResource.getLocalName();
+			}
+			else {
+				type = predicateResource.getLocalName();
+			}
+		}
+		
+		return new String[] {type, property};
+		
+	}
+	
+	public Expression retrieveEachExpression(String strNode, String[] result ) throws IOException, SQLException {
+		ExpressionService expressionService = new ExpressionService(connection);
+		
 		List<Class> classes = new ArrayList<Class>();
 		
 		if (strNode.isEmpty())
-			return false;
+			return null;
+		
+		Expression myExpression = expressionService.getByURI(strNode);
+		if (myExpression != null)
+			return myExpression;
 		
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
 		String selectFrom  = "SELECT ?p ?o";
@@ -727,31 +765,44 @@ public class RetrieveSchemaService {
 		
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list;
+		
 		try {
 			list = parseJson(http.execute());
 			
 			for (ArrayList<String> row : list) {
-				String[] vars = new String[] {"p", "s"};
+				String[] vars = new String[] {"p", "o"};
 				HashMap<String, Resource> items = extractItemResources(row, vars);
 				
 				Resource predicateResource = items.get("p");
 				Resource objectResource = items.get("o");
 				
+//				System.out.println(strNode + " - " + objectResource);
+				
 				if (!(predicateResource.getLocalName().equals("rest") && objectResource.getLocalName().equals("nill") )) {
-					classes = findClasses(objectResource.toString(), classes);
+					if (result[1].equals("Class"))
+						classes = findClasses(objectResource.toString(), classes);
+					else
+						classes= null;
+						
 				}
+				
+				// type : intersection, oneof, union ,...
+				// property: class, datatype
+				
 			}
 			
-			//Expression myExpression = new Expression(type, property, onProperty, classes, version)
+			myExpression = new Expression(strNode, result[0],new Property(), result[1], classes, version);
+			expressionService.add(myExpression);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 					
-		return true;
+		return myExpression;
 	}
 		
 	private List<Class> findClasses(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
+	
 		
 		//System.out.println(strNode);
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
