@@ -1,6 +1,5 @@
 package edu.uga.cs.ontologycomparision.model;
 
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -22,8 +21,8 @@ public class Expression {
 	
 	}
 	
-	public Expression(String type, Property property, String onProperty, List<Class> classes, Version version) {
-
+	public Expression(String URI, String type, Property property, String onProperty, List<Class> classes, Version version) {
+		this.URI = URI;
 		this.type = type;
 		this.property = property;
 		this.onProperty = onProperty;
@@ -31,9 +30,10 @@ public class Expression {
 		this.version = version;
 	}
 
-	public Expression(int id, String type, Property property, String onProperty, List<Class> classes, Version version) {
+	public Expression(int id,String URI, String type, Property property, String onProperty, List<Class> classes, Version version) {
 
 		this.id = id;
+		this.URI = URI;
 		this.type = type;
 		this.property = property;
 		this.onProperty = onProperty;
@@ -47,6 +47,14 @@ public class Expression {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getURI() {
+		return URI;
+	}
+
+	public void setURI(String uRI) {
+		URI = uRI;
 	}
 
 	public String getType() {
@@ -93,6 +101,7 @@ public class Expression {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((URI == null) ? 0 : URI.hashCode());
 		result = prime * result + ((classes == null) ? 0 : classes.hashCode());
 		
 		result = prime * result + ((onProperty == null) ? 0 : onProperty.hashCode());
@@ -114,6 +123,11 @@ public class Expression {
 			if (other.classes != null)
 				return false;
 		} 
+		if (URI == null) {
+			if (other.URI != null)
+				return false;
+		} else if (!URI.equals(other.URI))
+			return false;
 
 		if (onProperty == null) {
 			if (other.onProperty != null)
@@ -136,7 +150,7 @@ public class Expression {
 
 	@Override
 	public String toString() {
-		return "Expression [id=" + id + ", type=" + type + ", property=" + property + ", onProperty=" + onProperty
+		return "Expression [id=" + id + ", URI=" + URI + ", type=" + type + ", property=" + property + ", onProperty=" + onProperty
 				+ ", classes=" + classes + ", version=" + version + "]";
 	}
 	

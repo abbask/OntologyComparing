@@ -26,6 +26,46 @@ private Connection connection;
 	
 	final static Logger logger = Logger.getLogger(ExpressionService.class);
 	
+	public Expression getByURI(String URI) throws SQLException {
+		
+		Expression myExpression = null;
+		
+		Statement stmtSys = connection.createStatement();	
+		String query = "SELECT * FROM expression WHERE URI='" + URI + "'";
+		ResultSet rs = stmtSys.executeQuery(query); 
+		
+		ClassService classService = new ClassService(connection);
+		VersionService versionService = new VersionService(connection);	
+		PropertyService propertyService = new PropertyService(connection);
+		
+		if (rs.next()) {
+			int iD = rs.getInt("id");
+			String type = rs.getString("type");
+			
+			Statement stmtExp = connection.createStatement();	
+			String queryExp = "SELECT * FROM expression_class WHERE expression_id=" + iD;
+			ResultSet rsExp = stmtExp.executeQuery(queryExp); 
+			
+			List<Class> classes = new LinkedList<Class>();
+			while (rsExp.next()) {
+				int classId = rsExp.getInt("class_id");
+				Class myClass= classService.getByID(classId);
+				classes.add(myClass);
+			}
+			
+			Version version = versionService.get(rs.getInt("version_id")); 		
+			Property property = propertyService.getByID(rs.getInt("property_id"));
+			String onProperty = rs.getString("property");
+			
+			myExpression = new Expression(URI, type,property, onProperty, classes, version);	
+			
+			
+		}
+		
+		return myExpression;
+	}
+	
+	
 	public Expression addIfNotExist(Expression expression) throws SQLException {
 		
 		Expression retrievedExpression = getByExpression(expression);
@@ -47,6 +87,11 @@ private Connection connection;
 		
 		String query = "SELECT * FROM expression ";
 		String whereClause = "";
+		
+		if (expression.getURI() != null) {
+			whereClause += " URI='" + expression.getURI() + "' " ;
+		}
+		
 		if (expression.getOnProperty() != null) {
 			whereClause += " property='" + expression.getOnProperty() + "' " ;
 		}
@@ -95,20 +140,22 @@ private Connection connection;
 		try {
 			connection.setAutoCommit(false);
 			
-			String queryString = "INSERT INTO expression (type,property_id, property, version_id) VALUES (?,?,?,?)";
+			String queryString = "INSERT INTO expression (URI,type, property_id, property, version_id) VALUES (?,?,?,?,?)";
 			PreparedStatement statement= connection.prepareStatement(queryString, Statement.RETURN_GENERATED_KEYS);
-			statement.setString(1,expression.getType());
+			
+			statement.setString(1,expression.getURI());
+			statement.setString(2,expression.getType());
 			
 			if (expression.getProperty() != null)
-				statement.setInt(2,expression.getProperty().getID());
+				statement.setInt(3,expression.getProperty().getID());
 			else
-				statement.setNull(2, java.sql.Types.INTEGER);
+				statement.setNull(3, java.sql.Types.INTEGER);
 			
 			
-			statement.setString(3,expression.getOnProperty());
+			statement.setString(4,expression.getOnProperty());
 			
 			
-			statement.setInt(4,expression.getVersion().getID());
+			statement.setInt(5,expression.getVersion().getID());
 
 						
 			int rowAffected = statement.executeUpdate();
@@ -190,11 +237,12 @@ private Connection connection;
 				Class myClass= classService.getByID(classId);
 				classes.add(myClass);
 			}
+			String URI = rs.getString("URI");
 			Version version = versionService.get(rs.getInt("version_id")); 		
 			Property property = propertyService.getByID(rs.getInt("property_id"));
 			String onProperty = rs.getString("property");
 			
-			Expression expression = new Expression(type,property, onProperty, classes, version);	
+			Expression expression = new Expression(URI, type,property, onProperty, classes, version);	
 			results.add(expression);
 			
 		}
