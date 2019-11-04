@@ -34,6 +34,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.fasterxml.jackson.databind.ObjectReader;
+
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
 import edu.uga.cs.ontologycomparision.model.Expression;
@@ -702,96 +704,44 @@ public class RetrieveSchemaService {
 			Resource predicateResource = map.get("p");
 			Resource objectResource = map.get("o");
 						
-			// check if ?s is datatype or object intersectionOf/unionOf
-			String queryCHK = makeQuery("?type", "<" + subjectResource.toString() + "> a ?type");
-			http = new HTTPConnection(endpointURL, queryCHK);
-			ArrayList<ArrayList<String>> listType = parseJson(http.execute());
+			if (retrieveEachExpression(objectResource.toString()) == false)
+				return false;
 			
-			String expressionTypeString = listType.get(0).get(0);
-			
-			Resource expressionTypeResource = ResourceFactory.createResource(expressionTypeString);
-//			System.out.println("s: " + expressionTypeResource.getLocalName());
-			/////////////////////////////////////////////////////////////////////////////
-			
-			
-//			System.out.println("p: " + predicateResource);
-			
-//			String predicateLocalName = getLocalName(predicate);
-			if (!subjectResource.getLocalName().equals("Thing")) {
-				if (predicateResource.getLocalName().equals("unionOf") || predicateResource.getLocalName().equals("intersectionOf")) {
-					
-					String TypeforDB = expressionTypeResource.getLocalName() + predicateResource.getLocalName();
-					
-					classes = new LinkedList<Class>();
-					
-					if (expressionTypeResource.getLocalName().equals("Class")) {												
-						//call to recursive method
-						classes = findClasses(objectResource.toString(), classes);
-					}
-					else if (expressionTypeResource.getLocalName().equals("Datatype")) {
-						
-					}
-					else{
-						
-					}
-					
-					
-					
-					// retrieve where the expression were used
-					Property property = null;
-					String predicateUsedIn = "";
-					
-					
-					String query= "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
-					selectFrom  = "SELECT ?s ?p";
-					
-					if (!graphName.isBlank())
-						selectFrom = "SELECT ?s ?p FROM " + graphName;
-					query += selectFrom + " WHERE {?s ?p <" + subject + "> }";
-					
-					if (test )
-						query += " ORDER BY ?s LIMIT 20";
-					
-					System.out.println("subject query: " + query);
-					
-					HTTPConnection http2 = new HTTPConnection(endpointURL, query);
-					
-					ArrayList<ArrayList<String>> usedInList = parseJson(http2.execute());
-					for(ArrayList<String> usedIn : usedInList) {
-						String subjectUsedIn = "";
-						
-						
-						for(String item : usedIn) {
-							int index = item.indexOf(":");
-							switch (item.substring(0,index)) {
-							case "s":
-								subjectUsedIn = item.substring(index+1, item.length());
-								break;
-							case "p":
-								predicateUsedIn = item.substring(index+1, item.length());
-								break;
-							default:
-								break;
-							}
-						}
-						
-//						myClass = collectClass(subjectUsedIn);
-						System.out.println("subjectUsedIn: " + subjectUsedIn);
-						property = collectProperty(subjectUsedIn, "");
-						
-					}
-	
-					//add the expression here
-					Expression expression = new Expression(TypeforDB,property, getLocalName(predicateUsedIn), classes, version);
-					System.out.println(expression);
-					expressionService.addIfNotExist(expression);
-				}	
-			}								
 		}				
 		return true;
 		
 	}
 	
+	public boolean retrieveEachExpression(String strNode) {
+		
+		if (strNode.isEmpty())
+			return false;
+		
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?p ?o FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
+		
+		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
+		
+		for (ArrayList<String> row : list) {
+			String[] vars = new String[] {"p", "s"};
+			HashMap<String, Resource> items = extractItemResources(row, vars);
+			
+			Resource predicateResource = items.get("p");
+			Resource objectResource = items.get("o");
+			
+			if (predicateResource.getLocalName().equals("rest")  && objectResource.getLocalName().equals("nill") ) {
+				
+			}
+		}
+		
+		return true;
+	}
+		
 	private List<Class> findClasses(String strNode, List<Class> classes) throws JenaException, SQLException, IOException{
 		
 		//System.out.println(strNode);
