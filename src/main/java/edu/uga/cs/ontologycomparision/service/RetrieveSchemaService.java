@@ -62,7 +62,7 @@ public class RetrieveSchemaService {
 	private String graphName;
 	private Version version;
 	
-	
+	private List<Class> classes;
 	
 	private Connection connection;	
 	
@@ -116,8 +116,12 @@ public class RetrieveSchemaService {
 		int numberofLimit = 1000;
 		
 		int countClasses = retrieveClassCount();
-		System.out.println(countClasses);
+		
 		int page = countClasses / numberofLimit;
+		System.out.println("countClasses:" + countClasses + " pages:" + page);
+		
+		if (countClasses < numberofLimit)
+			page=1;
 		
 		for(int i = 0 ; i < page ; i++) {
 			
@@ -703,8 +707,10 @@ public class RetrieveSchemaService {
 			Resource predicateResource = map.get("p");
 			Resource objectResource = map.get("o");
 		
-			String[] result = getExpressionType(subjectResource.toString());
-			
+			String[] result = new String[2];
+			result[0] = predicateResource.getLocalName().toString();
+			result[1] = getExpressionType(subjectResource.toString());
+			classes = new LinkedList<Class>();
 			if (retrieveEachExpression(objectResource.toString(),result) == null)
 				return false;
 			
@@ -713,7 +719,7 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public String[] getExpressionType(String strNode) throws IOException {
+	public String getExpressionType(String strNode) throws IOException {
 		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
 		String selectFrom  = "SELECT ?p ?o";
 		
@@ -721,7 +727,7 @@ public class RetrieveSchemaService {
 			selectFrom = "SELECT ?p ?o FROM " + graphName;
 		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
 					
-		String type = "", property ="";
+		String  property ="";
 		
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list = parseJson(http.execute());
@@ -735,12 +741,9 @@ public class RetrieveSchemaService {
 			if (predicateResource.getLocalName().equals("type")) {
 				property = objectResource.getLocalName();
 			}
-			else {
-				type = predicateResource.getLocalName();
-			}
+			
 		}
-		
-		return new String[] {type, property};
+		return property;
 		
 	}
 	
@@ -781,8 +784,8 @@ public class RetrieveSchemaService {
 				if (!(predicateResource.getLocalName().equals("rest") && objectResource.getLocalName().equals("nill") )) {
 					if (result[1].equals("Class"))
 						classes = findClasses(objectResource.toString(), classes);
-					else
-						classes= null;
+//					else
+//						classes= null;
 						
 				}
 				
@@ -836,8 +839,7 @@ public class RetrieveSchemaService {
 			}
 //			System.out.println("p: " + predicate + ", o:" + object);
 			String predicateLocalName = getLocalName(predicate);
-			if (predicateLocalName.equals("first")) {
-				
+			if (predicateLocalName.equals("first")) {				
 				
 				Class myClass = collectClass(object, http);
 				classes.add(myClass);

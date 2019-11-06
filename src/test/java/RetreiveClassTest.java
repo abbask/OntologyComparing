@@ -13,7 +13,7 @@ class RetreiveClassTest {
 	void test() throws SQLException, IOException {
 		String 	endpointURL 	= "http://localhost:8890/sparql";
 //		
-		String 	graphName 		= "<http://obi-ontology.org>";
+		String 	graphName 		= "<http://prokino.uga.edu>";
 		int 	versionId 		= 1;
 		
 		RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
