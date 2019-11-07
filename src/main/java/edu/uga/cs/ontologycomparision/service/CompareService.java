@@ -508,7 +508,7 @@ public class CompareService {
 		List<Result<String, String>> expression1List = expression1Set.stream()				
 				.map(d -> 
 					new Result<String, String>("( " 						
-						+ (d.getProperty() ==null ? "" : d.getProperty().getLabel())+ ", " 
+//						+ (d.getProperty() ==null ? "" : d.getProperty().getLabel())+ ", " 
 						+ (d.getOnProperty() ==null ? "" : d.getOnProperty())+ ") ,"
 						+ (d.getType() ==null ? "" : d.getType())+ ", " 
 						+ (d.getClasses()== null ? "" : d.getClasses().stream().map(Class::getLabel).collect(Collectors.toCollection(LinkedList::new)) ) + " ",
@@ -520,7 +520,7 @@ public class CompareService {
 				.map(d -> 
 				new Result<String, String>(" " 
 					+ " ("
-					+ (d.getProperty() ==null ? "" : d.getProperty().getLabel())+ ", " 
+//					+ (d.getProperty() ==null ? "" : d.getProperty().getLabel())+ ", " 
 					+ (d.getOnProperty() ==null ? "" : d.getOnProperty())+ ") ," 
 					+ (d.getType() ==null ? "" : d.getType())+ ", " 
 					+ (d.getClasses()== null ? "" : d.getClasses().stream().map(Class::getLabel).collect(Collectors.toCollection(LinkedList::new)) ) + " ",

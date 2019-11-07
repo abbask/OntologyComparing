@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Nov 07, 2019 at 06:11 AM
+-- Generation Time: Nov 07, 2019 at 07:29 AM
 -- Server version: 5.6.42
 -- PHP Version: 5.6.40
 
@@ -3449,19 +3449,19 @@ CREATE TABLE `expression` (
 --
 
 INSERT INTO `expression` (`ID`, `URI`, `type`, `property`, `property_id`, `version_id`) VALUES
-(1, 'nodeID://b10009', 'unionOf', 'Class', 0, 1),
-(2, 'nodeID://b10011', 'unionOf', 'Class', 0, 1),
-(3, 'nodeID://b10018', 'unionOf', 'Class', 0, 1),
-(4, 'nodeID://b10010', 'unionOf', 'Class', 0, 1),
-(5, 'nodeID://b10012', 'unionOf', 'Class', 0, 1),
-(6, 'nodeID://b10022', 'unionOf', 'Class', 0, 1),
-(7, 'nodeID://b3103758', 'unionOf', 'Class', 0, 2),
-(8, 'nodeID://b3103764', 'unionOf', 'Class', 0, 2),
-(9, 'nodeID://b3103756', 'unionOf', 'Class', 0, 2),
-(10, 'nodeID://b3103773', 'unionOf', 'Class', 0, 2),
-(11, 'nodeID://b3103770', 'unionOf', 'Class', 0, 2),
-(12, 'nodeID://b3103762', 'unionOf', 'Class', 0, 2),
-(13, 'nodeID://b3103765', 'unionOf', 'Class', 0, 2);
+(1, 'nodeID://b3103758', 'unionOf', 'implicatedIn : domain', 0, 2),
+(2, 'nodeID://b3103764', 'unionOf', 'hasStartLocation : domain', 0, 2),
+(3, 'nodeID://b3103756', 'unionOf', 'hasPKAEndLocation : domain', 0, 2),
+(4, 'nodeID://b3103773', 'unionOf', 'isPartOf : domain', 0, 2),
+(5, 'nodeID://b3103770', 'unionOf', 'hasEndLocation : domain', 0, 2),
+(6, 'nodeID://b3103762', 'unionOf', 'includes : domain', 0, 2),
+(7, 'nodeID://b3103765', 'unionOf', 'hasPKAStartLocation : domain', 0, 2),
+(8, 'nodeID://b10009', 'unionOf', 'hasStartLocation : domain', 0, 1),
+(9, 'nodeID://b10011', 'unionOf', 'isPartOf : domain', 0, 1),
+(10, 'nodeID://b10018', 'unionOf', 'includes : domain', 0, 1),
+(11, 'nodeID://b10010', 'unionOf', 'hasPKAEndLocation : domain', 0, 1),
+(12, 'nodeID://b10012', 'unionOf', 'hasEndLocation : domain', 0, 1),
+(13, 'nodeID://b10022', 'unionOf', 'hasPKAStartLocation : domain', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -3481,25 +3481,38 @@ CREATE TABLE `expression_class` (
 --
 
 INSERT INTO `expression_class` (`ID`, `expression_id`, `class_id`) VALUES
-(1, 1, 213),
-(2, 1, 19),
-(3, 2, 184),
-(4, 3, 140),
-(5, 3, 151),
-(6, 4, 19),
-(7, 5, 213),
-(8, 5, 19),
-(9, 6, 19),
-(10, 7, 1001),
-(11, 8, 1003),
-(12, 8, 953),
-(13, 9, 953),
-(14, 10, 1359),
-(15, 11, 1003),
-(16, 11, 953),
-(17, 12, 965),
-(18, 12, 970),
-(19, 13, 953);
+(1, 1, 953),
+(2, 1, 1001),
+(3, 2, 982),
+(4, 2, 1003),
+(5, 2, 953),
+(6, 3, 1003),
+(7, 3, 953),
+(8, 4, 1328),
+(9, 4, 1359),
+(10, 5, 982),
+(11, 5, 1003),
+(12, 5, 953),
+(13, 6, 957),
+(14, 6, 965),
+(15, 6, 970),
+(16, 7, 1003),
+(17, 7, 953),
+(18, 8, 179),
+(19, 8, 213),
+(20, 8, 19),
+(21, 9, 456),
+(22, 9, 184),
+(23, 10, 133),
+(24, 10, 140),
+(25, 10, 151),
+(26, 11, 213),
+(27, 11, 19),
+(28, 12, 179),
+(29, 12, 213),
+(30, 12, 19),
+(31, 13, 213),
+(32, 13, 19);
 
 -- --------------------------------------------------------
 
@@ -13339,7 +13352,7 @@ ALTER TABLE `expression`
 -- AUTO_INCREMENT for table `expression_class`
 --
 ALTER TABLE `expression_class`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `property`

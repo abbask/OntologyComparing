@@ -313,7 +313,7 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public boolean retrieveAllObjectTripleTypes() throws SQLException {
+	public boolean retrieveAllObjectTripleTypes() throws SQLException, IOException {
 		
 		String queryStringTriple = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" + 
 				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
@@ -350,7 +350,9 @@ public class RetrieveSchemaService {
 			Property predicate;
 			
 			try {
-				domain = classService.getByURI(domainNode.asResource().toString(), version.getID());				
+				HTTPConnection http = new HTTPConnection(endpointURL);
+				domain = collectClass(domainNode.asResource().toString(), http);
+//				domain = classService.getByURI(domainNode.asResource().toString(), version.getID());				
 			} catch (NullPointerException e) {
 				domain = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : domain is missing for predicate: " + predicateNode + " and range: " + rangeNode);
@@ -364,7 +366,9 @@ public class RetrieveSchemaService {
 			}
 			
 			try {
-				range = classService.getByURI(rangeNode.asResource().toString(), version.getID());				
+				HTTPConnection http = new HTTPConnection(endpointURL);
+				range = collectClass(rangeNode.asResource().toString(), http);
+				
 			} catch (NullPointerException e) {
 				range = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : range is missing for domain: " + domainNode + " and predicate: " + predicateNode);
@@ -413,7 +417,7 @@ public class RetrieveSchemaService {
 		
 	}
 	
-	public boolean retrieveAllDataTypeTripleTypes() throws SQLException {
+	public boolean retrieveAllDataTypeTripleTypes() throws SQLException, IOException {
 		
 		String queryStringTriple = "PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>" + 
 				"PREFIX owl: <http://www.w3.org/2002/07/owl#>" + 
@@ -424,6 +428,7 @@ public class RetrieveSchemaService {
 				+ "WHERE{ ?p a owl:DatatypeProperty. ?s ?p ?o. ?s a ?sc. } "
 				+ "GROUP BY ?sc ?p "
 				+ "ORDER BY ?sc ?p" ;
+		System.out.println(queryStringTriple);
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		
@@ -438,9 +443,8 @@ public class RetrieveSchemaService {
 		for(QuerySolution soln : list) {
 			RDFNode domainNode = soln.get("domain");
 			RDFNode predicateNode = soln.get("property");
-//			RDFNode rangeNode = soln.get("range"); we need to find the range for predicate later
-			long count = soln.get("count").asLiteral().getLong();			
-//			long count = retrieveCountforTriples(domainNode, predicateNode, rangeNode);										
+
+			long count = soln.get("count").asLiteral().getLong();												
 			
 			Class domain;
 			Property predicate;
@@ -457,7 +461,11 @@ public class RetrieveSchemaService {
 			}
 			
 			try {
-				domain = classService.getByURI(domainNode.asResource().toString(), version.getID());				
+				HTTPConnection http = new HTTPConnection(endpointURL);
+				domain = collectClass(domainNode.asResource().toString(), http);
+//				domain = new Class(domainNode.asResource().toString(), domainNode.asResource().getLocalName(), , count);
+//				classService.addIfNotExist(domain);
+//				domain = classService.getByURI(domainNode.asResource().toString(), version.getID());				
 			} catch (NullPointerException e) {
 				domain = null;
 				logger.warn("RetrieveSchemaService.retrieveAllObjectTypeTriples : domain is missing for predicate: " + predicateNode + " and range: " + rangeNode);
@@ -694,7 +702,9 @@ public class RetrieveSchemaService {
 		
 		if (test )
 			queryStringTriple += " ORDER BY ?s LIMIT 20";
-					
+		
+		System.out.println(queryStringTriple);
+		
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list = parseJson(http.execute());
 		
@@ -707,9 +717,11 @@ public class RetrieveSchemaService {
 			Resource predicateResource = map.get("p");
 			Resource objectResource = map.get("o");
 		
-			String[] result = new String[2];
+			String[] result = new String[3];
 			result[0] = predicateResource.getLocalName().toString();
 			result[1] = getExpressionType(subjectResource.toString());
+			result[2] = getUseofIt(subjectResource.toString());
+			System.out.println(subjectResource.toString() + " "+ result[0] + " " + result[1]);
 			classes = new LinkedList<Class>();
 			if (retrieveEachExpression(objectResource.toString(),result) == null)
 				return false;
@@ -747,6 +759,30 @@ public class RetrieveSchemaService {
 		
 	}
 	
+	public String getUseofIt(String strNode) throws IOException {
+		String queryStringTriple = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?p ?o";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?s ?p FROM " + graphName;
+		queryStringTriple += selectFrom + " WHERE {?s ?p <" + strNode + "> }";
+		
+		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
+		ArrayList<ArrayList<String>> list = parseJson(http.execute());
+		
+		for (ArrayList<String> row : list) {
+			String[] vars = new String[] {"s", "p"};
+			HashMap<String, Resource> items = extractItemResources(row, vars);
+			Resource subjectResource = items.get("s");		
+			Resource predicateResource = items.get("p");
+			
+			return getLocalName(subjectResource.toString()) + " : " + getLocalName(predicateResource.toString());
+		}
+		
+		return "";
+		
+	}
+	
 	public Expression retrieveEachExpression(String strNode, String[] result ) throws IOException, SQLException {
 		ExpressionService expressionService = new ExpressionService(connection);
 		
@@ -779,11 +815,21 @@ public class RetrieveSchemaService {
 				Resource predicateResource = items.get("p");
 				Resource objectResource = items.get("o");
 				
-//				System.out.println(strNode + " - " + objectResource);
-				
 				if (!(predicateResource.getLocalName().equals("rest") && objectResource.getLocalName().equals("nill") )) {
-					if (result[1].equals("Class"))
-						classes = findClasses(objectResource.toString(), classes);
+					if (predicateResource.getLocalName().equals("first")) {
+						
+						Class myClass = collectClass(objectResource.toString(), http);
+						classes.add(myClass);
+					}
+					else if (predicateResource.getLocalName().equals("rest")){
+						if (result[1].equals("Class"))
+							classes = findClasses(objectResource.toString(), classes);
+						
+					}
+					else {
+						
+					}
+					
 //					else
 //						classes= null;
 						
@@ -794,7 +840,7 @@ public class RetrieveSchemaService {
 				
 			}
 			
-			myExpression = new Expression(strNode, result[0],new Property(), result[1], classes, version);
+			myExpression = new Expression(strNode, result[0],new Property(), result[2], classes, version);
 			expressionService.add(myExpression);
 			
 		} catch (Exception e) {
@@ -845,6 +891,7 @@ public class RetrieveSchemaService {
 				classes.add(myClass);
 			}
 			else if (predicateLocalName.equals("rest")) {
+				
 					if (!object.equals("http://www.w3.org/1999/02/22-rdf-syntax-ns#nil")	)					
 						classes = findClasses(getLocalName(object), classes);				
 			}
