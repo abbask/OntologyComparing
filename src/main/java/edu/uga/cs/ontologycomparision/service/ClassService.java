@@ -236,12 +236,14 @@ public class ClassService {
 			Class myClass = new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("comment"), rs.getLong("count"), version);
 			
 			int classId = rs.getInt("ID");
+//			System.out.println("classId: " + classId);
 			List<Class> parents = new ArrayList<Class>();
 			Statement stmtParent = connection.createStatement();			
 			String queryParent = "SELECT * FROM class_parent where class_id =" + classId ;
+			
 			ResultSet rsP = stmtParent.executeQuery(queryParent); 
 			while(rsP.next()) {
-				int parentId = rsP.getInt("ID");
+				int parentId = rsP.getInt("parent_id");
 				Class parent = getByID(parentId);
 				parents.add(parent);
 				

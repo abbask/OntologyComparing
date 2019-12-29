@@ -123,11 +123,11 @@ public class Expression {
 			if (other.classes != null)
 				return false;
 		} 
-		if (URI == null) {
-			if (other.URI != null)
-				return false;
-		} else if (!URI.equals(other.URI))
-			return false;
+//		if (URI == null) {
+//			if (other.URI != null)
+//				return false;
+//		} else if (!URI.equals(other.URI))
+//			return false;
 
 		if (onProperty == null) {
 			if (other.onProperty != null)
