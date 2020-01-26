@@ -212,7 +212,6 @@ public class CompareService {
 		class1SetDiff.removeAll(list2);
 		class2SetDiff.removeAll(list1);
 		
-		
 		list1.retainAll(list2);
 		list2.retainAll(class1SetTemp);
 		
