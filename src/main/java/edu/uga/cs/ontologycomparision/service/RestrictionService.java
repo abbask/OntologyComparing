@@ -30,7 +30,7 @@ public class RestrictionService {
 	
 	final static Logger logger = Logger.getLogger(RestrictionService.class);
 	
-	public Restriction getByURI(String URI) throws SQLException {	
+	public Restriction getByURI(String URI, int versionId) throws SQLException {	
 		
 		ClassService classService = new ClassService(connection);
 		VersionService versionService = new VersionService(connection);
@@ -38,7 +38,7 @@ public class RestrictionService {
 		RestrictionTypeService restrictionTypeService = new RestrictionTypeService(connection);
 		
 		Statement stmtSys = connection.createStatement();			
-		String query = "SELECT * FROM triple_type where URI='" + URI + "'";
+		String query = "SELECT * FROM triple_type where versionId = " + versionId + " and URI='" + URI + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		Restriction myRestriction = null;

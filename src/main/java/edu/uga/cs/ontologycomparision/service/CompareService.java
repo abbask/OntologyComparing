@@ -190,34 +190,64 @@ public class CompareService {
 		return result;
 	}
 	
-	public List<Result<Class, Integer>> compareIndividualCountEachClass() throws SQLException, UnexpectedException  {
+	public List<Result<Class, String>> compareIndividualCountEachClass() throws SQLException, UnexpectedException  {
 		ClassService classService = new ClassService(connection);
 
-		List<Class> class1Set = classService.listAll(ver1.getID());
-		List<Class> class2Set = classService.listAll(ver2.getID());
+//		HashSet<Class> class1Set = (HashSet) classService.listAll(ver1.getID());
+//		HashSet<Class> class2Set = (HashSet) classService.listAll(ver2.getID());
+		HashSet<Class> class1Set = new HashSet<Class>(classService.listAll(ver1.getID()));
+		HashSet<Class> class2Set = new HashSet<Class>(classService.listAll(ver2.getID()));
 		
-		List<Class> class1SetTemp = new ArrayList<Class>(class1Set);
 		
-		class1Set.retainAll(class2Set);
-		class2Set.retainAll(class1SetTemp);
 		
-		Collections.sort(class1Set, new ClassSortByLabel()); 
-		Collections.sort(class2Set, new ClassSortByLabel()); 
+//		System.out.println(class2Set);
+		List<Class> list1 = new ArrayList<Class>(class1Set);
+		List<Class> list2 = new ArrayList<Class>(class2Set);
 		
-		List<Result<Class, Integer>> results = new ArrayList<>();
+		List<Class> class1SetTemp = new ArrayList<Class>(list1);
 		
-		for (int i = 0 ; i < class1Set.size() ; i++) {
-			int diff = class2Set.get(i).compareTo(class1Set.get(i));
+		List<Class> class1SetDiff = new ArrayList<Class>(list1);
+		List<Class> class2SetDiff = new ArrayList<Class>(list2);
+		
+		class1SetDiff.removeAll(list2);
+		class2SetDiff.removeAll(list1);
+		
+		
+		list1.retainAll(list2);
+		list2.retainAll(class1SetTemp);
+		
+		Collections.sort(list1, new ClassSortByLabel()); 
+		Collections.sort(list2, new ClassSortByLabel()); 
+		
+		
+		List<Result<Class, String>> results = new ArrayList<>();
+		
+		for (int i = 0 ; i < list1.size() ; i++) {
+			int diff = list1.get(i).compareTo(list2.get(i));
 			if (diff < 0 ) {
-				results.add(new Result<Class, Integer>(class1Set.get(i), diff));
+				results.add(new Result<Class, String>(list1.get(i), Integer.toString(diff)));
 			}
 			else if (diff > 0) {
-				results.add(new Result<Class, Integer>(class1Set.get(i), diff));
+				results.add(new Result<Class, String>(list2.get(i), Integer.toString(diff)));
 			}
-			if (class2Set.get(i).getLabel().compareTo(class1Set.get(i).getLabel()) != 0) {
-				throw new UnexpectedException("sort did not work: " + class2Set.get(i).getLabel() + ", " + class1Set.get(i).getLabel());
+			if (list2.get(i).getLabel().compareTo(list1.get(i).getLabel()) != 0) {
+				throw new UnexpectedException("sort did not work: " + list2.get(i).getLabel() + ", " + list1.get(i).getLabel());
 			}
-		}						
+		}		
+		//added the ones that appears in the previous version
+		for (Class c : class1SetDiff) {
+			int diff = (int)c.getCount();
+			results.add(new Result<Class, String>(c, Integer.toString(-1 * diff) + " (" + "only in version " + ver1.getNumber() + ")"));
+		}
+		
+		// added the ones that appears in the next version
+		for (Class c : class2SetDiff) {
+			int diff = (int)c.getCount();
+			results.add(new Result<Class, String>(c, Integer.toString( diff) + " (" + "only in version " + ver2.getNumber() + ")"));
+		}
+		
+		
+			
 		
 		return results;
 	}

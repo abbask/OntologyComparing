@@ -197,6 +197,7 @@ public class RetrieveSchemaService {
 							+ "GROUP BY ?s ?parent ?label "
 							+ "ORDER BY ?s ?parent ?label ";
 			http.setSparqlQuery(queryString);
+//			System.out.println(queryString);
 			ArrayList<ArrayList<String>> list = parseJson(http.execute());
 				
 			if (list.size() == 0 ) 
@@ -428,7 +429,7 @@ public class RetrieveSchemaService {
 				+ "WHERE{ ?p a owl:DatatypeProperty. ?s ?p ?o. ?s a ?sc. } "
 				+ "GROUP BY ?sc ?p "
 				+ "ORDER BY ?sc ?p" ;
-		System.out.println(queryStringTriple);
+//		System.out.println(queryStringTriple);
 		
 		DataStoreConnection conn = new DataStoreConnection(endpointURL, graphName);
 		
@@ -649,8 +650,8 @@ public class RetrieveSchemaService {
 			return( new Restriction(node, onProperty, type, value, onClass, version));
 		}
 		catch (JenaException jex) {
-			System.out.println(queryStringTriple);
-			System.out.println(value);
+//			System.out.println(queryStringTriple);
+//			System.out.println(value);
 			logger.error("RetrieveSchemaService.findRestrictionByNode : error in Jena conversion Node to Resource. The record Skipped.");
 			return null;
 		}
@@ -703,7 +704,7 @@ public class RetrieveSchemaService {
 		if (test )
 			queryStringTriple += " ORDER BY ?s LIMIT 20";
 		
-		System.out.println(queryStringTriple);
+//		System.out.println(queryStringTriple);
 		
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list = parseJson(http.execute());
@@ -721,7 +722,7 @@ public class RetrieveSchemaService {
 			result[0] = predicateResource.getLocalName().toString();
 			result[1] = getExpressionType(subjectResource.toString());
 			result[2] = getUseofIt(subjectResource.toString());
-			System.out.println(subjectResource.toString() + " "+ result[0] + " " + result[1]);
+//			System.out.println(subjectResource.toString() + " "+ result[0] + " " + result[1]);
 			classes = new LinkedList<Class>();
 			if (retrieveEachExpression(objectResource.toString(),result) == null)
 				return false;
@@ -790,8 +791,7 @@ public class RetrieveSchemaService {
 		
 		if (strNode.isEmpty())
 			return null;
-		
-		Expression myExpression = expressionService.getByURI(strNode);
+		Expression myExpression = expressionService.getByURI(strNode, version.getID());
 		if (myExpression != null)
 			return myExpression;
 		
@@ -801,7 +801,6 @@ public class RetrieveSchemaService {
 		if (!graphName.isBlank())
 			selectFrom = "SELECT ?p ?o FROM " + graphName;
 		queryStringTriple += selectFrom + " WHERE {<" + strNode + "> ?p ?o. }";
-		
 		HTTPConnection http = new HTTPConnection(endpointURL, queryStringTriple);
 		ArrayList<ArrayList<String>> list;
 		
@@ -839,14 +838,12 @@ public class RetrieveSchemaService {
 				// property: class, datatype
 				
 			}
-			
 			myExpression = new Expression(strNode, result[0],new Property(), result[2], classes, version);
 			expressionService.add(myExpression);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-					
 		return myExpression;
 	}
 		
@@ -929,11 +926,17 @@ public class RetrieveSchemaService {
 				
 				ArrayList<String> result = new ArrayList<String>();
 				JSONObject row = array.getJSONObject(i);
-				
+//				System.out.println(row);
 				for (int j = 0 ; j < vars.length ; j++) {
-					String var = row.get(vars[j]).toString();
-					JSONObject p = new JSONObject(var);
-					result.add(vars[j] + ":" + p.get("value").toString());
+//					System.out.println(row);
+					String value = "";
+					if (row.has(vars[j])) {
+						String var = row.get(vars[j]).toString();
+						JSONObject p = new JSONObject(var);
+						value = p.get("value").toString();
+					
+					}
+					result.add(vars[j] + ":" + value);
 				}
 				
 				results.add(result);

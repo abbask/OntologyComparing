@@ -26,12 +26,12 @@ private Connection connection;
 	
 	final static Logger logger = Logger.getLogger(ExpressionService.class);
 	
-	public Expression getByURI(String URI) throws SQLException {
+	public Expression getByURI(String URI, int versionId) throws SQLException {
 		
 		Expression myExpression = null;
 		
 		Statement stmtSys = connection.createStatement();	
-		String query = "SELECT * FROM expression WHERE URI='" + URI + "'";
+		String query = "SELECT * FROM expression WHERE version_id=" + versionId + " and URI='" + URI + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		ClassService classService = new ClassService(connection);

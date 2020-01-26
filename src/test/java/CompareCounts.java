@@ -13,17 +13,17 @@ class CompareCounts {
 	void test() throws Exception {
 		MySQLConnection mySQLConnection = new MySQLConnection();
 		VersionService service = new VersionService(mySQLConnection.openConnection());
-		Version ver1 = service.get(2);
-		Version ver2 = service.get(3);
+		Version ver1 = service.get(24);
+		Version ver2 = service.get(25);
 		CompareService compare = new CompareService(ver1, ver2);
 //		System.out.println(compare.compareIndividualCount());
 //		
-//		System.out.println(compare.compareIndividualCountEachClass());
+		System.out.println(compare.compareIndividualCountEachClass());
 //		
 //		System.out.println(compare.compareObjectTripleTypeCount());
 //		System.out.println(compare.compareDatatypeTripleTypeCount());
 //		
-		System.out.println(compare.compareObjectTripleTypeCountEachTriple());
+//		System.out.println(compare.compareObjectTripleTypeCountEachTriple());
 //		System.out.println(compare.compareDatatypeTripleTypeCountEachTriple());
 //		
 //		List<Result<ObjectTripleType, Integer>> results = compare.compareObjectTripleTypeCountEachTriple();

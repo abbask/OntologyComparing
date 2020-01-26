@@ -127,7 +127,7 @@ public class CompareREST {
 			
 			CompareService compareService = new CompareService(version1, version2);
 			
-			List<Result<Class, Integer>> individualsOfclasses 		  = compareService.compareIndividualCountEachClass();
+			List<Result<Class, String>> individualsOfclasses 		  = compareService.compareIndividualCountEachClass();
 
 			root.put("individualsOfclasses", individualsOfclasses);
 
