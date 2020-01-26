@@ -166,6 +166,8 @@ public class PropertyService {
 		String query = "SELECT * FROM property where ID=" + ID;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		VersionService versionService = new VersionService(connection);
+		ClassService classService = new ClassService(connection);
+		
 //		System.out.println("QUERY: " + query);
 		Property result = null;
 		
@@ -176,10 +178,29 @@ public class PropertyService {
 			if (rs.getInt("parent_id") != 0)
 				prop = getByID(rs.getInt("parent_id") );
 			
-			list.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("type"), rs.getString("comment"), version,prop));
+			Property property = new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"), rs.getString("type"), rs.getString("comment"), version, prop);
+			
+			int propertyId = rs.getInt("ID");
+			List<DomainRange> domainRanges = new ArrayList<DomainRange>();
+			Statement stmtParent = connection.createStatement();			
+			String queryParent = "SELECT * FROM domain_range where property_id =" + propertyId ;
+			ResultSet rsP = stmtParent.executeQuery(queryParent); 
+			while(rsP.next()) {
+				int domainRangeId = rsP.getInt("ID");
+				
+				Class theClass = classService.getByID(rsP.getInt("class_id"));				
+				DomainRange domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
+				
+				domainRanges.add(domainRange);
+				
+			}
+			property.setDomainRanges(domainRanges);
+			
 		}
-		if (list.size() > 0 )
+		if (list.size() > 0) 
 			result = list.get(0);
+		else
+			result = null;
 		
 		logger.info("PropertyService.getByID : retrieved property.");
 		return result;						
@@ -205,12 +226,32 @@ public class PropertyService {
 		String query = "SELECT * FROM property where type='" + type + "' AND version_id=" + versionId;
 		ResultSet rs = stmtSys.executeQuery(query); 
 		VersionService versionService = new VersionService(connection);
+		ClassService classService = new ClassService(connection);
+		
 		while (rs.next()) {
 			Version version = versionService.get(versionId);
 			Property parentProperty = null;
 			if (rs.getInt("parent_id") != 0)
 				parentProperty = getByID(rs.getInt("parent_id") );
-			results.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("type"),rs.getString("comment"), version,parentProperty));
+
+			Property property = new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"), rs.getString("type"), rs.getString("comment"), version, parentProperty);
+			
+			int propertyId = rs.getInt("ID");
+			List<DomainRange> domainRanges = new ArrayList<DomainRange>();
+			Statement stmtParent = connection.createStatement();			
+			String queryParent = "SELECT * FROM domain_range where property_id =" + propertyId ;
+			ResultSet rsP = stmtParent.executeQuery(queryParent); 
+			while(rsP.next()) {
+				int domainRangeId = rsP.getInt("ID");
+				
+				Class theClass = classService.getByID(rsP.getInt("class_id"));				
+				DomainRange domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
+				
+				domainRanges.add(domainRange);
+				
+			}
+			property.setDomainRanges(domainRanges);
+			
 		}
 		
 		return results;
