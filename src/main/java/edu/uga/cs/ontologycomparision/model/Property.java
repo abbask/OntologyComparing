@@ -1,5 +1,7 @@
 package edu.uga.cs.ontologycomparision.model;
 
+import java.util.List;
+
 public class Property {
 	
 	private int ID;
@@ -9,22 +11,26 @@ public class Property {
 	private String comment;
 	private Version version;
 	private Property parent;
+	private List<DomainRange> domainRanges;
 	
 	public Property() {
 	
 	}
 	
-	public Property(String url, String label, String type, String comment, Version version, Property parent) {
-		
+	
+
+	public Property(String url, String label, String type, String comment, Version version, Property parent,
+			List<DomainRange> domainRanges) {
+		super();
 		this.url = url;
 		this.label = label;
 		this.type = type;
 		this.comment = comment;
 		this.version = version;
 		this.parent = parent;
-		
+		this.domainRanges = domainRanges;
 	}
-	
+
 	public Property(int iD, String url, String label, String type, String comment, Version version, Property parent) {
 		super();
 		ID = iD;
@@ -34,6 +40,21 @@ public class Property {
 		this.comment = comment;
 		this.version = version;
 		this.parent = parent;
+	}
+
+
+
+	public Property(int iD, String url, String label, String type, String comment, Version version, Property parent,
+			List<DomainRange> domainRanges) {
+		super();
+		ID = iD;
+		this.url = url;
+		this.label = label;
+		this.type = type;
+		this.comment = comment;
+		this.version = version;
+		this.parent = parent;
+		this.domainRanges = domainRanges;
 	}
 
 	public int getID() {
@@ -92,13 +113,51 @@ public class Property {
 		this.parent = parent;
 	}
 
+	public List<DomainRange> getDomainRanges() {
+		return domainRanges;
+	}
+
+	public void setDomainRanges(List<DomainRange> domainRanges) {
+		this.domainRanges = domainRanges;
+	}
+
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		
+//		result = prime * result + ((label == null) ? 0 : label.hashCode());
+//		
+//		return result;
+//	}
+//
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		
+//		Property other = (Property) obj;
+//		
+//		if (label == null) {
+//			if (other.label != null)
+//				return false;
+//		} else if (!label.equals(other.label))
+//			return false;
+//		
+//		return true;
+//	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ID;
 		
+		result = prime * result + ((domainRanges == null) ? 0 : domainRanges.hashCode());
 		result = prime * result + ((label == null) ? 0 : label.hashCode());
-		
+		result = prime * result + ((parent == null) ? 0 : parent.hashCode());
 		return result;
 	}
 
@@ -108,26 +167,34 @@ public class Property {
 			return true;
 		if (obj == null)
 			return false;
-		
+		if (getClass() != obj.getClass())
+			return false;
 		Property other = (Property) obj;
-		
+
+		if (domainRanges == null) {
+			if (other.domainRanges != null)
+				return false;
+		} else if (!domainRanges.equals(other.domainRanges))
+			return false;
 		if (label == null) {
 			if (other.label != null)
 				return false;
 		} else if (!label.equals(other.label))
 			return false;
-		
+		if (parent == null) {
+			if (other.parent != null)
+				return false;
+		} else if (!parent.equals(other.parent))
+			return false;
+
 		return true;
 	}
 
-//	@Override
-//	public String toString() {
-//		return "Property [ID=" + ID + ", url=" + url + ", label=" + label + ", type=" + type + ", comment=" + comment
-//				+ ", version=" + version + ", parent=" + parent + "]";
-//	}
-
 	@Override
 	public String toString() {
-		return "Property [ID=" + ID + ", label=" + label + "]";
+		return "Property [ID=" + ID + ", label=" + label + ", type=" + type + ", version=" + version + ", parent="
+				+ parent + ", domainRanges=" + domainRanges + "]";
 	}
+	
+	
 }

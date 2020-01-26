@@ -11,6 +11,8 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import edu.uga.cs.ontologycomparision.model.Class;
+import edu.uga.cs.ontologycomparision.model.DomainRange;
 import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
 
@@ -77,6 +79,14 @@ public class PropertyService {
  
             }
 			
+			for(DomainRange dr : property.getDomainRanges()) {
+				String queryStringParent = "INSERT INTO domain_range (property_id, type, class_id) VALUES (?,?)";
+				PreparedStatement statementParent= connection.prepareStatement(queryStringParent, Statement.RETURN_GENERATED_KEYS);
+				statementParent.setInt(1,candidateId);
+				statementParent.setString(2, dr.getType());
+				statementParent.setInt(3,dr.getTheClass().getID());
+				statementParent.executeUpdate();
+			}
 			
 			connection.commit();
 			
@@ -107,6 +117,7 @@ public class PropertyService {
 		String query = "SELECT * FROM property where version_id =" + versionId  + " and label='" + label + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
+		ClassService classService = new ClassService(connection);
 		VersionService versionService = new VersionService(connection);
 		
 		while(rs.next()) {
@@ -115,8 +126,25 @@ public class PropertyService {
 			Property prop = null;
 			if (rs.getInt("parent_id") != 0)
 				prop = getByID(rs.getInt("parent_id") );
+
+			Property property = new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"), rs.getString("type"), rs.getString("comment"), version, prop);
 			
-			list.add(new Property(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),rs.getString("type"), rs.getString("comment"), version,prop));
+			int propertyId = rs.getInt("ID");
+			List<DomainRange> domainRanges = new ArrayList<DomainRange>();
+			Statement stmtParent = connection.createStatement();			
+			String queryParent = "SELECT * FROM domain_range where property_id =" + propertyId ;
+			ResultSet rsP = stmtParent.executeQuery(queryParent); 
+			while(rsP.next()) {
+				int domainRangeId = rsP.getInt("ID");
+				
+				Class theClass = classService.getByID(rsP.getInt("class_id"));				
+				DomainRange domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
+				
+				domainRanges.add(domainRange);
+				
+			}
+			property.setDomainRanges(domainRanges);
+			
 		}
 		Property result ;
 		if (list.size() > 0) 
