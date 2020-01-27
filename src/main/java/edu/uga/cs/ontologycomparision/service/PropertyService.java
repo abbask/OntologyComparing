@@ -37,6 +37,8 @@ public class PropertyService {
 		
 		Property retrieveProperty = getByLabel(myProperty.getLabel(), myProperty.getVersion().getID());
 		
+//		System.out.println(retrieveProperty);
+		
 		if (retrieveProperty == null) {
 			int id = add(myProperty);
 			myProperty.setID(id);
@@ -80,7 +82,7 @@ public class PropertyService {
             }
 			
 			for(DomainRange dr : property.getDomainRanges()) {
-				String queryStringParent = "INSERT INTO domain_range (property_id, type, class_id) VALUES (?,?)";
+				String queryStringParent = "INSERT INTO domain_range (property_id, type, class_id) VALUES (?,?,?)";
 				PreparedStatement statementParent= connection.prepareStatement(queryStringParent, Statement.RETURN_GENERATED_KEYS);
 				statementParent.setInt(1,candidateId);
 				statementParent.setString(2, dr.getType());
@@ -115,6 +117,8 @@ public class PropertyService {
 		
 		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM property where version_id =" + versionId  + " and label='" + label + "'";
+//		System.out.println(query);
+		
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		ClassService classService = new ClassService(connection);
@@ -144,7 +148,7 @@ public class PropertyService {
 				
 			}
 			property.setDomainRanges(domainRanges);
-			
+			list.add(property);
 		}
 		Property result ;
 		if (list.size() > 0) 

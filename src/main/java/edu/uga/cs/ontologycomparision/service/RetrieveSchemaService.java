@@ -38,6 +38,7 @@ import com.fasterxml.jackson.databind.ObjectReader;
 
 import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.DataTypeTripleType;
+import edu.uga.cs.ontologycomparision.model.DomainRange;
 import edu.uga.cs.ontologycomparision.model.Expression;
 import edu.uga.cs.ontologycomparision.model.ObjectTripleType;
 import edu.uga.cs.ontologycomparision.model.Property;
@@ -285,8 +286,8 @@ public class RetrieveSchemaService {
 		Property myProperty ;
 
 		
-		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT IF(bound(?parent), ?parent, '') as ?parent ?p "
-				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{ optional{?p rdfs:subPropertyOf ?parent} .values (?p ) {(<" + propertyString + ">)}}";
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT IF(bound(?parent), ?parent, '') as ?parent ?p IF(bound(?domain), ?domain, '') as ?domain IF(bound(?range), ?range, '') as ?range "
+				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{?p a owl:ObjectProperty. optional{?p rdfs:subPropertyOf ?parent.} optional{?p rdfs:domain ?domain.} optional{?p rdfs:range ?range.} values (?p ) {(<" + propertyString + ">)}}";
 		
 //		System.out.println(queryString);
 		HTTPConnection http = new HTTPConnection(endpointURL, queryString);
@@ -295,7 +296,7 @@ public class RetrieveSchemaService {
 		
 		Property parentProperty = null;	
 		
-		String[] vars = new String[] {"p", "parent"};
+		String[] vars = new String[] {"p", "parent", "domain", "range"};
 		HashMap<String, Resource> items = extractItemResources(list.get(0), vars);	
 		
 		Resource propertyResource = items.get("p");
@@ -306,12 +307,142 @@ public class RetrieveSchemaService {
 			parentProperty = collectProperty(parentResource.toString(), type);
 		}
 				
-		PropertyService propertyService = new PropertyService(connection);												
+		PropertyService propertyService = new PropertyService(connection);		
+		
+		Resource domainResource = items.get("domain");
+		Resource rangeResource = items.get("range");
+		
+		Class domain = collectClass(domainResource.toString(), http);
+		Class range = collectClass(rangeResource.toString(), http);
+		
+//		System.out.println("domain: " + domain + " range: " + range );
+		
 		myProperty = new Property(propertyResource.getURI(), propertyResource.getLocalName(),type, "", version, parentProperty);
-		myProperty = propertyService.addIfNotExist(myProperty);	
+		List<DomainRange> domainRanges = new ArrayList<DomainRange>();
+		DomainRange d = null;
+		
+		if (domain != null) {
+			
+			if (domain.getUrl().contains("nodeID:")) {
+				List<Class> classes = findClassesForDomainRange(domain.getUrl());
+				for(Class c : classes) {
+					d = new DomainRange(myProperty, "Domain", c);
+					domainRanges.add(d);
+				}
+			}
+			else {
+				d = new DomainRange(myProperty, "Domain", domain);
+				domainRanges.add(d);
+			}
+			
+			
+		}
+		DomainRange r =null;
+		if (range != null) {
+			
+			if (range.getUrl().contains("nodeID:")) {
+				List<Class> classes = findClassesForDomainRange(range.getUrl());
+				for(Class c : classes) {
+					r = new DomainRange(myProperty, "Range", c);
+					domainRanges.add(r);
+				}
+			}
+			else {
+				r = new DomainRange(myProperty, "Range", range);
+				domainRanges.add(r);
+			}			
+			
+		}
+		
+		myProperty.setDomainRanges(domainRanges);		
+		myProperty = propertyService.addIfNotExist(myProperty);			
 		
 		return myProperty;
 		
+	}
+	
+	private List<Class> findClassesForDomainRange(String label){
+		
+		
+		if (label.isEmpty())
+			return null;		
+		
+		List<Class> classes = new ArrayList<Class>();
+		
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?o ?pr";
+		
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?o ?pr FROM " + graphName;
+		queryString += selectFrom + " WHERE {<" + label + "> ?pr ?o. FILTER( ?pr IN(owl:unionOf, owl:intersectionOf) )}";
+		
+//		System.out.println(queryString);
+		HTTPConnection http = new HTTPConnection(endpointURL, queryString);
+		try {
+			ArrayList<ArrayList<String>> list = parseJson( http.execute() ) ;
+			
+			String[] vars = new String[] { "o", "pr"};
+			HashMap<String, Resource> items = extractItemResources(list.get(0), vars);	
+			
+			Resource objectResource = items.get("o");
+			
+			classes = findEachClassForDomainRange(objectResource.toString(), classes);
+			
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return classes;
+		
+		
+	}
+	
+	private List<Class> findEachClassForDomainRange(String label,List<Class> classes){
+		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdf:<http://www.w3.org/1999/02/22-rdf-syntax-ns#> ";
+		String selectFrom  = "SELECT ?o ?pr";
+		
+		if (!graphName.isBlank())
+			selectFrom = "SELECT ?o ?pr FROM " + graphName;
+		queryString += selectFrom + " WHERE {<" + label + "> ?pr ?o. }";
+		
+//		System.out.println(queryString);
+		HTTPConnection http = new HTTPConnection(endpointURL, queryString);
+		ArrayList<ArrayList<String>> list;
+		
+		try {
+			list = parseJson(http.execute());
+			
+			for (ArrayList<String> row : list) {
+				String[] vars = new String[] {"pr", "o"};
+				HashMap<String, Resource> items = extractItemResources(row, vars);
+				
+				Resource predicateResource = items.get("pr");
+				Resource objectResource = items.get("o");
+				
+				if (!(predicateResource.getLocalName().equals("rest") && objectResource.getLocalName().equals("nill") )) {
+					if (predicateResource.getLocalName().equals("first")) {
+						
+						Class myClass = collectClass(objectResource.toString(), http);
+						classes.add(myClass);
+					}
+					else if (predicateResource.getLocalName().equals("rest")){
+							classes = findEachClassForDomainRange(objectResource.toString(), classes);
+						
+					}	
+				}
+				
+
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return classes;
 	}
 	
 	public boolean retrieveAllObjectTripleTypes() throws SQLException, IOException {

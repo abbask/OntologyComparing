@@ -30,6 +30,20 @@ public class Property {
 		this.parent = parent;
 		this.domainRanges = domainRanges;
 	}
+	
+	
+
+	public Property(String url, String label, String type, String comment, Version version, Property parent) {
+		super();
+		this.url = url;
+		this.label = label;
+		this.type = type;
+		this.comment = comment;
+		this.version = version;
+		this.parent = parent;
+	}
+
+
 
 	public Property(int iD, String url, String label, String type, String comment, Version version, Property parent) {
 		super();
