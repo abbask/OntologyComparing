@@ -6,6 +6,7 @@ public class DomainRange {
 	private Property property;
 	private String type;
 	private Class theClass;
+	private XSDType xsdType;
 	
 	public DomainRange() {
 	}
@@ -16,6 +17,14 @@ public class DomainRange {
 		this.type = type;
 		this.theClass = theClass;
 	}
+	
+
+	public DomainRange(Property property, String type, XSDType xsdType) {
+		super();
+		this.property = property;
+		this.type = type;
+		this.xsdType = xsdType;
+	}
 
 	public DomainRange(int iD, Property property, String type, Class theClass) {
 		super();
@@ -23,6 +32,14 @@ public class DomainRange {
 		this.property = property;
 		this.type = type;
 		this.theClass = theClass;
+	}
+
+	public DomainRange(int iD, Property property, String type, XSDType xsdType) {
+		super();
+		ID = iD;
+		this.property = property;
+		this.type = type;
+		this.xsdType = xsdType;
 	}
 
 	public int getID() {
@@ -57,6 +74,15 @@ public class DomainRange {
 		this.theClass = theClass;
 	}
 
+	
+	public XSDType getXsdType() {
+		return xsdType;
+	}
+
+	public void setXsdType(XSDType xsdType) {
+		this.xsdType = xsdType;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -64,6 +90,7 @@ public class DomainRange {
 		result = prime * result + ((property == null) ? 0 : property.hashCode());
 		result = prime * result + ((theClass == null) ? 0 : theClass.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
+		result = prime * result + ((xsdType == null) ? 0 : xsdType.hashCode());
 		return result;
 	}
 
@@ -92,12 +119,19 @@ public class DomainRange {
 				return false;
 		} else if (!type.equals(other.type))
 			return false;
+		
+		if (xsdType == null) {
+			if (other.xsdType != null)
+				return false;
+		} else if (!xsdType.equals(other.xsdType))
+			return false;
+		
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "DomainRange [ID=" + ID + ", property=" + property.getLabel() + ", type=" + type + ", theClass=" + theClass + "]";
+		return "DomainRange [ID=" + ID + ", property=" + property.getLabel() + ", type=" + type + ", theClass=" + theClass + ", xsdType=" + xsdType +  "]";
 	}
 	
 	

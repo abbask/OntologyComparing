@@ -84,7 +84,7 @@ public class XSDType {
 	
 	@Override
 	public String toString() {
-		return "XSDType [ID=" + ID + ", type=" + type + "]";
+		return "XSDType [ID=" + ID + ", type=" + type + ", uri="+ url +  "]";
 	}
 	
 	

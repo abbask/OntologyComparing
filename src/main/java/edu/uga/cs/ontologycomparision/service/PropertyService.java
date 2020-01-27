@@ -19,6 +19,8 @@ import edu.uga.cs.ontologycomparision.model.Version;
 public class PropertyService {
 	
 	final static Logger logger = Logger.getLogger(ClassService.class);
+	final static String ObjectPropertyType = "ObjectProperty";
+	final static String DatatypePropertyType = "DatatypeProperty";
 	
 	private Connection connection;	
 	
@@ -82,11 +84,24 @@ public class PropertyService {
             }
 			
 			for(DomainRange dr : property.getDomainRanges()) {
+				
+//				System.out.println(dr);
+				
 				String queryStringParent = "INSERT INTO domain_range (property_id, type, class_id) VALUES (?,?,?)";
+				if (property.getType() == DatatypePropertyType && dr.getType() == "Range")
+					queryStringParent = "INSERT INTO domain_range (property_id, type, xsd_type_id) VALUES (?,?,?)";
+				
 				PreparedStatement statementParent= connection.prepareStatement(queryStringParent, Statement.RETURN_GENERATED_KEYS);
 				statementParent.setInt(1,candidateId);
 				statementParent.setString(2, dr.getType());
-				statementParent.setInt(3,dr.getTheClass().getID());
+				
+				if (property.getType() == DatatypePropertyType && dr.getType() == "Range")
+					statementParent.setInt(3,dr.getXsdType().getID());
+				else
+					statementParent.setInt(3,dr.getTheClass().getID());
+				
+//				System.out.println(statementParent);
+				
 				statementParent.executeUpdate();
 			}
 			

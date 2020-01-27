@@ -284,15 +284,19 @@ public class RetrieveSchemaService {
 		if (propertyString.isEmpty())
 			return null;
 		Property myProperty ;
-
-		
+		String owlType = "";
+		if (type == ObjectPropertyType)
+			owlType="owl:ObjectProperty";
+		else
+			owlType="owl:DatatypeProperty";
+	
 		String queryString = "PREFIX owl: <http://www.w3.org/2002/07/owl#> PREFIX rdfs:<http://www.w3.org/2000/01/rdf-schema#> SELECT IF(bound(?parent), ?parent, '') as ?parent ?p IF(bound(?domain), ?domain, '') as ?domain IF(bound(?range), ?range, '') as ?range "
-				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{?p a owl:ObjectProperty. optional{?p rdfs:subPropertyOf ?parent.} optional{?p rdfs:domain ?domain.} optional{?p rdfs:range ?range.} values (?p ) {(<" + propertyString + ">)}}";
+				+ (graphName.isBlank()? "" : "FROM " + graphName) + " WHERE{?p a " + owlType + ". optional{?p rdfs:subPropertyOf ?parent.} optional{?p rdfs:domain ?domain.} optional{?p rdfs:range ?range.} values (?p ) {(<" + propertyString + ">)}}";
 		
 //		System.out.println(queryString);
 		HTTPConnection http = new HTTPConnection(endpointURL, queryString);
 		ArrayList<ArrayList<String>> list = parseJson( http.execute() ) ;
-		
+		XSDTypeService xsdTypeService = new XSDTypeService(connection);
 		
 		Property parentProperty = null;	
 		
@@ -311,10 +315,18 @@ public class RetrieveSchemaService {
 		
 		Resource domainResource = items.get("domain");
 		Resource rangeResource = items.get("range");
-		
+		XSDType rangeXSDType = null;
+		Class range = null;
 		Class domain = collectClass(domainResource.toString(), http);
-		Class range = collectClass(rangeResource.toString(), http);
-		
+		if (type == DatatypePropertyType && rangeResource != null && rangeResource.toString() !="") {
+			
+			rangeXSDType = new XSDType(rangeResource.toString(), rangeResource.getLocalName());
+			rangeXSDType = xsdTypeService.addIfNotExist(rangeXSDType);
+//			System.out.println("rangeXSDType::::" + rangeXSDType);
+		}
+		else {
+			range = collectClass(rangeResource.toString(), http);
+		}
 //		System.out.println("domain: " + domain + " range: " + range );
 		
 		myProperty = new Property(propertyResource.getURI(), propertyResource.getLocalName(),type, "", version, parentProperty);
@@ -324,7 +336,7 @@ public class RetrieveSchemaService {
 		if (domain != null) {
 			
 			if (domain.getUrl().contains("nodeID:")) {
-				List<Class> classes = findClassesForDomainRange(domain.getUrl());
+				List<Class> classes = findClassesForDomainRange(domain.getUrl());				
 				for(Class c : classes) {
 					d = new DomainRange(myProperty, "Domain", c);
 					domainRanges.add(d);
@@ -338,19 +350,28 @@ public class RetrieveSchemaService {
 			
 		}
 		DomainRange r =null;
-		if (range != null) {
-			
-			if (range.getUrl().contains("nodeID:")) {
-				List<Class> classes = findClassesForDomainRange(range.getUrl());
-				for(Class c : classes) {
-					r = new DomainRange(myProperty, "Range", c);
+		if (range != null || rangeXSDType != null) {
+
+			if(type != DatatypePropertyType) {
+				if (range.getUrl().contains("nodeID:")) {
+					List<Class> classes = findClassesForDomainRange(range.getUrl());
+					for(Class c : classes) {
+						r = new DomainRange(myProperty, "Range", c);
+						domainRanges.add(r);
+					}
+				}
+				else {
+					r = new DomainRange(myProperty, "Range", range);
+					domainRanges.add(r);
+				}	
+			}
+			else {
+				if (rangeXSDType.getType() != "") {
+					r = new DomainRange(myProperty, "Range", rangeXSDType);
+	//				System.out.println(r);
 					domainRanges.add(r);
 				}
 			}
-			else {
-				r = new DomainRange(myProperty, "Range", range);
-				domainRanges.add(r);
-			}			
 			
 		}
 		

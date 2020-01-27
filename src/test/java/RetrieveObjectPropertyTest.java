@@ -18,6 +18,7 @@ class RetrieveObjectPropertyTest {
 		
 		RetrieveSchemaService service = new RetrieveSchemaService(endpointURL, graphName, versionId);
 		System.out.println(service.retrieveAllObjectProperties());
+		System.out.println(service.retrieveAllDataTypeProperties());
 	}
 
 }

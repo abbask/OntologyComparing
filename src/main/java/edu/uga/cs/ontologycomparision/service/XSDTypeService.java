@@ -23,9 +23,10 @@ public class XSDTypeService {
 	}
 	
 	public XSDType addIfNotExist(XSDType type) throws SQLException {
-		
+		if (type.getUrl().isEmpty())
+			return null;
 		XSDType retrieveXSDType = getByURI(type.getUrl());
-		
+//		System.out.println(retrieveXSDType);
 		if (retrieveXSDType == null) {
 			int id = add(type);
 			type.setID(id);
@@ -100,7 +101,7 @@ public class XSDTypeService {
 		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM xsd_type where url='" + uri + "'";
 		ResultSet rs = stmtSys.executeQuery(query); 
-		
+//		System.out.println(query);
 		XSDType type = null;
 		
 		while(rs.next()) {
