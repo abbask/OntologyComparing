@@ -167,8 +167,9 @@ public class ShowService {
 	
 	public List<ObjectTripleType> getObjectTripleTypes() throws SQLException{
 		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
-
+		
 		List<ObjectTripleType> objectList = service.listAll(ver.getID());
+		
 		return objectList;
 	}
 	

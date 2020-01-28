@@ -204,6 +204,7 @@ public class ObjectTripleTypeService {
 		PropertyService propertyService = new PropertyService(connection);
 		
 		while (rs.next()) {
+			
 			Class domain = classService.getByID(rs.getInt("domain_id")); 			
 			Property predicate = propertyService.getByID(rs.getInt("predicate_id"));			
 			Class range = classService.getByID(rs.getInt("object_range_id"));

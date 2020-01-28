@@ -188,7 +188,7 @@ public class PropertyService {
 		VersionService versionService = new VersionService(connection);
 		ClassService classService = new ClassService(connection);
 		
-//		System.out.println("QUERY: " + query);
+		System.out.println("QUERY: " + query);
 		Property result = null;
 		
 		while(rs.next()) {
@@ -215,6 +215,7 @@ public class PropertyService {
 				
 			}
 			property.setDomainRanges(domainRanges);
+			list.add(property);
 			
 		}
 		if (list.size() > 0) 
@@ -249,7 +250,7 @@ public class PropertyService {
 		ClassService classService = new ClassService(connection);
 		XSDTypeService xsdTypeService = new XSDTypeService(connection);
 		
-		System.out.println(query);
+//		System.out.println(query);
 		while (rs.next()) {
 			Version version = versionService.get(versionId);
 			Property parentProperty = null;
