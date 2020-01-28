@@ -124,10 +124,22 @@
 		  	<table class="table table-striped">
 		  		<#if objectProperties??>
 		  			<#if objectProperties?size != 0> 
-				  		<thead><tr><th scope="col">Label</th><th scope="col">Parent Property</th></tr></thead><tbody>
+				  		<thead><tr><th scope="col">Label</th><th>Domain</th><th>Range</th><th scope="col">Parent Property</th></tr></thead><tbody>
 						<#list objectProperties as o>
-						
-							<tr><td> ${o.label} </td><td><#if o.parent??> ${o.parent.label} </#if> </td></tr> 					
+							
+							<#list users as user>${user}<#sep>, </#list>
+							<#assign domain = "">
+							<#assign range = "">
+							<#list o.domainRanges as dr>
+								<#if dr.type == "Domain" > 									
+									${domain} += ${dr.theClass}<#sep>,
+								</#if>
+								<#if dr.type == "Range" > 			
+									${range} += ${dr.theClass.label}<#sep>,
+								</#if>
+							</#list>
+							
+							<tr><td> ${o.label} </td><td>${domain}</td><td>${range} </td><td><#if o.parent??> ${o.parent.label} </#if> </td></tr> 					
 						</#list>
 					<#else>
 						<thead><tr><th scope="col"></th></tr></thead><tbody><tr><th>No data available</td></tr>	
@@ -138,11 +150,27 @@
 		  <div class="tab-pane fade" id="datatypeProp" role="tabpanel" aria-labelledby="datatypeProp">
 		  	<table class="table table-striped">
 		  		<#if datatypeProperties??> 
-			  		<thead><tr><th scope="col">Label</th><th scope="col">Parent Property</th></tr></thead><tbody>
-					<#list datatypeProperties as d>
-					
-						<tr><td> ${d.label} </td><td><#if d.parent??> ${d.parent.label} </#if> </td></tr> 					
-					</#list>	
+		  			<#if datatypeProperties?size != 0> 
+				  		<thead><tr><th scope="col">Label</th><th>Domain</th><th>Range</th><th scope="col">Parent Property</th></tr></thead><tbody>
+						<#list objectProperties as o>
+							
+							<#list users as user>${user}<#sep>, </#list>
+							<#assign domain = "">
+							<#assign range = "">
+							<#list o.domainRanges as dr>
+								<#if dr.type == "Domain" > 									
+									${domain} += ${dr.theClass}<#sep>,
+								</#if>
+								<#if dr.type == "Range" > 			
+									${range} += ${dr.theClass.label}<#sep>,
+								</#if>
+							</#list>
+							
+							<tr><td> ${o.label} </td><td>${domain}</td><td>${range} </td><td><#if o.parent??> ${o.parent.label} </#if> </td></tr> 					
+						</#list>	
+					<#else>
+						<thead><tr><th scope="col"></th></tr></thead><tbody><tr><th>No data available</td></tr>	
+					</#if>
 				</#if>
 			</tbody></table>
 		  </div>
