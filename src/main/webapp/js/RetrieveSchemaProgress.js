@@ -13,8 +13,7 @@ $(document).ready(function(){
 	    	
 	    	$('.progressDiv').html('<p>Endpoint check: <span class="glyphicon glyphicon-ok"></span></p>');
 	    	
-	    	getObjectProperties(endpoint, graphName, version_id);
-	    	getDataTypeProperties(endpoint, graphName, version_id);
+	    	
 	    	getClasses(endpoint, graphName, version_id);
 	    		    		    
 	    }).fail(function (data){
@@ -22,7 +21,7 @@ $(document).ready(function(){
 	    }).responseText;
 	}
 	
-	function getClasses(endpoint, graphname, versionId){
+	function getClasses(endpoint, graphname, version_id){
 		return $.ajax({
 		    url: 'rest/RetrieveSchema/classes',
 		    type: 'GET',
@@ -30,42 +29,50 @@ $(document).ready(function(){
 		    async: true
 		}).done(function (data) {
 			$('.progressDiv').append('<p>Classes: <span class="glyphicon glyphicon-ok"></span></p>');	
-			getObjectTripleTypes(endpoint, graphname, versionId);
-			getDataTypeTripleTypes(endpoint, graphname, versionId);
-			getRestrictions(endpoint, graphname, versionId);
-			getExpressions(endpoint, graphname, versionId);
+			getObjectProperties(endpoint, graphName, version_id);
+	    	
+	    	
 		}).fail(function (data) {
 			$('.progressDiv').append('<p>Classes: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
-	}
+	}	
 	
-	function getObjectProperties(endpoint, graphname, versionId){
+	function getObjectProperties(endpoint, graphname, version_id){
 		return $.ajax({
 		    url: 'rest/RetrieveSchema/ObjectProperties',
 		    type: 'GET',
 		    data: {'endpoint': endpoint, 'graphName': graphname, 'version_id': version_id},
 		    async: true
 		}).done(function (data) {
-			$('.progressDiv').append('<p>Object Properties: <span class="glyphicon glyphicon-ok"></span></p>');			
+			$('.progressDiv').append('<p>Object Properties: <span class="glyphicon glyphicon-ok"></span></p>');		
+			getDataTypeProperties(endpoint, graphName, version_id);
 		}).fail(function (data) {
 			$('.progressDiv').append('<p>Object Properties: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
 	}
 	
-	function getDataTypeProperties(endpoint, graphname, versionId){
+	function getDataTypeProperties(endpoint, graphname, version_id){
 		return $.ajax({
 		    url: 'rest/RetrieveSchema/DataTypeProperties',
 		    type: 'GET',
 		    data: {'endpoint': endpoint, 'graphName': graphname, 'version_id': version_id},
 		    async: true
 		}).done(function (data) {
-			$('.progressDiv').append('<p>Data Type Properties: <span class="glyphicon glyphicon-ok"></span></p>');			
+			$('.progressDiv').append('<p>Data Type Properties: <span class="glyphicon glyphicon-ok"></span></p>');	
+			getTheRest(endpoint, graphname, version_id);
 		}).fail(function (data) {
 			$('.progressDiv').append('<p>Data Type Properties: <span class="glyphicon glyphicon-remove"></span></p>');
 		}).responseText;
 	}
 	
-	function getObjectTripleTypes(endpoint, graphname, versionId){
+	function getTheRest(endpoint, graphname, version_id){
+		getObjectTripleTypes(endpoint, graphname, version_id);
+		getDataTypeTripleTypes(endpoint, graphname, version_id);
+		getRestrictions(endpoint, graphname, version_id);
+		getExpressions(endpoint, graphname, version_id);
+	}
+	
+	function getObjectTripleTypes(endpoint, graphname, version_id){
 		return $.ajax({
 		    url: 'rest/RetrieveSchema/ObjectTripleTypes',
 		    type: 'GET',
@@ -78,7 +85,7 @@ $(document).ready(function(){
 		}).responseText;
 	}
 	
-	function getDataTypeTripleTypes(endpoint, graphname, versionId){
+	function getDataTypeTripleTypes(endpoint, graphname, version_id){
 		return $.ajax({
 		    url: 'rest/RetrieveSchema/DataTypeTripleTypes',
 		    type: 'GET',
@@ -91,7 +98,7 @@ $(document).ready(function(){
 		}).responseText;
 	}
 	
-	function getRestrictions(endpoint, graphname, versionId){
+	function getRestrictions(endpoint, graphname, version_id){
 		return $.ajax({
 		    url: 'rest/RetrieveSchema/Restriction',
 		    type: 'GET',
@@ -104,7 +111,7 @@ $(document).ready(function(){
 		}).responseText;
 	}
 	
-	function getExpressions(endpoint, graphname, versionId){
+	function getExpressions(endpoint, graphname, version_id){
 		return $.ajax({
 		    url: 'rest/RetrieveSchema/Expression',
 		    type: 'GET',

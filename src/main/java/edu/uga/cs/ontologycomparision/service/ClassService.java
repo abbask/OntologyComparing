@@ -133,10 +133,10 @@ public class ClassService {
 			String queryParent = "SELECT * FROM class_parent where class_id =" + classId ;
 			ResultSet rsP = stmtParent.executeQuery(queryParent); 
 			while(rsP.next()) {
-				int parentId = rsP.getInt("ID");
+//				System.out.println("parent: "+ queryParent);
+				int parentId = rsP.getInt("parent_id");
 				Class parent = getByID(parentId);
 				parents.add(parent);
-				
 			}
 			myClass.setParents(parents);
 			
@@ -162,14 +162,15 @@ public class ClassService {
 		
 		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM class where ID=" + ID;
+		
 		ResultSet rs = stmtSys.executeQuery(query); 
 		VersionService versionService = new VersionService(connection);
 		while(rs.next()) {
-			
 			Version version = versionService.get(rs.getInt("version_id"));
+			
 			Class myClass = new Class(rs.getInt("ID"), rs.getString("url"), rs.getString("label"),
 					rs.getString("comment"), rs.getLong("count"), version);
-						
+
 //			int classId = rs.getInt("ID");
 //			List<Class> parents = new ArrayList<Class>();
 //			Statement stmtParent = connection.createStatement();			

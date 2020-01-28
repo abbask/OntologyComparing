@@ -182,6 +182,7 @@ public class RetrieveSchemaService {
 		if (subjectString.isEmpty())
 			return null;
 		
+
 		ClassService classService = new ClassService(connection);
 		Class myClass = classService.getByURI(subjectString, version.getID());
 //		System.out.println(myClass);

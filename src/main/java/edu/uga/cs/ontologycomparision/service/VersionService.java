@@ -83,6 +83,7 @@ public class VersionService {
 		connection.setAutoCommit(false);
 		Statement stmtSys = connection.createStatement();			
 		String query = "SELECT * FROM version WHERE ID=" + ID;
+//		System.out.println("query: " + query);
 		ResultSet rs = stmtSys.executeQuery(query); 
 		
 		while(rs.next()) {
