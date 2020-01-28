@@ -127,15 +127,16 @@
 				  		<thead><tr><th scope="col">Label</th><th>Domain</th><th>Range</th><th scope="col">Parent Property</th></tr></thead><tbody>
 						<#list objectProperties as o>
 							
-							<#list users as user>${user}<#sep>, </#list>
 							<#assign domain = "">
 							<#assign range = "">
 							<#list o.domainRanges as dr>
-								<#if dr.type == "Domain" > 									
-									${domain} += ${dr.theClass}<#sep>,
-								</#if>
-								<#if dr.type == "Range" > 			
-									${range} += ${dr.theClass.label}<#sep>,
+								<#if dr.theClass??>			
+									<#if dr.type == "Domain" > 																		
+										<#assign domain +=dr.theClass.label>												
+									</#if>
+									<#if dr.type == "Range" > 												
+										<#assign range +=dr.theClass.label>
+									</#if>
 								</#if>
 							</#list>
 							
@@ -152,17 +153,18 @@
 		  		<#if datatypeProperties??> 
 		  			<#if datatypeProperties?size != 0> 
 				  		<thead><tr><th scope="col">Label</th><th>Domain</th><th>Range</th><th scope="col">Parent Property</th></tr></thead><tbody>
-						<#list objectProperties as o>
+						<#list datatypeProperties as o>
 							
-							<#list users as user>${user}<#sep>, </#list>
 							<#assign domain = "">
 							<#assign range = "">
 							<#list o.domainRanges as dr>
-								<#if dr.type == "Domain" > 									
-									${domain} += ${dr.theClass}<#sep>,
+								<#if dr.type == "Domain" > 	
+									<#if dr.theClass??>								
+										<#assign domain +=dr.theClass.label>
+									</#if>
 								</#if>
-								<#if dr.type == "Range" > 			
-									${range} += ${dr.theClass.label}<#sep>,
+								<#if dr.type == "Range" > 
+									<#assign range +=dr.xsdType.type>									
 								</#if>
 							</#list>
 							

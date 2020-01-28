@@ -15,6 +15,7 @@ import edu.uga.cs.ontologycomparision.model.Class;
 import edu.uga.cs.ontologycomparision.model.DomainRange;
 import edu.uga.cs.ontologycomparision.model.Property;
 import edu.uga.cs.ontologycomparision.model.Version;
+import edu.uga.cs.ontologycomparision.model.XSDType;
 
 public class PropertyService {
 	
@@ -246,7 +247,9 @@ public class PropertyService {
 		ResultSet rs = stmtSys.executeQuery(query); 
 		VersionService versionService = new VersionService(connection);
 		ClassService classService = new ClassService(connection);
+		XSDTypeService xsdTypeService = new XSDTypeService(connection);
 		
+		System.out.println(query);
 		while (rs.next()) {
 			Version version = versionService.get(versionId);
 			Property parentProperty = null;
@@ -262,14 +265,29 @@ public class PropertyService {
 			ResultSet rsP = stmtParent.executeQuery(queryParent); 
 			while(rsP.next()) {
 				int domainRangeId = rsP.getInt("ID");
-				
-				Class theClass = classService.getByID(rsP.getInt("class_id"));				
-				DomainRange domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
-				
+				DomainRange domainRange = null;
+				if (property.getType().equals("ObjectProperty")) {					
+					Class theClass = classService.getByID(rsP.getInt("class_id"));				
+					domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
+				}
+				else {
+					String drType  = rsP.getString("type");
+					System.out.println(drType);
+					if (drType.equalsIgnoreCase("domain")) {
+						Class theClass = classService.getByID(rsP.getInt("class_id"));				
+						domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
+					}
+					else {
+						XSDType xsdType = xsdTypeService.getByID(rsP.getInt("xsd_type_id"));
+						domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), xsdType);
+					}					
+				}
 				domainRanges.add(domainRange);
 				
 			}
 			property.setDomainRanges(domainRanges);
+			
+			results.add(property);
 			
 		}
 		
