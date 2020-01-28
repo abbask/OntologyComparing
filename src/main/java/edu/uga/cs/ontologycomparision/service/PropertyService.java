@@ -272,7 +272,6 @@ public class PropertyService {
 				}
 				else {
 					String drType  = rsP.getString("type");
-					System.out.println(drType);
 					if (drType.equalsIgnoreCase("domain")) {
 						Class theClass = classService.getByID(rsP.getInt("class_id"));				
 						domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
