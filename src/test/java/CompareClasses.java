@@ -20,12 +20,12 @@ class CompareClasses {
 	@Test
 	void test() throws SQLException, IOException {
 		MySQLConnection mySQLConnection = new MySQLConnection();
-		Connection connection = mySQLConnection.openConnection();
-//		VersionService service = new VersionService(mySQLConnection.openConnection());
-//		Version ver1 = service.get(2);
-//		Version ver2 = service.get(3);
-//		CompareService compare = new CompareService(ver1, ver2);
-////		System.out.println(compare.compareClasses());
+	//		Connection connection = mySQLConnection.openConnection();
+		VersionService service = new VersionService(mySQLConnection.openConnection());
+		Version ver1 = service.get(37);
+		Version ver2 = service.get(38);
+		CompareService compare = new CompareService(ver1, ver2);
+		System.out.println(compare.compareClasses());
 //		System.out.println(compare.compareClassCount());
 		
 //		ObjectTripleTypeService service = new ObjectTripleTypeService(connection);
@@ -34,15 +34,15 @@ class CompareClasses {
 //			System.out.println(obj);
 //		}
 		
-		String endpointURL = "http://128.192.62.253:8890/sparql";
-		String graphName = "<http://ncicb.nci.nih.gov>";
-		
-		RetrieveSchemaService retrieve = new RetrieveSchemaService(endpointURL, graphName);
-		if ( retrieve.retrieveAllDataTypeProperties() )
-			System.out.println("done.");
-		else
-			System.out.println(" Failed");
-		
+//		String endpointURL = "http://128.192.62.253:8890/sparql";
+//		String graphName = "<http://ncicb.nci.nih.gov>";
+//		
+//		RetrieveSchemaService retrieve = new RetrieveSchemaService(endpointURL, graphName);
+//		if ( retrieve.retrieveAllDataTypeProperties() )
+//			System.out.println("done.");
+//		else
+//			System.out.println(" Failed");
+//		
 		
 	}
 

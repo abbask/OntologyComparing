@@ -87,7 +87,7 @@ public class DomainRange {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((property == null) ? 0 : property.hashCode());
+		
 		result = prime * result + ((theClass == null) ? 0 : theClass.hashCode());
 		result = prime * result + ((type == null) ? 0 : type.hashCode());
 		result = prime * result + ((xsdType == null) ? 0 : xsdType.hashCode());
@@ -104,11 +104,6 @@ public class DomainRange {
 			return false;
 		DomainRange other = (DomainRange) obj;
 
-		if (property == null) {
-			if (other.property != null)
-				return false;
-		} else if (!property.equals(other.property))
-			return false;
 		if (theClass == null) {
 			if (other.theClass != null)
 				return false;
@@ -131,7 +126,7 @@ public class DomainRange {
 
 	@Override
 	public String toString() {
-		return "DomainRange [ID=" + ID + ", property=" + property.getLabel() + ", type=" + type + ", theClass=" + theClass + ", xsdType=" + xsdType +  "]";
+		return "DomainRange [ID=" + ID + ", type=" + type + ", theClass=" + theClass + ", xsdType=" + xsdType +  "]";
 	}
 	
 	
