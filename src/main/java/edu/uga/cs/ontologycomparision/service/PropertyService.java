@@ -158,7 +158,7 @@ public class PropertyService {
 				int domainRangeId = rsP.getInt("ID");
 				
 				Class theClass = classService.getByID(rsP.getInt("class_id"));				
-				DomainRange domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
+				DomainRange domainRange = new DomainRange(domainRangeId,rsP.getString("type"), theClass);
 				
 				domainRanges.add(domainRange);
 				
@@ -188,7 +188,7 @@ public class PropertyService {
 		VersionService versionService = new VersionService(connection);
 		ClassService classService = new ClassService(connection);
 		
-		System.out.println("QUERY: " + query);
+//		System.out.println("QUERY: " + query);
 		Property result = null;
 		
 		while(rs.next()) {
@@ -209,7 +209,7 @@ public class PropertyService {
 				int domainRangeId = rsP.getInt("ID");
 				
 				Class theClass = classService.getByID(rsP.getInt("class_id"));				
-				DomainRange domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
+				DomainRange domainRange = new DomainRange(domainRangeId, rsP.getString("type"), theClass);
 				
 				domainRanges.add(domainRange);
 				
@@ -269,17 +269,17 @@ public class PropertyService {
 				DomainRange domainRange = null;
 				if (property.getType().equals("ObjectProperty")) {					
 					Class theClass = classService.getByID(rsP.getInt("class_id"));				
-					domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
+					domainRange = new DomainRange(domainRangeId, rsP.getString("type"), theClass);
 				}
 				else {
 					String drType  = rsP.getString("type");
 					if (drType.equalsIgnoreCase("domain")) {
 						Class theClass = classService.getByID(rsP.getInt("class_id"));				
-						domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), theClass);
+						domainRange = new DomainRange(domainRangeId, rsP.getString("type"), theClass);
 					}
 					else {
 						XSDType xsdType = xsdTypeService.getByID(rsP.getInt("xsd_type_id"));
-						domainRange = new DomainRange(domainRangeId, property, rsP.getString("type"), xsdType);
+						domainRange = new DomainRange(domainRangeId, rsP.getString("type"), xsdType);
 					}					
 				}
 				domainRanges.add(domainRange);

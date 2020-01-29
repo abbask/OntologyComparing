@@ -3,7 +3,6 @@ package edu.uga.cs.ontologycomparision.model;
 public class DomainRange {
 	
 	private int ID;
-	private Property property;
 	private String type;
 	private Class theClass;
 	private XSDType xsdType;
@@ -11,33 +10,31 @@ public class DomainRange {
 	public DomainRange() {
 	}
 
-	public DomainRange(Property property, String type, Class theClass) {
+	public DomainRange(String type, Class theClass) {
 		super();
-		this.property = property;
 		this.type = type;
 		this.theClass = theClass;
 	}
 	
 
-	public DomainRange(Property property, String type, XSDType xsdType) {
+	public DomainRange( String type, XSDType xsdType) {
 		super();
-		this.property = property;
+		
 		this.type = type;
 		this.xsdType = xsdType;
 	}
 
-	public DomainRange(int iD, Property property, String type, Class theClass) {
+	public DomainRange(int iD, String type, Class theClass) {
 		super();
 		ID = iD;
-		this.property = property;
 		this.type = type;
 		this.theClass = theClass;
 	}
 
-	public DomainRange(int iD, Property property, String type, XSDType xsdType) {
+	public DomainRange(int iD, String type, XSDType xsdType) {
 		super();
 		ID = iD;
-		this.property = property;
+		
 		this.type = type;
 		this.xsdType = xsdType;
 	}
@@ -50,13 +47,6 @@ public class DomainRange {
 		ID = iD;
 	}
 
-	public Property getProperty() {
-		return property;
-	}
-
-	public void setProperty(Property property) {
-		this.property = property;
-	}
 
 	public String getType() {
 		return type;

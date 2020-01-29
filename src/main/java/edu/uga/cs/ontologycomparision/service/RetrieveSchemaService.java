@@ -339,12 +339,12 @@ public class RetrieveSchemaService {
 			if (domain.getUrl().contains("nodeID:")) {
 				List<Class> classes = findClassesForDomainRange(domain.getUrl());				
 				for(Class c : classes) {
-					d = new DomainRange(myProperty, "Domain", c);
+					d = new DomainRange( "Domain", c);
 					domainRanges.add(d);
 				}
 			}
 			else {
-				d = new DomainRange(myProperty, "Domain", domain);
+				d = new DomainRange("Domain", domain);
 				domainRanges.add(d);
 			}
 			
@@ -357,18 +357,18 @@ public class RetrieveSchemaService {
 				if (range.getUrl().contains("nodeID:")) {
 					List<Class> classes = findClassesForDomainRange(range.getUrl());
 					for(Class c : classes) {
-						r = new DomainRange(myProperty, "Range", c);
+						r = new DomainRange( "Range", c);
 						domainRanges.add(r);
 					}
 				}
 				else {
-					r = new DomainRange(myProperty, "Range", range);
+					r = new DomainRange("Range", range);
 					domainRanges.add(r);
 				}	
 			}
 			else {
 				if (rangeXSDType.getType() != "") {
-					r = new DomainRange(myProperty, "Range", rangeXSDType);
+					r = new DomainRange("Range", rangeXSDType);
 	//				System.out.println(r);
 					domainRanges.add(r);
 				}
